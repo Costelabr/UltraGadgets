@@ -1,0 +1,8 @@
+name: UltraGadgets
+version: 1.0
+main: com.floodeer.gadgets.Main
+description: Gadgets Test!
+softdepend: [ProtocolLib, OverlandsAPI]
+commands:
+  gadgets:
+   description: Usar os Gadgets!

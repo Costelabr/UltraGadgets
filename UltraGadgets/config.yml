@@ -1,0 +1,46 @@
+#############################################################
+####################### ULTRA GADGETS #######################
+#############################################################
+
+#Configuração:
+
+#Debugg irá enviar informações a todo tempo sobre o plugin. (Recomendado = true)
+
+System-Debugg: true
+
+#Slot que o gadget será colocado quando player se juntar ao servidor. (0 = Slot 1, 8 = Slot 9)
+Slot-Gadget-Join-Item: 0
+
+#Slot do gadget. (0 = Slot 1, 8 = Slot 9)
+Gadgets-Slot: 4
+
+#Deixe 'true' para mostrar o gadget selecionado e outras informações na ActionBar (Textos cima do inventário)
+
+Usar-ActionBar: true
+
+#Som que será tocado quando o gadget ainda estiver em cooldown:
+Som-Cooldown: NOTE_PLING
+
+#Tempo de recarga dos Gadgets (Cooldown), a cada 1000 = 1 segundo. (10000 = 10s, 15000 = 15s, 20000 = 20s...)
+#O cooldown padrão é o recomendado, o cooldown é resetado quando player reentrar no servidor.
+#O cooldown muito baixo, pode causar um horrível desenpenho!
+
+Bomba-Gadget-Cooldown: 15000
+Cookie-Gadget-Cooldown: 32000
+FunGun-Gadget-Cooldown: 2500
+FireworkParty-Gadget-Cooldown: 28000
+Movire-Gadget-Cooldown: 45000
+StickTp-Gadget-Cooldown: 3000
+Dj-Gadget-Cooldown: 72000
+Disco-Gadget-Cooldown: 48000
+RailGun-Gadget-Cooldown: 16000
+SmokeBomb-Gadget-Cooldown: 26000
+DiamondParty-Gadget-Cooldown: 35000
+Paraquedas-Gadget-Cooldown: 38000
+WitherShoot-Gadget-Cooldown: 35000
+Trampolim-Gadget-Cooldown: 52000
+
+#Configuração dos gadgets:
+
+#Máximo de blocos que o gadget "StickOfTeleport" poderá teleportar.
+Area-Maxima-TpStick: 50
