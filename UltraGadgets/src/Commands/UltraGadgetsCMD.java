@@ -57,7 +57,6 @@ public class UltraGadgetsCMD
     	  sendHelp(p);
     	  return true;
       }
-	 PluginListener pl = new PluginListener();
       switch (args[0]) {
       
     
@@ -89,7 +88,7 @@ public class UltraGadgetsCMD
     		p.sendMessage(prefix + "§cVocê não tem permissão para usar esse comando.");
     		return true;
 		}
-		pl.reloadPlugin(p);
+		PluginListener.reloadPlugin(p);
 		
 		break;
 		
@@ -98,7 +97,7 @@ public class UltraGadgetsCMD
     		p.sendMessage(prefix + "§cVocê não tem permissão para usar esse comando.");
     		return true;
 		}
-		pl.lagManager(p);
+		PluginListener.lagManager(p);
 		break;
 	}
    }

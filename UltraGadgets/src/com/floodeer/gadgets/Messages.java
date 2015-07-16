@@ -10,10 +10,14 @@ public class Messages
   Main plugin = Main.getMain();
   public String GadgetItem;
   public String prefix;
+  
   protected String cooldown;
   public String newParticle;
   public String newDisguise;
   public String petNome;
+  public String disguisePermission;
+ 
+  
   public String GadgetItemName;
   public String BombaGadgetName;
   public String CookieGadgetName;
@@ -33,6 +37,8 @@ public class Messages
   public String DisguiseMenuName;
   public String GadgetsMenuName;
   public String MainMenuName;
+  
+  
   public String SuperMenuName;
   public String ParticlesMenuName;
   public String PetsMenuName;
@@ -77,6 +83,8 @@ public class Messages
     this.ParaquedasGadgetName = mensagens.getString("Paraquedas-Item-Nome").replaceAll("&", "§");
     this.WitherShooterName = mensagens.getString("WitherShoot-Item-Nome").replaceAll("&", "§");
     this.TrampolimName = mensagens.getString("Trampolim-Item-Nome").replaceAll("&", "§");
+    
+    this.disguisePermission = mensagens.getString("Disguise-Permissao").replaceAll("&", "§");
   }
   
   /**

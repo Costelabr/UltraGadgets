@@ -14,7 +14,8 @@ public class PluginListener
 {
   Main plugin = Main.getMain();
   
-  public void reloadPlugin(final Player reloader) {
+  public static void reloadPlugin(final Player reloader) {
+	  final Main plugin = Main.getMain();
 	  reloader.sendMessage("§eTentando recarregar... Aguarde um momento.");
 	  try{
 	  Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
@@ -33,7 +34,8 @@ public class PluginListener
 	  }
   }
   
-  public void lagManager(Player sender) {
+  public static void lagManager(Player sender) {
+	  Main plugin = Main.getMain();
 	  if(UtilLag.ServerisLag()) {
 		  sender.sendMessage(plugin.getMessagesFile().prefix + " §cO servidor está atualmente á §6§l" + UtilLag.getTicksPerSecond() + " §c(TPS MÉDIO/RUIM)");
 		  

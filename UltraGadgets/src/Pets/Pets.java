@@ -62,7 +62,7 @@ public class Pets
         Rabbit paramUniqueRabit = (Rabbit)uniquePlayer.getWorld().spawn(uniquePlayer.getLocation(), Rabbit.class);
         paramUniqueRabit.setCustomNameVisible(true);
         UtilPet.criarPet(paramUniqueRabit, uniqueID);
-        booleanPet.put(uniqueID, VACA);
+        booleanPet.put(uniqueID, COELHO);
         pet.put(uniqueID, paramUniqueRabit);
         paramUniqueRabit.setCustomName(plugin.getMessagesFile().petNome.replaceAll("&", "§").replaceAll("<PLAYER>", uniquePlayer.getName()).replaceAll("<PET>", ((Entity)pet.get(uniqueID)).getName()));
         paramUniqueRabit.setMetadata("petRabbit", new FixedMetadataValue(plugin, "petFixed3"));

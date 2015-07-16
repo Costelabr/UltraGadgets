@@ -17,6 +17,9 @@ Super-Particulas-Menu: "&lSuper Partículas"
 Pets-Menu: "&c&lPets"
 Gadgets-Removidos: "&cGadgets removidos"
 
+#Permissoes
+Disguise-Permissao: "&cVocê não tem permissões para usar fantasias!"
+
 #Itens
 Gadget-Item-Nome: "&e&lUltra Gadgets"
 Bomba-Gadget-Item-Nome: "&a&lBomba"

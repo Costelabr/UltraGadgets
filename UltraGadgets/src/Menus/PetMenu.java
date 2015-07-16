@@ -68,8 +68,16 @@ public class PetMenu
       if (slotClicked == 13) {
        PetsType.setPet(p, PetsType.VACA);
       }
+      if (slotClicked == 14) {
+          PetsType.setPet(p, PetsType.COELHO);
+         }
       if (slotClicked == 40) {
         PetsType.removePet(p);
+      }
+      if (slotClicked == 39)
+      {
+        p.closeInventory();
+        plugin.getMenuManager().gadgetMenu.showMenu(p);
       }
     }
   }

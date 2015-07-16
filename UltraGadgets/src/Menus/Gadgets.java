@@ -176,6 +176,11 @@ public class Gadgets
       if (slot == 40) {
         Tipos.setGadget(p, Tipos.NENHUM);
       }
+      if (slot == 41)
+      {
+        p.closeInventory();
+        p.sendMessage("§7§oEm breve!");
+      }
     }
   }
 }

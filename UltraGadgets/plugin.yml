@@ -4,5 +4,6 @@ main: com.floodeer.gadgets.Main
 description: Gadgets Test!
 softdepend: [ProtocolLib, OverlandsAPI]
 commands:
-  gadgets:
+  ultragadgets:
    description: Usar os Gadgets!
+   aliases: [ug]

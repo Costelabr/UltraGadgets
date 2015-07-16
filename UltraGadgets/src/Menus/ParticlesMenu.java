@@ -12,6 +12,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import Metodos.Menus;
 import Util.ParticleEffect;
+import Util.UtilParticle.ParticleType;
 
 import com.floodeer.gadgets.Main;
 
@@ -30,40 +31,43 @@ public class ParticlesMenu
     this.particleTitle = this.plugin.getMessagesFile().ParticlesMenuName;
     this.ativado = this.plugin.getMensagensConfig().getString("Nova-Particula").replaceAll("&", "§");
     
-    this.particleMenu = new Menus(this.plugin, this.particleTitle, 4);
+    this.particleMenu = new Menus(this.plugin, this.particleTitle, 6);
     
-    this.particleMenu.setItem(0, this.plugin.getItemStack().newItemStack(Material.GOLDEN_APPLE, "§aCorações", 
+    this.particleMenu.setItem(12, this.plugin.getItemStack().newItemStack(Material.GOLDEN_APPLE, "§aCorações", 
       Arrays.asList(new String[] {"§7Corações em volta da sua cabeça!" }), 1, (byte)0));
     
-    this.particleMenu.setItem(2, this.plugin.getItemStack().newItemStack(Material.SLIME_BALL, "§aSlime", 
+    this.particleMenu.setItem(13, this.plugin.getItemStack().newItemStack(Material.SLIME_BALL, "§aSlime", 
       Arrays.asList(new String[] {"§7Slime em volta de sua cabeça!" }), 1, (byte)0));
     
-    this.particleMenu.setItem(4, this.plugin.getItemStack().newItemStack(Material.JUKEBOX, "§aNotas", 
+    this.particleMenu.setItem(14, this.plugin.getItemStack().newItemStack(Material.JUKEBOX, "§aNotas", 
       Arrays.asList(new String[] {"§7Notas em volta de sua cabeça!" }), 1, (byte)0));
     
-    this.particleMenu.setItem(6, this.plugin.getItemStack().newItemStack(Material.BLAZE_POWDER, "§aAngry Villager", 
+    this.particleMenu.setItem(21, this.plugin.getItemStack().newItemStack(Material.BLAZE_POWDER, "§aAngry Villager", 
       Arrays.asList(new String[] {"§7Angry Villager Efeito em volta de sua cabeça!" }), 1, (byte)0));
     
-    this.particleMenu.setItem(8, this.plugin.getItemStack().newItemStack(Material.EMERALD, "§aVillager Happy", 
+    this.particleMenu.setItem(22, this.plugin.getItemStack().newItemStack(Material.EMERALD, "§aVillager Happy", 
       Arrays.asList(new String[] {"§7Villager Happy Efeito em volta de sua cabeça!" }), 1, (byte)0));
     
-    this.particleMenu.setItem(9, this.plugin.getItemStack().newItemStack(Material.REDSTONE, "§aRedstone", 
+    this.particleMenu.setItem(23, this.plugin.getItemStack().newItemStack(Material.REDSTONE, "§aRedstone", 
       Arrays.asList(new String[] {"§7Efeito de Redstone em volta de sua cabeça!" }), 1, (byte)0));
     
-    this.particleMenu.setItem(11, this.plugin.getItemStack().newItemStack(Material.GLASS_BOTTLE, "§aSpell", 
+    this.particleMenu.setItem(30, this.plugin.getItemStack().newItemStack(Material.GLASS_BOTTLE, "§aSpell", 
       Arrays.asList(new String[] {"§7Efeito Spell em volta de sua cabeça!" }), 1, (byte)0));
     
-    this.particleMenu.setItem(27, this.plugin.getItemStack().newItemStack(Material.ARROW, "§fVoltar", 
+    this.particleMenu.setItem(39, this.plugin.getItemStack().newItemStack(Material.ARROW, "§fVoltar", 
       Arrays.asList(new String[] {"§7Clique para voltar ao menu de seleção" }), 1, (byte)0));
     
-    this.particleMenu.setItem(13, this.plugin.getItemStack().setSoonTM());
+    this.particleMenu.setItem(31, this.plugin.getItemStack().newItemStack(Material.FLINT_AND_STEEL, "§aFogo", 
+      Arrays.asList(new String[] {"§7Efeito de fogo em volta da sua cabeça!"}), 1, (byte)0));
     
-    this.particleMenu.setItem(15, this.plugin.getItemStack().setSoonTM());
+    this.particleMenu.setItem(32, this.plugin.getItemStack().newItemStack(Material.FIREWORK, "§aFirework", 
+    Arrays.asList(new String[] {"§7Efeito de firework em volta da sua cabeça!"}), 1, (byte)0));
     
-    this.particleMenu.setItem(17, this.plugin.getItemStack().setSoonTM());
     
-    this.particleMenu.setItem(35, this.plugin.getItemStack().newItemStack(Material.WOOL, 
+    this.particleMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.WOOL, 
       "§cRemover partículas", Arrays.asList(new String[] { "§7Clique para desativar suas partículas!" }), 1, (byte)14));
+    
+    this.particleMenu.setItem(41, this.plugin.getItemStack().setGoArrow());
   }
   
   @EventHandler
@@ -75,7 +79,7 @@ public class ParticlesMenu
       e.setCancelled(true);
       e.setResult(Result.DENY);
       int slot = e.getSlot();
-      if ((slot == 0) && 
+      if ((slot == 12) && 
         (!this.plugin.getUtilPartciles().hasEffect(p)))
       {
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.HEART);
@@ -83,7 +87,7 @@ public class ParticlesMenu
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.GHAST_MOAN, 1.0F, 1.0F);
       }
-      if ((slot == 2) && 
+      if ((slot == 13) && 
         (!this.plugin.getUtilPartciles().hasEffect(p)))
       {
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.SLIME);
@@ -91,7 +95,7 @@ public class ParticlesMenu
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.SLIME_WALK, 1.0F, 1.0F);
       }
-      if ((slot == 4) && 
+      if ((slot == 14) && 
         (!this.plugin.getUtilPartciles().hasEffect(p)))
       {
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.NOTE);
@@ -99,7 +103,7 @@ public class ParticlesMenu
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.NOTE_PIANO, 1.0F, 1.0F);
       }
-      if ((slot == 6) && 
+      if ((slot == 21) && 
         (!this.plugin.getUtilPartciles().hasEffect(p)))
       {
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.VILLAGER_ANGRY);
@@ -107,7 +111,7 @@ public class ParticlesMenu
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1.0F, -1.0F);
       }
-      if ((slot == 8) && 
+      if ((slot == 22) && 
         (!this.plugin.getUtilPartciles().hasEffect(p)))
       {
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.VILLAGER_HAPPY);
@@ -115,7 +119,7 @@ public class ParticlesMenu
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.VILLAGER_YES, 1.0F, 1.0F);
       }
-      if ((slot == 9) && 
+      if ((slot == 23) && 
         (!this.plugin.getUtilPartciles().hasEffect(p)))
       {
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.REDSTONE);
@@ -123,7 +127,7 @@ public class ParticlesMenu
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.PISTON_EXTEND, 1.0F, 1.0F);
       }
-      if ((slot == 11) && 
+      if ((slot == 30) && 
         (!this.plugin.getUtilPartciles().hasEffect(p)))
       {
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.SPELL);
@@ -131,13 +135,35 @@ public class ParticlesMenu
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.FALL_BIG, 1.0F, 1.0F);
       }
-      if (slot == 35) {
+      if ((slot == 31) && 
+    	(!this.plugin.getUtilPartciles().hasEffect(p)))
+    	  {
+    	        this.plugin.getUtilPartciles().rorationOtherType(p, ParticleType.FLAME);
+    	        p.sendMessage(this.ativado + "§cFogo");
+    	        p.closeInventory();
+    	        p.playSound(p.getLocation(), Sound.FIZZ, 1.0F, 1.0F);
+    	 }
+      if ((slot == 32) && 
+    	(!this.plugin.getUtilPartciles().hasEffect(p)))
+    	  {
+    	        this.plugin.getUtilPartciles().rorationOtherType(p, ParticleType.FIREWORKS_SPARK);
+    	        p.sendMessage(this.ativado + "§cFirework");
+    	        p.closeInventory();
+    	        p.playSound(p.getLocation(), Sound.FIREWORK_LAUNCH, 1.0F, 1.0F);
+    	 }
+      if (slot == 40) {
         this.plugin.getUtilPartciles().stopRotation(p);
+        p.closeInventory();
       }
-      if (slot == 27)
+      if (slot == 39)
       {
         p.closeInventory();
         this.plugin.getMenuManager().gadgetMenu.showMenu(p);
+      }
+      if (slot == 41)
+      {
+        p.closeInventory();
+        p.sendMessage("§7§oEm breve!");
       }
     }
   }

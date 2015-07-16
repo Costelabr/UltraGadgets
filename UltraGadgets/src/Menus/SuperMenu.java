@@ -37,9 +37,9 @@ public class SuperMenu
     
     this.spMenu.setItem(13, this.plugin.getItemStack().newItemStack(Material.WATER_BUCKET, "§a§gua", Arrays.asList(new String[] { "§7§gua na sua cabe§a!" }), 1, (byte)0));
     
-    this.spMenu.setItem(14, this.plugin.getItemStack().newItemStack(Material.EMERALD_BLOCK, "§aHelix Happy", Arrays.asList(new String[] { "§7Helix de Happy em volta de voc§!" }), 1, (byte)0));
+    this.spMenu.setItem(14, this.plugin.getItemStack().newItemStack(Material.EMERALD_BLOCK, "§aRoration Happy", Arrays.asList(new String[] { "§7Helix de Happy em volta de voc§!" }), 1, (byte)0));
     
-    this.spMenu.setItem(21, this.plugin.getItemStack().newItemStack(Material.RED_ROSE, "§aCora§§es", Arrays.asList(new String[] { "§7<3 Helix de cora§§es!" }), 1, (byte)0));
+    this.spMenu.setItem(21, this.plugin.getItemStack().newItemStack(Material.RED_ROSE, "§aRoration Corações", Arrays.asList(new String[] { "§7<3 Helix de cora§§es!" }), 1, (byte)0));
     
     this.spMenu.setItem(22, this.plugin.getItemStack().newItemStack(Material.BLAZE_POWDER, "§aHelix of Fire", Arrays.asList(new String[] { "§7Helix de fogo!" }), 1, (byte)0));
     
@@ -53,8 +53,8 @@ public class SuperMenu
     
     this.spMenu.setItem(39, this.plugin.getItemStack().setBackArrow());
     
-    this.spMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.WOOL, "§aRemover Part§culas", 
-      Arrays.asList(new String[] {"§7Clique para desabilitar part§culas" }), 1, (byte)14));
+    this.spMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.WOOL, "§aRemover Partículas", 
+      Arrays.asList(new String[] {"§7Clique para desabilitar partículas" }), 1, (byte)14));
     
     this.spMenu.setItem(41, this.plugin.getItemStack().setGoArrow());
   }
@@ -87,7 +87,7 @@ public class SuperMenu
       if ((slot == 14) && 
         (!this.plugin.getUtilPartciles().hasEffect(p)))
       {
-        p.sendMessage(this.plugin.getMessagesFile().newParticle + "§cHelix Happy");
+        p.sendMessage(this.plugin.getMessagesFile().newParticle + "§cRoration Happy");
         this.plugin.getUtilPartciles().SpiralEffect(p, ParticleEffect.VILLAGER_HAPPY);
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.VILLAGER_YES, 1.0F, 12.0F);
@@ -95,7 +95,7 @@ public class SuperMenu
       if ((slot == 21) && 
         (!this.plugin.getUtilPartciles().hasEffect(p)))
       {
-        p.sendMessage(this.plugin.getMessagesFile().newParticle + "§cHelix Cora§§es");
+        p.sendMessage(this.plugin.getMessagesFile().newParticle + "§cRoration Corações");
         this.plugin.getUtilPartciles().SpiralEffect(p, ParticleEffect.HEART);
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.GHAST_MOAN, 1.0F, 1.0F);
@@ -105,7 +105,7 @@ public class SuperMenu
       {
         this.plugin.getUtilPartciles().startHelix(p);
         p.closeInventory();
-        p.sendMessage(this.plugin.getMessagesFile().newParticle + "§cRedstone Helix");
+        p.sendMessage(this.plugin.getMessagesFile().newParticle + "§cFlame Helix");
         p.playSound(p.getLocation(), Sound.FIZZ, 1.0F, 12.0F);
       }
       if (slot == 40) {

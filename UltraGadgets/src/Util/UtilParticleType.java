@@ -7,6 +7,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
+import Util.UtilParticle.ParticleType;
+
 import com.floodeer.gadgets.Main;
 
 public class UtilParticleType
@@ -18,6 +20,7 @@ public class UtilParticleType
   HashMap<Player, Integer> intIDspheric = new HashMap<>();
   HashMap<Player, Integer> radar = new HashMap<>();
   HashMap<Player, Integer> Helix = new HashMap<>();
+  HashMap<Player, Integer> otherroration = new HashMap<>();
   
   public void spiraleEffect(final Player p, final ParticleEffect type)
   {
@@ -113,61 +116,6 @@ public class UtilParticleType
     }
   }
   
-  public boolean hasEffect(Player p)
-  {
-    if (this.intID.containsKey(p))
-    {
-      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
-      return true;
-    }
-    if (this.intIDspheric.containsKey(p))
-    {
-     p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
-      return true;
-    }
-    if (this.radar.containsKey(p))
-    {
-      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
-      return true;
-    }
-    return false;
-  }
-  
-  public void stopRotation(Player p)
-  {
-    if (this.intID.containsKey(p))
-    {
-      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.intID.get(p)).intValue());
-      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
-      this.intID.remove(p);
-    }
-    if (this.intIDspheric.containsKey(p))
-    {
-      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.intIDspheric.get(p)).intValue());
-      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
-      this.intIDspheric.remove(p);
-    }
-    if (this.radar.containsKey(p))
-    {
-      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.radar.get(p)).intValue());
-      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
-      this.radar.remove(p);
-    }
-    if (this.Helix.containsKey(p))
-    {
-      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.Helix.get(p)).intValue());
-      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
-      this.Helix.remove(p);
-    }
-    if (this.animatedHelixID.containsKey(p))
-    {
-      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.animatedHelixID.get(p)).intValue());
-      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
-      this.animatedHelixID.remove(p);
-      this.animatedHelixID2.remove(p);
-    }
-  }
-  
   public void SpiralEffect(final Player p, final ParticleEffect particle)
   {
     if (!this.Helix.containsKey(p))
@@ -239,7 +187,7 @@ public class UtilParticleType
           double d2 = Math.cos(d1) * this.radius;
           double d3 = Math.sin(d1) * this.radius;
           localLocation1.add(d2, this.height, d3);
-          ParticleEffect.REDSTONE.display(0.0F, 0.0F, 0.0F, 0.0F, 3, localLocation1, 25.0D);
+          new UtilParticle(ParticleType.FLAME, 0.0D, 1, 1.0E-4D).sendToLocation(localLocation1);
           localLocation1.subtract(d2, 0.0D, d3);
           this.i += this.speed;
           if (this.radius > 0.02D)
@@ -257,7 +205,7 @@ public class UtilParticleType
           double d6 = Math.sin(d4) * -this.radius2;
           Vector localVector = new Vector(d5, this.height2, d6);
           localLocation2.add(localVector);
-          ParticleEffect.REDSTONE.display(0.0F, 0.0F, 0.0F, 0.0F, 3, localLocation2, 25.0D);
+          new UtilParticle(ParticleType.FLAME, 0.0D, 1, 1.0E-4D).sendToLocation(localLocation2);
           localLocation2.subtract(d2, 0.0D, d3);
           this.i2 += this.speed2;
           if (this.radius2 > 0.02D)
@@ -332,6 +280,99 @@ public class UtilParticleType
         }
       }, 20L, 1L).getTaskId();
       this.animatedHelixID2.put(p, Integer.valueOf(continue2));
+    }
+  }
+  
+  public void rorationOtherType(final Player p, final ParticleType ptype)
+  {
+    if (!this.intIDspheric.containsKey(p))
+    {
+      int rt = Bukkit.getServer().getScheduler().runTaskTimer(this.plugin, new Runnable()
+      {
+        float j = 0.0F;
+    	
+        public void run()
+        {
+
+            Location loc = p.getLocation();
+            loc.setY(loc.getY() + 1.9D + 0.03D);
+            for (int k = 0; k < 1.0F; k++)
+            {
+              loc.add(Math.cos(this.j) * 0.6000000238418579D, this.j * 0.01F, Math.sin(this.j) * 
+                0.6000000238418579D);
+            
+              
+              new UtilParticle(ptype, 0.0D, 1, 1.0E-4D).sendToLocation(loc);
+            }
+        
+          this.j += 0.2F;
+          if (this.j > 50.0F) {
+            this.j = 0.0F;
+          }
+        }
+      }, 1L, 1L).getTaskId();
+      this.otherroration.put(p, Integer.valueOf(rt));
+    }
+  }
+  
+  
+  public boolean hasEffect(Player p)
+  {
+    if (this.intID.containsKey(p))
+    {
+      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
+      return true;
+    }
+    if (this.intIDspheric.containsKey(p))
+    {
+     p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
+      return true;
+    }
+    if (this.radar.containsKey(p))
+    {
+      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
+      return true;
+    }
+    return false;
+  }
+  
+  public void stopRotation(Player p)
+  {
+    if (this.intID.containsKey(p))
+    {
+      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.intID.get(p)).intValue());
+      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
+      this.intID.remove(p);
+    }
+    if (this.intIDspheric.containsKey(p))
+    {
+      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.intIDspheric.get(p)).intValue());
+      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
+      this.intIDspheric.remove(p);
+    }
+    if (this.radar.containsKey(p))
+    {
+      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.radar.get(p)).intValue());
+      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
+      this.radar.remove(p);
+    }
+    if (this.Helix.containsKey(p))
+    {
+      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.Helix.get(p)).intValue());
+      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
+      this.Helix.remove(p);
+    }
+    if (this.animatedHelixID.containsKey(p))
+    {
+      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.animatedHelixID.get(p)).intValue());
+      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
+      this.animatedHelixID.remove(p);
+      this.animatedHelixID2.remove(p);
+    }
+    if(this.otherroration.containsKey(p)) {
+        Bukkit.getServer().getScheduler().cancelTask(((Integer)this.otherroration.get(p)).intValue());
+        p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
+        this.otherroration.remove(p);
     }
   }
 }
