@@ -95,6 +95,11 @@ public class PetMenu
       if (slotClicked == 40) {
         PetsType.removePet(p);
       }
+      if (slotClicked == 41)
+      {
+        p.closeInventory();
+        p.sendMessage("§7§oEm breve!");
+      }
       if (slotClicked == 39)
       {
         p.closeInventory();

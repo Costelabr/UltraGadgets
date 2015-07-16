@@ -9,7 +9,6 @@ Main plugin = Main.getMain();
   public int joinSlot;
   
   public int gadgetSlot;
-  public boolean useXPCooldown;
   public long BombaCooldown;
   public long CookieCooldown;
   public long FunGunCooldown;
@@ -24,6 +23,22 @@ Main plugin = Main.getMain();
   public long ParaquedasCooldown;
   public long WitherShootCooldown;
   public long TrampolimCooldown;
+  
+  public boolean BombaEnable;
+  public boolean CookieEnable;
+  public boolean FunGunEnable;
+  public boolean FireworkPartyEnable;
+  public boolean MovireEnable;
+  public boolean StickOfTpEnable;
+  public boolean DjEnable;
+  public boolean DiscoBallEnable;
+  public boolean RailGunEnable;
+  public boolean SmokeBombEnable;
+  public boolean DiamondPartyEnable;
+  public boolean ParaquedasEnable;
+  public boolean WitherShootEnable;
+  public boolean pbGunEnable;
+  public boolean TrampolimEnable;
   
   public void loadConfigFile()
   {
@@ -43,7 +58,23 @@ Main plugin = Main.getMain();
      this.DiamondPartyCooldown = config.getLong("DiamondParty-Gadget-Cooldown");
      this.ParaquedasCooldown = config.getLong("Paraquedas-Gadget-Cooldown");
      this.WitherShootCooldown = config.getLong("WitherShoot-Gadget-Cooldown");
-     this.useXPCooldown = config.getBoolean("Usar-Cooldown-No-LevelExp");
      this.TrampolimCooldown = config.getLong("Trampolim-Gadget-Cooldown");
+     
+
+     this.BombaEnable = config.getBoolean("Bomba-Gadget-Habilitar");
+     this.CookieEnable = config.getBoolean("Cookie-Gadget-Habilitar");
+     this.FunGunEnable = config.getBoolean("FunGun-Gadget-Habilitar");
+     this.FireworkPartyEnable = config.getBoolean("FireworkParty-Gadget-Habilitar");
+     this.MovireEnable = config.getBoolean("Movire-Gadget-Habilitar");
+     this.StickOfTpEnable = config.getBoolean("StickTp-Gadget-Habilitar");
+     this.DjEnable = config.getBoolean("Dj-Gadget-Habilitar");
+     this.DiscoBallEnable = config.getBoolean("Disco-Gadget-Habilitar");
+     this.RailGunEnable = config.getBoolean("RailGun-Gadget-Habilitar");
+     this.SmokeBombEnable = config.getBoolean("SmokeBomb-Gadget-Habilitar");
+     this.DiamondPartyEnable = config.getBoolean("DiamondParty-Gadget-Habilitar");
+     this.ParaquedasEnable = config.getBoolean("Paraquedas-Gadget-Habilitar");
+     this.WitherShootEnable = config.getBoolean("WitherShoot-Gadget-Habilitar");
+     this.TrampolimEnable = config.getBoolean("Trampolim-Gadget-Habilitar");
+     this.pbGunEnable = config.getBoolean("PaintballGun-Gadget-Habilitar");
   }
 }

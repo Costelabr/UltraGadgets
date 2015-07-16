@@ -12,6 +12,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import Metodos.Menus;
 import Util.ParticleEffect;
+import Util.UtilParticle.ParticleType;
 
 import com.floodeer.gadgets.Main;
 
@@ -43,7 +44,7 @@ public class SuperMenu
     
     this.spMenu.setItem(22, this.plugin.getItemStack().newItemStack(Material.BLAZE_POWDER, "§aHelix of Fire", Arrays.asList(new String[] { "§7Helix de fogo!" }), 1, (byte)0));
     
-    this.spMenu.setItem(23, this.plugin.getItemStack().setSoonTM());
+    this.spMenu.setItem(23, this.plugin.getItemStack().newItemStack(Material.REDSTONE_BLOCK, "§aHelix of Dust", Arrays.asList(new String[] { "§7Helix de redstone!" }), 1, (byte)0));
     
     this.spMenu.setItem(30, this.plugin.getItemStack().setSoonTM());
     
@@ -122,14 +123,31 @@ public class SuperMenu
             return;
         }
         if(!this.plugin.getUtilPartciles().hasEffect(p)) {
-        this.plugin.getUtilPartciles().startHelix(p);
+        this.plugin.getUtilPartciles().startHelix(p, ParticleType.FLAME);
         p.closeInventory();
         p.sendMessage(this.plugin.getMessagesFile().newParticle + "§cFlame Helix");
         p.playSound(p.getLocation(), Sound.FIZZ, 1.0F, 12.0F);
       }
      }
+      if (slot == 23) {
+          if(!p.hasPermission("ug.sparticula.redhelix") & !p.hasPermission("ug.sparticulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+            p.sendMessage(plugin.getMessagesFile().superparticlepermission);
+              return;
+          }
+          if(!this.plugin.getUtilPartciles().hasEffect(p)) {
+          this.plugin.getUtilPartciles().startHelix(p, ParticleType.REDSTONE);
+          p.closeInventory();
+          p.sendMessage(this.plugin.getMessagesFile().newParticle + "§cRed Relix");
+          p.playSound(p.getLocation(), Sound.PISTON_EXTEND, 1.0F, 12.0F);
+        }
+       }
       if (slot == 40) {
         this.plugin.getUtilPartciles().stopRotation(p);
+      }
+      if (slot == 41)
+      {
+        p.closeInventory();
+        p.sendMessage("§7§oEm breve!");
       }
       if (slot == 39)
       {
@@ -137,5 +155,5 @@ public class SuperMenu
         this.plugin.getMenuManager().gadgetMenu.showMenu(p);
       }
     }
-    }
+   }
 }

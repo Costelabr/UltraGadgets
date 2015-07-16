@@ -1,9 +1,12 @@
 name: UltraGadgets
-version: 1.0
+version: 1.0.0
 main: com.floodeer.gadgets.Main
-description: Gadgets Test!
-softdepend: [ProtocolLib, OverlandsAPI]
+description: UltraGadgets plugin
+author: Floodeer
+depend: [ProtocolLib, OverlandsAPI]
+prefix: UltraGadgets
 commands:
   ultragadgets:
    description: Usar os Gadgets!
    aliases: [ug]
+   permission: ugadgets.comando

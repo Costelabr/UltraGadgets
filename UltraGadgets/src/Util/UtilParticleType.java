@@ -161,7 +161,7 @@ public class UtilParticleType
     }
   }
   
-  public void startHelix(final Player p)
+  public void startHelix(final Player p, final ParticleType ptype)
   {
     if (!this.animatedHelixID.containsKey(p))
     {
@@ -187,7 +187,7 @@ public class UtilParticleType
           double d2 = Math.cos(d1) * this.radius;
           double d3 = Math.sin(d1) * this.radius;
           localLocation1.add(d2, this.height, d3);
-          new UtilParticle(ParticleType.FLAME, 0.0D, 1, 1.0E-4D).sendToLocation(localLocation1);
+          new UtilParticle(ptype, 0.0D, 1, 1.0E-4D).sendToLocation(localLocation1);
           localLocation1.subtract(d2, 0.0D, d3);
           this.i += this.speed;
           if (this.radius > 0.02D)
@@ -205,7 +205,7 @@ public class UtilParticleType
           double d6 = Math.sin(d4) * -this.radius2;
           Vector localVector = new Vector(d5, this.height2, d6);
           localLocation2.add(localVector);
-          new UtilParticle(ParticleType.FLAME, 0.0D, 1, 1.0E-4D).sendToLocation(localLocation2);
+          new UtilParticle(ptype, 0.0D, 1, 1.0E-4D).sendToLocation(localLocation2);
           localLocation2.subtract(d2, 0.0D, d3);
           this.i2 += this.speed2;
           if (this.radius2 > 0.02D)

@@ -20,7 +20,8 @@ public class Messages
   public String particlepermission;
   public String superparticlepermission;
   public String petspermission;
- 
+  
+  public String gadgetDesabilitado;
   
   public String GadgetItemName;
   public String BombaGadgetName;
@@ -93,6 +94,8 @@ public class Messages
     this.particlepermission = mensagens.getString("Particulas-Permissao").replaceAll("&", "§");
     this.superparticlepermission = mensagens.getString("SuperParticulas-Permissao").replaceAll("&", "§");
     this.petspermission = mensagens.getString("Pets-Permissao").replaceAll("&", "§");
+    
+    this.gadgetDesabilitado = mensagens.getString("Gadget-Desabilitado").replaceAll("&", "§");
   }
   
   /**

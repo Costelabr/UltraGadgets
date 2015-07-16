@@ -232,8 +232,7 @@ public class Gadgets
            }
         Tipos.setGadget(p, Tipos.TRAMPOLIM);
       }
-      if (slot == 40) {
-    	  
+      if (slot == 40) {  
         Tipos.setGadget(p, Tipos.NENHUM);
       }
       if (slot == 41)

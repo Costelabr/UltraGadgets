@@ -44,3 +44,20 @@ Trampolim-Gadget-Cooldown: 52000
 
 #Máximo de blocos que o gadget "StickOfTeleport" poderá teleportar.
 Area-Maxima-TpStick: 50
+
+#Você pode habiltiar ou desabilitar gadgets, pois alguns deles podem causar problemas.
+Bomba-Gadget-Habilitar: true
+Cookie-Gadget-Habilitar: true
+FunGun-Gadget-Habilitar: true
+FireworkParty-Gadget-Habilitar: true
+Movire-Gadget-Habilitar: true
+StickTp-Gadget-Habilitar: true
+Dj-Gadget-Habilitar: true
+Disco-Gadget-Habilitar: true
+RailGun-Gadget-Habilitar: true
+SmokeBomb-Gadget-Habilitar: true
+DiamondParty-Gadget-Habilitar: true
+Paraquedas-Gadget-Habilitar: true
+WitherShoot-Gadget-Habilitar: true
+Trampolim-Gadget-Habilitar: true
+PaintballGun-Gadget-Habilitar: true
