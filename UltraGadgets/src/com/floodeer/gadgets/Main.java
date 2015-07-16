@@ -13,40 +13,11 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import Commands.OpenGadgets;
-import Gadgets.Bomba;
-import Gadgets.CookieKookie;
-import Gadgets.DiamondParty;
-import Gadgets.DiscoBall;
-import Gadgets.Dj;
-import Gadgets.FireworkParty;
-import Gadgets.FunGun;
-import Gadgets.Movire;
-import Gadgets.PaintballGun;
-import Gadgets.Paraquedas;
-import Gadgets.RailGun;
-import Gadgets.SmokeBomb;
-import Gadgets.StickOfTeleport;
-import Gadgets.Tipos;
-import Gadgets.Trampolim;
-import Gadgets.WitherShooter;
-import Menus.DisguiseMenu;
-import Menus.Gadgets;
-import Menus.MenuManager;
-import Menus.ParticlesMenu;
-import Menus.PetMenu;
-import Menus.SuperMenu;
-import Pets.Pets;
-import Pets.PlayerInteractPetEvent;
-import Util.PlayerIsInMoviment;
-import Util.RollBlocks;
-import Util.Updater;
-import Util.UtilBlock;
-import Util.UtilFireworks;
-import Util.UtilItem;
-import Util.UtilItemStack;
-import Util.UtilLocations;
-import Util.UtilParticleType;
+import Commands.*;
+import Menus.*;
+import Pets.*;
+import Gadgets.*;
+import Util.*;
 import br.com.overlands.API.IOverlands;
 
 import com.comphenix.protocol.ProtocolLibrary;
@@ -77,6 +48,7 @@ public class Main
   private Tipos gadgets;
   private ConfigFile cfile;
   private UtilLocations ul;
+  private PetMenu petsm;
   
   public static Main getMain()
   {
@@ -100,6 +72,10 @@ public class Main
     }
     System.out.print("OverlandsAPI encontrado!");
     return true;
+  }
+  
+  public PetMenu getPetsMenu() {
+	  return petsm;
   }
   
   public Tipos getGadgets()
@@ -198,6 +174,7 @@ public class Main
     this.roll = new RollBlocks();
     this.ul = new UtilLocations();
     this.uf = new UtilFireworks();
+    petsm = new PetMenu();
   }
   
   private void setupVersionSystemAndPlugin()
@@ -248,13 +225,14 @@ public class Main
     SystemDebugg("Pesquisando por ProtocolLib...");
     this.protocolManager = ProtocolLibrary.getProtocolManager();
     SystemDebugg("Sucesso! Habilitando classes....");
+    
     getMensagensConfig().options().copyDefaults(true);
     saveDefaultMensagem();
     getConfig().options().copyDefaults(true);
     saveDefaultConfig();
     setupClasses();
     SystemDebugg("Sucesso! Registrando eventos...");
-    Bukkit.getServer().getPluginManager().registerEvents(new SmokeBomb(), this);
+    SetupGadgets.registerGadgets(this);
     Bukkit.getServer().getPluginManager().registerEvents(new PlayerIsInMoviment(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new InventoryMoveManager(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new MenuManager(), this);
@@ -262,32 +240,20 @@ public class Main
     Bukkit.getServer().getPluginManager().registerEvents(new DisguiseMenu(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new SuperMenu(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new Gadgets(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new Bomba(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new FunGun(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new CookieKookie(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new StickOfTeleport(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new PaintballGun(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new FireworkParty(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new Movire(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new Dj(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new DiscoBall(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new RailGun(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new PetMenu(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new DiamondParty(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new Paraquedas(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new WitherShooter(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new Trampolim(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new Pets(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new ServerListener(), this);
+    Bukkit.getServer().getPluginManager().registerEvents(new PetMenu(), this);
+    Bukkit.getServer().getPluginManager().registerEvents(new PluginListener(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new PlayerInteractPetEvent(), this);
+    Bukkit.getPluginManager().registerEvents(new UtilLag(this), this);
     Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Updater(this), 1L, 1L);
     this.roll.loadupUnPaintableList();
     RollBlocks rollBack = new RollBlocks();
     rollBack.runTaskTimer(this, 0L, 1L);
     System.out.print("Sucesso! Registrando comandos...");
-    getCommand("gadgets").setExecutor(new OpenGadgets());
+    getCommand("ultragadgets").setExecutor(new UltraGadgetsCMD());
+    getCommand("ug").setExecutor(new UltraGadgetsCMD());
     System.out.print("Sucesso! Plugin habilitado!");
     System.out.print("-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x");
   }

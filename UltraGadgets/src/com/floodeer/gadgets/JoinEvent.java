@@ -51,7 +51,7 @@ public class JoinEvent
     if (!this.plugin.getItem().isGadgetItem(p.getItemInHand(), this.plugin.getMessagesFile().GadgetItemName)) {
       return;
     }
-    p.performCommand("gadgets");
+    p.performCommand("ug gadgets");
   }
   
   @EventHandler
