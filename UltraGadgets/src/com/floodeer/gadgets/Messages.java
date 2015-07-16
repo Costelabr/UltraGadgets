@@ -16,6 +16,10 @@ public class Messages
   public String newDisguise;
   public String petNome;
   public String disguisePermission;
+  public String gadgetPermission;
+  public String particlepermission;
+  public String superparticlepermission;
+  public String petspermission;
  
   
   public String GadgetItemName;
@@ -85,6 +89,10 @@ public class Messages
     this.TrampolimName = mensagens.getString("Trampolim-Item-Nome").replaceAll("&", "§");
     
     this.disguisePermission = mensagens.getString("Disguise-Permissao").replaceAll("&", "§");
+    this.gadgetPermission = mensagens.getString("Gadget-Permissao").replaceAll("&", "§");
+    this.particlepermission = mensagens.getString("Particulas-Permissao").replaceAll("&", "§");
+    this.superparticlepermission = mensagens.getString("SuperParticulas-Permissao").replaceAll("&", "§");
+    this.petspermission = mensagens.getString("Pets-Permissao").replaceAll("&", "§");
   }
   
   /**

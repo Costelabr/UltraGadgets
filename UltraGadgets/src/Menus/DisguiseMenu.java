@@ -66,7 +66,7 @@ public class DisguiseMenu
       UtilDisguise zpig = new UtilDisguise(UtilDisguise.DisguiseType.ZOMBIEPIG, p.getName());
       if (slotClicked == 12)
       {
-      	if(!p.hasPermission("ug.disguise.usar.zumbi") || !p.hasPermission("ug.disguise.usar.todos") || !p.hasPermission("ug.usar.todos")) {
+      	if(!p.hasPermission("ug.disguise.usar.zumbi") & !p.hasPermission("ug.disguise.usar.todos") & !p.hasPermission("ug.usar.todos")) {
     		p.sendMessage(plugin.getMessagesFile().disguisePermission);
     		return;
     	}
@@ -76,7 +76,7 @@ public class DisguiseMenu
       }
       if (slotClicked == 13)
       {
-    	if(!p.hasPermission("ug.disguise.usar.esqueleto") || !p.hasPermission("ug.disguise.usar.todos") || !p.hasPermission("ug.usar.todos")) {
+    	if(!p.hasPermission("ug.disguise.usar.esqueleto") & !p.hasPermission("ug.disguise.usar.todos") & !p.hasPermission("ug.usar.todos")) {
     		p.sendMessage(plugin.getMessagesFile().disguisePermission);
     		return;
     	}
@@ -86,7 +86,7 @@ public class DisguiseMenu
       }
       if (slotClicked == 14)
       {
-      	if(!p.hasPermission("ug.disguise.usar.aranha") || !p.hasPermission("ug.disguise.usar.todos") || !p.hasPermission("ug.usar.todos")) {
+      	if(!p.hasPermission("ug.disguise.usar.aranha") & !p.hasPermission("ug.disguise.usar.todos") & !p.hasPermission("ug.usar.todos")) {
     		p.sendMessage(plugin.getMessagesFile().disguisePermission);
     		return;
     	}
@@ -96,7 +96,7 @@ public class DisguiseMenu
       }
       if (slotClicked == 21)
       {
-      	if(!p.hasPermission("ug.disguise.usar.bruxa") || !p.hasPermission("ug.disguise.usar.todos") || !p.hasPermission("ug.usar.todos")) {
+      	if(!p.hasPermission("ug.disguise.usar.bruxa") & !p.hasPermission("ug.disguise.usar.todos") & !p.hasPermission("ug.usar.todos")) {
     		p.sendMessage(plugin.getMessagesFile().disguisePermission);
     		return;
     	}
@@ -106,7 +106,7 @@ public class DisguiseMenu
       }
       if (slotClicked == 22)
       {
-      	if(!p.hasPermission("ug.disguise.usar.pigzumbi") || !p.hasPermission("ug.disguise.usar.todos") || !p.hasPermission("ug.usar.todos")) {
+      	if(!p.hasPermission("ug.disguise.usar.pigzumbi") & !p.hasPermission("ug.disguise.usar.todos") & !p.hasPermission("ug.usar.todos")) {
     		p.sendMessage(plugin.getMessagesFile().disguisePermission);
     		return;
     	}
@@ -121,7 +121,7 @@ public class DisguiseMenu
       }
       if (slotClicked == 40)
       {
-      	if(!p.hasPermission("ug.disguise.usar.remover") || !p.hasPermission("ug.disguise.usar.todos") || !p.hasPermission("ug.usar.todos")) {
+      	if(!p.hasPermission("ug.disguise.usar.remover") & !p.hasPermission("ug.disguise.usar.todos") & !p.hasPermission("ug.usar.todos")) {
     		p.sendMessage(plugin.getMessagesFile().disguisePermission);
     		return;
     	}

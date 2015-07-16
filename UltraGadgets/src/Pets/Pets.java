@@ -9,6 +9,7 @@ import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Rabbit;
+import org.bukkit.entity.Wolf;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -24,12 +25,14 @@ public class Pets
 {
   public static enum PetsType
   {
-    COELHO,  GALINHA,  VACA, NENHUM;
+    COELHO,  GALINHA,  VACA, WOLF, NENHUM;
     
     protected static final Main plugin = Main.getMain();
     public static HashMap<UUID, Entity> pet = new HashMap<>();
     public static final Map<UUID, PetsType> booleanPet = new HashMap<>();
     public static final Map<UUID, Rabbit> booleanRabbit = new HashMap<>();
+    public static final Map<UUID, Entity> booleanSheep = new HashMap<>();
+    public static final Map<UUID, Entity> booleanWolf = new HashMap<>();
     
     public static void setPet(Player uniquePlayer, PetsType pettype)
     {
@@ -71,6 +74,20 @@ public class Pets
         ParticleEffect.HEART.display(1.0F, 0.0F, 0.0F, 3.0F, 20, paramUniqueRabit.getLocation(), 12.0D);
         break;
         
+      case WOLF:
+    	  Wolf paramUniqueWolf = (Wolf)uniquePlayer.getWorld().spawn(uniquePlayer.getLocation(), Wolf.class);
+    	  paramUniqueWolf.setCustomNameVisible(true);
+    	  UtilPet.criarPet(paramUniqueWolf, uniqueID);
+    	  paramUniqueWolf.setOwner(uniquePlayer);
+    	  paramUniqueWolf.setAngry(true);
+    	  paramUniqueWolf.setAdult();
+    	  pet.put(uniqueID, paramUniqueWolf);
+    	  booleanPet.put(uniqueID, WOLF);
+    	  paramUniqueWolf.setCustomName(plugin.getMessagesFile().petNome.replaceAll("&", "§").replaceAll("<PLAYER>", uniquePlayer.getName()).replaceAll("<PET>", ((Entity)pet.get(uniqueID)).getName()));
+    	  paramUniqueWolf.setMetadata("petWolf", new FixedMetadataValue(plugin, "petFixed4"));
+          ParticleEffect.HEART.display(1.0F, 0.0F, 0.0F, 3.0F, 20, paramUniqueWolf.getLocation(), 12.0D);
+          break;
+        
       case NENHUM:
     	  break;
       }
@@ -109,26 +126,29 @@ public class Pets
   @EventHandler
   public void onPetDamage(EntityDamageEvent e)
   {
-    if ((e.getEntity() instanceof Chicken))
-    {
+    if ((e.getEntity() instanceof Chicken)){
       Chicken localChicken = (Chicken)e.getEntity();
       if (localChicken.hasMetadata("petChicken")) {
         e.setCancelled(true);
       }
     }
-    if ((e.getEntity() instanceof Cow))
-    {
+    if ((e.getEntity() instanceof Cow)) {
       Cow localCow = (Cow)e.getEntity();
       if (localCow.hasMetadata("petCow")) {
         e.setCancelled(true);
       }
     }
-    if ((e.getEntity() instanceof Rabbit))
-    {
+    if ((e.getEntity() instanceof Rabbit)){
       Rabbit localRabbit = (Rabbit)e.getEntity();
       if (localRabbit.hasMetadata("petRabbit")) {
         e.setCancelled(true);
       }
     }
-  }
+    if((e.getEntity() instanceof Wolf)) {
+    	Wolf localWolf = (Wolf)e.getEntity();
+    	if(localWolf.hasMetadata("petWolf")) {
+    		e.setCancelled(true);
+    	}
+      }
+   }
 }

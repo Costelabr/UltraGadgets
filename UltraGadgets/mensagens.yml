@@ -19,6 +19,10 @@ Gadgets-Removidos: "&cGadgets removidos"
 
 #Permissoes
 Disguise-Permissao: "&cVocê não tem permissões para usar fantasias!"
+Gadget-Permissao: "&cVocê não tem permissão para usar esse gadget!"
+Particulas-Permissao: "&cVocê não tem permissão para usar essa particula!"
+SuperParticulas-Permissao: "&cVocê não tem permissão para usar essa particula!"
+Pets-Permissao: "&cVocê não tem permissão para usar esse pet!"
 
 #Itens
 Gadget-Item-Nome: "&e&lUltra Gadgets"

@@ -104,34 +104,69 @@ public class Gadgets
       e.setResult(Result.DENY);
       int slot = e.getSlot();
       if (slot == 12) {
+    	if(!p.hasPermission("ug.gadgets.bomba") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+         p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+         return;
+        }
         Tipos.setGadget(p, Tipos.BOMBA);
       }
       if (slot == 13) {
+      	if(!p.hasPermission("ug.gadgets.fungun") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+            p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+            return;
+         }
         Tipos.setGadget(p, Tipos.FUNGUN);
       }
       if (slot == 14) {
+        if(!p.hasPermission("ug.gadgets.cookies") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+             p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+             return;
+        }
         Tipos.setGadget(p, Tipos.COOKIEK);
       }
       if (slot == 21) {
+        if(!p.hasPermission("ug.gadgets.sticktp") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+            p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+            return;
+        }
         Tipos.setGadget(p, Tipos.STICKTP);
       }
       if (slot == 22) {
+          if(!p.hasPermission("ug.gadgets.pbgun") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+              p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+              return;
+         }
         Tipos.setGadget(p, Tipos.PBGUN);
       }
       if (slot == 23) {
+          if(!p.hasPermission("ug.gadgets.fireworkparty") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+              p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+              return;
+         }
         Tipos.setGadget(p, Tipos.FIREWORKP);
       }
       if (slot == 30) {
+          if(!p.hasPermission("ug.gadgets.movire") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+              p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+              return;
+         }
         Tipos.setGadget(p, Tipos.MOVIRE);
       }
       if (slot == 31) {
+      	if(!p.hasPermission("ug.gadgets.dj") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+            p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+            return;
+           }
         Tipos.setGadget(p, Tipos.DJ);
       }
       if (slot == 32) {
+      	if(!p.hasPermission("ug.gadgets.discoball") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+            p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+            return;
+           }
         Tipos.setGadget(p, Tipos.DISCOB);
       }
-      if (slot == 39)
-      {
+      if (slot == 39) {
         p.closeInventory();
         this.plugin.getMenuManager().gadgetMenu.showMenu(p);
       }
@@ -144,7 +179,7 @@ public class Gadgets
         this.gadgets2page.showMenu(p);
       }
     }
-    if ((e.getInventory().getName().equalsIgnoreCase(this.invname2)) && ((e.getWhoClicked() instanceof Player)))
+    if ((e.getInventory().getName().equalsIgnoreCase(this.invname2)) & ((e.getWhoClicked() instanceof Player)))
     {
       Player p = (Player)e.getWhoClicked();
       e.setCancelled(true);
@@ -156,24 +191,49 @@ public class Gadgets
         this.gadgets.showMenu(p);
       }
       if (slot == 12) {
+      	if(!p.hasPermission("ug.gadgets.railgun") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+            p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+            return;
+           }
         Tipos.setGadget(p, Tipos.RAILGUN);
       }
       if (slot == 13) {
+      	if(!p.hasPermission("ug.gadgets.smokebomb") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+            p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+            return;
+           }
         Tipos.setGadget(p, Tipos.SMOKEBOMB);
       }
       if (slot == 14) {
+      	if(!p.hasPermission("ug.gadgets.diamondparty") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+            p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+            return;
+           }
         Tipos.setGadget(p, Tipos.DIAMONDP);
       }
       if (slot == 21) {
+      	if(!p.hasPermission("ug.gadgets.paraquedas") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+            p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+            return;
+          }
         Tipos.setGadget(p, Tipos.PARAQUEDAS);
       }
       if (slot == 22) {
+      	if(!p.hasPermission("ug.gadgets.withershoot") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+            p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+            return;
+           }
         Tipos.setGadget(p, Tipos.WITHERSHOOT);
       }
       if (slot == 23) {
+      	if(!p.hasPermission("ug.gadgets.trampolim") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+            p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+            return;
+           }
         Tipos.setGadget(p, Tipos.TRAMPOLIM);
       }
       if (slot == 40) {
+    	  
         Tipos.setGadget(p, Tipos.NENHUM);
       }
       if (slot == 41)

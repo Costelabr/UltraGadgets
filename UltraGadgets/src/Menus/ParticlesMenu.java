@@ -73,79 +73,106 @@ public class ParticlesMenu
   @EventHandler
   public void onClickInParticlesMenu(InventoryClickEvent e)
   {
-    if ((e.getInventory().getName().equalsIgnoreCase(this.particleTitle)) && ((e.getWhoClicked() instanceof Player)))
+    if ((e.getInventory().getName().equalsIgnoreCase(this.particleTitle)) & ((e.getWhoClicked() instanceof Player)))
     {
       Player p = (Player)e.getWhoClicked();
       e.setCancelled(true);
       e.setResult(Result.DENY);
       int slot = e.getSlot();
       if ((slot == 12) && 
-        (!this.plugin.getUtilPartciles().hasEffect(p)))
-      {
+        (!this.plugin.getUtilPartciles().hasEffect(p))) {
+    	 if(!p.hasPermission("ug.particulas.coracoes") & !p.hasPermission("ug.particulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+    		 p.sendMessage(plugin.getMessagesFile().particlepermission);
+    		 return;
+    	 }
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.HEART);
         p.sendMessage(this.ativado + "§cCorações");
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.GHAST_MOAN, 1.0F, 1.0F);
       }
       if ((slot == 13) && 
-        (!this.plugin.getUtilPartciles().hasEffect(p)))
-      {
+        (!this.plugin.getUtilPartciles().hasEffect(p))) {	  
+     	 if(!p.hasPermission("ug.particulas.slime") & !p.hasPermission("ug.particulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+    		 p.sendMessage(plugin.getMessagesFile().particlepermission);
+    		 return;
+    	 }
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.SLIME);
         p.sendMessage(this.ativado + "§cSlime");
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.SLIME_WALK, 1.0F, 1.0F);
       }
       if ((slot == 14) && 
-        (!this.plugin.getUtilPartciles().hasEffect(p)))
-      {
+        (!this.plugin.getUtilPartciles().hasEffect(p))) {
+     	 if(!p.hasPermission("ug.particulas.notas") & !p.hasPermission("ug.particulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+    		 p.sendMessage(plugin.getMessagesFile().particlepermission);
+    		 return;
+    	 }
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.NOTE);
         p.sendMessage(this.ativado + "§cNotas");
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.NOTE_PIANO, 1.0F, 1.0F);
       }
       if ((slot == 21) && 
-        (!this.plugin.getUtilPartciles().hasEffect(p)))
-      {
+        (!this.plugin.getUtilPartciles().hasEffect(p))){
+     	 if(!p.hasPermission("ug.particulas.angry") & !p.hasPermission("ug.particulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+    		 p.sendMessage(plugin.getMessagesFile().particlepermission);
+    		 return;
+    	 }
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.VILLAGER_ANGRY);
         p.sendMessage(this.ativado + "§cAngry Villager");
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1.0F, -1.0F);
       }
       if ((slot == 22) && 
-        (!this.plugin.getUtilPartciles().hasEffect(p)))
-      {
+        (!this.plugin.getUtilPartciles().hasEffect(p))) {
+     	 if(!p.hasPermission("ug.particulas.happy") & !p.hasPermission("ug.particulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+    		 p.sendMessage(plugin.getMessagesFile().particlepermission);
+    		 return;
+    	 }
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.VILLAGER_HAPPY);
         p.sendMessage(this.ativado + "§cVillager Happy");
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.VILLAGER_YES, 1.0F, 1.0F);
       }
       if ((slot == 23) && 
-        (!this.plugin.getUtilPartciles().hasEffect(p)))
-      {
+        (!this.plugin.getUtilPartciles().hasEffect(p))) {
+     	 if(!p.hasPermission("ug.particulas.redstone") & !p.hasPermission("ug.particulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+    		 p.sendMessage(plugin.getMessagesFile().particlepermission);
+    		 return;
+    	 }
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.REDSTONE);
         p.sendMessage(this.ativado + "§cRedstone");
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.PISTON_EXTEND, 1.0F, 1.0F);
       }
       if ((slot == 30) && 
-        (!this.plugin.getUtilPartciles().hasEffect(p)))
-      {
+        (!this.plugin.getUtilPartciles().hasEffect(p))) {
+     	 if(!p.hasPermission("ug.particulas.spell") & !p.hasPermission("ug.particulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+    		 p.sendMessage(plugin.getMessagesFile().particlepermission);
+    		 return;
+    	 }
         this.plugin.getUtilPartciles().rorationEffect(p, ParticleEffect.SPELL);
         p.sendMessage(this.ativado + "§cSpell");
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.FALL_BIG, 1.0F, 1.0F);
       }
       if ((slot == 31) && 
-    	(!this.plugin.getUtilPartciles().hasEffect(p)))
-    	  {
+    	(!this.plugin.getUtilPartciles().hasEffect(p))) {
+     	 if(!p.hasPermission("ug.particulas.fogo") & !p.hasPermission("ug.particulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+    		 p.sendMessage(plugin.getMessagesFile().particlepermission);
+    		 return;
+    	 }
     	        this.plugin.getUtilPartciles().rorationOtherType(p, ParticleType.FLAME);
     	        p.sendMessage(this.ativado + "§cFogo");
     	        p.closeInventory();
     	        p.playSound(p.getLocation(), Sound.FIZZ, 1.0F, 1.0F);
     	 }
       if ((slot == 32) && 
-    	(!this.plugin.getUtilPartciles().hasEffect(p)))
-    	  {
+    	(!this.plugin.getUtilPartciles().hasEffect(p))) {
+     	 if(!p.hasPermission("ug.particulas.firework") & !p.hasPermission("ug.particulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+    		 p.sendMessage(plugin.getMessagesFile().particlepermission);
+    		 return;
+    	 }
     	        this.plugin.getUtilPartciles().rorationOtherType(p, ParticleType.FIREWORKS_SPARK);
     	        p.sendMessage(this.ativado + "§cFirework");
     	        p.closeInventory();

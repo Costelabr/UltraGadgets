@@ -35,11 +35,11 @@ public class PetMenu
     
     this.petMenu.setItem(21, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§aLobo", Arrays.asList(new String[] { "§7Pet Lobo" }), 1, (byte)95));
     
-    this.petMenu.setItem(22, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§aOvelha", Arrays.asList(new String[] { "§7Pet Ovelha" }), 1, (byte)91));
+    this.petMenu.setItem(22, this.plugin.getItemStack().setSoonTM());
     
-    this.petMenu.setItem(23, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§aPorco", Arrays.asList(new String[] { "§7Pet Porco" }), 1, (byte)90));
+    this.petMenu.setItem(23, this.plugin.getItemStack().setSoonTM());
     
-    this.petMenu.setItem(30, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§aCavalo", Arrays.asList(new String[] { "§7Cavalo" }), 1, (byte)100));
+    this.petMenu.setItem(30, this.plugin.getItemStack().setSoonTM());
     
     this.petMenu.setItem(31, this.plugin.getItemStack().setSoonTM());
     
@@ -63,14 +63,35 @@ public class PetMenu
       e.setResult(Result.DENY);
       p.closeInventory();
       if (slotClicked == 12) {
+    	 if(!p.hasPermission("ug.pets.galinha") && !p.hasPermission("ug.pets.usar.todos") && !p.hasPermission("ug.usar.todos")) {
+    		 p.sendMessage(plugin.getMessagesFile().petspermission);
+    		 return;
+    	 }
+    	 
         PetsType.setPet(p, PetsType.GALINHA);
       }
       if (slotClicked == 13) {
+     	 if(!p.hasPermission("ug.pets.vaca") && !p.hasPermission("ug.pets.usar.todos") && !p.hasPermission("ug.usar.todos")) {
+    		 p.sendMessage(plugin.getMessagesFile().petspermission);
+    		 return;
+    	 }
        PetsType.setPet(p, PetsType.VACA);
       }
       if (slotClicked == 14) {
+     	 if(!p.hasPermission("ug.pets.coelho") && !p.hasPermission("ug.pets.usar.todos") && !p.hasPermission("ug.usar.todos")) {
+    		 p.sendMessage(plugin.getMessagesFile().petspermission);
+    		 return;
+    	 }
           PetsType.setPet(p, PetsType.COELHO);
          }
+      if (slotClicked == 21) {
+     	 if(!p.hasPermission("ug.pets.lobo") && !p.hasPermission("ug.pets.usar.todos") && !p.hasPermission("ug.usar.todos")) {
+    		 p.sendMessage(plugin.getMessagesFile().petspermission);
+    		 return;
+    	 }
+          PetsType.setPet(p, PetsType.WOLF);
+         }
+      
       if (slotClicked == 40) {
         PetsType.removePet(p);
       }

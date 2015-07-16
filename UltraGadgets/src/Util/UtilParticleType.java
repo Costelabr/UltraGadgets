@@ -285,8 +285,7 @@ public class UtilParticleType
   
   public void rorationOtherType(final Player p, final ParticleType ptype)
   {
-    if (!this.intIDspheric.containsKey(p))
-    {
+    if (!this.intIDspheric.containsKey(p))  {
       int rt = Bukkit.getServer().getScheduler().runTaskTimer(this.plugin, new Runnable()
       {
         float j = 0.0F;

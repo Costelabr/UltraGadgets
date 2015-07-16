@@ -16,6 +16,7 @@ import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Rabbit;
+import org.bukkit.entity.Wolf;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,6 +27,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import Exception.PetTypeException;
 import Metodos.JsonBuilder;
 import Metodos.Menus;
+import Pets.Pets.PetsType;
 
 import com.floodeer.gadgets.Main;
 
@@ -39,6 +41,22 @@ public class PlayerInteractPetEvent
   ArrayList<Player> arrayType;
   Menus petMenu;
   List<String> typesArray;
+  
+  public PlayerInteractPetEvent()
+  {
+    this.plugin = Main.getMain();
+    this.mapOfString = new HashMap<>();
+    this.playerPet = new HashMap<>();
+    this.hashOfPlayer = new ArrayList<>();
+    this.arrayType = new ArrayList<>();
+    this.petMenu = new Menus(this.plugin, "§6§lPet Manager", 1);
+    
+    this.petMenu.setItem(0, this.plugin.getItemStack().newItemStack(Material.NAME_TAG, "§eMudar nome do Pet", Arrays.asList(new String[] { "§7Clique para alterar o nome do pet" }), 1, (byte)0));
+    
+    this.petMenu.setItem(2, this.plugin.getItemStack().newItemStack(Material.ANVIL, "§eMudar tipo do pet", Arrays.asList(new String[] { "§7Clique para alterar o tipo de pet" }), 1, (byte)0));
+    
+    this.typesArray = new ArrayList<>();
+  }
   
   @EventHandler
   public void onPlayerInteractPetEvent(PlayerInteractEntityEvent e)
@@ -69,25 +87,19 @@ public class PlayerInteractPetEvent
       if ((localRabbit.hasMetadata("petRabbit")) && 
         (e.getPlayer().isSneaking()))
       {
-        this.petMenu.setItem(2, this.plugin.getItemStack().newItemStack(Material.ANVIL, "§eMudar tipo do pet", Arrays.asList(new String[] { "§7Clique para alterar o tipo de pet" }), 1, (byte)0));
+      
         this.petMenu.showMenu(e.getPlayer());
         this.playerPet.put(e.getPlayer(), localRabbit);
       }
     }
-  }
-  
-  public PlayerInteractPetEvent()
-  {
-    this.plugin = Main.getMain();
-    this.mapOfString = new HashMap<>();
-    this.playerPet = new HashMap<>();
-    this.hashOfPlayer = new ArrayList<>();
-    this.arrayType = new ArrayList<>();
-    this.petMenu = new Menus(this.plugin, "§6§lPet Manager", 1);
-    
-    this.petMenu.setItem(0, this.plugin.getItemStack().newItemStack(Material.NAME_TAG, "§eMudar nome do Pet", Arrays.asList(new String[] { "§7Clique para alterar o nome do pet" }), 1, (byte)0));
-    
-    this.typesArray = new ArrayList<>();
+    if((e.getRightClicked() instanceof Wolf)) {
+    	Wolf localWolf = (Wolf)e.getRightClicked();
+    	if((localWolf.hasMetadata("petWolf")) && 
+    		e.getPlayer().isSneaking()) {
+    		this.petMenu.showMenu(e.getPlayer());
+    		this.playerPet.put(e.getPlayer(), localWolf);
+    	}
+    }
   }
   
   @EventHandler
@@ -162,6 +174,10 @@ public class PlayerInteractPetEvent
       }
       if (slot == 2)
       {
+    	if(!PetsType.booleanRabbit.containsKey(p.getUniqueId())) {
+            p.sendMessage("§lO seu pet deve ser um coelho para completar essa ação.");
+    		return;
+    	}
         this.arrayType.add(p);
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1.0F, 1.0F);

@@ -33,13 +33,13 @@ public class SuperMenu
     this.spMenu.setItem(39, this.plugin.getItemStack().setBackArrow());
     
     this.spMenu.setItem(12, this.plugin.getItemStack().newItemStack(Material.LAVA_BUCKET, "§aLava", 
-      Arrays.asList(new String[] {"§7Lava em sua cabe§a!" }), 1, (byte)0));
+      Arrays.asList(new String[] {"§7Lava em sua cabeça!" }), 1, (byte)0));
     
-    this.spMenu.setItem(13, this.plugin.getItemStack().newItemStack(Material.WATER_BUCKET, "§a§gua", Arrays.asList(new String[] { "§7§gua na sua cabe§a!" }), 1, (byte)0));
+    this.spMenu.setItem(13, this.plugin.getItemStack().newItemStack(Material.WATER_BUCKET, "§aÁgua", Arrays.asList(new String[] { "§7Água na sua cabeça!" }), 1, (byte)0));
     
-    this.spMenu.setItem(14, this.plugin.getItemStack().newItemStack(Material.EMERALD_BLOCK, "§aRoration Happy", Arrays.asList(new String[] { "§7Helix de Happy em volta de voc§!" }), 1, (byte)0));
+    this.spMenu.setItem(14, this.plugin.getItemStack().newItemStack(Material.EMERALD_BLOCK, "§aRoration Happy", Arrays.asList(new String[] { "§7Helix de Happy em volta de você!" }), 1, (byte)0));
     
-    this.spMenu.setItem(21, this.plugin.getItemStack().newItemStack(Material.RED_ROSE, "§aRoration Corações", Arrays.asList(new String[] { "§7<3 Helix de cora§§es!" }), 1, (byte)0));
+    this.spMenu.setItem(21, this.plugin.getItemStack().newItemStack(Material.RED_ROSE, "§aRoration Corações", Arrays.asList(new String[] { "§7<3 Helix de corações!" }), 1, (byte)0));
     
     this.spMenu.setItem(22, this.plugin.getItemStack().newItemStack(Material.BLAZE_POWDER, "§aHelix of Fire", Arrays.asList(new String[] { "§7Helix de fogo!" }), 1, (byte)0));
     
@@ -68,46 +68,66 @@ public class SuperMenu
       e.setCancelled(true);
       e.setResult(Result.DENY);
       int slot = e.getSlot();
-      if ((slot == 12) && 
-        (!this.plugin.getUtilPartciles().hasEffect(p)))
-      {
+      if (slot == 12) {
+      	if(!p.hasPermission("ug.sparticula.lava") & !p.hasPermission("ug.sparticulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+    		p.sendMessage(plugin.getMessagesFile().superparticlepermission);
+    		return;
+    	}
+       if (!this.plugin.getUtilPartciles().hasEffect(p)) {
         p.sendMessage(this.plugin.getMessagesFile().newParticle + "§cLava");
         this.plugin.getUtilPartciles().radarEffect(p, ParticleEffect.DRIP_LAVA);
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.LAVA, 1.0F, 1.0F);
       }
-      if ((slot == 13) && 
-        (!this.plugin.getUtilPartciles().hasEffect(p)))
-      {
+     }
+      if (slot == 13){ 
+        if(!p.hasPermission("ug.sparticula.agua") & !p.hasPermission("ug.sparticulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+         p.sendMessage(plugin.getMessagesFile().superparticlepermission);
+          return;
+        }
+        if(!this.plugin.getUtilPartciles().hasEffect(p)) {
         p.sendMessage(this.plugin.getMessagesFile().newParticle + "§cAgua");
         this.plugin.getUtilPartciles().radarEffect(p, ParticleEffect.DRIP_WATER);
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.WATER, 1.0F, 1.0F);
       }
-      if ((slot == 14) && 
-        (!this.plugin.getUtilPartciles().hasEffect(p)))
-      {
+     }
+      if (slot == 14) { 
+        if(!p.hasPermission("ug.sparticula.rhappy") & !p.hasPermission("ug.sparticulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+        	p.sendMessage(plugin.getMessagesFile().superparticlepermission);
+        	return;
+        }
+       if(!this.plugin.getUtilPartciles().hasEffect(p)) {
         p.sendMessage(this.plugin.getMessagesFile().newParticle + "§cRoration Happy");
         this.plugin.getUtilPartciles().SpiralEffect(p, ParticleEffect.VILLAGER_HAPPY);
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.VILLAGER_YES, 1.0F, 12.0F);
       }
-      if ((slot == 21) && 
-        (!this.plugin.getUtilPartciles().hasEffect(p)))
-      {
+     }
+      if (slot == 21) {
+        if(!p.hasPermission("ug.sparticula.rcoracoes") & !p.hasPermission("ug.sparticulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+          p.sendMessage(plugin.getMessagesFile().superparticlepermission);
+        	return;
+        }
+        if(!this.plugin.getUtilPartciles().hasEffect(p)) {
         p.sendMessage(this.plugin.getMessagesFile().newParticle + "§cRoration Corações");
         this.plugin.getUtilPartciles().SpiralEffect(p, ParticleEffect.HEART);
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.GHAST_MOAN, 1.0F, 1.0F);
       }
-      if ((slot == 22) && 
-        (!this.plugin.getUtilPartciles().hasEffect(p)))
-      {
+     }
+      if (slot == 22) {
+        if(!p.hasPermission("ug.sparticula.flamehelix") & !p.hasPermission("ug.sparticulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+          p.sendMessage(plugin.getMessagesFile().superparticlepermission);
+            return;
+        }
+        if(!this.plugin.getUtilPartciles().hasEffect(p)) {
         this.plugin.getUtilPartciles().startHelix(p);
         p.closeInventory();
         p.sendMessage(this.plugin.getMessagesFile().newParticle + "§cFlame Helix");
         p.playSound(p.getLocation(), Sound.FIZZ, 1.0F, 12.0F);
       }
+     }
       if (slot == 40) {
         this.plugin.getUtilPartciles().stopRotation(p);
       }
@@ -117,5 +137,5 @@ public class SuperMenu
         this.plugin.getMenuManager().gadgetMenu.showMenu(p);
       }
     }
-  }
+    }
 }
