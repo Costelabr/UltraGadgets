@@ -332,6 +332,22 @@ public class UtilParticleType
       p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
       return true;
     }
+    if(Helix.containsKey(p)) {
+        p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
+        return true;
+      }
+    if(animatedHelixID.containsKey(p)) {
+        p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
+        return true;
+      }
+    if(animatedHelixID2.containsKey(p)) {
+        p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
+        return true;
+      }
+    if(otherroration.containsKey(p)) {
+        p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
+        return true;
+      }
     return false;
   }
   
