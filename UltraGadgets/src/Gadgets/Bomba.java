@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -89,11 +90,22 @@ public class Bomba
                 pn.setVelocity(new Vector(UtilMath.random.nextInt(5), UtilMath.random.nextInt(2), UtilMath.random.nextInt(5)));
               }
             }
-            for (Location location : Bomba.this.plugin.getUtilLocation().getSphere(paramItemDrop.getLocation(), 5, 5, false, true, 0)) {
-              if (location.getBlock().getType() != Material.AIR) {
-                Bomba.this.plugin.getRollBlocks().paintBlock(location);
+            byte b = (byte) 15;
+            Location localLocation = paramItemDrop.getLocation();
+            for (Block localBlock : plugin.getUtilBlock().getInRadius(localLocation, 3.5D).keySet()) {
+                if (plugin.getUtilBlock().solid(localBlock)) {
+                  if (!plugin.getUtilBlock().blockToRestore.contains(localBlock))
+                  {
+                    if (localBlock.getType() != Material.CLAY) {
+                  	  plugin.getUtilBlock().setBlockToRestore(localBlock, 171, b, 4L, true, false, false);
+                    }
+                    if (localBlock.getType() != Material.CLAY_BRICK) {
+                  	  plugin.getUtilBlock().setBlockToRestore(localBlock, 159, b, 4L, true, false, false);
+                    }
+                  }
+                }
               }
-            }
+       
             paramItemDrop.remove();
           }
         }, 100L);

@@ -14,9 +14,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class RollBlocks
   extends BukkitRunnable
 {
-  private static HashMap<Location, Material> blocks = new HashMap<>();
+  public static HashMap<Location, Material> blocks = new HashMap<>();
   private static HashMap<Location, Byte> data = new HashMap<>();
-  private static HashMap<Location, Integer> counters = new HashMap<>();
+  public static HashMap<Location, Integer> counters = new HashMap<>();
   private static Random random = new Random();
   private static List<Material> unpaintable = new ArrayList<>();
   

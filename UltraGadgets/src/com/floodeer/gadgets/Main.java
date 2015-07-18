@@ -11,13 +11,32 @@ import org.apache.commons.lang.SystemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import Commands.*;
-import Menus.*;
-import Pets.*;
-import Gadgets.*;
-import Util.*;
+import Commands.UltraGadgetsCMD;
+import Gadgets.SetupGadgets;
+import Gadgets.Tipos;
+import Menus.DisguiseMenu;
+import Menus.Gadgets;
+import Menus.MenuManager;
+import Menus.ParticlesMenu;
+import Menus.PetMenu;
+import Menus.SuperMenu;
+import Pets.Pets;
+import Pets.Pets.PetsType;
+import Pets.PlayerInteractPetEvent;
+import Util.PlayerIsInMoviment;
+import Util.RestoreBlocks;
+import Util.RollBlocks;
+import Util.Updater;
+import Util.UtilBlock;
+import Util.UtilFireworks;
+import Util.UtilItem;
+import Util.UtilItemStack;
+import Util.UtilLag;
+import Util.UtilLocations;
+import Util.UtilParticleType;
 import br.com.overlands.API.IOverlands;
 
 import com.comphenix.protocol.ProtocolLibrary;
@@ -224,8 +243,7 @@ public class Main
     this.OverlandsAPI = IOverlands.getAPI();
     SystemDebugg("Pesquisando por ProtocolLib...");
     this.protocolManager = ProtocolLibrary.getProtocolManager();
-    SystemDebugg("Sucesso! Habilitando classes....");
-    
+    SystemDebugg("Sucesso! Habilitando classes....");    
     getMensagensConfig().options().copyDefaults(true);
     saveDefaultMensagem();
     getConfig().options().copyDefaults(true);
@@ -248,15 +266,42 @@ public class Main
     Bukkit.getServer().getPluginManager().registerEvents(new PlayerInteractPetEvent(), this);
     Bukkit.getPluginManager().registerEvents(new UtilLag(this), this);
     Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Updater(this), 1L, 1L);
-    this.roll.loadupUnPaintableList();
     RollBlocks rollBack = new RollBlocks();
+    rollBack.loadupUnPaintableList();
     rollBack.runTaskTimer(this, 0L, 1L);
     System.out.print("Sucesso! Registrando comandos...");
     getCommand("ultragadgets").setExecutor(new UltraGadgetsCMD());
     getCommand("ug").setExecutor(new UltraGadgetsCMD());
-    System.out.print("Sucesso! Plugin habilitado!");
+    System.out.print("Sucesso! Enviando informações:");
+    System.out.print("[UltraGadgets] Desenvolvido por: [Floodeer]");
+    System.out.print("[UltraGadgets] Versão: Build v1.8-R_1");
+    System.out.print("[UltraGadgets] Todos os direitos reservados.");
+    System.out.print("[UltraGadgets] Dev Page: https://github.com/Floodeer/UltraGadgets");
+    System.out.print("O plugin foi habilitado.");
     System.out.print("-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x");
   }
+  
+  @Override
+  public void onDisable() {
+	  
+	 for (Player p : Bukkit.getOnlinePlayers())
+	  {
+	   if (PetsType.HasPet(p)) {
+	    PetsType.removePet(p);
+	    }
+	     if (this.getUtilPartciles().hasEffect(p)) {
+	       this.getUtilPartciles().stopRotation(p);
+        }
+	     for(Player localParam : Bukkit.getOnlinePlayers()) {
+	         RestoreBlocks.saves.clear();
+	         RestoreBlocks.restore(localParam);
+
+	     }
+	  }
+	}
+
+  
+  
   
   public void reloadMensagensConfig()
     throws UnsupportedEncodingException

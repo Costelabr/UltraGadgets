@@ -4,16 +4,94 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import com.floodeer.gadgets.Main;
 
 public class UtilBlock
 {
-  public HashSet<Byte> blockPassSet = new HashSet<>();
+ 
+  public HashSet<Byte> blockPassSet = new HashSet<Byte>();
+  public ArrayList<Block> blockToRestore = new ArrayList<Block>();
+  public ArrayList<Block> frostyBlock = new ArrayList<Block>();
+  
+  @SuppressWarnings("deprecation")
+  public void setBlock(int paramInt, byte paramByte, Location paramLocation) {
+    if ((paramLocation.getBlock().getType() != Material.SKULL) && (paramLocation.getBlock().getType() != Material.ITEM_FRAME)) {
+      paramLocation.getBlock().setTypeId(paramInt);
+      paramLocation.getBlock().setData(paramByte);
+    }
+  }
+  
+  @SuppressWarnings("deprecation")
+  public void setFakeBlock(int paramInt, byte paramByte, Location paramLocation) {
+    if ((paramLocation.getBlock().getType() != Material.SKULL) && (paramLocation.getBlock().getType() != Material.ITEM_FRAME)){
+      int i = paramLocation.getBlockX();
+      int j = paramLocation.getBlockY();
+      int k = paramLocation.getBlockZ();
+      {
+       for(Player localPlayer : Bukkit.getOnlinePlayers()) {
+       localPlayer.sendBlockChange(paramLocation.getWorld().getBlockAt(i, j, k).getLocation(), paramInt, paramByte);
+       }
+      }
+    }
+  }
+  
+  public void sendBreak(Player paramPlayer, int paramInt, byte paramByte, Location paramLocation)
+  {
+    paramPlayer.getWorld().playEffect(paramLocation, Effect.STEP_SOUND, paramInt, paramByte);
+  }
+  
+  @SuppressWarnings("deprecation")
+  public void setBlockToRestore(final Block paramBlock, final int paramInt, final byte paramByte, long paramLong, final boolean paramBoolean1, final boolean paramBoolean2, boolean paramBoolean3){
+    blockToRestore.add(paramBlock);
+    if (paramBoolean2) {
+      frostyBlock.add(paramBlock);
+    }
+    final int i = paramBlock.getTypeId();
+    final byte b = paramBlock.getData();
+    if (paramBoolean1)
+    {
+      if (paramBlock.getType() != Material.SNOW) {
+        setFakeBlock(paramInt, paramByte, paramBlock.getLocation());
+      }
+    }
+    else {
+      setBlock(paramInt, paramByte, paramBlock.getLocation());
+    }
+    
+    
+    Bukkit.getScheduler().runTaskLater(Main.getMain(), new Runnable()
+    {
+      public void run()
+      {
+        {
+
+        	for(Player localPlayer : Bukkit.getOnlinePlayers()) {
+            sendBreak(localPlayer, paramInt, paramByte, paramBlock.getLocation().add(0.0D, 0.5D, 0.0D));
+        	}
+          }
+        if (paramBoolean1) {
+          setFakeBlock(i, b, paramBlock.getLocation());
+        } else {
+          setBlock(i, b, paramBlock.getLocation());
+        }
+        blockToRestore.remove(paramBlock);
+        if (paramBoolean2) {
+          frostyBlock.remove(paramBlock);
+        }
+      }
+    }, paramLong * 20L);
+  }
+  
   
   @SuppressWarnings("deprecation")
 public boolean solid(Block paramBlock)
@@ -389,5 +467,6 @@ public boolean isBlock(ItemStack paramItemStack)
       }
     }
     return false;
+  
   }
 }

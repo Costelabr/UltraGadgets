@@ -17,8 +17,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.util.BlockIterator;
 
+import Metodos.UtilMath;
 import Util.UtilCooldown;
 
 import com.floodeer.gadgets.Main;
@@ -64,21 +64,22 @@ public class PaintballGun
     if (((event.getEntity().getShooter() instanceof Player)) && 
       (this.paramSnowball.contains(event.getEntity())))
     {
-      BlockIterator bi = new BlockIterator(event.getEntity().getWorld(), event.getEntity().getLocation().toVector(), event.getEntity().getVelocity().normalize(), 0.0D, 4);
-      while (bi.hasNext())
-      {
-        Block block = bi.next();
-        if (block.getType() != Material.AIR)
-        {
-          if (this.plugin.getRollBlocks().getBlocks().containsKey(block.getLocation())) {
-            break;
+         byte b = (byte) UtilMath.random.nextInt(15);
+          Location localLocation = event.getEntity().getLocation().add(event.getEntity().getVelocity());
+          for (Block localBlock : plugin.getUtilBlock().getInRadius(localLocation, 1.5D).keySet()) {
+              if (plugin.getUtilBlock().solid(localBlock)) {
+                if (!plugin.getUtilBlock().blockToRestore.contains(localBlock))
+                {
+                  if (localBlock.getType() != Material.CLAY) {
+                	  plugin.getUtilBlock().setBlockToRestore(localBlock, 171, b, 4L, true, false, false);
+                  }
+                  if (localBlock.getType() != Material.CLAY_BRICK) {
+                	  plugin.getUtilBlock().setBlockToRestore(localBlock, 159, b, 4L, true, false, false);
+                  }
+                }
+              }
+            }
           }
-          this.plugin.getRollBlocks().paintBlock(block.getLocation());
-          break;
-        }
-      }
-      this.paramSnowball.remove(event.getEntity());
-    }
   }
   
   @EventHandler
