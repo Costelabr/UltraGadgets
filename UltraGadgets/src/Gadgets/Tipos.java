@@ -12,7 +12,7 @@ import com.floodeer.gadgets.Main;
 
 public enum Tipos
 {
-  NENHUM,  BOMBA,  COOKIEK,  FIREWORKP,  FUNGUN,  MOVIRE,  PBGUN,  STICKTP,  DJ,  DISCOB,  RAILGUN,  SMOKEBOMB,  DIAMONDP,  PARAQUEDAS,  WITHERSHOOT,  TRAMPOLIM;
+  NENHUM,  BOMBA,  COOKIEK,  FIREWORKP,  FUNGUN,  MOVIRE,  PBGUN,  STICKTP,  DJ,  DISCOB,  RAILGUN,  SMOKEBOMB,  DIAMONDP,  PARAQUEDAS,  WITHERSHOOT,  TRAMPOLIM, VAMPIRE;
   
   private static Main plugin = Main.getMain();
   protected static String invname = plugin.getMessagesFile().GadgetsMenuName;
@@ -184,11 +184,20 @@ public enum Tipos
        if(plugin.getConfigFile().TrampolimEnable) {
       getPlayerGadget.put(p, "Trampolim");
       p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
-      p.getInventory().setItem(4, plugin.getItemStack().newItemStack(Material.HOPPER, plugin.getMessagesFile().TrampolimName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)1));
+      p.getInventory().setItem(4, plugin.getItemStack().newItemStack(Material.HOPPER, plugin.getMessagesFile().TrampolimName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
       p.closeInventory();
         }else{
         	p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
         }
+    case VAMPIRE:
+    	if(plugin.getConfigFile().vampireEnable) {
+    		getPlayerGadget.put(p, "Vampire");    	
+    	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
+    	     p.getInventory().setItem(4, plugin.getItemStack().newItemStack(Material.GHAST_TEAR, plugin.getMessagesFile().VampireGadgetName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
+    	     p.closeInventory();
+    	     }else{
+    	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
+    	    }
+    	}
     }
-  }
 }

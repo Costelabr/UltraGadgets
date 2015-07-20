@@ -23,6 +23,7 @@ Main plugin = Main.getMain();
   public long ParaquedasCooldown;
   public long WitherShootCooldown;
   public long TrampolimCooldown;
+  public long VampireCooldown;
   
   public boolean BombaEnable;
   public boolean CookieEnable;
@@ -39,6 +40,7 @@ Main plugin = Main.getMain();
   public boolean WitherShootEnable;
   public boolean pbGunEnable;
   public boolean TrampolimEnable;
+  public boolean vampireEnable;
   
   public void loadConfigFile()
   {
@@ -59,6 +61,7 @@ Main plugin = Main.getMain();
      this.ParaquedasCooldown = config.getLong("Paraquedas-Gadget-Cooldown");
      this.WitherShootCooldown = config.getLong("WitherShoot-Gadget-Cooldown");
      this.TrampolimCooldown = config.getLong("Trampolim-Gadget-Cooldown");
+     this.VampireCooldown = config.getLong("Vampire-Gadget-Cooldown");
      
 
      this.BombaEnable = config.getBoolean("Bomba-Gadget-Habilitar");
@@ -76,5 +79,6 @@ Main plugin = Main.getMain();
      this.WitherShootEnable = config.getBoolean("WitherShoot-Gadget-Habilitar");
      this.TrampolimEnable = config.getBoolean("Trampolim-Gadget-Habilitar");
      this.pbGunEnable = config.getBoolean("PaintballGun-Gadget-Habilitar");
+     this.vampireEnable = config.getBoolean("Vampire-Gadget-Habilitar");
   }
 }

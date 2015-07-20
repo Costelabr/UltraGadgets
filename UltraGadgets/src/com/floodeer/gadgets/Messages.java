@@ -42,7 +42,7 @@ public class Messages
   public String DisguiseMenuName;
   public String GadgetsMenuName;
   public String MainMenuName;
-  
+  public String VampireGadgetName;
   
   public String SuperMenuName;
   public String ParticlesMenuName;
@@ -87,6 +87,7 @@ public class Messages
     this.DiamondPartyGadgetName = mensagens.getString("Diamond-Party-Item-Nome").replaceAll("&", "§");
     this.ParaquedasGadgetName = mensagens.getString("Paraquedas-Item-Nome").replaceAll("&", "§");
     this.WitherShooterName = mensagens.getString("WitherShoot-Item-Nome").replaceAll("&", "§");
+    this.VampireGadgetName = mensagens.getString("Vampire-Item-Nome").replaceAll("&", "§");
     this.TrampolimName = mensagens.getString("Trampolim-Item-Nome").replaceAll("&", "§");
     
     this.disguisePermission = mensagens.getString("Disguise-Permissao").replaceAll("&", "§");

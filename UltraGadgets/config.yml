@@ -39,11 +39,15 @@ DiamondParty-Gadget-Cooldown: 35000
 Paraquedas-Gadget-Cooldown: 38000
 WitherShoot-Gadget-Cooldown: 35000
 Trampolim-Gadget-Cooldown: 52000
+Vampire-Gadget-Cooldown: 48000
 
 #Configuração dos gadgets:
 
 #Máximo de blocos que o gadget "StickOfTeleport" poderá teleportar.
 Area-Maxima-TpStick: 50
+
+#Gadget vampiro pode voar?
+Vampiro-Pode-Voar: true
 
 #Você pode habiltiar ou desabilitar gadgets, pois alguns deles podem causar problemas.
 Bomba-Gadget-Habilitar: true
@@ -61,3 +65,4 @@ Paraquedas-Gadget-Habilitar: true
 WitherShoot-Gadget-Habilitar: true
 Trampolim-Gadget-Habilitar: true
 PaintballGun-Gadget-Habilitar: true
+Vampire-Gadget-Habilitar: true

@@ -78,9 +78,9 @@ public class Gadgets
     
     this.gadgets2page.setItem(22, this.plugin.getItemStack().newItemStack(Material.SKULL_ITEM, this.plugin.getMessagesFile().WitherShooterName, Arrays.asList(new String[] { "§7Shoot, Shoot, Shoot" }), 1, (byte)1));
     
-    this.gadgets2page.setItem(23, this.plugin.getItemStack().newItemStack(Material.HOPPER, this.plugin.getMessagesFile().TrampolimName, Arrays.asList(new String[] { "§7;)" }), 1, (byte)0));
+    this.gadgets2page.setItem(23, this.plugin.getItemStack().newItemStack(Material.HOPPER, this.plugin.getMessagesFile().TrampolimName, Arrays.asList(new String[] { "§7Trampolim! ;)" }), 1, (byte)0));
     
-    this.gadgets2page.setItem(30, this.plugin.getItemStack().setSoonTM());
+    this.gadgets2page.setItem(30, this.plugin.getItemStack().newItemStack(Material.GHAST_TEAR, this.plugin.getMessagesFile().VampireGadgetName, Arrays.asList(new String[] { "§7Você agora é um vampiro!" }), 1, (byte)0));
     
     this.gadgets2page.setItem(31, this.plugin.getItemStack().setSoonTM());
     
@@ -232,6 +232,13 @@ public class Gadgets
            }
         Tipos.setGadget(p, Tipos.TRAMPOLIM);
       }
+      if (slot == 30) {
+        	if(!p.hasPermission("ug.gadgets.vampire") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+              p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+              return;
+             }
+          Tipos.setGadget(p, Tipos.VAMPIRE);
+        }
       if (slot == 40) {  
         Tipos.setGadget(p, Tipos.NENHUM);
       }
