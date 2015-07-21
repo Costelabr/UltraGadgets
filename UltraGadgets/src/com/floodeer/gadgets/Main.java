@@ -246,7 +246,7 @@ public class Main
     Bukkit.getServer().getPluginManager().registerEvents(new Pets(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new PetMenu(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new PluginListener(), this);
-    Bukkit.getServer().getPluginManager().registerEvents(new PlayerInteractPetEvent(), this);
+    Bukkit.getServer().getPluginManager().registerEvents(new ParticleUpdateManager(), this);
     Bukkit.getPluginManager().registerEvents(new UtilLag(this), this);
     Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Updater(this), 1L, 1L);
     RollBlocks rollBack = new RollBlocks();

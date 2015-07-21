@@ -71,7 +71,7 @@ public class PaintballGun
                 if (!plugin.getUtilBlock().blockToRestore.contains(localBlock))
                 {
                   if (localBlock.getType() != Material.CLAY) {
-                	  plugin.getUtilBlock().setBlockToRestore(localBlock, 171, b, 4L, true, false, false);
+                	  plugin.getUtilBlock().setBlockToRestore(localBlock, 159, b, 4L, true, false, false);
                   }
                   if (localBlock.getType() != Material.CLAY_BRICK) {
                 	  plugin.getUtilBlock().setBlockToRestore(localBlock, 159, b, 4L, true, false, false);

@@ -21,6 +21,7 @@ public class UtilParticleType
   HashMap<Player, Integer> radar = new HashMap<>();
   HashMap<Player, Integer> Helix = new HashMap<>();
   HashMap<Player, Integer> otherroration = new HashMap<>();
+  public HashMap<Player, String> otherType = new HashMap<>();
   
   public void spiraleEffect(final Player p, final ParticleEffect type)
   {
@@ -167,16 +168,16 @@ public class UtilParticleType
     {
       int continue1 = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
       {
-        int particles = 40;
-        float radius = 2.0F;
-        protected int i;
-        int speed = 25;
-        double height = 0.0D;
-        int particles2 = 40;
-        float radius2 = 2.0F;
-        protected int i2;
-        int speed2 = 25;
-        double height2 = 0.0D;
+          int particles = 45;
+          float radius = 2.0F;
+          protected int i;
+          int speed = 20;
+          double height = 0.0D;
+          int particles2 = 45;
+          float radius2 = 1.5F;
+          protected int i2;
+          int speed2 = 25;
+          double height2 = 0.0D;
         
         public void run()
         {
@@ -226,13 +227,13 @@ public class UtilParticleType
     {
       int continue2 = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
       {
-        int particles = 40;
+        int particles = 45;
         float radius = 2.0F;
         protected int i;
-        int speed = 25;
+        int speed = 20;
         double height = 0.0D;
-        int particles2 = 40;
-        float radius2 = 2.0F;
+        int particles2 = 45;
+        float radius2 = 1.5F;
         protected int i2;
         int speed2 = 25;
         double height2 = 0.0D;
@@ -348,7 +349,11 @@ public class UtilParticleType
         p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
         return true;
       }
-    return false;
+    if(otherType.containsKey(p)) {
+        p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
+        return true;
+    }
+	return false;
   }
   
   public void stopRotation(Player p)
@@ -388,6 +393,10 @@ public class UtilParticleType
         Bukkit.getServer().getScheduler().cancelTask(((Integer)this.otherroration.get(p)).intValue());
         p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
         this.otherroration.remove(p);
+    }
+    if(this.otherType.containsKey(p)) {
+    	 p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
+         this.otherType.remove(p);
     }
   }
 }

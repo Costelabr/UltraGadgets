@@ -46,7 +46,7 @@ public class SuperMenu
     
     this.spMenu.setItem(23, this.plugin.getItemStack().newItemStack(Material.REDSTONE_BLOCK, "§aHelix of Dust", Arrays.asList(new String[] { "§7Helix de redstone!" }), 1, (byte)0));
     
-    this.spMenu.setItem(30, this.plugin.getItemStack().setSoonTM());
+    this.spMenu.setItem(30, this.plugin.getItemStack().newItemStack(Material.SNOW_BLOCK, "§fFrozen", Arrays.asList(new String[] { "§7Frozen!" }), 1, (byte)0));
     
     this.spMenu.setItem(31, this.plugin.getItemStack().setSoonTM());
     
@@ -141,6 +141,14 @@ public class SuperMenu
           p.playSound(p.getLocation(), Sound.PISTON_EXTEND, 1.0F, 12.0F);
         }
        }
+     if(slot == 30) {
+    	 if(!this.plugin.getUtilPartciles().hasEffect(p)) {
+    		 p.closeInventory();
+    		 p.sendMessage(this.plugin.getMessagesFile().newParticle + "§7Frozen");
+    		 p.playSound(p.getLocation(), Sound.STEP_SNOW, 1.0F, 12.0F);
+    		 plugin.getUtilPartciles().otherType.put(p, "Frozen");
+    	 }
+     }
       if (slot == 40) {
         this.plugin.getUtilPartciles().stopRotation(p);
       }
