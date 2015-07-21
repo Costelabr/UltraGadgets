@@ -18,8 +18,8 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import Metodos.UtilMath;
 import Util.UtilCooldown;
+import Util.UtilMath;
 
 import com.floodeer.gadgets.Main;
 

@@ -27,6 +27,9 @@ public class PlayerListener
     if (this.plugin.getItem().isGadgetItem(paramStackPlacer, this.plugin.getMessagesFile().DjGadgetName)) {
       paramBlockPlace.setCancelled(true);
     }
+    if(plugin.getItem().isGadgetItem(paramStackPlacer, plugin.getMessagesFile().WitherShooterName)) {
+    	paramBlockPlace.setCancelled(true);
+    }
   }
   
   @EventHandler
@@ -45,6 +48,9 @@ public class PlayerListener
     }
     if (paramBreakBlock.getBlock().hasMetadata("MetaBlocked")) {
       paramBreakBlock.setCancelled(true);
+    }
+    if(plugin.getItem().isGadgetItem(paramStackPlayer, plugin.getMessagesFile().WitherShooterName)) {
+    	paramBreakBlock.setCancelled(true);
     }
   }
 }

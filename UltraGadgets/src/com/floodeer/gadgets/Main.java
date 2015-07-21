@@ -20,7 +20,6 @@ import Menus.*;
 import Pets.*;
 import Pets.Pets.PetsType;
 import Util.*;
-import br.com.overlands.API.IOverlands;
 
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
@@ -31,7 +30,6 @@ public class Main
   public String internal_error = "************************* ERROR ********************************";
   FileConfiguration palavras = null;
   File plf = null;
-  public IOverlands OverlandsAPI;
   public boolean debugg = getConfig().getBoolean("System-Debugg");
   public ProtocolManager protocolManager;
   private static Main plugin;
@@ -60,20 +58,6 @@ public class Main
   public ConfigFile getConfigFile()
   {
     return this.cfile;
-  }
-  
-  protected boolean setupOverlands()
-  {
-    if (!Bukkit.getServer().getPluginManager().isPluginEnabled("OverlandsAPI"))
-    {
-      System.out.print(this.internal_error);
-      System.out.print(getName() + "Nao pode ser carregado sem OverlandsAPI.");
-      System.out.print(this.internal_error);
-      setEnabled(false);
-      return false;
-    }
-    System.out.print("OverlandsAPI encontrado!");
-    return true;
   }
   
   public PetMenu getPetsMenu() {
@@ -159,6 +143,8 @@ public class Main
   
   private void setupClasses()
   {
+	ActionBar.nmsver = Bukkit.getServer().getClass().getPackage().getName();
+    ActionBar.nmsver = ActionBar.nmsver.substring(ActionBar.nmsver.lastIndexOf(".") + 1);
     plugin = this;
     this.ms = new Messages();
     getMessagesFile().loadMessagesConfiguration();
@@ -186,13 +172,13 @@ public class Main
     {
       System.out.print("-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x");
       System.out.print("Ocorreu um erro interno ao tentar habilitar " + getName() + ":");
-      System.out.print(getName() + "Nao tem compatibilidades para versoes inferiores a 1.8!");
+      System.out.print(getName() + " Nao tem compatibilidades para versoes inferiores a 1.8!");
       setEnabled(false);
       System.out.print("-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x");
     }
     if (SystemUtils.IS_OS_LINUX)
     {
-      SystemDebugg(getName() + "Carregando com configuracoes para Linux");
+      SystemDebugg(getName() + " Carregando com configuracoes para Linux");
       SystemDebugg("-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x");
       SystemDebugg("Voce esta usando sistema operacional LINUX, porfavor saiba que:");
       SystemDebugg("Nao ha qualquer suporte dedicado para esse sistema.");
@@ -200,7 +186,7 @@ public class Main
     }
     if (SystemUtils.IS_OS_MAC)
     {
-      SystemDebugg(getName() + "Carregando com configuracoes para Mac");
+      SystemDebugg(getName() + " Carregando com configuracoes para Mac");
       SystemDebugg("-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x");
       SystemDebugg("Voce esta usando sistema operacional MAC, porfavor saiba que:");
       SystemDebugg("Nao ha qualquer suporte dedicado para esse sistema.");
@@ -208,7 +194,7 @@ public class Main
     }
     if (SystemUtils.IS_OS_WINDOWS)
     {
-      SystemDebugg(getName() + "Carregando com configuracoes para Windows");
+      SystemDebugg(getName() + " Carregando com configuracoes para Windows");
       SystemDebugg("-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x");
       SystemDebugg("Voce esta usando sistema operacional WINDOWS, porfavor saiba que:");
       SystemDebugg("Arquivos, pastas e atualizacoes estao habilitadas para esse sistema.");
@@ -221,9 +207,6 @@ public class Main
     SystemDebugg("-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x");
     SystemDebugg("Carregando versao...");
     setupVersionSystemAndPlugin();
-    SystemDebugg("Pesquisando por OverlandsAPI...");
-    setupOverlands();
-    this.OverlandsAPI = IOverlands.getAPI();
     SystemDebugg("Pesquisando por ProtocolLib...");
     this.protocolManager = ProtocolLibrary.getProtocolManager();
     SystemDebugg("Sucesso! Habilitando classes....");    

@@ -13,13 +13,14 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import Gadgets.Tipos;
-import Metodos.ActionBar;
 import Pets.Pets.PetsType;
+import Util.ActionBar;
 
 public class JoinEvent
   implements Listener
 {
   Main plugin = Main.getMain();
+ 
   
   @EventHandler
   public void playerJoin(PlayerJoinEvent e)
@@ -27,16 +28,13 @@ public class JoinEvent
     final Player p = e.getPlayer();
     Tipos.setGadget(p, Tipos.NENHUM);
     p.getInventory().setItem(this.plugin.getConfig().getInt("Slot-Gadget-Join-Item"), this.plugin.getItemStack().newItemStack(Material.PISTON_BASE, this.plugin.getMessagesFile().GadgetItemName, 
-      Arrays.asList(new String[] {"§7Clique para abrir o menu de Gadgets!" }), 1, (byte)0));
+      Arrays.asList(plugin.getMessagesFile().GadgetItemLore), 1, (byte)0));
+   
     Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
     {
       public void run()
       {
-        if (Tipos.playerHasGadget(p)) {
-          ActionBar.sendActionBar(p, "§eGadget: §a" + (String)Tipos.getPlayerGadget.get(p));
-        } else {
-          ActionBar.sendActionBar(p, "§eGadget: §aNenhum");
-        }
+          ActionBar.sendActionBar(p, "§6§lGadget §e§: " + Tipos.getPlayerGadget.get(p));
       }
     }, 1L, 1L);
   }

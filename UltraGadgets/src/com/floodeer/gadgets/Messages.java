@@ -44,6 +44,27 @@ public class Messages
   public String MainMenuName;
   public String VampireGadgetName;
   
+  public String GadgetItemLore;
+  public String BombaGadgetLore;
+  public String CookieGadgetLore;
+  public String FunGunGadgetLore;
+  public String FireworkPartyGadgetLore;
+  public String MovireGadgetLore;
+  public String PaintballGunGadgetLore;
+  public String StickOfTpGadgetLore;
+  public String DjGadgetLore;
+  public String DiscoBallGadgetLore;
+  public String RailGunGadgetLore;
+  public String SmokeBombGadgetLore;
+  public String DiamondPartyGadgetLore;
+  public String ParaquedasGadgetLore;
+  public String WitherShooterLore;
+  public String TrampolimLore;
+  public String DisguiseMenuLore;
+  public String GadgetsMenuLore;
+  public String MainMenuLore;
+  public String VampireGadgetLore;
+  
   public String SuperMenuName;
   public String ParticlesMenuName;
   public String PetsMenuName;
@@ -58,45 +79,63 @@ public class Messages
   
   public void loadMessagesConfiguration()
   {
-    FileConfiguration mensagens = this.plugin.getMensagensConfig();
+    FileConfiguration mensagens = plugin.getMensagensConfig();
     
-    this.prefix = mensagens.getString("Prefix").replaceAll("&", "§");
-    this.cooldown = mensagens.getString("Mensagem-Cooldown").replaceAll("&", "§");
-    this.newParticle = mensagens.getString("Nova-Particula").replaceAll("&", "§");
-    this.newDisguise = mensagens.getString("Nova-Fantasia").replaceAll("&", "§");
-    this.MainMenuName = mensagens.getString("Principal-Menu").replaceAll("&", "§");
-    this.DisguiseMenuName = mensagens.getString("Fantasias-Menu").replaceAll("&", "§");
-    this.GadgetsMenuName = mensagens.getString("Gadgets-Menu").replaceAll("&", "§");
-    this.ParticlesMenuName = mensagens.getString("Particulas-Menu").replaceAll("&", "§");
-    this.SuperMenuName = mensagens.getString("Super-Particulas-Menu").replaceAll("&", "§");
-    this.petNome = mensagens.getString("Pets-Formato").replaceAll("&", "§");
-    this.PetsMenuName = mensagens.getString("Pets-Menu").replaceAll("&", "§");
+    prefix = mensagens.getString("Prefix").replaceAll("&", "§");
+    cooldown = mensagens.getString("Mensagem-Cooldown").replaceAll("&", "§");
+    newParticle = mensagens.getString("Nova-Particula").replaceAll("&", "§");
+    newDisguise = mensagens.getString("Nova-Fantasia").replaceAll("&", "§");
+    MainMenuName = mensagens.getString("Principal-Menu").replaceAll("&", "§");
+    DisguiseMenuName = mensagens.getString("Fantasias-Menu").replaceAll("&", "§");
+    GadgetsMenuName = mensagens.getString("Gadgets-Menu").replaceAll("&", "§");
+    ParticlesMenuName = mensagens.getString("Particulas-Menu").replaceAll("&", "§");
+    SuperMenuName = mensagens.getString("Super-Particulas-Menu").replaceAll("&", "§");
+    petNome = mensagens.getString("Pets-Formato").replaceAll("&", "§");
+    PetsMenuName = mensagens.getString("Pets-Menu").replaceAll("&", "§");
     
-    this.GadgetItemName = mensagens.getString("Gadget-Item-Nome").replaceAll("&", "§");
-    this.BombaGadgetName = mensagens.getString("Bomba-Gadget-Item-Nome").replaceAll("&", "§");
-    this.CookieGadgetName = mensagens.getString("Cookie-Gadget-Item-Nome").replaceAll("&", "§");
-    this.FunGunGadgetName = mensagens.getString("FunGun-Gadget-Item-Nome").replaceAll("&", "§");
-    this.FireworkPartyGadgetName = mensagens.getString("FireWorkParty-Gadget-Item-Nome").replaceAll("&", "§");
-    this.MovireGadgetName = mensagens.getString("Movire-Gadget-Item-Nome").replaceAll("&", "§");
-    this.PaintballGunGadgetName = mensagens.getString("PaintballGun-Gadget-Item-Nome").replaceAll("&", "§");
-    this.StickOfTpGadgetName = mensagens.getString("Stick-Gadget-Item-Nome").replaceAll("&", "§");
-    this.DjGadgetName = mensagens.getString("Dj-Gadget-Item-Nome").replaceAll("&", "§");
-    this.DiscoBallGadgetName = mensagens.getString("Disco-Ball-Item-Nome").replaceAll("&", "§");
-    this.RailGunGadgetName = mensagens.getString("Rail-Gun-Item-Nome").replaceAll("&", "§");
-    this.SmokeBombGadgetName = mensagens.getString("Smoke-Bomb-Item-Nome").replaceAll("&", "§");
-    this.DiamondPartyGadgetName = mensagens.getString("Diamond-Party-Item-Nome").replaceAll("&", "§");
-    this.ParaquedasGadgetName = mensagens.getString("Paraquedas-Item-Nome").replaceAll("&", "§");
-    this.WitherShooterName = mensagens.getString("WitherShoot-Item-Nome").replaceAll("&", "§");
-    this.VampireGadgetName = mensagens.getString("Vampire-Item-Nome").replaceAll("&", "§");
-    this.TrampolimName = mensagens.getString("Trampolim-Item-Nome").replaceAll("&", "§");
+    GadgetItemName = mensagens.getString("Gadget-Item-Nome").replaceAll("&", "§");
+    BombaGadgetName = mensagens.getString("Bomba-Gadget-Item-Nome").replaceAll("&", "§");
+    CookieGadgetName = mensagens.getString("Cookie-Gadget-Item-Nome").replaceAll("&", "§");
+    FunGunGadgetName = mensagens.getString("FunGun-Gadget-Item-Nome").replaceAll("&", "§");
+    FireworkPartyGadgetName = mensagens.getString("FireWorkParty-Gadget-Item-Nome").replaceAll("&", "§");
+    MovireGadgetName = mensagens.getString("Movire-Gadget-Item-Nome").replaceAll("&", "§");
+    PaintballGunGadgetName = mensagens.getString("PaintballGun-Gadget-Item-Nome").replaceAll("&", "§");
+    StickOfTpGadgetName = mensagens.getString("Stick-Gadget-Item-Nome").replaceAll("&", "§");
+    DjGadgetName = mensagens.getString("Dj-Gadget-Item-Nome").replaceAll("&", "§");
+    DiscoBallGadgetName = mensagens.getString("Disco-Ball-Item-Nome").replaceAll("&", "§");
+    RailGunGadgetName = mensagens.getString("Rail-Gun-Item-Nome").replaceAll("&", "§");
+    SmokeBombGadgetName = mensagens.getString("Smoke-Bomb-Item-Nome").replaceAll("&", "§");
+    DiamondPartyGadgetName = mensagens.getString("Diamond-Party-Item-Nome").replaceAll("&", "§");
+    ParaquedasGadgetName = mensagens.getString("Paraquedas-Item-Nome").replaceAll("&", "§");
+    WitherShooterName = mensagens.getString("WitherShoot-Item-Nome").replaceAll("&", "§");
+    VampireGadgetName = mensagens.getString("Vampire-Item-Nome").replaceAll("&", "§");
+    TrampolimName = mensagens.getString("Trampolim-Item-Nome").replaceAll("&", "§");
     
-    this.disguisePermission = mensagens.getString("Disguise-Permissao").replaceAll("&", "§");
-    this.gadgetPermission = mensagens.getString("Gadget-Permissao").replaceAll("&", "§");
-    this.particlepermission = mensagens.getString("Particulas-Permissao").replaceAll("&", "§");
-    this.superparticlepermission = mensagens.getString("SuperParticulas-Permissao").replaceAll("&", "§");
-    this.petspermission = mensagens.getString("Pets-Permissao").replaceAll("&", "§");
+    GadgetItemLore = mensagens.getString("Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    BombaGadgetLore = mensagens.getString("Bomba-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    CookieGadgetLore = mensagens.getString("Cookie-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    FunGunGadgetLore = mensagens.getString("FunGun-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    FireworkPartyGadgetLore = mensagens.getString("FireWorkParty-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    MovireGadgetLore = mensagens.getString("Movire-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    PaintballGunGadgetLore = mensagens.getString("PaintballGun-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    StickOfTpGadgetLore = mensagens.getString("Stick-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    DjGadgetLore = mensagens.getString("Dj-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    DiscoBallGadgetLore = mensagens.getString("Disco-Ball-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    RailGunGadgetLore = mensagens.getString("Rail-Gun-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    SmokeBombGadgetLore = mensagens.getString("Smoke-Bomb-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    DiamondPartyGadgetLore = mensagens.getString("Diamond-Party-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    ParaquedasGadgetLore = mensagens.getString("Paraquedas-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    WitherShooterLore = mensagens.getString("WitherShoot-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    VampireGadgetLore = mensagens.getString("Vampire-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    TrampolimLore = mensagens.getString("Trampolim-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
     
-    this.gadgetDesabilitado = mensagens.getString("Gadget-Desabilitado").replaceAll("&", "§");
+    disguisePermission = mensagens.getString("Disguise-Permissao").replaceAll("&", "§");
+    gadgetPermission = mensagens.getString("Gadget-Permissao").replaceAll("&", "§");
+    particlepermission = mensagens.getString("Particulas-Permissao").replaceAll("&", "§");
+    superparticlepermission = mensagens.getString("SuperParticulas-Permissao").replaceAll("&", "§");
+    petspermission = mensagens.getString("Pets-Permissao").replaceAll("&", "§");
+    
+    gadgetDesabilitado = mensagens.getString("Gadget-Desabilitado").replaceAll("&", "§");
   }
   
   /**

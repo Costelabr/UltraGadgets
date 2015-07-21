@@ -1,19 +1,19 @@
 package Commands;
 
-import Metodos.JsonBuilder;
-import Metodos.JsonBuilder.ClickAction;
-import Metodos.JsonBuilder.HoverAction;
+import Util.JsonBuilder;
+import Util.JsonBuilder.ClickAction;
+import Util.JsonBuilder.HoverAction;
 
 import com.floodeer.gadgets.Main;
 import com.floodeer.gadgets.PluginListener;
 
-import net.minecraft.server.v1_8_R1.ChatSerializer;
-import net.minecraft.server.v1_8_R1.PacketPlayOutChat;
+import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
+import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class UltraGadgetsCMD

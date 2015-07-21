@@ -10,7 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-import Metodos.Menus;
+import Util.Menus;
 import Util.ParticleEffect;
 import Util.UtilParticle.ParticleType;
 
@@ -142,6 +142,10 @@ public class SuperMenu
         }
        }
      if(slot == 30) {
+    	 if(!p.hasPermission("ug.sparticula.frozen") & !p.hasPermission("ug.sparticulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+             p.sendMessage(plugin.getMessagesFile().superparticlepermission);
+             return;
+         }
     	 if(!this.plugin.getUtilPartciles().hasEffect(p)) {
     		 p.closeInventory();
     		 p.sendMessage(this.plugin.getMessagesFile().newParticle + "§7Frozen");

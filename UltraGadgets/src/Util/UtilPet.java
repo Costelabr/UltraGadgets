@@ -3,46 +3,40 @@ package Util;
 import java.lang.reflect.Field;
 import java.util.UUID;
 
-import net.minecraft.server.v1_8_R1.EntityInsentient;
-import net.minecraft.server.v1_8_R1.PathEntity;
-import net.minecraft.server.v1_8_R1.PathfinderGoal;
-import net.minecraft.server.v1_8_R1.PathfinderGoalFloat;
-import net.minecraft.server.v1_8_R1.PathfinderGoalSelector;
+import net.minecraft.server.v1_8_R3.EntityInsentient;
+import net.minecraft.server.v1_8_R3.PathEntity;
+import net.minecraft.server.v1_8_R3.PathfinderGoal;
+import net.minecraft.server.v1_8_R3.PathfinderGoalFloat;
+import net.minecraft.server.v1_8_R3.PathfinderGoalSelector;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftLivingEntity;
-import org.bukkit.craftbukkit.v1_8_R1.util.UnsafeList;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_8_R3.util.UnsafeList;
 import org.bukkit.entity.LivingEntity;
 
-public class UtilPet
-{
+public class UtilPet {
   private static Field gsa;
   private static Field goalSelector;
   private static Field targetSelector;
   
-  static
-  {
-    try
-    {
+  static{
+    try {
       gsa = PathfinderGoalSelector.class.getDeclaredField("b");
       gsa.setAccessible(true);
       goalSelector = EntityInsentient.class.getDeclaredField("goalSelector");
       goalSelector.setAccessible(true);
       targetSelector = EntityInsentient.class.getDeclaredField("targetSelector");
       targetSelector.setAccessible(true);
-    }
-    catch (Exception e)
-    {
+    }catch (Exception e) {
       e.printStackTrace();
     }
   }
   
   @SuppressWarnings({ "rawtypes", "deprecation" })
-public static void criarPet(LivingEntity e, UUID toFollow)
-  {
-    try
-    {
+ public static void criarPet(LivingEntity e, UUID toFollow) {
+	  
+    try{
       Object nms_entity = ((CraftLivingEntity)e).getHandle();
       if ((nms_entity instanceof EntityInsentient))
       {
@@ -52,9 +46,7 @@ public static void criarPet(LivingEntity e, UUID toFollow)
         gsa.set(target, new UnsafeList());
         goal.a(0, new PathfinderGoalFloat((EntityInsentient)nms_entity));
         goal.a(1, new PathfinderGoalWalktoTile((EntityInsentient)nms_entity, toFollow));
-      }
-      else
-      {
+      }else{
         throw new IllegalArgumentException(e.getType().getName() + " is not an instance of an EntityInsentient.");
       }
     }
