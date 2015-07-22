@@ -1,9 +1,9 @@
 name: UltraGadgets
-version: 1.0.1
+version: 1.0.3
 main: com.floodeer.gadgets.Main
 description: UltraGadgets plugin
 author: Floodeer
-depend: [ProtocolLib, OverlandsAPI]
+depend: [ProtocolLib]
 prefix: UltraGadgets
 commands:
   ultragadgets:

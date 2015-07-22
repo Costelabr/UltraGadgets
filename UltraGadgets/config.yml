@@ -18,8 +18,16 @@ Gadgets-Slot: 4
 
 Usar-ActionBar: true
 
+#Títulos quando player recebe o gadget, ou o gadget ainda está em Cooldown
+Usar-Titulos: true
+
 #Som que será tocado quando o gadget ainda estiver em cooldown:
 Som-Cooldown: NOTE_PLING
+
+#Tempo em tickets dos titulos em:
+FadeIn-Title-Time: 20
+FadeStay-Title-Time: 50
+FadeOut-Title-Time: 25
 
 #Tempo de recarga dos Gadgets (Cooldown), a cada 1000 = 1 segundo. (10000 = 10s, 15000 = 15s, 20000 = 20s...)
 #O cooldown padrão é o recomendado, o cooldown é resetado quando player reentrar no servidor.
