@@ -23,6 +23,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
+import Util.Util18;
 import Util.UtilCooldown;
 
 import com.floodeer.gadgets.Main;
@@ -391,6 +392,10 @@ public class Trampolim
         long cooldown = UtilCooldown.getCooldown(localPlayer, "Trampolim") / 1000L;
         plugin.getMessagesFile().sendCooldownMessage(localPlayer, "Trampolim", "Trampolim", cooldown);
         localPlayer.playSound(localPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
+        Util18.sendTitle(localPlayer, 
+        plugin.getMessagesFile().titleMessage,
+        plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(localPlayer)), 
+        plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));
       }
     }
   }

@@ -20,6 +20,9 @@ public class Messages
   public String particlepermission;
   public String superparticlepermission;
   public String petspermission;
+  public String titleMessage;
+  public String subTitleMessage;
+  public String otherCooldown;
   
   public String gadgetDesabilitado;
   
@@ -136,6 +139,11 @@ public class Messages
     petspermission = mensagens.getString("Pets-Permissao").replaceAll("&", "§");
     
     gadgetDesabilitado = mensagens.getString("Gadget-Desabilitado").replaceAll("&", "§");
+    
+    titleMessage = mensagens.getString("Titulo-Cooldown").replaceAll("&", "§");
+    subTitleMessage = mensagens.getString("SubTitulo-Cooldown").replaceAll("&", "§");
+    
+    otherCooldown = mensagens.getString("Outro-Cooldown").replaceAll("&", "§");
   }
   
   /**

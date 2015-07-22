@@ -19,6 +19,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
+import Util.Util18;
 import Util.UtilCooldown;
 
 import com.floodeer.gadgets.Main;
@@ -107,6 +108,7 @@ public class CookieKookie
     if (this.plugin.getUtilBlock().usable(paramPlayerUseKookies.getClickedBlock())) {
       return;
     }
+    
     if (this.plugin.getItem().isGadgetItem(paramItem, this.plugin.getMessagesFile().CookieGadgetName)) {
       if (UtilCooldown.tryCooldown(paramPlayer, "Cookies", this.plugin.getConfigFile().CookieCooldown))
       {
@@ -117,6 +119,10 @@ public class CookieKookie
         long cooldown = UtilCooldown.getCooldown(paramPlayer, "Cookies") / 1000L;
         plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "Cookies Party", "Cookies", cooldown);
         paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
+        Util18.sendTitle(paramPlayer, 
+        plugin.getMessagesFile().titleMessage,
+        plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
+        plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));
       }
     }
   }

@@ -15,6 +15,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
+import Util.Util18;
 import Util.UtilCooldown;
 import Util.UtilFireworks;
 import Util.UtilMath;
@@ -99,6 +100,10 @@ public class WitherShooter
       long cooldown = UtilCooldown.getCooldown(localPlayer1, "Wither") / 1000L;
       plugin.getMessagesFile().sendCooldownMessage(localPlayer1, "Wither Shoot", "Wither", cooldown);
       localPlayer1.playSound(localPlayer1.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
+      Util18.sendTitle(localPlayer1, 
+      plugin.getMessagesFile().titleMessage,
+      plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(localPlayer1)), 
+      plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));
     }
   }
   

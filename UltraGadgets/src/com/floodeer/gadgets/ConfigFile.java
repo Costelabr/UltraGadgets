@@ -42,6 +42,8 @@ Main plugin = Main.getMain();
   public boolean TrampolimEnable;
   public boolean vampireEnable;
   
+  public boolean useTitles;
+  
   public void loadConfigFile()
   {
      FileConfiguration config = this.plugin.getConfig();
@@ -80,5 +82,7 @@ Main plugin = Main.getMain();
      this.TrampolimEnable = config.getBoolean("Trampolim-Gadget-Habilitar");
      this.pbGunEnable = config.getBoolean("PaintballGun-Gadget-Habilitar");
      this.vampireEnable = config.getBoolean("Vampire-Gadget-Habilitar");
+     
+     this.useTitles = config.getBoolean("Usar-Titulos");
   }
 }

@@ -18,6 +18,7 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import Util.Util18;
 import Util.UtilCooldown;
 import Util.UtilMath;
 
@@ -48,9 +49,13 @@ public class PaintballGun
       }
       else
       {
-        long cooldowns = UtilCooldown.getCooldown(paramPlayer, "PBG") / 1000L;
-        paramPlayer.sendMessage("§eVoce deve esperar §3" + cooldowns + " §esegundos para usar " + "§c§lPaintballGun " + "§enovamente");
+        long cooldown = UtilCooldown.getCooldown(paramPlayer, "PBG") / 1000L;
+        paramPlayer.sendMessage("§eVoce deve esperar §3" + cooldown + " §esegundos para usar " + "§c§lPaintballGun " + "§enovamente");
         paramPlayer.playSound(paramPlayer.getLocation(), Sound.NOTE_PIANO, 2.0F, 15.0F);
+        Util18.sendTitle(paramPlayer, 
+        plugin.getMessagesFile().titleMessage,
+        plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
+        plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));
       }
     }
   }

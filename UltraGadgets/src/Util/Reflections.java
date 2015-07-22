@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
  
-/**
- * @author DPOH-VAR
- * @version 1.0
- */
 public class Reflections {
  
     /**  prefix of bukkit classes */
@@ -48,22 +44,11 @@ public class Reflections {
         }
     }
  
-    /**
-     * @return true if server has forge classes
-     */
+
     public static boolean isForge(){
         return forge;
     }
  
-    /**
-     * Get class for name.
-     * Replace {nms} to net.minecraft.server.V*.
-     * Replace {cb} to org.bukkit.craftbukkit.V*.
-     * Replace {nm} to net.minecraft
-     * @param classes possible class paths
-     * @return RefClass object
-     * @throws RuntimeException if no class found
-     */
     public static RefClass getRefClass(String... classes){
         for (String className: classes) try {
             className = className

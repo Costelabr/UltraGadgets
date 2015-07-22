@@ -189,6 +189,7 @@ public enum Tipos
         }else{
         	p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
         }
+       break;
     case VAMPIRE:
     	if(plugin.getConfigFile().vampireEnable) {
     		getPlayerGadget.put(p, "Vampire");    	
@@ -198,6 +199,7 @@ public enum Tipos
     	     }else{
     	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
     	    }
+    	break;
     	}
     }
 }

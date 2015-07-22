@@ -17,6 +17,7 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
 
 import Util.ParticleEffect;
+import Util.Util18;
 import Util.UtilCooldown;
 
 import com.floodeer.gadgets.Main;
@@ -55,6 +56,10 @@ public class FunGun
         long cooldown = UtilCooldown.getCooldown(paramPlayer, "FG") / 1000L;
         plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "FunGun", "FG", cooldown);
         paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
+        Util18.sendTitle(paramPlayer, 
+        plugin.getMessagesFile().titleMessage,
+        plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
+        plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));
       }
     }
   }

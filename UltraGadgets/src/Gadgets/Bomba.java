@@ -20,6 +20,7 @@ import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 import Util.ParticleEffect;
+import Util.Util18;
 import Util.UtilCooldown;
 import Util.UtilLocations;
 import Util.UtilMath;
@@ -115,6 +116,11 @@ public class Bomba
         long cooldown = UtilCooldown.getCooldown(paramPlayer, "Bomba") / 1000L;
         plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "Bomba", "Bomba", cooldown);
         paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
+        
+        Util18.sendTitle(paramPlayer, 
+        plugin.getMessagesFile().titleMessage,
+        plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
+        plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));
       }
     }
   }
