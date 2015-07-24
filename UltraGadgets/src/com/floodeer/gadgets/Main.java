@@ -219,6 +219,7 @@ public class Main
     SetupGadgets.registerGadgets(this);
     Bukkit.getServer().getPluginManager().registerEvents(new PlayerIsInMoviment(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new InventoryMoveManager(), this);
+    Bukkit.getServer().getPluginManager().registerEvents(new PlayerInteractPetEvent(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new MenuManager(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new ParticlesMenu(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new DisguiseMenu(), this);

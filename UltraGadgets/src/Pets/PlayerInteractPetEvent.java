@@ -5,12 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-
-
-
-
-
-
 import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 
@@ -70,9 +64,8 @@ public class PlayerInteractPetEvent
     if ((e.getRightClicked() instanceof Chicken))
     {
       Chicken localChicken = (Chicken)e.getRightClicked();
-      if ((localChicken.hasMetadata("petChicken")) && 
-        (e.getPlayer().isSneaking()))
-      {
+      if ((localChicken.hasMetadata("petChicken")) && PetsType.HasPet(e.getPlayer()) &&
+        (e.getPlayer().isSneaking())) {
         this.petMenu.showMenu(e.getPlayer());
         this.playerPet.put(e.getPlayer(), localChicken);
       }
@@ -80,7 +73,7 @@ public class PlayerInteractPetEvent
     if ((e.getRightClicked() instanceof Cow))
     {
       Cow localCow = (Cow)e.getRightClicked();
-      if ((localCow.hasMetadata("petCow")) && 
+      if ((localCow.hasMetadata("petCow")) && PetsType.HasPet(e.getPlayer()) &&
         (e.getPlayer().isSneaking()))
       {
         this.petMenu.showMenu(e.getPlayer());
@@ -90,7 +83,7 @@ public class PlayerInteractPetEvent
     if ((e.getRightClicked() instanceof Rabbit))
     {
       Rabbit localRabbit = (Rabbit)e.getRightClicked();
-      if ((localRabbit.hasMetadata("petRabbit")) && 
+      if ((localRabbit.hasMetadata("petRabbit")) && PetsType.HasPet(e.getPlayer()) &&
         (e.getPlayer().isSneaking()))
       {
       
@@ -100,7 +93,7 @@ public class PlayerInteractPetEvent
     }
     if((e.getRightClicked() instanceof Wolf)) {
     	Wolf localWolf = (Wolf)e.getRightClicked();
-    	if((localWolf.hasMetadata("petWolf")) && 
+    	if((localWolf.hasMetadata("petWolf")) && PetsType.HasPet(e.getPlayer()) && 
     		e.getPlayer().isSneaking()) {
     		this.petMenu.showMenu(e.getPlayer());
     		this.playerPet.put(e.getPlayer(), localWolf);
