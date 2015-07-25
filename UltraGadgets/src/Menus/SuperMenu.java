@@ -48,7 +48,7 @@ public class SuperMenu
     
     this.spMenu.setItem(30, this.plugin.getItemStack().newItemStack(Material.SNOW_BLOCK, "§fFrozen", Arrays.asList(new String[] { "§7Frozen!" }), 1, (byte)0));
     
-    this.spMenu.setItem(31, this.plugin.getItemStack().setSoonTM());
+    this.spMenu.setItem(31, this.plugin.getItemStack().newItemStack(Material.GLASS_BOTTLE, "§fCírculo de Água", Arrays.asList(new String[] { "§7Círculo de água!" }), 1, (byte)0));
     
     this.spMenu.setItem(32, this.plugin.getItemStack().setSoonTM());
     
@@ -151,6 +151,18 @@ public class SuperMenu
     		 p.sendMessage(this.plugin.getMessagesFile().newParticle + "§7Frozen");
     		 p.playSound(p.getLocation(), Sound.STEP_SNOW, 1.0F, 12.0F);
     		 plugin.getUtilPartciles().otherType.put(p, "Frozen");
+    	 }
+     }
+     if(slot == 31) {
+    	 if(!p.hasPermission("ug.sparticula.watercircle") & !p.hasPermission("ug.sparticulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+             p.sendMessage(plugin.getMessagesFile().superparticlepermission);
+             return;
+         }
+    	 if(!this.plugin.getUtilPartciles().hasEffect(p)) {
+    		 p.closeInventory();
+    		 p.sendMessage(this.plugin.getMessagesFile().newParticle + "§7Circle of Water");
+    		 p.playSound(p.getLocation(), Sound.STEP_SNOW, 1.0F, 12.0F);
+    		 plugin.getUtilPartciles().circleOfParticles(p, ParticleEffect.DRIP_WATER);
     	 }
      }
       if (slot == 40) {

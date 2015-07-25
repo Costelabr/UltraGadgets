@@ -15,12 +15,12 @@ public class UtilParticleType
 {
   Main plugin = Main.getMain();
   HashMap<Player, Integer> animatedHelixID = new HashMap<>();
-  HashMap<Player, Integer> animatedHelixID2 = new HashMap<>();
   HashMap<Player, Integer> intID = new HashMap<>();
   HashMap<Player, Integer> intIDspheric = new HashMap<>();
   HashMap<Player, Integer> radar = new HashMap<>();
   HashMap<Player, Integer> Helix = new HashMap<>();
   HashMap<Player, Integer> otherroration = new HashMap<>();
+  HashMap<Player, Integer> circleofparticle = new HashMap<>();
   public HashMap<Player, String> otherType = new HashMap<>();
   
   public void spiraleEffect(final Player p, final ParticleEffect type)
@@ -166,123 +166,29 @@ public class UtilParticleType
   {
     if (!this.animatedHelixID.containsKey(p))
     {
-      int continue1 = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
-      {
-          int particles = 45;
-          float radius = 2.0F;
-          protected int i;
-          int speed = 20;
-          double height = 0.0D;
-          int particles2 = 45;
-          float radius2 = 1.5F;
-          protected int i2;
-          int speed2 = 25;
-          double height2 = 0.0D;
+      int continue1 = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable() {
         
-        public void run()
-        {
-          Location localLocation1 = p.getLocation();
-          Location localLocation2 = p.getLocation();
-          
-          double d1 = 6.283185307179586D * this.i / (this.particles * this.speed);
-          double d2 = Math.cos(d1) * this.radius;
-          double d3 = Math.sin(d1) * this.radius;
-          localLocation1.add(d2, this.height, d3);
-          new UtilParticle(ptype, 0.0D, 1, 1.0E-4D).sendToLocation(localLocation1);
-          localLocation1.subtract(d2, 0.0D, d3);
-          this.i += this.speed;
-          if (this.radius > 0.02D)
-          {
-            this.radius = ((float)(this.radius - 0.05D));
-            this.height += 0.1D;
+          double phi = 0;
+          public void run(){
+           phi = phi + Math.PI/8;                                 
+          double x, y, z;                
+                 
+          Location l = p.getLocation();
+          for (double t = 0; t <= 2*Math.PI; t = t + Math.PI/16){
+          for (double i = 0; i <= 1; i = i + 1){
+           x = 0.4*(2*Math.PI-t)*0.5*Math.cos(t + phi + i*Math.PI);
+           y = 0.5*t;
+           z = 0.4*(2*Math.PI-t)*0.5*Math.sin(t + phi + i*Math.PI);
+           l.add(x, y, z);
+           ParticleEffect.REDSTONE.display(0.0F, 0.0F, 0.0F, 0.0F, 1, l, 25.0D);
+           l.subtract(x,y,z);
           }
-          else
-          {
-            this.radius = 2.0F;
-            this.height = 0.0D;
-          }
-          double d4 = 6.283185307179586D * this.i2 / (this.particles2 * this.speed2);
-          double d5 = Math.cos(d4) * -this.radius2;
-          double d6 = Math.sin(d4) * -this.radius2;
-          Vector localVector = new Vector(d5, this.height2, d6);
-          localLocation2.add(localVector);
-          new UtilParticle(ptype, 0.0D, 1, 1.0E-4D).sendToLocation(localLocation2);
-          localLocation2.subtract(d2, 0.0D, d3);
-          this.i2 += this.speed2;
-          if (this.radius2 > 0.02D)
-          {
-            this.radius2 = ((float)(this.radius2 - 0.05D));
-            this.height2 += 0.1D;
-          }
-          else
-          {
-            this.radius2 = 2.0F;
-            this.height2 = 0.0D;
-          }
-        }
-      }, 1L, 1L).getTaskId();
+         }
+       }
+      }, 0L, 5L).getTaskId();
       this.animatedHelixID.put(p, Integer.valueOf(continue1));
     }
-    if (this.animatedHelixID2.containsKey(p))
-    {
-      int continue2 = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
-      {
-        int particles = 45;
-        float radius = 2.0F;
-        protected int i;
-        int speed = 20;
-        double height = 0.0D;
-        int particles2 = 45;
-        float radius2 = 1.5F;
-        protected int i2;
-        int speed2 = 25;
-        double height2 = 0.0D;
-        
-        public void run()
-        {
-          Location paramLocation1 = p.getLocation();
-          Location paramLocation2 = p.getLocation();
-          
-          double d1 = 6.283185307179586D * this.i / (this.particles * this.speed);
-          double d2 = Math.cos(d1) * this.radius;
-          double d3 = Math.sin(d1) * this.radius;
-          paramLocation1.add(d2, this.height, d3);
-          ParticleEffect.REDSTONE.display(0.0F, 0.0F, 0.0F, 0.0F, 3, paramLocation1, 25.0D);
-          paramLocation1.subtract(d2, 0.0D, d3);
-          this.i += this.speed;
-          if (this.radius > 0.02D)
-          {
-            this.radius = ((float)(this.radius - 0.05D));
-            this.height += 0.1D;
-          }
-          else
-          {
-            this.radius = 2.0F;
-            this.height = 0.0D;
-          }
-          double d4 = 6.283185307179586D * this.i2 / (this.particles2 * this.speed2);
-          double d5 = Math.cos(d4) * -this.radius2;
-          double d6 = Math.sin(d4) * -this.radius2;
-          Vector paramVectory = new Vector(d5, this.height2, d6);
-          paramLocation2.add(paramVectory);
-          ParticleEffect.REDSTONE.display(0.0F, 0.0F, 0.0F, 0.0F, 3, paramLocation2, 25.0D);
-          paramLocation2.subtract(d2, 0.0D, d3);
-          this.i2 += this.speed2;
-          if (this.radius2 > 0.02D)
-          {
-            this.radius2 = ((float)(this.radius2 - 0.05D));
-            this.height2 += 0.1D;
-          }
-          else
-          {
-            this.radius2 = 2.0F;
-            this.height2 = 0.0D;
-          }
-        }
-      }, 20L, 1L).getTaskId();
-      this.animatedHelixID2.put(p, Integer.valueOf(continue2));
-    }
-  }
+   }
   
   public void rorationOtherType(final Player p, final ParticleType ptype)
   {
@@ -315,6 +221,28 @@ public class UtilParticleType
     }
   }
   
+  public void circleOfParticles(final Player p, final ParticleEffect pe) {
+	  if(!circleofparticle.containsKey(p)) {
+	 int c = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable() {
+			
+		  double cosI = 0;
+			@Override
+			public void run() {
+				  final Location l = p.getLocation();
+				 cosI += Math.PI/10;
+				 for(double t = 0; t <= 2*Math.PI; t += Math.PI/40) {
+					double x = 1.5*Math.cos(t)*Math.sin(cosI);
+					double y = 1.5*Math.cos(cosI) + 1.5;
+					double z = 1.5*Math.sin(t)*Math.sin(cosI);
+					l.add(x,y,z);
+					pe.display(0.0F, 0.0F, 0.0F, 0.0F, 1, l, 25.0D);
+					l.subtract(x,y,z);
+			}
+		  }
+		}, 0L, 6L).getTaskId();
+      this.circleofparticle.put(p, c);
+	 }
+  }
   
   public boolean hasEffect(Player p)
   {
@@ -341,15 +269,15 @@ public class UtilParticleType
         p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
         return true;
       }
-    if(animatedHelixID2.containsKey(p)) {
-        p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
-        return true;
-      }
     if(otherroration.containsKey(p)) {
         p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
         return true;
       }
     if(otherType.containsKey(p)) {
+        p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
+        return true;
+    }
+    if(circleofparticle.containsKey(p)) {
         p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
         return true;
     }
@@ -387,7 +315,6 @@ public class UtilParticleType
       Bukkit.getServer().getScheduler().cancelTask(((Integer)this.animatedHelixID.get(p)).intValue());
       p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
       this.animatedHelixID.remove(p);
-      this.animatedHelixID2.remove(p);
     }
     if(this.otherroration.containsKey(p)) {
         Bukkit.getServer().getScheduler().cancelTask(((Integer)this.otherroration.get(p)).intValue());
@@ -398,5 +325,10 @@ public class UtilParticleType
     	 p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
          this.otherType.remove(p);
     }
+    if(this.circleofparticle.containsKey(p)) {
+   	 p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
+     Bukkit.getServer().getScheduler().cancelTask(((Integer)circleofparticle.get(p)).intValue());
+        this.circleofparticle.remove(p);
+   }
   }
 }
