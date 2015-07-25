@@ -30,6 +30,9 @@ public class PlayerListener
     if(plugin.getItem().isGadgetItem(paramStackPlacer, plugin.getMessagesFile().WitherShooterName)) {
     	paramBlockPlace.setCancelled(true);
     }
+    if(plugin.getItem().isGadgetItem(paramStackPlacer, plugin.getMessagesFile().VectorGadgetName)) {
+    	paramBlockPlace.setCancelled(true);
+    }
   }
   
   @EventHandler

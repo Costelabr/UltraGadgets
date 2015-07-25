@@ -14,6 +14,7 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Pig;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Rabbit;
 import org.bukkit.entity.Wolf;
@@ -98,6 +99,14 @@ public class PlayerInteractPetEvent
     		this.petMenu.showMenu(e.getPlayer());
     		this.playerPet.put(e.getPlayer(), localWolf);
     	}
+    }
+        if((e.getRightClicked() instanceof Pig)) {
+        	Pig localPig = (Pig)e.getRightClicked();
+        	if((localPig.hasMetadata("petPorco")) && PetsType.HasPet(e.getPlayer()) && 
+        		e.getPlayer().isSneaking()) {
+        		this.petMenu.showMenu(e.getPlayer());
+        		this.playerPet.put(e.getPlayer(), localPig);
+        }
     }
   }
   

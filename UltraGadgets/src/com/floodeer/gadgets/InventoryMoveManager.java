@@ -59,6 +59,9 @@ public class InventoryMoveManager
     if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().TrampolimName)) {
       e.setCancelled(true);
     }
+    if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().VectorGadgetName)) {
+        e.setCancelled(true);
+      }
   }
   
   @EventHandler
@@ -136,6 +139,11 @@ public class InventoryMoveManager
         e.setResult(Result.DENY);
       }
       if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().TrampolimName))
+      {
+        e.setCancelled(true);
+        e.setResult(Result.DENY);
+      }
+      if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().VectorGadgetName))
       {
         e.setCancelled(true);
         e.setResult(Result.DENY);

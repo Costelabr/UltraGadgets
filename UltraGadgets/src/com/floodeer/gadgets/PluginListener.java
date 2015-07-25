@@ -1,16 +1,12 @@
 package com.floodeer.gadgets;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginDisableEvent;
 
-import Util.RollBlocks;
+import Pets.Pets.PetsType;
 import Util.UtilLag;
 
 public class PluginListener
@@ -46,22 +42,18 @@ public class PluginListener
 	  }else{
 		  sender.sendMessage(plugin.getMessagesFile().prefix + " §cO servidor está atualmente á §6§l" + UtilLag.getTicksPerSecond() + " §c(TPS BOM)");
 	  }
-
   }
   
   @EventHandler
   public void onService(PluginDisableEvent e) {
-	  if(e.getPlugin().equals(plugin)) {
-		     List<Location> list = new ArrayList<>();
-		     for (Location location :  RollBlocks.blocks.keySet())
-		     {
-			RollBlocks.counters.put(location, Integer.valueOf(((Integer) RollBlocks.counters.get(location)).intValue() + 1));
-			if (((Integer) RollBlocks.counters.get(location)).intValue() >= 120)
-		       {
-		         list.add(location);
-		         plugin.getRollBlocks().unPaintBlock(location);
+	  if(e.getPlugin().equals(plugin)) 
+	  {
+		  for(Player p : Bukkit.getOnlinePlayers()) {
+			  if(p == null) return;
+			  if(PetsType.HasPet(p)) {
+				  PetsType.removePet(p);
+			  }
 		  }
-		}
-	 }
 	  }
   }
+}

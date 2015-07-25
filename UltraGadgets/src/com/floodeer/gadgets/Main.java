@@ -41,7 +41,6 @@ public class Main
   private DisguiseMenu dm;
   private SuperMenu spm;
   private Gadgets gdt;
-  private RollBlocks roll;
   private UtilBlock ub;
   private UtilFireworks uf;
   private Messages ms;
@@ -82,11 +81,6 @@ public class Main
   public UtilBlock getUtilBlock()
   {
     return this.ub;
-  }
-  
-  public RollBlocks getRollBlocks()
-  {
-    return this.roll;
   }
   
   public UtilLocations getUtilLocation()
@@ -159,7 +153,6 @@ public class Main
     this.dm = new DisguiseMenu();
     this.spm = new SuperMenu();
     this.gdt = new Gadgets();
-    this.roll = new RollBlocks();
     this.ul = new UtilLocations();
     this.uf = new UtilFireworks();
     petsm = new PetMenu();
@@ -233,9 +226,6 @@ public class Main
     Bukkit.getServer().getPluginManager().registerEvents(new ParticleUpdateManager(), this);
     Bukkit.getPluginManager().registerEvents(new UtilLag(this), this);
     Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Updater(this), 1L, 1L);
-    RollBlocks rollBack = new RollBlocks();
-    rollBack.loadupUnPaintableList();
-    rollBack.runTaskTimer(this, 0L, 1L);
     System.out.print("Sucesso! Registrando comandos...");
     getCommand("ultragadgets").setExecutor(new UltraGadgetsCMD());
     getCommand("ug").setExecutor(new UltraGadgetsCMD());

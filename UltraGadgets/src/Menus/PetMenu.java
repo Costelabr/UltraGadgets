@@ -35,7 +35,7 @@ public class PetMenu
     
     this.petMenu.setItem(21, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§aLobo", Arrays.asList(new String[] { "§7Pet Lobo" }), 1, (byte)95));
     
-    this.petMenu.setItem(22, this.plugin.getItemStack().setSoonTM());
+    this.petMenu.setItem(22, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§aPorco", Arrays.asList(new String[] { "§7Pet Porco" }), 1, (byte)90));
     
     this.petMenu.setItem(23, this.plugin.getItemStack().setSoonTM());
     
@@ -67,12 +67,18 @@ public class PetMenu
     		 p.sendMessage(plugin.getMessagesFile().petspermission);
     		 return;
     	 }
+    	 if(PetsType.HasPet(p)) {
+    		 return;
+    	 }
     	 
         PetsType.setPet(p, PetsType.GALINHA);
       }
       if (slotClicked == 13) {
      	 if(!p.hasPermission("ug.pets.vaca") && !p.hasPermission("ug.pets.usar.todos") && !p.hasPermission("ug.usar.todos")) {
     		 p.sendMessage(plugin.getMessagesFile().petspermission);
+    		 return;
+    	 }
+    	 if(PetsType.HasPet(p)) {
     		 return;
     	 }
        PetsType.setPet(p, PetsType.VACA);
@@ -82,6 +88,9 @@ public class PetMenu
     		 p.sendMessage(plugin.getMessagesFile().petspermission);
     		 return;
     	 }
+    	 if(PetsType.HasPet(p)) {
+    		 return;
+    	 }
           PetsType.setPet(p, PetsType.COELHO);
          }
       if (slotClicked == 21) {
@@ -89,10 +98,27 @@ public class PetMenu
     		 p.sendMessage(plugin.getMessagesFile().petspermission);
     		 return;
     	 }
+    	 if(PetsType.HasPet(p)) {
+    		 return;
+    	 }
           PetsType.setPet(p, PetsType.WOLF);
          }
       
+      if (slotClicked == 22) {
+      	 if(!p.hasPermission("ug.pets.porco") && !p.hasPermission("ug.pets.usar.todos") && !p.hasPermission("ug.usar.todos")) {
+     		 p.sendMessage(plugin.getMessagesFile().petspermission);
+     		 return;
+     	 }
+     	 if(PetsType.HasPet(p)) {
+     		 return;
+     	 }
+           PetsType.setPet(p, PetsType.PORCO);
+          }
+      
       if (slotClicked == 40) {
+     	 if(!PetsType.HasPet(p)) {
+    		 return;
+    	 }
         PetsType.removePet(p);
       }
       if (slotClicked == 41)

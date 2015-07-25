@@ -161,7 +161,7 @@ public class SuperMenu
     	 if(!this.plugin.getUtilPartciles().hasEffect(p)) {
     		 p.closeInventory();
     		 p.sendMessage(this.plugin.getMessagesFile().newParticle + "§7Circle of Water");
-    		 p.playSound(p.getLocation(), Sound.STEP_SNOW, 1.0F, 12.0F);
+    		 p.playSound(p.getLocation(), Sound.WATER, 1.0F, 12.0F);
     		 plugin.getUtilPartciles().circleOfParticles(p, ParticleEffect.DRIP_WATER);
     	 }
      }

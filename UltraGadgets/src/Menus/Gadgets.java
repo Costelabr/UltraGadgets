@@ -89,7 +89,8 @@ public class Gadgets
     gadgets2page.setItem(30, plugin.getItemStack().newItemStack(Material.GHAST_TEAR, plugin.getMessagesFile().VampireGadgetName, 
       Arrays.asList(plugin.getMessagesFile().VampireGadgetLore), 1, (byte)0));
     
-    gadgets2page.setItem(31, plugin.getItemStack().setSoonTM());
+    gadgets2page.setItem(31, plugin.getItemStack().newItemStack(Material.TNT, plugin.getMessagesFile().VectorGadgetName, 
+    	      Arrays.asList(plugin.getMessagesFile().VectorGadgetLore), 1, (byte)0));
     
     gadgets2page.setItem(32, plugin.getItemStack().setSoonTM());
     
@@ -246,6 +247,13 @@ public class Gadgets
              }
           Tipos.setGadget(p, Tipos.VAMPIRE);
         }
+      if (slot == 31) {
+      	if(!p.hasPermission("ug.gadgets.vectorTNT") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+            p.sendMessage(plugin.getMessagesFile().gadgetPermission);
+            return;
+           }
+        Tipos.setGadget(p, Tipos.VECTORTNT);
+      }
       if (slot == 40) {  
         Tipos.setGadget(p, Tipos.NENHUM);
       }

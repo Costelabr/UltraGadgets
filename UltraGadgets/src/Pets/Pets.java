@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Pig;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Rabbit;
 import org.bukkit.entity.Wolf;
@@ -25,7 +26,7 @@ public class Pets
 {
   public static enum PetsType
   {
-    COELHO,  GALINHA,  VACA, WOLF, NENHUM;
+    COELHO,  GALINHA,  VACA, WOLF, PORCO, NENHUM;
     
     protected static final Main plugin = Main.getMain();
     public static HashMap<UUID, Entity> pet = new HashMap<>();
@@ -87,6 +88,17 @@ public class Pets
     	  paramUniqueWolf.setMetadata("petWolf", new FixedMetadataValue(plugin, "petFixed4"));
           ParticleEffect.HEART.display(1.0F, 0.0F, 0.0F, 3.0F, 20, paramUniqueWolf.getLocation(), 12.0D);
           break;
+          
+      case PORCO:
+    	  Pig paramUniquePig = (Pig)uniquePlayer.getWorld().spawn(uniquePlayer.getLocation(), Pig.class);
+    	  paramUniquePig.setCustomNameVisible(true);
+    	  paramUniquePig.setMetadata("petPorco", new FixedMetadataValue(plugin, "petFixed5"));
+    	  paramUniquePig.setAdult();
+    	  pet.put(uniqueID, paramUniquePig);
+    	  booleanPet.put(uniqueID, PORCO);
+    	  paramUniquePig.setCustomName(plugin.getMessagesFile().petNome.replaceAll("&", "§").replaceAll("<PLAYER>", uniquePlayer.getName()).replaceAll("<PET>", ((Entity)pet.get(uniqueID)).getName()));
+          ParticleEffect.HEART.display(1.0F, 0.0F, 0.0F, 3.0F, 20, paramUniquePig.getLocation(), 12.0D);
+    	  
         
       case NENHUM:
     	  break;
@@ -147,6 +159,12 @@ public class Pets
     if((e.getEntity() instanceof Wolf)) {
     	Wolf localWolf = (Wolf)e.getEntity();
     	if(localWolf.hasMetadata("petWolf")) {
+    		e.setCancelled(true);
+    	}
+      }
+    if((e.getEntity() instanceof Pig)) {
+    	Pig localWolf = (Pig)e.getEntity();
+    	if(localWolf.hasMetadata("petPorco")) {
     		e.setCancelled(true);
     	}
       }

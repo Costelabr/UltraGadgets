@@ -1,5 +1,6 @@
 package com.floodeer.gadgets;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
@@ -46,6 +47,7 @@ public class Messages
   public String GadgetsMenuName;
   public String MainMenuName;
   public String VampireGadgetName;
+  public String VectorGadgetName;
   
   public String GadgetItemLore;
   public String BombaGadgetLore;
@@ -67,17 +69,11 @@ public class Messages
   public String GadgetsMenuLore;
   public String MainMenuLore;
   public String VampireGadgetLore;
+  public String VectorGadgetLore;
   
   public String SuperMenuName;
   public String ParticlesMenuName;
   public String PetsMenuName;
-  public String Particle_Hearth;
-  public String Particle_Slime;
-  public String Particle_Jukebox;
-  public String Particle_AngryVillager;
-  public String Particle_HappyVillager;
-  public String Particle_Redstone;
-  public String Particle_Spell;
   
   
   public void loadMessagesConfiguration()
@@ -113,24 +109,26 @@ public class Messages
     WitherShooterName = mensagens.getString("WitherShoot-Item-Nome").replaceAll("&", "§");
     VampireGadgetName = mensagens.getString("Vampire-Item-Nome").replaceAll("&", "§");
     TrampolimName = mensagens.getString("Trampolim-Item-Nome").replaceAll("&", "§");
+    VectorGadgetName = mensagens.getString("VectorTNTGadget-Item-Nome").replaceAll("&", "§");
     
-    GadgetItemLore = mensagens.getString("Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    BombaGadgetLore = mensagens.getString("Bomba-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    CookieGadgetLore = mensagens.getString("Cookie-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    FunGunGadgetLore = mensagens.getString("FunGun-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    FireworkPartyGadgetLore = mensagens.getString("FireWorkParty-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    MovireGadgetLore = mensagens.getString("Movire-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    PaintballGunGadgetLore = mensagens.getString("PaintballGun-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    StickOfTpGadgetLore = mensagens.getString("Stick-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    DjGadgetLore = mensagens.getString("Dj-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    DiscoBallGadgetLore = mensagens.getString("Disco-Ball-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    RailGunGadgetLore = mensagens.getString("Rail-Gun-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    SmokeBombGadgetLore = mensagens.getString("Smoke-Bomb-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    DiamondPartyGadgetLore = mensagens.getString("Diamond-Party-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    ParaquedasGadgetLore = mensagens.getString("Paraquedas-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    WitherShooterLore = mensagens.getString("WitherShoot-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    VampireGadgetLore = mensagens.getString("Vampire-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
-    TrampolimLore = mensagens.getString("Trampolim-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", "\n");
+    GadgetItemLore = mensagens.getString("Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    BombaGadgetLore = mensagens.getString("Bomba-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    CookieGadgetLore = mensagens.getString("Cookie-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    FunGunGadgetLore = mensagens.getString("FunGun-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    FireworkPartyGadgetLore = mensagens.getString("FireWorkParty-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    MovireGadgetLore = mensagens.getString("Movire-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    PaintballGunGadgetLore = mensagens.getString("PaintballGun-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    StickOfTpGadgetLore = mensagens.getString("Stick-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    DjGadgetLore = mensagens.getString("Dj-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    DiscoBallGadgetLore = mensagens.getString("Disco-Ball-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    RailGunGadgetLore = mensagens.getString("Rail-Gun-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    SmokeBombGadgetLore = mensagens.getString("Smoke-Bomb-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    DiamondPartyGadgetLore = mensagens.getString("Diamond-Party-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    ParaquedasGadgetLore = mensagens.getString("Paraquedas-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    WitherShooterLore = mensagens.getString("WitherShoot-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    VampireGadgetLore = mensagens.getString("Vampire-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    TrampolimLore = mensagens.getString("Trampolim-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
+    VectorGadgetLore = mensagens.getString("VectorTNTGadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.UNDERLINE.toString());
     
     disguisePermission = mensagens.getString("Disguise-Permissao").replaceAll("&", "§");
     gadgetPermission = mensagens.getString("Gadget-Permissao").replaceAll("&", "§");

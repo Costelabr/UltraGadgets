@@ -24,6 +24,7 @@ Main plugin = Main.getMain();
   public long WitherShootCooldown;
   public long TrampolimCooldown;
   public long VampireCooldown;
+  public long vectorTNTCooldown;
   
   public boolean BombaEnable;
   public boolean CookieEnable;
@@ -41,6 +42,7 @@ Main plugin = Main.getMain();
   public boolean pbGunEnable;
   public boolean TrampolimEnable;
   public boolean vampireEnable;
+  public boolean vectorTNTEnable;
   
   public boolean useTitles;
   
@@ -64,8 +66,8 @@ Main plugin = Main.getMain();
      this.WitherShootCooldown = config.getLong("WitherShoot-Gadget-Cooldown");
      this.TrampolimCooldown = config.getLong("Trampolim-Gadget-Cooldown");
      this.VampireCooldown = config.getLong("Vampire-Gadget-Cooldown");
+     this.vectorTNTCooldown = config.getLong("VectorTNT-Gadget-Cooldown");
      
-
      this.BombaEnable = config.getBoolean("Bomba-Gadget-Habilitar");
      this.CookieEnable = config.getBoolean("Cookie-Gadget-Habilitar");
      this.FunGunEnable = config.getBoolean("FunGun-Gadget-Habilitar");
@@ -82,6 +84,7 @@ Main plugin = Main.getMain();
      this.TrampolimEnable = config.getBoolean("Trampolim-Gadget-Habilitar");
      this.pbGunEnable = config.getBoolean("PaintballGun-Gadget-Habilitar");
      this.vampireEnable = config.getBoolean("Vampire-Gadget-Habilitar");
+     this.vectorTNTEnable = config.getBoolean("VectorTNT-Gadget-Habilitar");
      
      this.useTitles = config.getBoolean("Usar-Titulos");
   }

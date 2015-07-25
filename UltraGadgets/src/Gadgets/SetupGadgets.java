@@ -27,6 +27,7 @@ public class SetupGadgets {
 			pm.registerEvents(new Trampolim(), register);
 			pm.registerEvents(new WitherShooter(), register);
 		    pm.registerEvents(new Vampire(), register);
+		    pm.registerEvents(new VectorTNT(), register);
 		}catch(RuntimeException gx) {
 			throw new GadgetException("Não foi possível carregar os Gadgets.");
 		}

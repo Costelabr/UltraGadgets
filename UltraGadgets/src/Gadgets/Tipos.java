@@ -12,7 +12,7 @@ import com.floodeer.gadgets.Main;
 
 public enum Tipos
 {
-  NENHUM,  BOMBA,  COOKIEK,  FIREWORKP,  FUNGUN,  MOVIRE,  PBGUN,  STICKTP,  DJ,  DISCOB,  RAILGUN,  SMOKEBOMB,  DIAMONDP,  PARAQUEDAS,  WITHERSHOOT,  TRAMPOLIM, VAMPIRE;
+  NENHUM,  BOMBA,  COOKIEK,  FIREWORKP,  FUNGUN,  MOVIRE,  PBGUN,  STICKTP,  DJ,  DISCOB,  RAILGUN,  SMOKEBOMB,  DIAMONDP,  PARAQUEDAS,  WITHERSHOOT,  TRAMPOLIM, VAMPIRE, VECTORTNT;
   
   private static Main plugin = Main.getMain();
   protected static String invname = plugin.getMessagesFile().GadgetsMenuName;
@@ -195,6 +195,16 @@ public enum Tipos
     		getPlayerGadget.put(p, "Vampire");    	
     	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
     	     p.getInventory().setItem(4, plugin.getItemStack().newItemStack(Material.GHAST_TEAR, plugin.getMessagesFile().VampireGadgetName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
+    	     p.closeInventory();
+    	     }else{
+    	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
+    	    }
+    	break;
+    case VECTORTNT:
+    	if(plugin.getConfigFile().vectorTNTEnable) {
+    		getPlayerGadget.put(p, "VectorTNT");    	
+    	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
+    	     p.getInventory().setItem(4, plugin.getItemStack().newItemStack(Material.TNT, plugin.getMessagesFile().VectorGadgetName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
     	     p.closeInventory();
     	     }else{
     	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
