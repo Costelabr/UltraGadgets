@@ -12,11 +12,11 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 
-import Util.ParticleEffect;
-import Util.Util18;
-import Util.UtilCooldown;
-import Util.UtilLag;
-import Util.UtilMath;
+import Core.ParticleEffect;
+import Core.Util18;
+import Core.UtilCooldown;
+import Core.UtilLag;
+import Core.UtilMath;
 
 import com.floodeer.gadgets.Main;
 

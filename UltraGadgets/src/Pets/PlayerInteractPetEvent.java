@@ -24,11 +24,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
+import Core.UtilAnvilGUI;
+import Core.UtilJsonBuilder;
+import Core.UtilMenu;
+import Core.UtilAnvilGUI.AnvilClickEvent;
 import Exception.PetTypeException;
 import Pets.Pets.PetsType;
-import Util.JsonBuilder;
-import Util.Menus;
 
 import com.floodeer.gadgets.Main;
 
@@ -40,7 +44,7 @@ public class PlayerInteractPetEvent
   HashMap<Player, Entity> playerPet;
   ArrayList<Player> hashOfPlayer;
   ArrayList<Player> arrayType;
-  Menus petMenu;
+  UtilMenu petMenu;
   List<String> typesArray;
   
   public PlayerInteractPetEvent()
@@ -50,7 +54,7 @@ public class PlayerInteractPetEvent
     this.playerPet = new HashMap<>();
     this.hashOfPlayer = new ArrayList<>();
     this.arrayType = new ArrayList<>();
-    this.petMenu = new Menus(this.plugin, "§6§lPet Manager", 1);
+    this.petMenu = new UtilMenu(this.plugin, "§6§lPet Manager", 1);
     
     this.petMenu.setItem(0, this.plugin.getItemStack().newItemStack(Material.NAME_TAG, "§eMudar nome do Pet", Arrays.asList(new String[] { "§7Clique para alterar o nome do pet" }), 1, (byte)0));
     
@@ -119,8 +123,8 @@ public class PlayerInteractPetEvent
     {
       this.mapOfString.put(p, e.getMessage().replaceAll("&", "§"));
       e.setCancelled(true);
-      JsonBuilder jn = new JsonBuilder("§cVocê trocou o nome do seu pet!")
-        .withHoverEvent(JsonBuilder.HoverAction.SHOW_TEXT, "§lNome: §e§l" + e.getMessage().replaceAll("&", "§"));
+      UtilJsonBuilder jn = new UtilJsonBuilder("§cVocê trocou o nome do seu pet!")
+        .withHoverEvent(UtilJsonBuilder.HoverAction.SHOW_TEXT, "§lNome: §e§l" + e.getMessage().replaceAll("&", "§"));
       ((CraftPlayer)p).getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(jn.toString())));
       p.playSound(p.getLocation(), Sound.ANVIL_USE, 1.0F, 1.0F);
       this.hashOfPlayer.remove(p);
@@ -151,8 +155,8 @@ public class PlayerInteractPetEvent
         {
           ((Rabbit)Pets.PetsType.booleanRabbit.get(p.getUniqueId())).setRabbitType(Rabbit.Type.valueOf((String)this.mapOfString.get(p)));
           p.playSound(p.getLocation(), Sound.ANVIL_USE, 1.0F, 1.0F);
-          JsonBuilder jn = new JsonBuilder(new String[] { "§cVocê mudou o tipo do seu pet!" })
-            .withHoverEvent(JsonBuilder.HoverAction.SHOW_TEXT, "§lTipo: §e§l" + (String)this.mapOfString.get(p));
+          UtilJsonBuilder jn = new UtilJsonBuilder(new String[] { "§cVocê mudou o tipo do seu pet!" })
+            .withHoverEvent(UtilJsonBuilder.HoverAction.SHOW_TEXT, "§lTipo: §e§l" + (String)this.mapOfString.get(p));
           ((CraftPlayer)p).getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(jn.toString())));
         }
         catch (Exception ex)
@@ -169,17 +173,45 @@ public class PlayerInteractPetEvent
   {
     if ((e.getInventory().getName().equalsIgnoreCase("§6§lPet Manager")) && ((e.getWhoClicked() instanceof Player)))
     {
-      Player p = (Player)e.getWhoClicked();
+      final Player p = (Player)e.getWhoClicked();
       e.setCancelled(true);
       e.setResult(Result.DENY);
       int slot = e.getSlot();
       if (slot == 0)
       {
-        p.sendMessage("§lDigite no chat o nome do pet para salvar!");
         p.closeInventory();
-        this.hashOfPlayer.add(p);
         p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1.0F, 1.0F);
-      }
+        final UtilAnvilGUI gui = new UtilAnvilGUI(p, new UtilAnvilGUI.AnvilClickEventHandler() {
+         @Override
+           public void onAnvilClick(AnvilClickEvent event) {
+             if(event.getSlot() == UtilAnvilGUI.AnvilSlot.OUTPUT){
+                event.setWillClose(true);
+                 event.setWillDestroy(true);
+                 if(PetsType.HasPet(p)) {
+                    UtilJsonBuilder jn = new UtilJsonBuilder("§cVocê trocou o nome do seu pet!")
+                    .withHoverEvent(UtilJsonBuilder.HoverAction.SHOW_TEXT, "§lNome: §e§l" + event.getName().replaceAll("&", "§"));
+                   ((CraftPlayer)p).getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(jn.toString())));
+                   p.playSound(p.getLocation(), Sound.ANVIL_USE, 1.0F, 1.0F);
+                   (playerPet.get(p)).setCustomName(event.getName().replaceAll("&", "§")); 
+                    event.setWillClose(false);
+                    event.setWillDestroy(false);
+                    p.closeInventory();
+                 }
+                 }else{
+                     event.setWillClose(false);
+                     event.setWillDestroy(false);
+           }
+         }
+        });
+        ItemStack i = new ItemStack(Material.NAME_TAG);
+        ItemMeta im = i.getItemMeta();
+        im.setDisplayName("Nome do Pet");
+        i.setItemMeta(im);
+       
+        gui.setSlot(UtilAnvilGUI.AnvilSlot.INPUT_LEFT, i);
+       
+        gui.open();
+}
       if (slot == 2)
       {
     	if(!PetsType.booleanRabbit.containsKey(p.getUniqueId())) {

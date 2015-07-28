@@ -16,9 +16,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-import Util.Util18;
-import Util.UtilCooldown;
-import Util.UtilFireworks;
+import Core.Util18;
+import Core.UtilCooldown;
+import Core.UtilFireworkEffect;
 
 import com.floodeer.gadgets.Main;
 
@@ -62,7 +62,7 @@ public class RailGun
       {
         Location paramLocation = paramPlayer.getEyeLocation();
         
-        final UtilFireworks spawnFireWork = new UtilFireworks();
+        final UtilFireworkEffect spawnFireWork = new UtilFireworkEffect();
         
         final List<Location> blocks = this.plugin.getUtilLocation().getSphere(paramLocation, 10, 1, true, false, 10);
         final BukkitTask runner = new BukkitRunnable()

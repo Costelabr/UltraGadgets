@@ -19,8 +19,8 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import Util.Util18;
-import Util.UtilCooldown;
+import Core.Util18;
+import Core.UtilCooldown;
 
 import com.floodeer.gadgets.Main;
 

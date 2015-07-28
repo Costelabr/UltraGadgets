@@ -15,11 +15,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import Commands.*;
+import Core.*;
+import Core.PastebinReporter.Paste;
+import EventManager.InventoryMoveManager;
+import EventManager.JoinEvent;
+import EventManager.ParticleUpdateManager;
+import EventManager.PlayerListener;
+import EventManager.PluginListener;
 import Gadgets.*;
 import Menus.*;
 import Pets.*;
 import Pets.Pets.PetsType;
-import Util.*;
 
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
@@ -42,12 +48,14 @@ public class Main
   private SuperMenu spm;
   private Gadgets gdt;
   private UtilBlock ub;
-  private UtilFireworks uf;
+  private UtilFireworkEffect uf;
   private Messages ms;
   private Tipos gadgets;
   private ConfigFile cfile;
   private UtilLocations ul;
   private PetMenu petsm;
+  public PastebinReporter paste;
+  public Paste ugPaster = new Paste("UltraGadgets Reporter");
   
   public static Main getMain()
   {
@@ -73,7 +81,7 @@ public class Main
     return this.ms;
   }
   
-  public UtilFireworks getUtilFirework()
+  public UtilFireworkEffect getUtilFirework()
   {
     return this.uf;
   }
@@ -154,7 +162,7 @@ public class Main
     this.spm = new SuperMenu();
     this.gdt = new Gadgets();
     this.ul = new UtilLocations();
-    this.uf = new UtilFireworks();
+    this.uf = new UtilFireworkEffect();
     petsm = new PetMenu();
   }
   
@@ -224,6 +232,8 @@ public class Main
     Bukkit.getServer().getPluginManager().registerEvents(new PetMenu(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new PluginListener(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new ParticleUpdateManager(), this);
+    WardrobeUtils w = new WardrobeUtils();
+    w.register(this);
     Bukkit.getPluginManager().registerEvents(new UtilLag(this), this);
     Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Updater(this), 1L, 1L);
     System.out.print("Sucesso! Registrando comandos...");
@@ -231,12 +241,18 @@ public class Main
     getCommand("ug").setExecutor(new UltraGadgetsCMD());
     System.out.print("Sucesso! Enviando informações:");
     System.out.print("[UltraGadgets] Desenvolvido por: [Floodeer]");
-    System.out.print("[UltraGadgets] Versão: Build v1.8-R_1");
+    System.out.print("[UltraGadgets] Versão: Build v1.8-R_3");
     System.out.print("[UltraGadgets] Todos os direitos reservados.");
     System.out.print("[UltraGadgets] Dev Page: https://github.com/Floodeer/UltraGadgets");
+    System.out.print("[UltraGadgets] Core Utils: Core for 1.8R-3 version pre-1.0.0 ");
     System.out.print("O plugin foi habilitado.");
     System.out.print("-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x");
+    paste = new PastebinReporter("5855abe282936dd958dbbaa24a06fdd2");
   }
+  
+  public PastebinReporter getReporter() {
+	  return this.paste;
+	}
   
   @Override
   public void onDisable() {
@@ -246,20 +262,13 @@ public class Main
 	   if (PetsType.HasPet(p)) {
 	    PetsType.removePet(p);
 	    }
-	     if (this.getUtilPartciles().hasEffect(p)) {
-	       this.getUtilPartciles().stopRotation(p);
-        }
 	     for(Player localParam : Bukkit.getOnlinePlayers()) {
 	         RestoreBlocks.saves.clear();
 	         RestoreBlocks.restore(localParam);
-
 	     }
 	  }
 	}
 
-  
-  
-  
   public void reloadMensagensConfig()
     throws UnsupportedEncodingException
   {

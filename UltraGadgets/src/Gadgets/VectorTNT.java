@@ -20,9 +20,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
-import Util.Util18;
-import Util.UtilCooldown;
-import Util.UtilMath;
+import Core.Util18;
+import Core.UtilCooldown;
+import Core.UtilMath;
 
 import com.floodeer.gadgets.Main;
 
@@ -53,7 +53,7 @@ public class VectorTNT implements Listener {
 				for(final Entity entity : ent) {
 					if(entity.hasMetadata("NPC")) return;
 					if(entity.hasMetadata("PET")) return;		
-					 Vector v = new Vector(UtilMath.random.nextInt(3),  UtilMath.random.nextInt(1), UtilMath.random.nextInt(3));
+					 Vector v = new Vector(UtilMath.random.nextInt(5),  UtilMath.random.nextInt(2), UtilMath.random.nextInt(5));
 					 entity.setVelocity(v);
 				}
 			}

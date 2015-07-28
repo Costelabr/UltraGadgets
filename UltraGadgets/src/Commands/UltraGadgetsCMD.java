@@ -1,11 +1,11 @@
 package Commands;
 
-import Util.JsonBuilder;
-import Util.JsonBuilder.ClickAction;
-import Util.JsonBuilder.HoverAction;
+import Core.UtilJsonBuilder;
+import Core.UtilJsonBuilder.ClickAction;
+import Core.UtilJsonBuilder.HoverAction;
+import EventManager.PluginListener;
 
 import com.floodeer.gadgets.Main;
-import com.floodeer.gadgets.PluginListener;
 
 import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
@@ -23,13 +23,13 @@ public class UltraGadgetsCMD
   private String prefix = plugin.getMessagesFile().prefix + " ";
   
   private void sendHelp(Player paramToPlayer) {
-	  JsonBuilder gadgets = new JsonBuilder("§6/ug gadgets §7- Menu de Gadgets").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug gadgets").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
-	  JsonBuilder pets = new JsonBuilder("§6/ug pets §7- Menu de Pets").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug pets").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
-	  JsonBuilder particulas = new JsonBuilder("§6/ug particulas §7- Menu de Partículas").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug particulas").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
-	  JsonBuilder sparticulas = new JsonBuilder("§6/ug sparticulas §7- Menu de Super Partículas").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug sparticulas").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
-	  JsonBuilder fantasias = new JsonBuilder("§6/ug fantasias §7- Menu de Fantasias").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug fantasias").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
-	  JsonBuilder recarregar = new JsonBuilder("§6/ug recarregar §7- Recarregar o plugin (Não muda configurações)").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug recarregar").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
-	  JsonBuilder lag = new JsonBuilder("§6/ug lag §7- Manager de lag do plugin (Não interfere outras tarefas)").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug lag").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
+	  UtilJsonBuilder gadgets = new UtilJsonBuilder("§6/ug gadgets §7- Menu de Gadgets").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug gadgets").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
+	  UtilJsonBuilder pets = new UtilJsonBuilder("§6/ug pets §7- Menu de Pets").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug pets").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
+	  UtilJsonBuilder particulas = new UtilJsonBuilder("§6/ug particulas §7- Menu de Partículas").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug particulas").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
+	  UtilJsonBuilder sparticulas = new UtilJsonBuilder("§6/ug sparticulas §7- Menu de Super Partículas").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug sparticulas").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
+	  UtilJsonBuilder fantasias = new UtilJsonBuilder("§6/ug fantasias §7- Menu de Fantasias").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug fantasias").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
+	  UtilJsonBuilder recarregar = new UtilJsonBuilder("§6/ug recarregar §7- Recarregar o plugin (Não muda configurações)").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug recarregar").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
+	  UtilJsonBuilder lag = new UtilJsonBuilder("§6/ug lag §7- Manager de lag do plugin (Não interfere outras tarefas)").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug lag").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
 	  CraftPlayer player = ((CraftPlayer)paramToPlayer);
 	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(gadgets.toString())));
 	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(pets.toString())));
@@ -61,25 +61,25 @@ public class UltraGadgetsCMD
       
     
 	case "gadgets":
-		plugin.getMenuManager().gadgetMenu.showMenu(p);
+		plugin.getMenuManager().showMenu(p);
 		break;
 		
 	case "pets":
 		
-        plugin.getPetsMenu().petMenu.showMenu(p);
+        plugin.getPetsMenu().showPetMenu(p);
 		
 		break;
 	case "particulas":
-		plugin.getParticlesMenu().particleMenu.showMenu(p);
+		plugin.getParticlesMenu().showParticlesMenu(p);
 		
 		break;
 		
 	case "sparticulas":
-		plugin.getSuperMenu().spMenu.showMenu(p);
+		plugin.getSuperMenu().showSuperMenu(p);
 		break;
 		
 	case "fantasias":
-		plugin.getDisguiseMenu().disguiseMenu.showMenu(p);
+		plugin.getDisguiseMenu().showDisguiseMenu(p);
 		
 		break;	
 		

@@ -10,37 +10,49 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-import Util.Menus;
-import Util.UtilDisguise;
-
+import Core.UtilDisguise.DisguiseType;
+import Core.*;
 import com.floodeer.gadgets.Main;
 
 public class DisguiseMenu
   implements Listener
 {
-  Main plugin;
-  String invname;
-  String trans;
-  public Menus disguiseMenu;
+  Main plugin = Main.getMain();;
+  String invname =  this.plugin.getMessagesFile().DisguiseMenuName;;
+  String trans = this.plugin.getMessagesFile().newDisguise;
+  public UtilMenu disguiseMenu = new UtilMenu(this.plugin, this.invname, 6);
   
-  public DisguiseMenu()
-  {
-    this.plugin = Main.getMain();
+  public void showDisguiseMenu(Player p) {
     
-    this.invname = this.plugin.getMessagesFile().DisguiseMenuName;
-    this.trans = this.plugin.getMessagesFile().newDisguise;
-    
-    this.disguiseMenu = new Menus(this.plugin, this.invname, 6);
-    
+  	if(p.hasPermission("ug.disguise.zumbi") || (p.hasPermission("ug.disguise.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.disguiseMenu.setItem(12, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§7Zombie", Arrays.asList(new String[] { "§7Clique para virar um Zumbi" }), 1, (byte)54));
+  	}else{
+  		this.disguiseMenu.setItem(12, this.plugin.getItemStack().noPermissionItem("§7Zombie"));
+  	}
     
+	if(p.hasPermission("ug.disguise.esqueleto") || (p.hasPermission("ug.disguise.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.disguiseMenu.setItem(13, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§7Skeleton", Arrays.asList(new String[] { "§7Clique para virar um Esqueleto" }), 1, (byte)5));
+  	}else{
+  		this.disguiseMenu.setItem(13, this.plugin.getItemStack().noPermissionItem("§7Esqueleto"));
+  	}  
     
+	if(p.hasPermission("ug.disguise.aranha") || (p.hasPermission("ug.disguise.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.disguiseMenu.setItem(14, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§7Spider", Arrays.asList(new String[] { "§7Clique para virar uma Aranha" }), 1, (byte)52));
+  	}else{
+  		this.disguiseMenu.setItem(14, this.plugin.getItemStack().noPermissionItem("§7Aranha"));
+  	}  
     
+	if(p.hasPermission("ug.disguise.bruxa") || (p.hasPermission("ug.disguise.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.disguiseMenu.setItem(21, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§7Witch", Arrays.asList(new String[] { "§7Clique para virar uma Bruxa" }), 1, (byte)66));
-   
+  	}else{
+  		this.disguiseMenu.setItem(21, this.plugin.getItemStack().noPermissionItem("§7Bruxa"));
+  	}
+    
+	if(p.hasPermission("ug.disguise.pigzumbi") || (p.hasPermission("ug.disguise.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.disguiseMenu.setItem(22, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§7Zombie Pigman", Arrays.asList(new String[] { "§7Clique para virar um Porco Zumbi" }), 1, (byte)57));
+  	}else{
+  		this.disguiseMenu.setItem(22, this.plugin.getItemStack().noPermissionItem("§7Zombie Pigman"));
+  	}
     
     this.disguiseMenu.setItem(23, this.plugin.getItemStack().setSoonTM());
     
@@ -55,6 +67,8 @@ public class DisguiseMenu
     this.disguiseMenu.setItem(39, this.plugin.getItemStack().setBackArrow());
     
     this.disguiseMenu.setItem(41, this.plugin.getItemStack().setGoArrow());
+    
+    this.disguiseMenu.showMenu(p);
   }
   
   @EventHandler
@@ -67,11 +81,11 @@ public class DisguiseMenu
       e.setCancelled(true);
       e.setResult(Result.DENY);
       p.closeInventory();
-      UtilDisguise zamb = new UtilDisguise(UtilDisguise.DisguiseType.ZOMBIE, p.getName());
-      UtilDisguise skelly = new UtilDisguise(UtilDisguise.DisguiseType.SKELETON, p.getName());
-      UtilDisguise spider = new UtilDisguise(UtilDisguise.DisguiseType.SPIDER, p.getName());
-      UtilDisguise w = new UtilDisguise(UtilDisguise.DisguiseType.WITCH, p.getName());
-      UtilDisguise zpig = new UtilDisguise(UtilDisguise.DisguiseType.ZOMBIEPIG, p.getName());
+      UtilDisguise zamb = new UtilDisguise(DisguiseType.ZOMBIE, p.getName());
+      UtilDisguise skelly = new Core.UtilDisguise(DisguiseType.SKELETON, p.getName());
+      UtilDisguise spider = new UtilDisguise(DisguiseType.SPIDER, p.getName());
+      UtilDisguise w = new UtilDisguise(DisguiseType.WITCH, p.getName());
+      UtilDisguise zpig = new UtilDisguise(DisguiseType.ZOMBIEPIG, p.getName());
       if (slotClicked == 12)
       {
       	if(!p.hasPermission("ug.disguise.zumbi") & !p.hasPermission("ug.disguise.usar.todos") & !p.hasPermission("ug.usar.todos")) {

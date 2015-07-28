@@ -28,6 +28,8 @@ public class SetupGadgets {
 			pm.registerEvents(new WitherShooter(), register);
 		    pm.registerEvents(new Vampire(), register);
 		    pm.registerEvents(new VectorTNT(), register);
+		    pm.registerEvents(new Apocalypse(), register);
+		    pm.registerEvents(new Cowboy(), register);
 		}catch(RuntimeException gx) {
 			throw new GadgetException("Não foi possível carregar os Gadgets.");
 		}

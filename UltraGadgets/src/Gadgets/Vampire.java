@@ -14,8 +14,8 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import Util.Util18;
-import Util.UtilCooldown;
+import Core.Util18;
+import Core.UtilCooldown;
 
 import com.floodeer.gadgets.Main;
 

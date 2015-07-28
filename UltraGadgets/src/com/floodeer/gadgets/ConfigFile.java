@@ -43,6 +43,7 @@ Main plugin = Main.getMain();
   public boolean TrampolimEnable;
   public boolean vampireEnable;
   public boolean vectorTNTEnable;
+  public boolean cowBoyEnable;
   
   public boolean useTitles;
   
@@ -85,6 +86,7 @@ Main plugin = Main.getMain();
      this.pbGunEnable = config.getBoolean("PaintballGun-Gadget-Habilitar");
      this.vampireEnable = config.getBoolean("Vampire-Gadget-Habilitar");
      this.vectorTNTEnable = config.getBoolean("VectorTNT-Gadget-Habilitar");
+     this.cowBoyEnable = config.getBoolean("CowBoy-Gadget-Habilitar");
      
      this.useTitles = config.getBoolean("Usar-Titulos");
   }

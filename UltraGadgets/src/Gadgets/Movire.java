@@ -15,9 +15,11 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
-import Util.Util18;
-import Util.UtilCooldown;
+import Core.Util18;
+import Core.UtilCooldown;
 
 import com.floodeer.gadgets.Main;
 
@@ -43,6 +45,7 @@ public class Movire
       if (UtilCooldown.tryCooldown(paramPlayer, "FIRE", this.plugin.getConfigFile().MovireCooldown))
       {
         this.paramIsFireN.add(paramPlayer);
+        paramPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 240, 1));
         Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable()
         {
           public void run()
@@ -65,16 +68,18 @@ public class Movire
     }
   }
   
-  @EventHandler(priority=EventPriority.HIGH, ignoreCancelled=true)
+  @SuppressWarnings("deprecation")
+@EventHandler(priority=EventPriority.HIGH, ignoreCancelled=true)
   public void paramPlayerMove(PlayerMoveEvent paramEvent)
   {
     Player paramPlayer = paramEvent.getPlayer();
     if (this.paramIsFireN.contains(paramPlayer))
     {
       Block b = paramEvent.getTo().getBlock();
-      b.setType(Material.FIRE);
+      if((b.getType() == Material.WATER) || (b.getType() == Material.LAVA)) return;
+ 	  plugin.getUtilBlock().setBlockToRestore(b, Material.FIRE.getId(), (byte)0, 4L, true, false, false);
+      }
     }
-  }
   
   @EventHandler
   public void paramPlayerDamageByFire(EntityDamageEvent paramEventDamage)

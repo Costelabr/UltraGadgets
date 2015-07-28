@@ -15,9 +15,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import Util.Util18;
-import Util.UtilCooldown;
-import Util.UtilFireworks;
+import Core.Util18;
+import Core.UtilCooldown;
+import Core.UtilFireworkEffect;
 
 import com.floodeer.gadgets.Main;
 
@@ -28,7 +28,7 @@ public class DiamondParty
   
   private void startParty(final Player p)
   {
-    final UtilFireworks f = new UtilFireworks();
+    final UtilFireworkEffect f = new UtilFireworkEffect();
     final Vector direction = Vector.getRandom();
     direction.setX(direction.getX() - 0.5D);
     direction.setY(0.6F);

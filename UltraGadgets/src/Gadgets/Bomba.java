@@ -19,11 +19,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import Util.ParticleEffect;
-import Util.Util18;
-import Util.UtilCooldown;
-import Util.UtilLocations;
-import Util.UtilMath;
+import Core.ParticleEffect;
+import Core.Util18;
+import Core.UtilCooldown;
+import Core.UtilLocations;
+import Core.UtilMath;
 
 import com.floodeer.gadgets.Main;
 

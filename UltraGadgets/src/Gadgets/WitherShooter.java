@@ -15,10 +15,10 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
-import Util.Util18;
-import Util.UtilCooldown;
-import Util.UtilFireworks;
-import Util.UtilMath;
+import Core.Util18;
+import Core.UtilCooldown;
+import Core.UtilFireworkEffect;
+import Core.UtilMath;
 
 import com.floodeer.gadgets.Main;
 
@@ -29,7 +29,7 @@ public class WitherShooter
   
   private void summonFirework(Location loc)
   {
-    UtilFireworks fe = new UtilFireworks();
+    UtilFireworkEffect fe = new UtilFireworkEffect();
     try
     {
       fe.playFirework(loc.getWorld(), loc, 

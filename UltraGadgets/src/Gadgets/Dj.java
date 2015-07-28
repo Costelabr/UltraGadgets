@@ -38,12 +38,12 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
+import Core.UtilBallEffect;
+import Core.UtilMenu;
+import Core.ParticleEffect;
+import Core.Util18;
+import Core.UtilCooldown;
 import Exception.GadgetException;
-import Util.AnimatedBallEffect;
-import Util.Menus;
-import Util.ParticleEffect;
-import Util.Util18;
-import Util.UtilCooldown;
 
 import com.floodeer.gadgets.Main;
 
@@ -64,7 +64,7 @@ public class Dj
   public final Map<String, Boolean> notes;
   public static final Map<String, Boolean> discoBall = new HashMap<>();
   public final List<Entity> armor;
-  Menus DjMenu;
+  UtilMenu DjMenu;
   
   public Dj()
   {
@@ -78,7 +78,7 @@ public class Dj
     
     this.armor = new ArrayList<>();
     
-    this.DjMenu = new Menus(this.plugin, ChatColor.RED + "§lDj", 1);
+    this.DjMenu = new UtilMenu(this.plugin, ChatColor.RED + "§lDj", 1);
     
     this.DjMenu.setItem(0, this.plugin.getItemStack().newItemStack(Material.RECORD_10, "Dropar Discos", Arrays.asList(new String[] { "§7Ativar/Desativar o drop de discos" }), 1, (byte)0));
     
@@ -274,7 +274,7 @@ public final void breakOnDisable(Player paramPlayer, ArmorStand paramArmorDj, Lo
     this.notes.put("Notas", Boolean.valueOf(true));
     discoBall.put("DiscoBall", Boolean.valueOf(true));
     this.dj.add(p);
-    AnimatedBallEffect newAbf = new AnimatedBallEffect();
+    UtilBallEffect newAbf = new UtilBallEffect();
     newAbf.startDisco(a.getLocation().add(0.0D, 12.0D, 0.0D), 40);
     
     final EulerAngle p1 = new EulerAngle(0.1D, 0.0D, 0.0D);

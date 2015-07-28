@@ -16,8 +16,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
-import Util.ParticleEffect;
-import Util.UtilPet;
+import Core.ParticleEffect;
+import Core.UtilPet;
 
 import com.floodeer.gadgets.Main;
 
@@ -99,8 +99,9 @@ public class Pets
     	  paramUniquePig.setCustomName(plugin.getMessagesFile().petNome.replaceAll("&", "§").replaceAll("<PLAYER>", uniquePlayer.getName()).replaceAll("<PET>", ((Entity)pet.get(uniqueID)).getName()));
           ParticleEffect.HEART.display(1.0F, 0.0F, 0.0F, 3.0F, 20, paramUniquePig.getLocation(), 12.0D);
     	  
-        
+        break;
       case NENHUM:
+    	  booleanPet.remove(uniqueID);
     	  break;
       }
     }

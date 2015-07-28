@@ -10,9 +10,9 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import Util.ParticleEffect;
-import Util.Util18;
-import Util.UtilCooldown;
+import Core.ParticleEffect;
+import Core.Util18;
+import Core.UtilCooldown;
 
 import com.floodeer.gadgets.Main;
 

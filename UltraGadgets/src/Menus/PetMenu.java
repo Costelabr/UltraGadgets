@@ -9,34 +9,50 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
+import Core.UtilMenu;
 import Pets.Pets.PetsType;
-import Util.Menus;
 
 import com.floodeer.gadgets.Main;
 
 public class PetMenu
   implements Listener
 {
-  Main plugin;
-  String invname;
-  public Menus petMenu;
+  Main plugin = Main.getMain();
+  String invname = this.plugin.getMessagesFile().PetsMenuName;
+  public UtilMenu petMenu = new UtilMenu(this.plugin, this.invname, 6);
   
-  public PetMenu()
-  {
-    this.plugin = Main.getMain();
-    this.invname = this.plugin.getMessagesFile().PetsMenuName;
-    this.petMenu = new Menus(this.plugin, this.invname, 6);
+  public void showPetMenu(Player p) {
+   
+	 if(p.hasPermission("ug.pets.galinha") || (p.hasPermission("ug.pets.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+     this.petMenu.setItem(12, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§aGalinha", Arrays.asList(new String[] { "§7Pet Galinha" }), 1, (byte)93));
+      }else{
+		this.petMenu.setItem(12, this.plugin.getItemStack().noPermissionItem("§7Galinha"));
+	  }        
     
-    this.petMenu.setItem(12, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§aGalinha", Arrays.asList(new String[] { "§7Pet Galinha" }), 1, (byte)93));
-    
+	 if(p.hasPermission("ug.pets.vaca") || (p.hasPermission("ug.pets.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.petMenu.setItem(13, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§aVaca", Arrays.asList(new String[] { "§7Pet Vaca" }), 1, (byte)92));
-    
+     }else{
+		this.petMenu.setItem(13, this.plugin.getItemStack().noPermissionItem("§7Vaca"));
+	 } 
+	 
+	 if(p.hasPermission("ug.pets.coelho") || (p.hasPermission("ug.pets.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.petMenu.setItem(14, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§aCoelho", Arrays.asList(new String[] { "§7Pet Coelho" }), 1, (byte)101));
-    
+     }else{
+		this.petMenu.setItem(14, this.plugin.getItemStack().noPermissionItem("§7Coelho"));
+	 } 
+	 
+	 if(p.hasPermission("ug.pets.lobo") || (p.hasPermission("ug.pets.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.petMenu.setItem(21, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§aLobo", Arrays.asList(new String[] { "§7Pet Lobo" }), 1, (byte)95));
-    
+     }else{
+		this.petMenu.setItem(21, this.plugin.getItemStack().noPermissionItem("§7Lobo"));
+	 } 
+	 
+	 if(p.hasPermission("ug.pets.porco") || (p.hasPermission("ug.pets.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.petMenu.setItem(22, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§aPorco", Arrays.asList(new String[] { "§7Pet Porco" }), 1, (byte)90));
-    
+     }else{
+		this.petMenu.setItem(22, this.plugin.getItemStack().noPermissionItem("§7Porco"));
+	 } 
+	 
     this.petMenu.setItem(23, this.plugin.getItemStack().setSoonTM());
     
     this.petMenu.setItem(30, this.plugin.getItemStack().setSoonTM());
@@ -50,6 +66,8 @@ public class PetMenu
     this.petMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.WOOL, "§aRemover Pet", Arrays.asList(new String[] { "§7Clique para remover seu Pet" }), 1, (byte)14));
     
     this.petMenu.setItem(41, this.plugin.getItemStack().setGoArrow());
+    
+    petMenu.showMenu(p);
   }
   
   @EventHandler
@@ -109,17 +127,13 @@ public class PetMenu
      		 p.sendMessage(plugin.getMessagesFile().petspermission);
      		 return;
      	 }
-     	 if(PetsType.HasPet(p)) {
-     		 return;
-     	 }
+     	 if(PetsType.HasPet(p)) return;
            PetsType.setPet(p, PetsType.PORCO);
           }
       
       if (slotClicked == 40) {
-     	 if(!PetsType.HasPet(p)) {
-    		 return;
-    	 }
         PetsType.removePet(p);
+        PetsType.setPet(p, PetsType.NENHUM);
       }
       if (slotClicked == 41)
       {
@@ -129,6 +143,7 @@ public class PetMenu
       if (slotClicked == 39)
       {
         p.closeInventory();
+        
         plugin.getMenuManager().gadgetMenu.showMenu(p);
       }
     }

@@ -10,64 +10,96 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-import Util.Menus;
-import Util.ParticleEffect;
-import Util.UtilParticle.ParticleType;
+import Core.UtilMenu;
+import Core.ParticleEffect;
+import Core.UtilParticle.ParticleType;
 
 import com.floodeer.gadgets.Main;
 
 public class ParticlesMenu
   implements Listener
 {
-  Main plugin;
-  String particleTitle;
-  String ativado;
-  public Menus particleMenu;
+  Main plugin = Main.getMain();
+  String particleTitle = this.plugin.getMessagesFile().ParticlesMenuName;
+  String ativado = this.plugin.getMensagensConfig().getString("Nova-Particula").replaceAll("&", "§");
+  public UtilMenu particleMenu = new UtilMenu(this.plugin, this.particleTitle, 6);
   
-  public ParticlesMenu()
-  {
-    this.plugin = Main.getMain();
+
+  public void showParticlesMenu(Player p) {
     
-    this.particleTitle = this.plugin.getMessagesFile().ParticlesMenuName;
-    this.ativado = this.plugin.getMensagensConfig().getString("Nova-Particula").replaceAll("&", "§");
-    
-    this.particleMenu = new Menus(this.plugin, this.particleTitle, 6);
-    
+   if(p.hasPermission("ug.particulas.coracoes") || (p.hasPermission("ug.particulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.particleMenu.setItem(12, this.plugin.getItemStack().newItemStack(Material.GOLDEN_APPLE, "§aCorações", 
       Arrays.asList(new String[] {"§7Corações em volta da sua cabeça!" }), 1, (byte)0));
+ 	}else{
+  		this.particleMenu.setItem(12, this.plugin.getItemStack().noPermissionItem("§7Corações"));
+  	}    
     
+   if(p.hasPermission("ug.particulas.slime") || (p.hasPermission("ug.particulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.particleMenu.setItem(13, this.plugin.getItemStack().newItemStack(Material.SLIME_BALL, "§aSlime", 
       Arrays.asList(new String[] {"§7Slime em volta de sua cabeça!" }), 1, (byte)0));
+	}else{
+  		this.particleMenu.setItem(13, this.plugin.getItemStack().noPermissionItem("§7Corações"));
+  	}        
     
+    if(p.hasPermission("ug.particulas.notas") || (p.hasPermission("ug.particulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.particleMenu.setItem(14, this.plugin.getItemStack().newItemStack(Material.JUKEBOX, "§aNotas", 
       Arrays.asList(new String[] {"§7Notas em volta de sua cabeça!" }), 1, (byte)0));
+ 	}else{
+  		this.particleMenu.setItem(14, this.plugin.getItemStack().noPermissionItem("§7Notas"));
+  	}    
     
+    if(p.hasPermission("ug.particulas.angry") || (p.hasPermission("ug.particulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.particleMenu.setItem(21, this.plugin.getItemStack().newItemStack(Material.BLAZE_POWDER, "§aAngry Villager", 
       Arrays.asList(new String[] {"§7Angry Villager Efeito em volta de sua cabeça!" }), 1, (byte)0));
+ 	}else{
+  		this.particleMenu.setItem(21, this.plugin.getItemStack().noPermissionItem("§7Angry"));
+  	}    
     
+    if(p.hasPermission("ug.particulas.happy") || (p.hasPermission("ug.particulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.particleMenu.setItem(22, this.plugin.getItemStack().newItemStack(Material.EMERALD, "§aVillager Happy", 
       Arrays.asList(new String[] {"§7Villager Happy Efeito em volta de sua cabeça!" }), 1, (byte)0));
+ 	}else{
+  		this.particleMenu.setItem(22, this.plugin.getItemStack().noPermissionItem("§7Villager Happy"));
+  	}    
     
+    if(p.hasPermission("ug.particulas.redstone") || (p.hasPermission("ug.particulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.particleMenu.setItem(23, this.plugin.getItemStack().newItemStack(Material.REDSTONE, "§aRedstone", 
       Arrays.asList(new String[] {"§7Efeito de Redstone em volta de sua cabeça!" }), 1, (byte)0));
+ 	}else{
+  		this.particleMenu.setItem(23, this.plugin.getItemStack().noPermissionItem("§7Redstone"));
+  	}    
     
+    if(p.hasPermission("ug.particulas.spell") || (p.hasPermission("ug.particulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.particleMenu.setItem(30, this.plugin.getItemStack().newItemStack(Material.GLASS_BOTTLE, "§aSpell", 
       Arrays.asList(new String[] {"§7Efeito Spell em volta de sua cabeça!" }), 1, (byte)0));
+ 	}else{
+  		this.particleMenu.setItem(30, this.plugin.getItemStack().noPermissionItem("§7Spell"));
+  	}    
     
     this.particleMenu.setItem(39, this.plugin.getItemStack().newItemStack(Material.ARROW, "§fVoltar", 
-      Arrays.asList(new String[] {"§7Clique para voltar ao menu de seleção" }), 1, (byte)0));
+      Arrays.asList(new String[] {"§7Clique para voltar ao menu de seleção" }), 1, (byte)0)); 
     
+    if(p.hasPermission("ug.particulas.fogo") || (p.hasPermission("ug.particulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.particleMenu.setItem(31, this.plugin.getItemStack().newItemStack(Material.FLINT_AND_STEEL, "§aFogo", 
       Arrays.asList(new String[] {"§7Efeito de fogo em volta da sua cabeça!"}), 1, (byte)0));
+ 	}else{
+  		this.particleMenu.setItem(31, this.plugin.getItemStack().noPermissionItem("§7Fogo"));
+  	}    
     
+    if(p.hasPermission("ug.particulas.firework") || (p.hasPermission("ug.particulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.particleMenu.setItem(32, this.plugin.getItemStack().newItemStack(Material.FIREWORK, "§aFirework", 
     Arrays.asList(new String[] {"§7Efeito de firework em volta da sua cabeça!"}), 1, (byte)0));
+ 	}else{
+  		this.particleMenu.setItem(32, this.plugin.getItemStack().noPermissionItem("§7Firework"));
+  	}    
     
     
     this.particleMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.WOOL, 
       "§cRemover partículas", Arrays.asList(new String[] { "§7Clique para desativar suas partículas!" }), 1, (byte)14));
     
     this.particleMenu.setItem(41, this.plugin.getItemStack().setGoArrow());
+    
+    particleMenu.showMenu(p);
   }
   
   @EventHandler

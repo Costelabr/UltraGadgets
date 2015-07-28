@@ -21,9 +21,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitTask;
 
-import Util.Util18;
-import Util.UtilCooldown;
-import Util.UtilParticle;
+import Core.Util18;
+import Core.UtilCooldown;
+import Core.UtilParticle;
+import Core.UtilParticle.ParticleType;
 
 import com.floodeer.gadgets.Main;
 
@@ -61,7 +62,7 @@ protected void startDiscoBall(final Player p)
 	public void run()
       {
         l.getBlock().setData((byte)random.nextInt(15));
-        new UtilParticle(UtilParticle.ParticleType.FIREWORKS_SPARK, 2.0D, 50, 5.0D).sendToLocation(l);
+        new UtilParticle(ParticleType.FIREWORKS_SPARK, 2.0D, 50, 5.0D).sendToLocation(l);
       }
     }, 1L, 8L);
     
