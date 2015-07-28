@@ -19,6 +19,11 @@ public class UtilMath
     return Double.valueOf(localDecimalFormat.format(paramDouble)).doubleValue();
   }
   
+  public static double randomRange(double paramDouble1, double paramDouble2)
+  {
+    return Math.random() < 0.5D ? (1.0D - Math.random()) * (paramDouble2 - paramDouble1) + paramDouble1 : Math.random() * (paramDouble2 - paramDouble1) + paramDouble1;
+  }
+  
   public static Random random = new Random();
   
   public static int r(int paramInt)

@@ -1,5 +1,7 @@
 package Core;
 
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -15,13 +17,12 @@ public class UtilDisguise
 {
 	 
     private DisguiseType disguise;
-    private String player;
+    private UUID player;
     private RefClass entity;
     private Class<?> entityObject;
     private Object thisObject;
 
-    @SuppressWarnings("deprecation")
-    public UtilDisguise(DisguiseType d, String p) {
+    public UtilDisguise(DisguiseType d,  UUID p) {
     disguise = d;
     player = p;
     Location location = Bukkit.getServer().getPlayer(p).getLocation();
@@ -103,12 +104,10 @@ public class UtilDisguise
     }
     }
 
-    @SuppressWarnings("deprecation")
     public Player getPlayer() {
     return Bukkit.getPlayer(player);
     }
 
-    @SuppressWarnings("deprecation")
     public void removeDisguise() {
     this.disguise = null;
 
@@ -156,8 +155,7 @@ public class UtilDisguise
     UtilDisguise dis = new UtilDisguise(d, player);
     dis.disguiseToAll();
     }
-
-    @SuppressWarnings("deprecation")
+    
     public void disguiseToAll() {
  
         RefClass p29 = Reflections.getRefClass("{nms}.PacketPlayOutEntityDestroy");
@@ -232,8 +230,7 @@ public class UtilDisguise
      }
      }
 
-    @SuppressWarnings("deprecation")
-    private RefClass getEntity(String entity, String p) {
+    private RefClass getEntity(String entity, UUID player) {
          RefClass ent = Reflections.getRefClass("{nms}." + entity);
  
          RefConstructor entConstructor = ent.getConstructor(Reflections.getRefClass("{nms}.World"));
@@ -241,7 +238,7 @@ public class UtilDisguise
          RefClass classCraftWorld = Reflections.getRefClass("{cb}.CraftWorld");
           RefMethod methodGetHandle = classCraftWorld.getMethod("getHandle");
  
-          Object handle = methodGetHandle.of(Bukkit.getServer().getPlayer(p).getWorld()).call();
+          Object handle = methodGetHandle.of(Bukkit.getServer().getPlayer(player).getWorld()).call();
  
           Object fin = entConstructor.create(handle);
    
