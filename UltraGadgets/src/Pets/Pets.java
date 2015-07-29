@@ -96,6 +96,7 @@ public class Pets
     	  paramUniquePig.setAdult();
     	  pet.put(uniqueID, paramUniquePig);
     	  booleanPet.put(uniqueID, PORCO);
+    	  UtilPet.criarPet(paramUniquePig, uniqueID);
     	  paramUniquePig.setCustomName(plugin.getMessagesFile().petNome.replaceAll("&", "§").replaceAll("<PLAYER>", uniquePlayer.getName()).replaceAll("<PET>", ((Entity)pet.get(uniqueID)).getName()));
           ParticleEffect.HEART.display(1.0F, 0.0F, 0.0F, 3.0F, 20, paramUniquePig.getLocation(), 12.0D);
     	  

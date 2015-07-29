@@ -28,6 +28,7 @@ public class UltraGadgetsCMD
 	  UtilJsonBuilder particulas = new UtilJsonBuilder("§6/ug particulas §7- Menu de Partículas").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug particulas").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
 	  UtilJsonBuilder sparticulas = new UtilJsonBuilder("§6/ug sparticulas §7- Menu de Super Partículas").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug sparticulas").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
 	  UtilJsonBuilder fantasias = new UtilJsonBuilder("§6/ug fantasias §7- Menu de Fantasias").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug fantasias").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
+	  UtilJsonBuilder mount = new UtilJsonBuilder("§6/ug mounts §7- Menu de Montarias").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug mount").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
 	  UtilJsonBuilder recarregar = new UtilJsonBuilder("§6/ug recarregar §7- Recarregar o plugin (Não muda configurações)").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug recarregar").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
 	  UtilJsonBuilder lag = new UtilJsonBuilder("§6/ug lag §7- Manager de lag do plugin (Não interfere outras tarefas)").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug lag").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
 	  CraftPlayer player = ((CraftPlayer)paramToPlayer);
@@ -36,6 +37,7 @@ public class UltraGadgetsCMD
 	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(particulas.toString())));
 	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(sparticulas.toString())));
 	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(fantasias.toString())));
+	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(mount.toString())));
 	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(recarregar.toString())));
 	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(lag.toString())));
   }
@@ -83,6 +85,11 @@ public class UltraGadgetsCMD
 		
 		break;	
 		
+		
+	case "mount":
+		plugin.getMountsMenu().showMountMenu(p);
+	 break;
+		
 	case "recarregar":
 		if(!p.hasPermission("ug.recarregar")) {
     		p.sendMessage(prefix + "§cVocê não tem permissão para usar esse comando.");
@@ -98,7 +105,8 @@ public class UltraGadgetsCMD
     		return true;
 		}
 		PluginListener.lagManager(p);
-		break;
+		break;	
+		
 	}
    }
     return false;

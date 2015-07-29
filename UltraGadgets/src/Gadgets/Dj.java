@@ -65,6 +65,8 @@ public class Dj
   public static final Map<String, Boolean> discoBall = new HashMap<>();
   public final List<Entity> armor;
   UtilMenu DjMenu;
+  Map<Location, Block> blockToRemove = new HashMap<>();
+  List<Location> l = new ArrayList<Location>();
   
   public Dj()
   {
@@ -98,65 +100,66 @@ private void playRecord(Player p, Location loc, Material record)
     ((CraftPlayer)p).getHandle().playerConnection.sendPacket(new PacketPlayOutWorldEvent(1005, new BlockPosition(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()), 0, false));
   }
   
-  private static final BlockFace[] getArround = {
-    BlockFace.NORTH, 
-    BlockFace.NORTH_EAST, 
-    BlockFace.EAST, 
-    BlockFace.SOUTH_EAST, 
-    BlockFace.SOUTH, 
-    BlockFace.SOUTH_WEST, 
-    BlockFace.WEST, 
-    BlockFace.NORTH_WEST };
-  
-  private void startBuilder(Entity arroundLocation, int taskCancel)
-  {
-    Location[] locs = {
-      arroundLocation.getLocation() };
-    
-    final HashMap<Location, Material> prevb = new HashMap<>();
-    final HashMap<Location, Material> prevc = new HashMap<>();
-    
-    final List<Location> circs = this.plugin.getUtilLocation().getSphere(arroundLocation.getLocation(), 20, 20, true, true, 28);
-    final List<Location> AIRBLOCKS = this.plugin.getUtilLocation().getSphere(arroundLocation.getLocation(), 20, 20, true, true, 28);
-    for (Location loc : AIRBLOCKS) {
-      prevc.put(loc, loc.getBlock().getType());
-    }
-    for (Location loc : circs) {
-      prevb.put(loc, loc.getBlock().getType());
-    }
-    Location[] arrayOfLocation1;
-    int j = (arrayOfLocation1 = locs).length;
-    for (int i = 0; i < j; i++)
-    {
-      Location loc = arrayOfLocation1[i];
-      BlockFace[] arrayOfBlockFace;
-      int m = (arrayOfBlockFace = getArround).length;
-      for (int k = 0; k < m; k++)
-      {
-        BlockFace bf = arrayOfBlockFace[k];
-        
-        Block builder = loc.getBlock();
-        
-        final Location l = builder.getRelative(bf, 1).getLocation();
-        l.getBlock().setType(Material.JUKEBOX);
-        
-        Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable()
-        {
-          @SuppressWarnings("deprecation")
-		public void run()
-          {
-            l.getWorld().playEffect(l, Effect.STEP_SOUND, l.getBlock().getTypeId());
-            l.getBlock().setType(Material.AIR);
-            for (Location loc : circs) {
-              loc.getBlock().setType((Material)prevb.get(loc));
-            }
-            for (Location loc : AIRBLOCKS) {
-              loc.getBlock().setType((Material)prevc.get(loc));
-            }
-          }
-        }, taskCancel * 20L);
+  private String layers(int y, int layloc){
+		
+	    String[] layer1 = {
+	            "STONE_SLAB2", "STONE_SLAB2", "REDSTONE_LAMP_ON",
+	            "STONE_SLAB2", "STONE_SLAB2", "JUKEBOX",
+	            "STONE_SLAB2", "STONE_SLAB2", "REDSTONE_LAMP_ON"
+	    };
+
+	    String[] layer2 = {
+	            "AIR", "AIR", "DAYLIGHT_DETECTOR",
+	            "AIR", "AIR", "AIR",
+	            "AIR", "AIR", "DAYLIGHT_DETECTOR"
+	    };
+
+	    String[] layer3 = {
+	            "AIR", "AIR", "AIR",
+	            "AIR", "AIR", "AIR",
+	            "AIR", "AIR", "AIR"
+	    };
+	    if (y == 0){
+	    	return layer1[layloc];
+	    }
+	    if (y == 1){
+	    	return layer2[layloc];
+	    }
+	    if (y == 2){
+	    	return layer3[layloc];
+	    }
+	    return null;
+	    }
+
+  private void startBuilder(Entity arroundLocation) {
+      Block base = arroundLocation.getLocation().getBlock();
+      Location ori = base.getRelative(BlockFace.NORTH_WEST).getLocation();
+      int layloc;
+      for (int y = 0; y < 3; y++){
+          int by = ori.getBlock().getY() + y;
+          layloc = 0;
+          for (int x = 0; x < 3; x++){
+              int bx = ori.getBlock().getX() + x;
+              for (int z = 0; z < 3; z++){
+                  int bz = ori.getBlock().getZ() + z;
+                  Location block = new Location(arroundLocation.getLocation().getBlock().getWorld(), bx, by, bz);
+                  block.getBlock().setType(Material.matchMaterial(layers(y, layloc)));
+                  this.blockToRemove.put(block, block.getBlock());
+                  l.add(block);
+                  layloc++;
+              }
+          }                     
       }
-    }
+  }
+  
+  @SuppressWarnings("deprecation")
+private void destroy() {
+	  for(Location locals : l) {
+          locals.getWorld().playEffect(locals, Effect.STEP_SOUND, locals.getBlock().getTypeId());
+		  blockToRemove.get(locals).setType(Material.AIR);
+          this.dropDiscs.remove("Discos");
+          this.notes.remove("Notas");
+	  }  
   }
   
   private final ItemStack boots()
@@ -228,29 +231,6 @@ private void playRecord(Player p, Location loc, Material record)
     return null;
   }
   
-  @SuppressWarnings("deprecation")
-public final void breakOnDisable(Player paramPlayer, ArmorStand paramArmorDj, Location paramLocation)
-  {
-    if (this.dj.contains(paramPlayer)) {
-      this.dj.remove(paramPlayer);
-    }
-    stopRecord(paramPlayer, paramArmorDj.getLocation());
-    this.dropDiscs.remove("Discos");
-    this.notes.remove("Notas");
-    if (paramArmorDj != null) {
-      paramArmorDj.remove();
-    }
-    List<Location> paramFinalLocation = this.plugin.getUtilLocation().getSphere(paramLocation, 10, 10, false, false, 8);
-    for (Location paramLocals : paramFinalLocation)
-    {
-      Block b = paramLocals.getBlock();
-      if (b.getType() == Material.JUKEBOX)
-      {
-        b.setType(Material.AIR);
-        b.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, b.getTypeId());
-      }
-    }
-  }
   
   public void summonArmorStand(Location l, final Player p)
   {
@@ -260,15 +240,14 @@ public final void breakOnDisable(Player paramPlayer, ArmorStand paramArmorDj, Lo
     a.setArms(true);
     a.setBasePlate(true);
     a.setCustomNameVisible(true);
-    
+    p.teleport(p.getLocation().add(0.5D, 0.0D, 0.5D));
     a.setBoots(boots());
     a.setLeggings(legg());
     a.setChestplate(chestplate());
     a.setHelmet(skull(p));
-    p.teleport(p.getLocation().add(2.0D, 0.0D, 0.0D));
     
     a.setCustomName("§c§lDj §e§l" + p.getName());
-    startBuilder(a, 40);
+    startBuilder(a);
     this.armor.add(a);
     this.dropDiscs.put("Discos", Boolean.valueOf(true));
     this.notes.put("Notas", Boolean.valueOf(true));
@@ -276,6 +255,8 @@ public final void breakOnDisable(Player paramPlayer, ArmorStand paramArmorDj, Lo
     this.dj.add(p);
     UtilBallEffect newAbf = new UtilBallEffect();
     newAbf.startDisco(a.getLocation().add(0.0D, 12.0D, 0.0D), 40);
+    a.teleport(a.getLocation().add(0, 1.0, 0));
+    a.getLocation().setDirection(new Vector(1,0,0));
     
     final EulerAngle p1 = new EulerAngle(0.1D, 0.0D, 0.0D);
     final EulerAngle p2 = new EulerAngle(0.3D, 0.0D, 0.0D);
@@ -387,11 +368,13 @@ public final void breakOnDisable(Player paramPlayer, ArmorStand paramArmorDj, Lo
         Bukkit.getScheduler().cancelTask(Dj.this.rt);
         try
         {
-          Dj.this.breakOnDisable(p, a, a.getLocation());
+          destroy();
+          stopRecord(p, a.getLocation());
+          a.remove();
         }
         catch (Exception ex)
         {
-          throw new GadgetException("[DJ] Imposs§vel desabilitar eventos do Dj!");
+          throw new GadgetException("[DJ] Impossível desabilitar eventos do Dj!");
         }
       }
     }, 800L);
@@ -413,7 +396,7 @@ public final void breakOnDisable(Player paramPlayer, ArmorStand paramArmorDj, Lo
       }
       if (UtilCooldown.tryCooldown(paramPlayer, "Dj", this.plugin.getConfigFile().DjCooldown))
       {
-        summonArmorStand(paramPlayer.getLocation(), paramPlayer);
+        summonArmorStand(paramPlayer.getLocation().add(0.5, 0, 0.5), paramPlayer);
       }
       else
       {

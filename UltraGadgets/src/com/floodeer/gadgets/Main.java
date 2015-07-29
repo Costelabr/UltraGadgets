@@ -19,11 +19,13 @@ import Core.*;
 import Core.PastebinReporter.Paste;
 import EventManager.InventoryMoveManager;
 import EventManager.JoinEvent;
-import EventManager.ParticleUpdateManager;
 import EventManager.PlayerListener;
 import EventManager.PluginListener;
 import Gadgets.*;
 import Menus.*;
+import Mounts.RegisterMounts;
+import Particulas.ParticleUpdateManager;
+import Particulas.UtilParticleType;
 import Pets.*;
 import Pets.Pets.PetsType;
 
@@ -54,12 +56,16 @@ public class Main
   private ConfigFile cfile;
   private UtilLocations ul;
   private PetMenu petsm;
+  private MountMenu mountn;
   public PastebinReporter paste;
   public Paste ugPaster = new Paste("UltraGadgets Reporter");
   
   public static Main getMain()
   {
     return plugin;
+  }
+  public MountMenu getMountsMenu() {
+	  return mountn;
   }
   
   public ConfigFile getConfigFile()
@@ -164,6 +170,7 @@ public class Main
     this.ul = new UtilLocations();
     this.uf = new UtilFireworkEffect();
     petsm = new PetMenu();
+    this.mountn = new MountMenu();
   }
   
   private void setupVersionSystemAndPlugin()
@@ -231,7 +238,9 @@ public class Main
     Bukkit.getServer().getPluginManager().registerEvents(new Pets(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new PetMenu(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new PluginListener(), this);
+    Bukkit.getServer().getPluginManager().registerEvents(new UtilPet(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new ParticleUpdateManager(), this);
+    RegisterMounts.registerMouts(this);
     WardrobeUtils w = new WardrobeUtils();
     w.register(this);
     Bukkit.getPluginManager().registerEvents(new UtilLag(this), this);

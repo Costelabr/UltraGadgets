@@ -1,4 +1,4 @@
-package EventManager;
+package Particulas;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -11,6 +11,8 @@ import com.floodeer.gadgets.Main;
 import Core.UtilParticle;
 import Core.UtilParticle.ParticleType;
 import Core.UtilVelocity;
+import EventManager.UpdateEvent;
+import EventManager.UpdateType;
 
 public class ParticleUpdateManager implements Listener{
 	

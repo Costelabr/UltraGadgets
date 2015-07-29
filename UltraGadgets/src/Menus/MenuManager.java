@@ -52,7 +52,7 @@ public class MenuManager
       e.setCancelled(true);
       e.setResult(Result.DENY);
       if (slotClicked == 4) {
-        p.sendMessage( plugin.getMessagesFile().prefix + ChatColor.GOLD + " Isso ainda está em desenvolvimento!");
+        plugin.getMountsMenu().showMountMenu(p);
       }
       if (slotClicked == 11) {
         this.plugin.getParticlesMenu().showParticlesMenu(p);

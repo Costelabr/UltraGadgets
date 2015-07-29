@@ -9,6 +9,7 @@ import org.bukkit.event.server.PluginDisableEvent;
 import com.floodeer.gadgets.Main;
 
 import Core.UtilLag;
+import Mounts.MountHandler;
 import Pets.Pets.PetsType;
 
 public class PluginListener
@@ -54,6 +55,9 @@ public class PluginListener
 			  if(p == null) return;
 			  if(PetsType.HasPet(p)) {
 				  PetsType.removePet(p);
+			  }
+			  if(MountHandler.HasPet(p)) {
+				  MountHandler.removePlayerMount(p);
 			  }
 		  }
 	  }

@@ -76,6 +76,7 @@ public class Messages
   public String SuperMenuName;
   public String ParticlesMenuName;
   public String PetsMenuName;
+  public String mountMenuName;
   
   
   public void loadMessagesConfiguration()
@@ -91,6 +92,7 @@ public class Messages
     GadgetsMenuName = mensagens.getString("Gadgets-Menu").replaceAll("&", "§");
     ParticlesMenuName = mensagens.getString("Particulas-Menu").replaceAll("&", "§");
     SuperMenuName = mensagens.getString("Super-Particulas-Menu").replaceAll("&", "§");
+    mountMenuName = mensagens.getString("Mount-Menu").replaceAll("&", "§");
     petNome = mensagens.getString("Pets-Formato").replaceAll("&", "§");
     PetsMenuName = mensagens.getString("Pets-Menu").replaceAll("&", "§");
     

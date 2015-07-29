@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -18,6 +19,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 import Core.Util18;
@@ -39,20 +41,43 @@ public class VectorTNT implements Listener {
 		localTNT.setIsIncendiary(false);
 		localTNT.setFuseTicks(80);
 	}
-	
+	 
 	Map<UUID, Integer> mapOfP = new HashMap<UUID, Integer>();
 	@EventHandler
-	public void onLocalDataTNTExplode(EntityExplodeEvent e) {
+	public void onLocalDataTNTExplode(final EntityExplodeEvent e) {
 		if(e.getEntity() instanceof TNTPrimed) {
 			
-			TNTPrimed localTNT = (TNTPrimed)e.getEntity();
-			if(localTNT.hasMetadata("localData")) {
+			final TNTPrimed localTNT = (TNTPrimed)e.getEntity();
+			if(localTNT.hasMetadata("LocalData2")) {
+				e.setCancelled(true);
+				e.setYield(0);
+			}
+			if(localTNT.hasMetadata("localData")){
 				e.setYield(0);
 				e.setCancelled(true);
 				final Entity[] ent = plugin.getUtilLocation().getNearbyEntities(e.getLocation(), 12);
 				for(final Entity entity : ent) {
 					if(entity.hasMetadata("NPC")) return;
-					if(entity.hasMetadata("PET")) return;		
+					if(entity.hasMetadata("PET")) return;
+					final BukkitTask t = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
+						
+						@Override
+						public void run() {						
+						    TNTPrimed newTNT = e.getEntity().getWorld().spawn(localTNT.getLocation(), TNTPrimed.class);
+						    newTNT.setVelocity(new Vector(UtilMath.randomRange(-0.5D, 0.5D), UtilMath.randomRange(0.50000000298023224D, 1.2D), UtilMath.randomRange(-0.5D, 0.5D)));
+						    newTNT.setMetadata("LocalData2", new FixedMetadataValue(plugin, null));
+							
+						}
+					}, 0, 4L);
+					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+						
+						@Override
+						public void run() {
+						t.cancel();
+							
+						}
+					}, 4*20L);
+				    
 					 Vector v = new Vector(UtilMath.random.nextInt(5),  UtilMath.random.nextInt(2), UtilMath.random.nextInt(5));
 					 entity.setVelocity(v);
 				}
