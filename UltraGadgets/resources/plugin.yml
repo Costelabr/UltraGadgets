@@ -1,12 +1,12 @@
 name: UltraGadgets
-version: 1.0.4
-main: com.floodeer.gadgets.Main
+version: 2.0.0
+main: com.floodeer.gadgets.UltraGadgets
 description: UltraGadgets plugin
 author: Floodeer
 depend: [ProtocolLib]
 prefix: UltraGadgets
 commands:
   ultragadgets:
-   description: Usar os Gadgets!
+   description: Comando UltraGadgets
    aliases: [ug]
    permission: ugadgets.comando

@@ -19,7 +19,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import Core.ParticleEffect;
 import Core.UtilPet;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class Pets
   implements Listener
@@ -28,7 +28,7 @@ public class Pets
   {
     COELHO,  GALINHA,  VACA, WOLF, PORCO, NENHUM;
     
-    protected static final Main plugin = Main.getMain();
+    protected static final UltraGadgets plugin = UltraGadgets.getMain();
     public static HashMap<UUID, Entity> pet = new HashMap<>();
     public static final Map<UUID, PetsType> booleanPet = new HashMap<>();
     public static final Map<UUID, Rabbit> booleanRabbit = new HashMap<>();

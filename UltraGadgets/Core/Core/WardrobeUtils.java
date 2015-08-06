@@ -1,7 +1,5 @@
 package Core;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -11,328 +9,33 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
-import org.bukkit.plugin.java.JavaPlugin;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class WardrobeUtils implements Listener {
-	
-	  public Inventory inv;
-	  public Inventory invlh;
-	  public Inventory invll;
-	  public Inventory invlc;
-	  public Inventory invlb;
-	  
-	  public WardrobeUtils() {}
-	  public void register(JavaPlugin loader) {
-		  Bukkit.getPluginManager().registerEvents(this, loader);
+  
+	UltraGadgets plugin = UltraGadgets.getMain();
+	  private ItemStack probally() {
+		    ItemStack WEB4 = new ItemStack(Material.STAINED_CLAY, 1, (byte)5);
+		    return WEB4;
 	  }
 	  
-	  public WardrobeUtils(Main plugin, Player p)
-	  {
-	  inv = Bukkit.getServer().createInventory(null, 36, "Guarda-Roupa");
-	  invlh = Bukkit.getServer().createInventory(null, 36, "Cor do Capacete");
-	  invlc = Bukkit.getServer().createInventory(null, 36, "Cor do Chestplate");
-	  invll = Bukkit.getServer().createInventory(null, 36, "Cor da Calça");
-	  invlb = Bukkit.getServer().createInventory(null, 36, "Cor das Botas");
-	  
-    ItemStack lh = new ItemStack(Material.LEATHER_HELMET, 1);
-    ItemStack ch = new ItemStack(Material.CHAINMAIL_HELMET, 1);
-    ItemStack ih = new ItemStack(Material.IRON_HELMET, 1);
-    ItemStack gh = new ItemStack(Material.GOLD_HELMET, 1);
-    ItemStack dh = new ItemStack(Material.DIAMOND_HELMET, 1);
-    
-    ItemStack lc = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-    ItemStack cc = new ItemStack(Material.CHAINMAIL_CHESTPLATE, 1);
-    ItemStack ic = new ItemStack(Material.IRON_CHESTPLATE, 1);
-    ItemStack gc = new ItemStack(Material.GOLD_CHESTPLATE, 1);
-    ItemStack dc = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
-    
-    ItemStack ll = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-    ItemStack cl = new ItemStack(Material.CHAINMAIL_LEGGINGS, 1);
-    ItemStack il = new ItemStack(Material.IRON_LEGGINGS, 1);
-    ItemStack gl = new ItemStack(Material.GOLD_LEGGINGS, 1);
-    ItemStack dl = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
-    
-    ItemStack lb = new ItemStack(Material.LEATHER_BOOTS, 1);
-    ItemStack cb = new ItemStack(Material.CHAINMAIL_BOOTS, 1);
-    ItemStack ib = new ItemStack(Material.IRON_BOOTS, 1);
-    ItemStack gb = new ItemStack(Material.GOLD_BOOTS, 1);
-    ItemStack db = new ItemStack(Material.DIAMOND_BOOTS, 1);
-    
-    ItemStack WEB1 = new ItemStack(Material.WEB, 1);
-    ItemMeta WEBmeta1 = WEB1.getItemMeta();
-    WEB1.setAmount(1);
-    WEBmeta1.setDisplayName("Selecione a cor");
-    WEB1.setItemMeta(WEBmeta1);
-    ItemStack WEB2 = new ItemStack(Material.WEB, 1);
-    ItemMeta WEBmeta2 = WEB2.getItemMeta();
-    WEB2.setAmount(2);
-    WEBmeta2.setDisplayName("Selecione a cor");
-    WEB2.setItemMeta(WEBmeta2);
-    ItemStack WEB3 = new ItemStack(Material.WEB, 1);
-    ItemMeta WEBmeta3 = WEB3.getItemMeta();
-    WEB3.setAmount(3);
-    WEBmeta3.setDisplayName("Selecione a cor");
-    WEB3.setItemMeta(WEBmeta3);
-    ItemStack WEB4 = new ItemStack(Material.WEB, 1);
-    WEB4.setAmount(4);
-    ItemMeta WEBmeta4 = WEB4.getItemMeta();
-    WEBmeta4.setDisplayName("Selecione a cor");
-    WEB4.setItemMeta(WEBmeta4);
-    
-    ItemStack white = new ItemStack(Material.INK_SACK, 1, (short)15);
-    ItemMeta whitemeta = white.getItemMeta();
-    whitemeta.setDisplayName("§aBranco");
-    white.setItemMeta(whitemeta);
-    
-    ItemStack orange = new ItemStack(Material.INK_SACK, 1, (short)14);
-    ItemMeta orangemeta = orange.getItemMeta();
-    orangemeta.setDisplayName("§6Laranja");
-    orange.setItemMeta(orangemeta);
-    
-    ItemStack magenta = new ItemStack(Material.INK_SACK, 1, (short)13);
-    ItemMeta magentameta = magenta.getItemMeta();
-    magentameta.setDisplayName("Magenta");
-    magenta.setItemMeta(magentameta);
-    
-    ItemStack lightblue = new ItemStack(Material.INK_SACK, 1, (short)12);
-    ItemMeta lightbluemeta = lightblue.getItemMeta();
-    lightbluemeta.setDisplayName("§1Azul Escuro");
-    lightblue.setItemMeta(lightbluemeta);
-    
-    ItemStack yellow = new ItemStack(Material.INK_SACK, 1, (short)11);
-    ItemMeta yellowmeta = yellow.getItemMeta();
-    yellowmeta.setDisplayName("§eAmarelo");
-    yellow.setItemMeta(yellowmeta);
-    
-    ItemStack lime = new ItemStack(Material.INK_SACK, 1, (short)10);
-    ItemMeta limemeta = lime.getItemMeta();
-    limemeta.setDisplayName("§aLimão");
-    lime.setItemMeta(limemeta);
-    
-    ItemStack pink = new ItemStack(Material.INK_SACK, 1, (short)9);
-    ItemMeta pinkmeta = pink.getItemMeta();
-    pinkmeta.setDisplayName("§dRosa");
-    pink.setItemMeta(pinkmeta);
-    
-    ItemStack gray = new ItemStack(Material.INK_SACK, 1, (short)8);
-    ItemMeta graymeta = gray.getItemMeta();
-    graymeta.setDisplayName("§7Cinza");
-    gray.setItemMeta(graymeta);
-    
-    ItemStack silver = new ItemStack(Material.INK_SACK, 1, (short)7);
-    ItemMeta silvermeta = silver.getItemMeta();
-    silvermeta.setDisplayName("§aBranco");
-    silver.setItemMeta(silvermeta);
-    
-    ItemStack cyan = new ItemStack(Material.INK_SACK, 1, (short)6);
-    ItemMeta cyanmeta = cyan.getItemMeta();
-    cyanmeta.setDisplayName("§bCiano");
-    cyan.setItemMeta(cyanmeta);
-    
-    ItemStack purple = new ItemStack(Material.INK_SACK, 1, (short)5);
-    ItemMeta purplemeta = purple.getItemMeta();
-    purplemeta.setDisplayName("§5Roxo");
-    purple.setItemMeta(purplemeta);
-    
-    ItemStack blue = new ItemStack(Material.INK_SACK, 1, (short)4);
-    ItemMeta bluemeta = blue.getItemMeta();
-    bluemeta.setDisplayName("§9Azul");
-    blue.setItemMeta(bluemeta);
-    
-    ItemStack brown = new ItemStack(Material.INK_SACK, 1, (short)3);
-    ItemMeta brownmeta = brown.getItemMeta();
-    brownmeta.setDisplayName("§fCastanho");
-    brown.setItemMeta(brownmeta);
-    
-    ItemStack green = new ItemStack(Material.INK_SACK, 1, (short)2);
-    ItemMeta greenmeta = green.getItemMeta();
-    greenmeta.setDisplayName("§2Verde");
-    green.setItemMeta(greenmeta);
-    
-    ItemStack red = new ItemStack(Material.INK_SACK, 1, (short)1);
-    ItemMeta redmeta = red.getItemMeta();
-    redmeta.setDisplayName("§cVermelho");
-    red.setItemMeta(redmeta);
-    
-    ItemStack black = new ItemStack(Material.INK_SACK, 1, (short)0);
-    ItemMeta blackmeta = black.getItemMeta();
-    blackmeta.setDisplayName("§8Preto");
-    black.setItemMeta(blackmeta);
-    
-    ItemStack glass5 = new ItemStack(Material.GLASS, 1);
-    glass5.setAmount(1);
-    ItemMeta glassmeta5 = glass5.getItemMeta();
-    glassmeta5.setDisplayName("§7Nenhum");
-    glass5.setItemMeta(glassmeta5);
-    
-    ItemStack arrow = new ItemStack(Material.ARROW, 1);
-    arrow.setAmount(1);
-    ItemMeta arrowmeta = arrow.getItemMeta();
-    arrowmeta.setDisplayName("§cCancelar");
-    arrow.setItemMeta(arrowmeta);
-    
-    ItemStack glass1 = new ItemStack(Material.GLASS, 1);
-    ItemMeta glassmeta1 = glass1.getItemMeta();
-    glass1.setAmount(1);
-    glassmeta1.setDisplayName("§7Remover capacete");
-    glass1.setItemMeta(glassmeta1);
-    ItemStack glass2 = new ItemStack(Material.GLASS, 1);
-    ItemMeta glassmeta2 = glass2.getItemMeta();
-    glass2.setAmount(2);
-    glassmeta2.setDisplayName("§7Remover peitoral");
-    glass2.setItemMeta(glassmeta2);
-    ItemStack glass3 = new ItemStack(Material.GLASS, 1);
-    ItemMeta glassmeta3 = glass3.getItemMeta();
-    glass3.setAmount(3);
-    glassmeta3.setDisplayName("§7Remover calça");
-    glass3.setItemMeta(glassmeta3);
-    ItemStack glass4 = new ItemStack(Material.GLASS, 1);
-    glass4.setAmount(4);
-    ItemMeta glassmeta4 = glass4.getItemMeta();
-    glassmeta4.setDisplayName("§7Remover botas");
-    glass4.setItemMeta(glassmeta4);
-    
-    inv.setItem(2, lh);
-    inv.setItem(3, ch);
-    inv.setItem(4, ih);
-    inv.setItem(5, gh);
-    inv.setItem(6, dh);
-    
-    inv.setItem(11, lc);
-    inv.setItem(12, cc);
-    inv.setItem(13, ic);
-    inv.setItem(14, gc);
-    inv.setItem(15, dc);
-    
-    inv.setItem(20, ll);
-    inv.setItem(21, cl);
-    inv.setItem(22, il);
-    inv.setItem(23, gl);
-    inv.setItem(24, dl);
-    
-    inv.setItem(29, lb);
-    inv.setItem(30, cb);
-    inv.setItem(31, ib);
-    inv.setItem(32, gb);
-    inv.setItem(33, db);
-    
-    inv.setItem(0, WEB1);
-    inv.setItem(9, WEB2);
-    inv.setItem(18, WEB3);
-    inv.setItem(27, WEB4);
-    
-    inv.setItem(8, glass1);
-    inv.setItem(17, glass2);
-    inv.setItem(26, glass3);
-    inv.setItem(35, glass4);
-    
-    invlh.setItem(0, white);
-    invlh.setItem(1, orange);
-    invlh.setItem(2, magenta);
-    invlh.setItem(3, lightblue);
-    invlh.setItem(4, yellow);
-    invlh.setItem(5, lime);
-    invlh.setItem(6, pink);
-    invlh.setItem(7, gray);
-    invlh.setItem(8, silver);
-    
-    invlh.setItem(10, cyan);
-    invlh.setItem(11, purple);
-    invlh.setItem(12, blue);
-    invlh.setItem(13, brown);
-    invlh.setItem(14, green);
-    invlh.setItem(15, red);
-    invlh.setItem(16, black);
-    
-    invlh.setItem(30, glass5);
-    invlh.setItem(32, arrow);
-    
-    invlc.setItem(0, white);
-    invlc.setItem(1, orange);
-    invlc.setItem(2, magenta);
-    invlc.setItem(3, lightblue);
-    invlc.setItem(4, yellow);
-    invlc.setItem(5, lime);
-    invlc.setItem(6, pink);
-    invlc.setItem(7, gray);
-    invlc.setItem(8, silver);
-    
-    invlc.setItem(10, cyan);
-    invlc.setItem(11, purple);
-    invlc.setItem(12, blue);
-    invlc.setItem(13, brown);
-    invlc.setItem(14, green);
-    invlc.setItem(15, red);
-    invlc.setItem(16, black);
-    
-    invlc.setItem(30, glass5);
-    invlc.setItem(32, arrow);
-    
-    invll.setItem(0, white);
-    invll.setItem(1, orange);
-    invll.setItem(2, magenta);
-    invll.setItem(3, lightblue);
-    invll.setItem(4, yellow);
-    invll.setItem(5, lime);
-    invll.setItem(6, pink);
-    invll.setItem(7, gray);
-    invll.setItem(8, silver);
-    
-    invll.setItem(10, cyan);
-    invll.setItem(11, purple);
-    invll.setItem(12, blue);
-    invll.setItem(13, brown);
-    invll.setItem(14, green);
-    invll.setItem(15, red);
-    invll.setItem(16, black);
-    
-    invll.setItem(30, glass5);
-    invll.setItem(32, arrow);
-    
-    invlb.setItem(0, white);
-    invlb.setItem(1, orange);
-    invlb.setItem(2, magenta);
-    invlb.setItem(3, lightblue);
-    invlb.setItem(4, yellow);
-    invlb.setItem(5, lime);
-    invlb.setItem(6, pink);
-    invlb.setItem(7, gray);
-    invlb.setItem(8, silver);
-    
-    invlb.setItem(10, cyan);
-    invlb.setItem(11, purple);
-    invlb.setItem(12, blue);
-    invlb.setItem(13, brown);
-    invlb.setItem(14, green);
-    invlb.setItem(15, red);
-    invlb.setItem(16, black);
-    
-    invlb.setItem(30, glass5);
-    invlb.setItem(32, arrow);
-    
-    p.openInventory(inv);
-  }
-  
   @EventHandler
   public void onInventoryClick(InventoryClickEvent event)
   {
     Player player = (Player)event.getWhoClicked();
     ItemStack clicked = event.getCurrentItem();
     Inventory inventory = event.getInventory();
-    if (clicked == null) {
+    if ((!inventory.getName().contains("Guarda-Roupa")) &&
+      (!inventory.getName().contains("Cor do Capacete")) &&
+      (!inventory.getName().contains("Cor do Chestplate")) && 
+      (!inventory.getName().contains("Cor da Cal�a")) && 
+      (!inventory.getName().contains("Cor das Botas"))) {
       return;
     }
-    if ((!inventory.getName().equals("Guarda-Roupa")) && 
-      (!inventory.getName().equals("Cor do Capacete")) && 
-      (!inventory.getName().equals("Chestplate Color")) && 
-      (!inventory.getName().equals("Cor da Calça")) && 
-      (!inventory.getName().equals("Cor das Botas"))) {
-      return;
-    }
+    Ward w = new Ward(player, plugin);
+    player.closeInventory();
     ItemStack lh = new ItemStack(Material.LEATHER_HELMET, 1);
     ItemStack lc = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
     ItemStack ll = new ItemStack(Material.LEATHER_LEGGINGS, 1);
@@ -609,782 +312,795 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta blackbmeta = (LeatherArmorMeta)blackb.getItemMeta();
     blackbmeta.setColor(Color.BLACK);
     blackb.setItemMeta(blackbmeta);
-    if ((inventory.getName().equals("Guarda-Roupa")) && 
+    if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.LEATHER_HELMET))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.LEATHER_HELMET);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setHelmet(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if((inventory.getName().contains("Guarda-Roupa")) && 
+     (clicked.getType() == Material.REDSTONE)) {
+    	event.setCancelled(true);
+    player.closeInventory();
+    player.getInventory().setHelmet(null);
+    player.getInventory().setChestplate(null);
+    player.getInventory().setLeggings(null);
+    player.getInventory().setBoots(null);
+}
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.LEATHER_CHESTPLATE))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.LEATHER_CHESTPLATE);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setChestplate(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.LEATHER_LEGGINGS))
     {
       event.setCancelled(true);
       player.closeInventory();
-      ItemStack item = new ItemStack(Material.LEATHER_CHESTPLATE);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      ItemStack item = new ItemStack(Material.LEATHER_LEGGINGS);
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setLeggings(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.LEATHER_BOOTS))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.LEATHER_BOOTS);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setBoots(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.CHAINMAIL_HELMET))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.CHAINMAIL_HELMET);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setHelmet(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.CHAINMAIL_CHESTPLATE))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setChestplate(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.CHAINMAIL_LEGGINGS))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.CHAINMAIL_LEGGINGS);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setLeggings(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.CHAINMAIL_BOOTS))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.CHAINMAIL_BOOTS);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setBoots(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.IRON_HELMET))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.IRON_HELMET);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setHelmet(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.IRON_CHESTPLATE))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.IRON_CHESTPLATE);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setChestplate(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.IRON_LEGGINGS))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.IRON_LEGGINGS);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setLeggings(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.IRON_BOOTS))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.IRON_BOOTS);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setBoots(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.GOLD_HELMET))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.GOLD_HELMET);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setHelmet(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.GOLD_CHESTPLATE))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.GOLD_CHESTPLATE);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setChestplate(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.GOLD_LEGGINGS))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.GOLD_LEGGINGS);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setLeggings(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.GOLD_BOOTS))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.GOLD_BOOTS);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setBoots(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.DIAMOND_HELMET))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.DIAMOND_HELMET);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setHelmet(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.DIAMOND_CHESTPLATE))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.DIAMOND_CHESTPLATE);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setChestplate(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.DIAMOND_LEGGINGS))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.DIAMOND_LEGGINGS);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setLeggings(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
       (clicked.getType() == Material.DIAMOND_BOOTS))
     {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.DIAMOND_BOOTS);
-      if (player.hasPermission("ug.wardrobe.encantado")) {
+      if (player.hasPermission("oblivion.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setBoots(item);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
-      (clicked.getType() == Material.GLASS) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
+      (clicked.getType() == Material.BARRIER) && 
       (clicked.getAmount() == 1))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(null);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
-      (clicked.getType() == Material.GLASS) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
+      (clicked.getType() == Material.BARRIER) && 
       (clicked.getAmount() == 2))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(null);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
-      (clicked.getType() == Material.GLASS) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
+      (clicked.getType() == Material.BARRIER) && 
       (clicked.getAmount() == 3))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(null);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
-      (clicked.getType() == Material.GLASS) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
+      (clicked.getType() == Material.BARRIER) && 
       (clicked.getAmount() == 4))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(null);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
-      (clicked.getType() == Material.WEB) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
+      (clicked.getType() == probally().getType()) && 
       (clicked.getAmount() == 1)) {
-    	player.sendMessage(ChatColor.RED + "Em breve!");
+    	player.closeInventory();
+    	w.invlh.showMenu(player);
     	event.setCancelled(true);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
-      (clicked.getType() == Material.WEB) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
+      (clicked.getType() == probally().getType()) && 
       (clicked.getAmount() == 2)) {
-    	player.sendMessage(ChatColor.RED + "Em breve!");
+    	player.closeInventory();
+    	w.invlc.showMenu(player);
     	event.setCancelled(true);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
-      (clicked.getType() == Material.WEB) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
+      (clicked.getType() == probally().getType()) && 
       (clicked.getAmount() == 3))
     {
-    	player.sendMessage(ChatColor.RED + "Em breve!");
+    	player.closeInventory();
+    	w.invll.showMenu(player);
     	event.setCancelled(true);
     }
-    else if ((inventory.getName().equals("Guarda-Roupa")) && 
-      (clicked.getType() == Material.WEB) && 
+    else if ((inventory.getName().contains("Guarda-Roupa")) && 
+      (clicked.getType() == probally().getType()) && 
       (clicked.getAmount() == 4))
     {
-    	player.sendMessage(ChatColor.RED + "Em breve!");
+    	player.closeInventory();
+    	w.invlb.showMenu(player);
     	event.setCancelled(true);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getType() == Material.ARROW))
     {
       event.setCancelled(true);
       player.closeInventory();
-      player.openInventory(inv);
+      w.inv.showMenu(player);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getType() == Material.ARROW))
     {
       event.setCancelled(true);
       player.closeInventory();
-      player.openInventory(inv);
+      w.inv.showMenu(player);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getType() == Material.ARROW))
     {
       event.setCancelled(true);
       player.closeInventory();
-      player.openInventory(inv);
+      w.inv.showMenu(player);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getType() == Material.ARROW))
     {
       event.setCancelled(true);
       player.closeInventory();
-      player.openInventory(inv);
+      w.inv.showMenu(player);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
-      (clicked.getType() == Material.GLASS))
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
+      (clicked.getType() == Material.BARRIER))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(lh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
-      (clicked.getType() == Material.GLASS))
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
+      (clicked.getType() == Material.BARRIER))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(lc);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
-      (clicked.getType() == Material.GLASS))
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
+      (clicked.getType() == Material.BARRIER))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(ll);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
-      (clicked.getType() == Material.GLASS))
+    else if ((inventory.getName().contains("Cor das Botas")) && 
+      (clicked.getType() == Material.BARRIER))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(lb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Branco")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(whiteh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Branco")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(whitecp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Branco")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(whitel);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Branco")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(whiteb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Laranja")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(orangeh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Laranja")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(orangecp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Laranja")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(orangel);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Laranja")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(orangeb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Magenta")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(magentah);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Magenta")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(magentacp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Magenta")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(magental);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Magenta")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(magentab);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Azul Escuro")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(lightblueh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Azul Escuro")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(lightbluecp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Azul Escuro")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(lightbluel);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Azul Escuro")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(lightblueb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Amarelo")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(yellowh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Amarelo")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(yellowcp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Amarelo")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(yellowl);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Amarelo")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(yellowb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Limão")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(limeh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Limão")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(limecp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Limão")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(limel);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Limão")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(limeb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Rosa")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(pinkh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Rosa")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(pinkcp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Rosa")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(pinkl);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Rosa")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(pinkb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Cinza")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(grayh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Cinza")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(graycp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Cinza")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(grayl);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Cinza")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(grayb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Branco")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(silverh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Branco")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(silvercp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Branco")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(silverl);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Branco")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(silverb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Ciano")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(cyanh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Ciano")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(cyancp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Ciano")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(cyanl);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Ciano")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(cyanb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Roxo")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(purpleh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Roxo")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(purplecp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Roxo")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(purplel);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Roxo")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(purpleb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Azul")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(blueh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Azul")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(bluecp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Azul")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(bluel);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Azul")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(blueb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Castanho")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(brownh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Castanho")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(browncp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Castanho")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(brownl);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Castanho")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(brownb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Verde")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(greenh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Verde")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(greencp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Verde")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(greenl);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Verde")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(greenb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Vermelho")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(redh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Vermelho")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(redcp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
       (clicked.getItemMeta().getDisplayName().contains("Vermelho")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(redl);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Vermelho")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setBoots(redb);
     }
-    else if ((inventory.getName().equals("Cor do Capacete")) && 
+    else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Preto")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setHelmet(blackh);
     }
-    else if ((inventory.getName().equals("Chestplate Color")) && 
+    else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Preto")))
     {
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setChestplate(blackcp);
     }
-    else if ((inventory.getName().equals("Cor da Calça")) && 
-      (clicked.getItemMeta().getDisplayName().contains("Preto")))
-    {
+    else if ((inventory.getName().contains("Cor da Cal�a")) && 
+      (clicked.getItemMeta().getDisplayName().contains("Preto"))){
       event.setCancelled(true);
       player.closeInventory();
       player.getInventory().setLeggings(blackl);
     }
-    else if ((inventory.getName().equals("Cor das Botas")) && 
+    else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Preto")))
     {
       event.setCancelled(true);

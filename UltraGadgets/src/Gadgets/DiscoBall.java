@@ -26,12 +26,12 @@ import Core.UtilCooldown;
 import Core.UtilParticle;
 import Core.UtilParticle.ParticleType;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class DiscoBall
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   private HashMap<Location, Material> blocks = new HashMap<>();
   private HashMap<Location, Byte> data = new HashMap<>();
   

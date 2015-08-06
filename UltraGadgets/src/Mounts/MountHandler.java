@@ -10,11 +10,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class MountHandler implements Listener {
 	
-	  static Main plugin = Main.getMain();
+	  static UltraGadgets plugin = UltraGadgets.getMain();
 	  public static HashMap<UUID, Horse> pet = new HashMap<>();
 	  
 	  public static boolean HasPet(Player paramPlayer)

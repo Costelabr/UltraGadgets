@@ -8,7 +8,9 @@ import net.minecraft.server.v1_8_R3.EntityInsentient;
 import net.minecraft.server.v1_8_R3.NavigationAbstract;
 import net.minecraft.server.v1_8_R3.PathfinderGoalSelector;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
@@ -17,12 +19,15 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Giant;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.EntityEquipment;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class UtilEnt
   implements Listener
@@ -30,7 +35,7 @@ public class UtilEnt
   private static HashMap<org.bukkit.entity.Entity, String> _nameMap = new HashMap<>();
   private static HashMap<String, EntityType> creatureMap = new HashMap<>();
   private static Field _goalSelector;
-  private static Main plugin = Main.getMain();
+  private static UltraGadgets plugin = UltraGadgets.getMain();
   
   public static HashMap<org.bukkit.entity.Entity, String> GetEntityNames()
   {
@@ -334,4 +339,21 @@ public class UtilEnt
       localEntityEquipment.setHelmet(null);
     }
     
+    public static void itemToRemove(Location l, Material tipo, byte id, long tempoToRemove, boolean randomVector, Vector vector) {
+    	final ItemStack item = new ItemStack(tipo, 1, id);
+    	
+    	final Item drop = l.getWorld().dropItem(l, item);
+    	drop.setPickupDelay(Integer.MAX_VALUE);
+    	if(randomVector) {
+    		drop.setVelocity(vector);
+    	}
+    	Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+			
+			@Override
+			public void run() {
+			   drop.remove();
+			   
+			}
+		}, tempoToRemove*20);
+  }
 }

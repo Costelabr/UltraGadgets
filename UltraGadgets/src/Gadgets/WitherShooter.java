@@ -15,24 +15,23 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
+import Core.FireworkNMSHandler;
 import Core.Util18;
 import Core.UtilCooldown;
-import Core.UtilFireworkEffect;
 import Core.UtilMath;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
-public class WitherShooter
+public class WitherShooter extends FireworkNMSHandler
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   
   private void summonFirework(Location loc)
   {
-    UtilFireworkEffect fe = new UtilFireworkEffect();
     try
     {
-      fe.playFirework(loc.getWorld(), loc, 
+       playFirework(loc, 
         FireworkEffect.builder()
         .withColor(Color.BLACK)
         .withColor(Color.WHITE)

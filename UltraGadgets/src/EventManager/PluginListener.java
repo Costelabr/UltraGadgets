@@ -6,19 +6,20 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginDisableEvent;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 import Core.UtilLag;
+import Gadgets.Dj;
 import Mounts.MountHandler;
 import Pets.Pets.PetsType;
 
 public class PluginListener
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   
   public static void reloadPlugin(final Player reloader) {
-	  final Main plugin = Main.getMain();
+	  final UltraGadgets plugin = UltraGadgets.getMain();
 	  reloader.sendMessage("§eTentando recarregar... Aguarde um momento.");
 	  try{
 	  Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
@@ -38,7 +39,7 @@ public class PluginListener
   }
   
   public static void lagManager(Player sender) {
-	  Main plugin = Main.getMain();
+	  UltraGadgets plugin = UltraGadgets.getMain();
 	  if(UtilLag.ServerisLag()) {
 		  sender.sendMessage(plugin.getMessagesFile().prefix + " §cO servidor está atualmente á §6§l" + UtilLag.getTicksPerSecond() + " §c(TPS MÉDIO/RUIM)");
 		  
@@ -60,6 +61,8 @@ public class PluginListener
 				  MountHandler.removePlayerMount(p);
 			  }
 		  }
+		  Dj dj = new Dj();
+		  dj.destroy();
 	  }
   }
 }

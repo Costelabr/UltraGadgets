@@ -21,6 +21,7 @@ import EventManager.InventoryMoveManager;
 import EventManager.JoinEvent;
 import EventManager.PlayerListener;
 import EventManager.PluginListener;
+import EventManager.QuitEvent;
 import Gadgets.*;
 import Menus.*;
 import Mounts.RegisterMounts;
@@ -32,7 +33,7 @@ import Pets.Pets.PetsType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 
-public class Main
+public class UltraGadgets
   extends JavaPlugin
 {
   public String internal_error = "************************* ERROR ********************************";
@@ -40,7 +41,7 @@ public class Main
   File plf = null;
   public boolean debugg = getConfig().getBoolean("System-Debugg");
   public ProtocolManager protocolManager;
-  private static Main plugin;
+  private static UltraGadgets plugin;
   private UtilItemStack uis;
   private UtilParticleType upt;
   private MenuManager mn;
@@ -50,7 +51,6 @@ public class Main
   private SuperMenu spm;
   private Gadgets gdt;
   private UtilBlock ub;
-  private UtilFireworkEffect uf;
   private Messages ms;
   private Tipos gadgets;
   private ConfigFile cfile;
@@ -60,7 +60,8 @@ public class Main
   public PastebinReporter paste;
   public Paste ugPaster = new Paste("UltraGadgets Reporter");
   
-  public static Main getMain()
+  
+  public static UltraGadgets getMain()
   {
     return plugin;
   }
@@ -86,11 +87,7 @@ public class Main
   {
     return this.ms;
   }
-  
-  public UtilFireworkEffect getUtilFirework()
-  {
-    return this.uf;
-  }
+
   
   public UtilBlock getUtilBlock()
   {
@@ -149,8 +146,21 @@ public class Main
     }
   }
   
-  private void setupClasses()
-  {
+  private void setupClasses() {
+	  
+   File userfiles;
+	  try {
+	      userfiles = new File(getDataFolder(), "/sons");
+	    if(!userfiles.exists()){
+	         userfiles.mkdirs();
+	      }
+	   } catch(SecurityException e) {
+	       userfiles = null;
+	  }
+	     
+	 if(userfiles == null) {
+	}
+	        
 	ActionBar.nmsver = Bukkit.getServer().getClass().getPackage().getName();
     ActionBar.nmsver = ActionBar.nmsver.substring(ActionBar.nmsver.lastIndexOf(".") + 1);
     plugin = this;
@@ -168,7 +178,6 @@ public class Main
     this.spm = new SuperMenu();
     this.gdt = new Gadgets();
     this.ul = new UtilLocations();
-    this.uf = new UtilFireworkEffect();
     petsm = new PetMenu();
     this.mountn = new MountMenu();
   }
@@ -240,9 +249,10 @@ public class Main
     Bukkit.getServer().getPluginManager().registerEvents(new PluginListener(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new UtilPet(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new ParticleUpdateManager(), this);
+    Bukkit.getServer().getPluginManager().registerEvents(new QuitEvent(), this);
     RegisterMounts.registerMouts(this);
     WardrobeUtils w = new WardrobeUtils();
-    w.register(this);
+    Bukkit.getPluginManager().registerEvents(w, this);
     Bukkit.getPluginManager().registerEvents(new UtilLag(this), this);
     Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Updater(this), 1L, 1L);
     System.out.print("Sucesso! Registrando comandos...");

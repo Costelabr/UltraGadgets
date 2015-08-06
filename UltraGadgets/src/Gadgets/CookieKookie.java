@@ -22,14 +22,14 @@ import org.bukkit.util.Vector;
 import Core.Util18;
 import Core.UtilCooldown;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class CookieKookie
   implements Listener
 {
   Map<String, Item> Kookies = new HashMap<>();
   Map<Player, BukkitTask> cooking = new HashMap<>();
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   
   public double randomRange(double paramDouble1, double paramDouble2)
   {

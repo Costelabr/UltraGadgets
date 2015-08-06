@@ -12,12 +12,12 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import Core.UtilMenu;
 import Pets.Pets.PetsType;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class PetMenu
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   String invname = this.plugin.getMessagesFile().PetsMenuName;
   public UtilMenu petMenu = new UtilMenu(this.plugin, this.invname, 6);
   
@@ -63,7 +63,7 @@ public class PetMenu
     
     this.petMenu.setItem(39, this.plugin.getItemStack().setBackArrow());
     
-    this.petMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.WOOL, "§aRemover Pet", Arrays.asList(new String[] { "§7Clique para remover seu Pet" }), 1, (byte)14));
+    this.petMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.BARRIER, "§aRemover Pet", Arrays.asList(new String[] { "§7Clique para remover seu Pet" }), 1, (byte)14));
     
     this.petMenu.setItem(41, this.plugin.getItemStack().setGoArrow());
     

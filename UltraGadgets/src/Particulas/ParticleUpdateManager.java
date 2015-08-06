@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.util.Vector;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 import Core.UtilParticle;
 import Core.UtilParticle.ParticleType;
@@ -22,7 +22,7 @@ public class ParticleUpdateManager implements Listener{
 	float height = 0.0F;
 	int step = 0;
 	double angularVelocityX = 0.07853981633974483D;
-	Main plugin = Main.getMain();
+	UltraGadgets plugin = UltraGadgets.getMain();
 	
    @EventHandler
 	public void paramUpdateEvent(UpdateEvent paramUpdateEvent) {

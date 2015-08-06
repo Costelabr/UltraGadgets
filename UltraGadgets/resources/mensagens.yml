@@ -1,6 +1,6 @@
 #Códigos de cores '&' suporte!
 #Mensagens - Use <GADGET> para o nome do Gadget | Use <COOLDOWN> para o Cooldown | Use <PLAYER> para o nome do Player | Use <newLine> para nova linha no Lore!
-Priority-Version: 1.0.0
+#Versão: 2.0.0
 
 #Config
 Prefix: "&7[&eUltraGadgets&7]"
@@ -8,19 +8,21 @@ Mensagem-Cooldown: "&eVocê deve esperar &c<COOLDOWN> &esegundos para usar &c<GAD
 Novo-Gadget: "&eVocê recebeu o gadget &c&l<GADGET>"
 Nova-Particula: "&eVocê ativou a partícula &c&l"
 Nova-Fantasia: "&eVocê se transoformou em um &c&l"
+Novo-Mount: "&eVocê selecionou a montaria &e&l"
 Pets-Formato: "&b<PLAYER>'s &f<PET>"
 Principal-Menu: "&lUltra Gadgets"
 Fantasias-Menu: "&6&lFantasias"
-Gadgets-Menu: "Gadgets"
-Particulas-Menu: "Partículas"
+Gadgets-Menu: "&7&lGadgets"
+Particulas-Menu: "&e&lPartículas"
 Super-Particulas-Menu: "&lSuper Partículas"
 Pets-Menu: "&c&lPets"
+Mount-Menu: "&a&lMontaria"
 Gadgets-Removidos: "&cGadgets removidos"
 Gadget-Desabilitado: "&cEsse gadget está desabilitado!"
 Particula-Ja-Ativada: "&eVocê já tem uma partícula ativada!"
 Particula-Desativadas: "&cVocê desativou todas as partículas."
 Titulo-Cooldown: "&6&lCooldown!"
-SubTitulo-Cooldown: "&cEspere &e<COOLDOWN> &cpara usar &e<GADGET>"
+SubTitulo-Cooldown: "&cEspere &e<COOLDOWN>s &cpara usar &e<GADGET>"
 Outro-Cooldown: "&cVocê está em Cooldown!"
 
 #Permissoes

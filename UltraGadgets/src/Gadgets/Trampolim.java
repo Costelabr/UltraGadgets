@@ -26,12 +26,12 @@ import org.bukkit.util.Vector;
 import Core.Util18;
 import Core.UtilCooldown;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class Trampolim
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   public static HashMap<Player, ArrayList<Block>> _tBlocks = new HashMap<>();
   ArrayList<Player> arrayPlayer = new ArrayList<>();
   ArrayList<Player> paramPlayerArray = new ArrayList<>();

@@ -8,13 +8,16 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.HorseInventory;
+import org.bukkit.inventory.ItemStack;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class Frozen implements Listener {
 	
-	Main plugin = Main.getMain();
+	UltraGadgets plugin = UltraGadgets.getMain();
 	
 	
 	@EventHandler
@@ -48,5 +51,15 @@ public class Frozen implements Listener {
 		     }
 		  }
 	   }
+	}
+	
+	@EventHandler
+	public void onFrozenInventoryOpen(InventoryOpenEvent e) {
+		if(e.getInventory() instanceof HorseInventory) {
+			HorseInventory h = (HorseInventory)e.getInventory();
+			if(h.getSaddle().isSimilar(new ItemStack(Material.DIAMOND_BARDING))) {
+				e.setCancelled(true);
+			}
+		}
 	}
 }

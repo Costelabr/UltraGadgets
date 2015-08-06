@@ -14,12 +14,12 @@ import Core.ParticleEffect;
 import Core.Util18;
 import Core.UtilCooldown;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class StickOfTeleport
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   
   @EventHandler
   public void paramPlayerUseTeleport(PlayerInteractEvent paramPlayerUseEyeOfTeleportEvent)

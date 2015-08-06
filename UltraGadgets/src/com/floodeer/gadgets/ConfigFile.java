@@ -4,7 +4,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigFile
 {
-Main plugin = Main.getMain();
+UltraGadgets plugin = UltraGadgets.getMain();
   
   public int joinSlot;
   
@@ -44,6 +44,7 @@ Main plugin = Main.getMain();
   public boolean vampireEnable;
   public boolean vectorTNTEnable;
   public boolean cowBoyEnable;
+  public boolean mobGunEnable;
   
   public boolean useTitles;
   
@@ -87,6 +88,7 @@ Main plugin = Main.getMain();
      this.vampireEnable = config.getBoolean("Vampire-Gadget-Habilitar");
      this.vectorTNTEnable = config.getBoolean("VectorTNT-Gadget-Habilitar");
      this.cowBoyEnable = config.getBoolean("CowBoy-Gadget-Habilitar");
+     this.mobGunEnable = config.getBoolean("MobGun-Gadget-Habilitar");
      
      this.useTitles = config.getBoolean("Usar-Titulos");
   }

@@ -9,7 +9,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class UtilAlg
 {
@@ -22,7 +22,7 @@ public class UtilAlg
     return localTreeSet;
   }
   
-  static Main plugin = Main.getMain();
+  static UltraGadgets plugin = UltraGadgets.getMain();
   
   public static Vector getTrajectory(Entity paramEntity1, Entity paramEntity2)
   {

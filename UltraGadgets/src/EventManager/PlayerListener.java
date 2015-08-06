@@ -1,19 +1,21 @@
 package EventManager;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class PlayerListener
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   
   @EventHandler(priority=EventPriority.HIGH)
   public void paramPlayerPlaceBlock(BlockPlaceEvent paramBlockPlace)
@@ -57,5 +59,15 @@ public class PlayerListener
     if(plugin.getItem().isGadgetItem(paramStackPlayer, plugin.getMessagesFile().WitherShooterName)) {
     	paramBreakBlock.setCancelled(true);
     }
+  }
+  
+  @EventHandler
+  public void onProcess(PlayerCommandPreprocessEvent e) {
+	  if(e.getMessage().equals("/reload")|| e.getMessage().equals("/rl")){
+	  if(e.getPlayer().isOp()) {
+		  e.getPlayer().sendMessage(plugin.getMessagesFile().prefix + ChatColor.RED + " Não use o comando '/reload' com o plugin instalado, isso pode causar problemas de Timers e Packets!");
+	  }
+		  
+	}
   }
 }

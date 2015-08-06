@@ -26,11 +26,11 @@ import Core.Util18;
 import Core.UtilCooldown;
 import Core.UtilMath;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class VectorTNT implements Listener {
 	
-	Main plugin = Main.getMain();
+	UltraGadgets plugin = UltraGadgets.getMain();
 	public List<Player> toVector = new ArrayList<Player>();
 	
 	public void launchTNT(Player localPlayer) {

@@ -12,12 +12,12 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import Core.UtilDisguise.DisguiseType;
 import Core.*;
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class DisguiseMenu
   implements Listener
 {
-  Main plugin = Main.getMain();;
+  UltraGadgets plugin = UltraGadgets.getMain();;
   String invname =  this.plugin.getMessagesFile().DisguiseMenuName;;
   String trans = this.plugin.getMessagesFile().newDisguise;
   public UtilMenu disguiseMenu = new UtilMenu(this.plugin, this.invname, 6);
@@ -77,7 +77,7 @@ public class DisguiseMenu
   		this.disguiseMenu.setItem(32, this.plugin.getItemStack().noPermissionItem("§7Wither Skeleton"));
   	} 
     
-    this.disguiseMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.WOOL, "§cRemover Fantasia", Arrays.asList(new String[] { "§7Clique para voltar a ser um Player!" }), 1, (byte)14));
+    this.disguiseMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.BARRIER, "§cRemover Fantasia", Arrays.asList(new String[] { "§7Clique para voltar a ser um Player!" }), 1, (byte)14));
     
     this.disguiseMenu.setItem(39, this.plugin.getItemStack().setBackArrow());
     

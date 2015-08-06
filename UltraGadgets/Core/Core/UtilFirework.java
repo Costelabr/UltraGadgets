@@ -8,11 +8,6 @@ import org.bukkit.inventory.meta.FireworkMeta;
 
 import java.util.Random;
 
-/**
- * Copyright by michidk
- * Date: 21.11.13
- * Time: 18:05
- */
 public class UtilFirework
 {
 
@@ -20,11 +15,6 @@ public class UtilFirework
 
     private static Random r = new Random();
 
-    /**
-     * spawns a random firework (or only the explosion effect)
-     *
-     * @param location the location where the firework spawns
-     */
     public static void spawnRandomFirework(Location location)
     {
         FireworkEffect fe = getRandomFireworkEffect();
@@ -41,11 +31,6 @@ public class UtilFirework
 
     }
 
-    /**
-     * generates a random FireworkEffect
-     *
-     * @return random FireworkEffect
-     */
     public static FireworkEffect getRandomFireworkEffect()
     {
         Color color = getRandomBukkitColor();
@@ -73,17 +58,12 @@ public class UtilFirework
         return FireworkEffect.builder().flicker(r.nextBoolean()).withColor(color).withFade(fade).with(type).trail(r.nextBoolean()).build();
     }
 
-    /**
-     * @return a random Color
-     */
+    
     public static Color getRandomColor()
     {
         return Color.fromRGB(r.nextInt(RGB_MAX), r.nextInt(RGB_MAX), r.nextInt(RGB_MAX));
     }
 
-    /**
-     * @return a random predefined Color
-     */
     public static Color getRandomBukkitColor()
     {
         int rt = r.nextInt(16);
@@ -127,4 +107,5 @@ public class UtilFirework
                 return Color.AQUA;
         }
     }
+  
 }

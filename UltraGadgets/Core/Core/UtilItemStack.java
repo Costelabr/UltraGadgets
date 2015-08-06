@@ -1,15 +1,20 @@
 package Core;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
+
 import java.util.Arrays;
 import java.util.List;
+
+import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class UtilItemStack
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   
   public ItemStack newItemStack(Material tipo, String nome, List<String> lore, int quantidade, byte data)
   {
@@ -19,6 +24,22 @@ public class UtilItemStack
     im.setLore(lore);
     i.setItemMeta(im);
     return i;
+  }
+  
+  public ItemStack buildArmor(Material tipo, Enchantment enchant, int level) {
+	  ItemStack i = new ItemStack(tipo);
+	  ItemMeta im = i.getItemMeta();
+	  im.addEnchant(enchant, level, true);
+	  i.setItemMeta(im);
+	  return i;
+  }
+  
+  public ItemStack buildColoredArmor(Material tipo, Color color) {
+	  ItemStack i = new ItemStack(tipo);
+	  LeatherArmorMeta l = (LeatherArmorMeta)i.getItemMeta();
+	  l.setColor(color);
+	  i.setItemMeta(l);
+	  return i;
   }
   
   public ItemStack setSoonTM()

@@ -23,7 +23,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
  
 /**
 * Created by chasechocolate.
@@ -179,7 +179,7 @@ public class UtilAnvilGUI {
             }
         };
  
-        Bukkit.getPluginManager().registerEvents(listener, Main.getMain()); //Replace with instance of main class
+        Bukkit.getPluginManager().registerEvents(listener, UltraGadgets.getMain()); //Replace with instance of main class
     }
  
     public Player getPlayer(){

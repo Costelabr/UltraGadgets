@@ -14,11 +14,11 @@ import Core.UtilMenu;
 import Mounts.MountHandler;
 import Mounts.Mounts;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class MountMenu implements Listener {
 	
-	Main plugin = Main.getMain();
+	UltraGadgets plugin = UltraGadgets.getMain();
 	String mountTitle = this.plugin.getMessagesFile().mountMenuName;
 	String ativado = this.plugin.getMensagensConfig().getString("Novo-Mount").replaceAll("&", "§");
 	public UtilMenu mountMenu = new UtilMenu(this.plugin, this.mountTitle, 6);
@@ -50,7 +50,7 @@ public class MountMenu implements Listener {
     
     this.mountMenu.setItem(39, this.plugin.getItemStack().setBackArrow());
     
-    this.mountMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.WOOL, "§aRemover Montaria", Arrays.asList(new String[] { "§7Clique para remover seu mount" }), 1, (byte)14));
+    this.mountMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.BARRIER, "§aRemover Montaria", Arrays.asList(new String[] { "§7Clique para remover seu mount" }), 1, (byte)14));
     
     this.mountMenu.setItem(41, this.plugin.getItemStack().setGoArrow());
     

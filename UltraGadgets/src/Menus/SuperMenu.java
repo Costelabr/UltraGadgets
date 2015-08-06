@@ -1,7 +1,5 @@
 package Menus;
 
-import java.util.Arrays;
-
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -14,12 +12,12 @@ import Core.UtilMenu;
 import Core.ParticleEffect;
 import Core.UtilParticle.ParticleType;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class SuperMenu
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   String invname = this.plugin.getMessagesFile().SuperMenuName;
   public UtilMenu spMenu = new UtilMenu(this.plugin, this.invname, 6);
   
@@ -28,59 +26,60 @@ public class SuperMenu
     this.spMenu.setItem(39, this.plugin.getItemStack().setBackArrow());
     
     if(p.hasPermission("ug.sparticula.lava") || (p.hasPermission("ug.sparticulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
-    this.spMenu.setItem(12, this.plugin.getItemStack().newItemStack(Material.LAVA_BUCKET, "§aLava", Arrays.asList(new String[] {"§7Lava em sua cabeça!" }), 1, (byte)0));
+    this.spMenu.setItem(12, this.plugin.getItemStack().newItemStack(Material.LAVA_BUCKET, "§aLava", null, 1, (byte)0));
   	}else{
   		this.spMenu.setItem(12, this.plugin.getItemStack().noPermissionItem("§7Lava"));
   	}
     
     if(p.hasPermission("ug.sparticula.agua") || (p.hasPermission("ug.sparticulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
-    this.spMenu.setItem(13, this.plugin.getItemStack().newItemStack(Material.WATER_BUCKET, "§aÁgua", Arrays.asList(new String[] { "§7Água na sua cabeça!" }), 1, (byte)0));
+    this.spMenu.setItem(13, this.plugin.getItemStack().newItemStack(Material.WATER_BUCKET, "§aÁgua", null, 1, (byte)0));
   	}else{
   		this.spMenu.setItem(13, this.plugin.getItemStack().noPermissionItem("§7Água"));
   	}
     
     if(p.hasPermission("ug.sparticula.rhappy") || (p.hasPermission("ug.sparticulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
-    this.spMenu.setItem(14, this.plugin.getItemStack().newItemStack(Material.EMERALD_BLOCK, "§aRoration Happy", Arrays.asList(new String[] { "§7Helix de Happy em volta de você!" }), 1, (byte)0));
+    this.spMenu.setItem(14, this.plugin.getItemStack().newItemStack(Material.EMERALD_BLOCK, "§aRoration Happy", null, 1, (byte)0));
   	}else{
   		this.spMenu.setItem(14, this.plugin.getItemStack().noPermissionItem("§7Roration Happy"));
   	}
     
     if(p.hasPermission("ug.sparticula.rcoracoes") || (p.hasPermission("ug.sparticulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
-    this.spMenu.setItem(21, this.plugin.getItemStack().newItemStack(Material.RED_ROSE, "§aRoration Corações", Arrays.asList(new String[] { "§7<3 Helix de corações!" }), 1, (byte)0));
+    this.spMenu.setItem(21, this.plugin.getItemStack().newItemStack(Material.RED_ROSE, "§aRoration Corações", null, 1, (byte)0));
   	}else{
   		this.spMenu.setItem(21, this.plugin.getItemStack().noPermissionItem("§7Roration Corações"));
   	}
     
     if(p.hasPermission("ug.sparticula.flamehelix") || (p.hasPermission("ug.sparticulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
-    this.spMenu.setItem(22, this.plugin.getItemStack().newItemStack(Material.BLAZE_POWDER, "§aHelix of Fire", Arrays.asList(new String[] { "§7Helix de fogo!" }), 1, (byte)0));
+    this.spMenu.setItem(22, this.plugin.getItemStack().newItemStack(Material.BLAZE_POWDER, "§aHelix of Fire", null, 1, (byte)0));
   	}else{
   		this.spMenu.setItem(22, this.plugin.getItemStack().noPermissionItem("§7Flame Helix"));
   	}
     
     if(p.hasPermission("ug.sparticula.redhelix") || (p.hasPermission("ug.sparticulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
-    this.spMenu.setItem(23, this.plugin.getItemStack().newItemStack(Material.REDSTONE_BLOCK, "§aHelix of Dust", Arrays.asList(new String[] { "§7Helix de redstone!" }), 1, (byte)0));
+    this.spMenu.setItem(23, this.plugin.getItemStack().newItemStack(Material.REDSTONE_BLOCK, "§aHelix of Dust", null, 1, (byte)0));
   	}else{
   		this.spMenu.setItem(23, this.plugin.getItemStack().noPermissionItem("§7Red Helix"));
   	}
     
     if(p.hasPermission("ug.sparticula.frozen") || (p.hasPermission("ug.sparticulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
-    this.spMenu.setItem(30, this.plugin.getItemStack().newItemStack(Material.SNOW_BLOCK, "§fFrozen", Arrays.asList(new String[] { "§7Frozen!" }), 1, (byte)0));
+    this.spMenu.setItem(30, this.plugin.getItemStack().newItemStack(Material.SNOW_BLOCK, "§fFrozen", null, 1, (byte)0));
   	}else{
   		this.spMenu.setItem(30, this.plugin.getItemStack().noPermissionItem("§7Frozen"));
   	}
     
     if(p.hasPermission("ug.sparticula.watercircle") || (p.hasPermission("ug.sparticulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
-    this.spMenu.setItem(31, this.plugin.getItemStack().newItemStack(Material.GLASS_BOTTLE, "§fCírculo de Água", Arrays.asList(new String[] { "§7Círculo de água!" }), 1, (byte)0));
+    this.spMenu.setItem(31, this.plugin.getItemStack().newItemStack(Material.GLASS_BOTTLE, "§fCírculo de Água", null, 1, (byte)0));
   	}else{
   		this.spMenu.setItem(31, this.plugin.getItemStack().noPermissionItem("§7Circle of Water"));
   	}
+    
     
     this.spMenu.setItem(32, this.plugin.getItemStack().setSoonTM());
     
     this.spMenu.setItem(39, this.plugin.getItemStack().setBackArrow());
     
-    this.spMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.WOOL, "§aRemover Partículas", 
-      Arrays.asList(new String[] {"§7Clique para desabilitar partículas" }), 1, (byte)14));
+    this.spMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.BARRIER, "§aRemover Partículas", 
+      null, 1, (byte)14));
     
     this.spMenu.setItem(41, this.plugin.getItemStack().setGoArrow());
     
@@ -192,8 +191,15 @@ public class SuperMenu
     		 plugin.getUtilPartciles().circleOfParticles(p, ParticleEffect.DRIP_WATER);
     	 }
      }
+     if(slot == 32) {
+    	 if(!this.plugin.getUtilPartciles().hasEffect(p)) {
+    		 p.closeInventory();
+    		 p.sendMessage(this.plugin.getMessagesFile().newParticle + "§7Colina");
+    		 p.playSound(p.getLocation(), Sound.WATER, 1.0F, 12.0F);
+    	 }
+     }
       if (slot == 40) {
-        this.plugin.getUtilPartciles().stopRotation(p);
+        this.plugin.getUtilPartciles().stopAll(p);
       }
       if (slot == 41)
       {

@@ -12,16 +12,18 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import Core.UtilMenu;
 import Gadgets.Tipos;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class Gadgets
   implements Listener
 {
-  Main plugin = Main.getMain();;
+  UltraGadgets plugin = UltraGadgets.getMain();
   String invname = plugin.getMessagesFile().GadgetsMenuName;
   String invname2 = invname + " Página 2";
+  String invname3 = invname + " Página 3";
   public UtilMenu gadgets = new UtilMenu(plugin, invname, 6);
-  public UtilMenu gadgets2page = new UtilMenu(plugin, invname2, 6);;
+  public UtilMenu gadgets2page = new UtilMenu(plugin, invname2, 6);
+  public UtilMenu gadgets3page = new UtilMenu(plugin, invname3, 6);
   
   public void showGadgetsPage1(Player p) {
 	  
@@ -88,7 +90,7 @@ public class Gadgets
   		this.gadgets.setItem(32, this.plugin.getItemStack().noPermissionItem("§7Discoball"));
   	}
     
-    gadgets.setItem(40, plugin.getItemStack().newItemStack(Material.WOOL, "§aRemover Gadget", 
+    gadgets.setItem(40, plugin.getItemStack().newItemStack(Material.BARRIER, "§aRemover Gadget", 
       Arrays.asList(new String[] {"§7Clique para remover seu Gadget" }), 1, (byte)14));
     
     gadgets.setItem(41, plugin.getItemStack().setGoArrow());
@@ -100,63 +102,63 @@ public class Gadgets
   }
   
   public void showGadgetPage2(Player p) {
-	 if(p.hasPermission("ug.gadgets2page.railgun") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+	 if(p.hasPermission("ug.gadgets.railgun") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     gadgets2page.setItem(12, plugin.getItemStack().newItemStack(Material.DIAMOND_HOE, plugin.getMessagesFile().RailGunGadgetName, 
       Arrays.asList(plugin.getMessagesFile().RailGunGadgetLore), 1, (byte)0));
 	 }else{
 	  		this.gadgets2page.setItem(12, this.plugin.getItemStack().noPermissionItem("§7RailGun"));
 	 }
 	 
-    if(p.hasPermission("ug.gadgets2page.smokebomb") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+    if(p.hasPermission("ug.gadgets.smokebomb") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     gadgets2page.setItem(13, plugin.getItemStack().newItemStack(Material.COAL, plugin.getMessagesFile().SmokeBombGadgetName, 
       Arrays.asList(plugin.getMessagesFile().SmokeBombGadgetLore), 1, (byte)0));
 	 }else{
 	  		this.gadgets2page.setItem(13, this.plugin.getItemStack().noPermissionItem("§7Smokebomb"));
 	 }
 	 
-    if(p.hasPermission("ug.gadgets2page.diamondparty") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+    if(p.hasPermission("ug.gadgets.diamondparty") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     gadgets2page.setItem(14, plugin.getItemStack().newItemStack(Material.DIAMOND, plugin.getMessagesFile().DiamondPartyGadgetName, 
       Arrays.asList(plugin.getMessagesFile().DiamondPartyGadgetLore), 1, (byte)0));
 	 }else{
 	  		this.gadgets2page.setItem(14, this.plugin.getItemStack().noPermissionItem("§7DiamondParty"));
 	 }
 	 
-    if(p.hasPermission("ug.gadgets2page.paraquedas") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+    if(p.hasPermission("ug.gadgets.paraquedas") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     gadgets2page.setItem(21, plugin.getItemStack().newItemStack(Material.LEASH, plugin.getMessagesFile().ParaquedasGadgetName, 
       Arrays.asList(plugin.getMessagesFile().ParaquedasGadgetLore), 1, (byte)0));
 	 }else{
 	  		this.gadgets2page.setItem(21, this.plugin.getItemStack().noPermissionItem("§7Paraquedas"));
 	 }
 	 
-    if(p.hasPermission("ug.gadgets2page.whitershoot") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+    if(p.hasPermission("ug.gadgets.whitershoot") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     gadgets2page.setItem(22, plugin.getItemStack().newItemStack(Material.SKULL_ITEM, plugin.getMessagesFile().WitherShooterName, 
       Arrays.asList(plugin.getMessagesFile().WitherShooterLore), 1, (byte)1));
 	 }else{
 	  		this.gadgets2page.setItem(22, this.plugin.getItemStack().noPermissionItem("§7WitherShoot"));
 	 }
 	 
-    if(p.hasPermission("ug.gadgets2page.trampolim") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+    if(p.hasPermission("ug.gadgets.trampolim") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     gadgets2page.setItem(23, plugin.getItemStack().newItemStack(Material.HOPPER, plugin.getMessagesFile().TrampolimName, 
      Arrays.asList(plugin.getMessagesFile().TrampolimLore), 1, (byte)0));
 	 }else{
 	  		this.gadgets2page.setItem(23, this.plugin.getItemStack().noPermissionItem("§7Trampolim"));
 	 }
 	 
-    if(p.hasPermission("ug.gadgets2page.vampire") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+    if(p.hasPermission("ug.gadgets.vampire") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     gadgets2page.setItem(30, plugin.getItemStack().newItemStack(Material.GHAST_TEAR, plugin.getMessagesFile().VampireGadgetName, 
       Arrays.asList(plugin.getMessagesFile().VampireGadgetLore), 1, (byte)0));
 	 }else{
 	  		this.gadgets2page.setItem(30, this.plugin.getItemStack().noPermissionItem("§7Vampiro"));
 	 }
 	 
-    if(p.hasPermission("ug.gadgets2page.vectortnt") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+    if(p.hasPermission("ug.gadgets.vectortnt") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     gadgets2page.setItem(31, plugin.getItemStack().newItemStack(Material.TNT, plugin.getMessagesFile().VectorGadgetName, 
     	      Arrays.asList(plugin.getMessagesFile().VectorGadgetLore), 1, (byte)0));
 	 }else{
 	  		this.gadgets2page.setItem(31, this.plugin.getItemStack().noPermissionItem("§7VectorTNT"));
 	 }
 	 
-    if(p.hasPermission("ug.gadgets2page.cowboy") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+    if(p.hasPermission("ug.gadgets.cowboy") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     gadgets2page.setItem(32, plugin.getItemStack().newItemStack(Material.CACTUS, plugin.getMessagesFile().CowboyGadgetLore, 
   	      Arrays.asList(plugin.getMessagesFile().CowboyGadgetLore), 1, (byte)0));
 	 }else{
@@ -165,11 +167,48 @@ public class Gadgets
 	 
     gadgets2page.setItem(39, plugin.getItemStack().setBackArrow());
     
-    gadgets2page.setItem(40, plugin.getItemStack().newItemStack(Material.WOOL, "§aRemover Gadget", 
+    gadgets2page.setItem(40, plugin.getItemStack().newItemStack(Material.BARRIER, "§aRemover Gadget", 
       Arrays.asList(new String[] {"§7Clique para remover seu Gadget" }), 1, (byte)14));
     
     gadgets2page.setItem(41, plugin.getItemStack().setGoArrow());
     gadgets2page.showMenu(p);
+  }
+  
+  public void showGadgetsPage3(Player p) {
+	  if(p.hasPermission("ug.gadgets.mobgun") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+	  gadgets3page.setItem(12, plugin.getItemStack().newItemStack(Material.BLAZE_ROD, "§6§lMob Gun", null, 1, (byte)0));
+		 }else{
+		  	this.gadgets2page.setItem(12, this.plugin.getItemStack().noPermissionItem("§7Cowboy"));
+	 }
+	  
+	  gadgets3page.setItem(13, plugin.getItemStack().setSoonTM());
+	  
+	  gadgets3page.setItem(14, plugin.getItemStack().setSoonTM());
+	  
+	  gadgets3page.setItem(21, plugin.getItemStack().setSoonTM());
+	  
+	  gadgets3page.setItem(22, plugin.getItemStack().setSoonTM());
+	  
+	  gadgets3page.setItem(23, plugin.getItemStack().setSoonTM());
+	  
+	  gadgets3page.setItem(30, plugin.getItemStack().setSoonTM());
+	  
+	  gadgets3page.setItem(31, plugin.getItemStack().setSoonTM());
+	  
+	  gadgets3page.setItem(32, plugin.getItemStack().setSoonTM());
+	  
+	  gadgets3page.setItem(39, plugin.getItemStack().setSoonTM());
+	  
+	  gadgets3page.setItem(40, plugin.getItemStack().setSoonTM());
+	  
+	  gadgets3page.setItem(40, plugin.getItemStack().newItemStack(Material.BARRIER, "§aRemover Gadget", 
+	    Arrays.asList(new String[] {"§7Clique para remover seu Gadget" }), 1, (byte)14));
+	    	    
+	  gadgets3page.setItem(41, plugin.getItemStack().setGoArrow());
+	    
+	  gadgets3page.setItem(39, plugin.getItemStack().setBackArrow());
+	 
+	  gadgets3page.showMenu(p);
   }
   
   @EventHandler
@@ -337,8 +376,27 @@ public class Gadgets
       if (slot == 41)
       {
         p.closeInventory();
-        p.sendMessage("§7§oEm breve!");
+        showGadgetsPage3(p);
       }
+    }
+    if ((e.getInventory().getName().equalsIgnoreCase(invname3)) && ((e.getWhoClicked() instanceof Player))) {
+    	Player p = (Player)e.getWhoClicked();
+    	int slot = e.getSlot();
+    	if(slot == 12) {
+    		Tipos.setGadget(p, Tipos.MOBGUN);    		
+    	}
+        if (slot == 40) {  
+            Tipos.setGadget(p, Tipos.NENHUM);
+          }
+        if(slot == 39) {
+        	p.closeInventory();
+            showGadgetPage2(p);
+        }
+          if (slot == 41)
+          {
+              p.closeInventory();
+              p.sendMessage("§7§oEm breve!");
+          }
     }
   }
 }

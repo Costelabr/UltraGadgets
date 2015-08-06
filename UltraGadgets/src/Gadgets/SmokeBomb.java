@@ -18,12 +18,12 @@ import Core.UtilCooldown;
 import Core.UtilLag;
 import Core.UtilMath;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class SmokeBomb
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   
   @EventHandler
   public void paramPlayerUseSmoke(PlayerInteractEvent paramPlayerUseSmoke)

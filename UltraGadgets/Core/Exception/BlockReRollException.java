@@ -1,6 +1,6 @@
 package Exception;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class BlockReRollException
   extends RuntimeException
@@ -12,6 +12,6 @@ public class BlockReRollException
   public BlockReRollException(String message)
   {
     super(message);
-    Main.getMain().ugPaster.appendLine(message);
+    UltraGadgets.getMain().ugPaster.appendLine(message);
   }
 }

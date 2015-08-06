@@ -14,12 +14,12 @@ import Core.UtilMenu;
 import Core.ParticleEffect;
 import Core.UtilParticle.ParticleType;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class ParticlesMenu
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   String particleTitle = this.plugin.getMessagesFile().ParticlesMenuName;
   String ativado = this.plugin.getMensagensConfig().getString("Nova-Particula").replaceAll("&", "§");
   public UtilMenu particleMenu = new UtilMenu(this.plugin, this.particleTitle, 6);
@@ -94,7 +94,7 @@ public class ParticlesMenu
   	}    
     
     
-    this.particleMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.WOOL, 
+    this.particleMenu.setItem(40, this.plugin.getItemStack().newItemStack(Material.BARRIER, 
       "§cRemover partículas", Arrays.asList(new String[] { "§7Clique para desativar suas partículas!" }), 1, (byte)14));
     
     this.particleMenu.setItem(41, this.plugin.getItemStack().setGoArrow());
@@ -211,7 +211,7 @@ public class ParticlesMenu
     	        p.playSound(p.getLocation(), Sound.FIREWORK_LAUNCH, 1.0F, 1.0F);
     	 }
       if (slot == 40) {
-        this.plugin.getUtilPartciles().stopRotation(p);
+        this.plugin.getUtilPartciles().stopAll(p);
         p.closeInventory();
       }
       if (slot == 39)

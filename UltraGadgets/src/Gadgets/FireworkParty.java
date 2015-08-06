@@ -16,12 +16,12 @@ import Core.UtilFirework;
 import Core.Util18;
 import Core.UtilCooldown;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class FireworkParty
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   
   @EventHandler
   public void paramPlayerUseFirework(PlayerInteractEvent paramPlayerUseFireworkEvent)

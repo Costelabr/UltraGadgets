@@ -5,7 +5,7 @@ import Core.UtilJsonBuilder.ClickAction;
 import Core.UtilJsonBuilder.HoverAction;
 import EventManager.PluginListener;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
@@ -19,7 +19,7 @@ import org.bukkit.entity.Player;
 public class UltraGadgetsCMD
   implements CommandExecutor
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   private String prefix = plugin.getMessagesFile().prefix + " ";
   
   private void sendHelp(Player paramToPlayer) {

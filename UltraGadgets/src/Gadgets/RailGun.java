@@ -16,16 +16,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
+import Core.FireworkNMSHandler;
 import Core.Util18;
 import Core.UtilCooldown;
-import Core.UtilFireworkEffect;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
-public class RailGun
-  implements Listener
+public class RailGun extends FireworkNMSHandler
+  implements Listener 
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   
   class Counter
   {
@@ -44,9 +44,9 @@ public class RailGun
     }
   }
   
+  
   @EventHandler
   public void paramPlayerUseRailGun(PlayerInteractEvent paramPlayerUseRailGunEvent)
-    throws Exception
   {
     final Player paramPlayer = paramPlayerUseRailGunEvent.getPlayer();
     Action paramAction = paramPlayerUseRailGunEvent.getAction();
@@ -62,7 +62,6 @@ public class RailGun
       {
         Location paramLocation = paramPlayer.getEyeLocation();
         
-        final UtilFireworkEffect spawnFireWork = new UtilFireworkEffect();
         
         final List<Location> blocks = this.plugin.getUtilLocation().getSphere(paramLocation, 10, 1, true, false, 10);
         final BukkitTask runner = new BukkitRunnable()
@@ -77,7 +76,7 @@ public class RailGun
             {
               try
               {
-                spawnFireWork.playFirework(paramPlayer.getWorld(), (Location)blocks.get(0), FireworkEffect.builder().withColor(Color.BLUE).withColor(Color.LIME).withFade(Color.WHITE).build());
+                playFirework((Location)blocks.get(0), FireworkEffect.builder().withColor(Color.BLUE).withColor(Color.LIME).withFade(Color.WHITE).build());
               }
               catch (Exception e)
               {

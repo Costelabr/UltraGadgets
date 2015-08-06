@@ -8,12 +8,12 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class InventoryMoveManager
   implements Listener
 {
-  static Main plugin = Main.getMain();
+  static UltraGadgets plugin = UltraGadgets.getMain();
   
   @EventHandler
   public void onPlayerClick(PlayerDropItemEvent e)

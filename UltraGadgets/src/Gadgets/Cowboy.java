@@ -6,11 +6,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class Cowboy implements Listener {
 	
-	Main plugin = Main.getMain();
+	UltraGadgets plugin = UltraGadgets.getMain();
 	
 	@EventHandler
 	public void paramPlayerUseCowBoy(PlayerInteractEntityEvent paramPlayerUseCowBoyEvent) {

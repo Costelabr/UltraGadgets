@@ -13,11 +13,11 @@ import Core.UtilParticle;
 import Core.UtilVelocity;
 import Core.UtilParticle.ParticleType;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class UtilParticleType
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   HashMap<Player, Integer> animatedHelixID = new HashMap<>();
   HashMap<Player, Integer> intID = new HashMap<>();
   HashMap<Player, Integer> intIDspheric = new HashMap<>();
@@ -298,7 +298,7 @@ public class UtilParticleType
 	return false;
   }
   
-  public void stopRotation(Player p)
+  public void stopAll(Player p)
   {
     if (this.intID.containsKey(p))
     {

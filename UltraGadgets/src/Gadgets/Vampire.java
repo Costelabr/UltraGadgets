@@ -17,11 +17,11 @@ import org.bukkit.potion.PotionEffectType;
 import Core.Util18;
 import Core.UtilCooldown;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class Vampire implements Listener {
 	
-	Main plugin = Main.getMain();
+	UltraGadgets plugin = UltraGadgets.getMain();
 	
 	@SuppressWarnings("deprecation")
 	private void setVampire(final Player paramPlayer, long paramTime) {

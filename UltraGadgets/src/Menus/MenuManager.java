@@ -11,14 +11,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import Core.UtilMenu;
+import Core.Ward;
 import Core.WardrobeUtils;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class MenuManager
   implements Listener
 {
-  Main plugin = Main.getMain();;
+  UltraGadgets plugin = UltraGadgets.getMain();;
   String invname = this.plugin.getMessagesFile().MainMenuName;
   public UtilMenu gadgetMenu = new UtilMenu(plugin, invname, 5);
   WardrobeUtils w;
@@ -68,7 +69,7 @@ public class MenuManager
       }
       if (slotClicked == 33) {
     	   if(p.hasPermission("ug.wadrobe.usar") || (p.hasPermission("ug.usar.todos"))) {
-    	   w = new WardrobeUtils(this.plugin, p);
+    	   new Ward(p, plugin);
     	   }else{
     		   p.sendMessage(ChatColor.RED + "Você não tem permissão.");
     	   }

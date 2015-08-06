@@ -65,6 +65,6 @@ public class UtilHologram
     a.setInvisible(true);
     a.setCustomNameVisible(true);
     a.setSmall(true);
-    this.a.put(Integer.valueOf(a.getId()), a);
+    this.a.put(a.getId(), a);
   }
 }

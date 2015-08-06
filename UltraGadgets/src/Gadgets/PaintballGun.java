@@ -22,14 +22,14 @@ import Core.Util18;
 import Core.UtilCooldown;
 import Core.UtilMath;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class PaintballGun
   implements Listener
 {
   List<Snowball> paramSnowball = new ArrayList<>();
   ArrayList<Location> l = new ArrayList<>();
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   
   @EventHandler
   public void paramUsePaintballGun(PlayerInteractEvent paramPlayerUsePaintballGun)

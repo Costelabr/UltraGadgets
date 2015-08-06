@@ -25,12 +25,12 @@ import Core.UtilCooldown;
 import Core.UtilLocations;
 import Core.UtilMath;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class Bomba
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   List<Location> saveParam = new ArrayList<Location>();
   
   @EventHandler
@@ -97,9 +97,6 @@ public class Bomba
                 if (plugin.getUtilBlock().solid(localBlock)) {
                   if (!plugin.getUtilBlock().blockToRestore.contains(localBlock))
                   {
-                    if (localBlock.getType() != Material.CLAY) {
-                  	  plugin.getUtilBlock().setBlockToRestore(localBlock, 171, b, 4L, true, false, false);
-                    }
                     if (localBlock.getType() != Material.CLAY_BRICK) {
                   	  plugin.getUtilBlock().setBlockToRestore(localBlock, 159, b, 4L, true, false, false);
                     }

@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 import Gadgets.VectorTNT;
 
@@ -19,7 +19,7 @@ public class VectorUpdate extends BukkitRunnable{
 	protected HashMap<UUID, Vector> velocities;
 	protected HashMap<UUID, Location> positions;
 	protected HashMap<UUID, Boolean> onGround;
-	Main plugin = Main.getMain();
+	UltraGadgets plugin = UltraGadgets.getMain();
 
 	@SuppressWarnings("deprecation")
 	public void UpdateVelocities() {

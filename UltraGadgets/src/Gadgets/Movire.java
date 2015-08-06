@@ -21,12 +21,12 @@ import org.bukkit.potion.PotionEffectType;
 import Core.Util18;
 import Core.UtilCooldown;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class Movire
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   ArrayList<Player> paramIsFireN = new ArrayList<Player>();
   
   @EventHandler

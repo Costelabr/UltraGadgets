@@ -8,13 +8,13 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public enum Tipos
 {
-  NENHUM,  BOMBA,  COOKIEK,  FIREWORKP,  FUNGUN,  MOVIRE,  PBGUN,  STICKTP,  DJ,  DISCOB,  RAILGUN,  SMOKEBOMB,  DIAMONDP,  PARAQUEDAS,  WITHERSHOOT,  TRAMPOLIM, VAMPIRE, VECTORTNT, COWBOY;
+  NENHUM,  BOMBA,  COOKIEK,  FIREWORKP,  FUNGUN,  MOVIRE,  PBGUN,  STICKTP,  DJ,  DISCOB,  RAILGUN,  SMOKEBOMB,  DIAMONDP,  PARAQUEDAS,  WITHERSHOOT,  TRAMPOLIM, VAMPIRE, VECTORTNT, COWBOY, MOBGUN;
   
-  private static Main plugin = Main.getMain();
+  private static UltraGadgets plugin = UltraGadgets.getMain();
   protected static String invname = plugin.getMessagesFile().GadgetsMenuName;
   protected static int slotAdd = plugin.getConfig().getInt("Gadget-Gadgets-Slot");
   public static final Map<Player, String> getPlayerGadget = new HashMap<>();
@@ -111,14 +111,8 @@ public enum Tipos
         }
       break;
     case DJ: 
-        if(plugin.getConfigFile().DjEnable) {
-      getPlayerGadget.put(p, "Dj");
-      p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
-      p.getInventory().setItem(i, plugin.getItemStack().newItemStack(Material.JUKEBOX, plugin.getMessagesFile().DjGadgetName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
-      p.closeInventory();
-        }else{
-        	p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
-        }
+        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
+        p.closeInventory();
       break;
     case DISCOB: 
         if(plugin.getConfigFile().DiscoBallEnable) {
@@ -216,6 +210,17 @@ public enum Tipos
     		getPlayerGadget.put(p, "CowBoy");    	
     	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
     	     p.getInventory().setItem(i, plugin.getItemStack().newItemStack(Material.CACTUS, plugin.getMessagesFile().CowboyGadgetName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
+    	     p.closeInventory();
+    	     }else{
+    	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
+    	    }
+    case MOBGUN:
+    	if(plugin.getConfigFile().mobGunEnable) {
+    		getPlayerGadget.put(p, "MobGun");    	
+    	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
+    	     p.getInventory().setItem(i, plugin.getItemStack().newItemStack(
+    	     Material.BLAZE_ROD, "§6§lMob Gun §f§l- §b§lPorco §7(Clique para trocar)", 
+    	     null, 1, (byte)0));
     	     p.closeInventory();
     	     }else{
     	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);

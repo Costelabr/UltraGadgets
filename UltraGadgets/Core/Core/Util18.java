@@ -9,11 +9,11 @@ import net.minecraft.server.v1_8_R3.PlayerConnection;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class Util18 {
 	
-	static Main plugin = Main.getMain();
+	static UltraGadgets plugin = UltraGadgets.getMain();
 
 	public static void sendTitle(Player player, String title, String subtitle,
 			int fadeIn, int showTime, int fadeOut) {

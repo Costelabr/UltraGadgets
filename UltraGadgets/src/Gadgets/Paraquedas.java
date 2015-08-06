@@ -28,12 +28,12 @@ import Core.UtilCooldown;
 import Core.UtilMath;
 import EventManager.UpdateEvent;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class Paraquedas
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   final ArrayList<Player> localArrayList = new ArrayList<>();
   
   @EventHandler
@@ -221,7 +221,7 @@ public class Paraquedas
     }
   }
   
-  public void setMetadata(Entity paramEntity, String paramString, Object paramObject, Main paramCore)
+  public void setMetadata(Entity paramEntity, String paramString, Object paramObject, UltraGadgets paramCore)
   {
     paramEntity.setMetadata(paramString, new FixedMetadataValue(paramCore, 
       paramObject));

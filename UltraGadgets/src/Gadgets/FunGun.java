@@ -20,7 +20,7 @@ import Core.ParticleEffect;
 import Core.Util18;
 import Core.UtilCooldown;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class FunGun
   implements Listener
@@ -28,7 +28,7 @@ public class FunGun
   List<EnderPearl> paramEnderPearl = new ArrayList<>();
   List<Snowball> paramSnowball = new ArrayList<>();
   List<Player> paramTeleporter = new ArrayList<>();
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   
   @EventHandler
   public void paramUseFunGun(PlayerInteractEvent paramPlayerUseFunGun)

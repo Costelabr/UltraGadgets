@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -14,7 +13,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class UtilBlock
 {
@@ -34,6 +33,7 @@ public class UtilBlock
   @SuppressWarnings("deprecation")
   public void setFakeBlock(int paramInt, byte paramByte, Location paramLocation) {
     if ((paramLocation.getBlock().getType() != Material.SKULL) && (paramLocation.getBlock().getType() != Material.ITEM_FRAME)){
+    if(!paramLocation.getBlock().hasMetadata("DJBlock")) {
       int i = paramLocation.getBlockX();
       int j = paramLocation.getBlockY();
       int k = paramLocation.getBlockZ();
@@ -44,15 +44,12 @@ public class UtilBlock
       }
     }
   }
-  
-  public void sendBreak(Player paramPlayer, int paramInt, byte paramByte, Location paramLocation)
-  {
-    paramPlayer.getWorld().playEffect(paramLocation, Effect.STEP_SOUND, paramInt, paramByte);
-  }
+ }
   
   @SuppressWarnings("deprecation")
   public void setBlockToRestore(final Block paramBlock, final int paramInt, final byte paramByte, long paramLong, final boolean paramBoolean1, final boolean paramBoolean2, boolean paramBoolean3){
-    blockToRestore.add(paramBlock);
+    if(!paramBlock.hasMetadata("DJBlock")) {
+	 blockToRestore.add(paramBlock);
     if (paramBoolean2) {
       frostyBlock.add(paramBlock);
     }
@@ -69,16 +66,10 @@ public class UtilBlock
     }
     
     
-    Bukkit.getScheduler().runTaskLater(Main.getMain(), new Runnable()
+    Bukkit.getScheduler().runTaskLater(UltraGadgets.getMain(), new Runnable()
     {
       public void run()
       {
-        {
-
-        	for(Player localPlayer : Bukkit.getOnlinePlayers()) {
-            sendBreak(localPlayer, paramInt, paramByte, paramBlock.getLocation().add(0.0D, 0.5D, 0.0D));
-        	}
-          }
         if (paramBoolean1) {
           setFakeBlock(i, b, paramBlock.getLocation());
         } else {
@@ -91,6 +82,7 @@ public class UtilBlock
       }
     }, paramLong * 20L);
   }
+ }
   
   
   @SuppressWarnings("deprecation")
@@ -355,6 +347,12 @@ public boolean usable(Block paramBlock)
   {
     return getInRadius(paramLocation, paramDouble, 999.0D);
   }
+  
+  public HashMap<Block, Double> getInRadius(Location paramLocation, double paramDouble, boolean paramBoolean)
+  {
+    return getInRadius(paramLocation, paramDouble, 999.0D);
+  }
+  
   
   public HashMap<Block, Double> getInRadius(Location paramLocation, double paramDouble1, double paramDouble2)
   {

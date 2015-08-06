@@ -8,7 +8,7 @@ import Core.UtilCooldown;
 
 public class Messages
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   public String GadgetItem;
   public String prefix;
   

@@ -7,14 +7,14 @@ import org.bukkit.block.Block;
 
 import Core.UtilParticle.ParticleType;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class Save
 {
   private Location location;
   private Material type;
   private byte data;
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   
   @SuppressWarnings("deprecation")
 public Save(Block paramBlock)

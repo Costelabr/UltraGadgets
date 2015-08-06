@@ -34,12 +34,12 @@ import Core.UtilAnvilGUI.AnvilClickEvent;
 import Exception.PetTypeException;
 import Pets.Pets.PetsType;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class PlayerInteractPetEvent
   implements Listener
 {
-  Main plugin;
+  UltraGadgets plugin;
   private HashMap<Player, String> mapOfString;
   HashMap<Player, Entity> playerPet;
   ArrayList<Player> hashOfPlayer;
@@ -49,7 +49,7 @@ public class PlayerInteractPetEvent
   
   public PlayerInteractPetEvent()
   {
-    this.plugin = Main.getMain();
+    this.plugin = UltraGadgets.getMain();
     this.mapOfString = new HashMap<>();
     this.playerPet = new HashMap<>();
     this.hashOfPlayer = new ArrayList<>();

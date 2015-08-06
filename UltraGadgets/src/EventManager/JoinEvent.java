@@ -1,5 +1,6 @@
 package EventManager;
 
+
 import java.util.Arrays;
 
 import org.bukkit.Bukkit;
@@ -12,7 +13,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 import Core.ActionBar;
 import Gadgets.Tipos;
@@ -21,7 +22,7 @@ import Pets.Pets.PetsType;
 public class JoinEvent
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
  
   
   @EventHandler
@@ -30,8 +31,7 @@ public class JoinEvent
     final Player p = e.getPlayer();
     Tipos.setGadget(p, Tipos.NENHUM);
     p.getInventory().setItem(this.plugin.getConfig().getInt("Slot-Gadget-Join-Item"), this.plugin.getItemStack().newItemStack(Material.PISTON_BASE, this.plugin.getMessagesFile().GadgetItemName, 
-      Arrays.asList(plugin.getMessagesFile().GadgetItemLore), 1, (byte)0));
-   
+    	      Arrays.asList(plugin.getMessagesFile().GadgetItemLore), 1, (byte)0));
     Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
     {
       public void run()

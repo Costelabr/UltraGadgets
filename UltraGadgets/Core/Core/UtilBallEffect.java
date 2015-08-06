@@ -7,7 +7,7 @@ import org.bukkit.util.Vector;
 
 import Gadgets.Dj;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
 public class UtilBallEffect
 {
@@ -16,7 +16,7 @@ public class UtilBallEffect
     UP,  DOWN,  BOTH;
   }
   
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   public float sphereRadius = 0.6F;
   public int max = 15;
   public ParticleEffect sphereParticle = ParticleEffect.CLOUD;

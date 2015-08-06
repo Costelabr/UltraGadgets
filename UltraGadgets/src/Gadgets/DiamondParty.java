@@ -15,20 +15,19 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
+import Core.FireworkNMSHandler;
 import Core.Util18;
 import Core.UtilCooldown;
-import Core.UtilFireworkEffect;
 
-import com.floodeer.gadgets.Main;
+import com.floodeer.gadgets.UltraGadgets;
 
-public class DiamondParty
+public class DiamondParty extends FireworkNMSHandler
   implements Listener
 {
-  Main plugin = Main.getMain();
+  UltraGadgets plugin = UltraGadgets.getMain();
   
   private void startParty(final Player p)
   {
-    final UtilFireworkEffect f = new UtilFireworkEffect();
     final Vector direction = Vector.getRandom();
     direction.setX(direction.getX() - 0.5D);
     direction.setY(0.6F);
@@ -50,7 +49,7 @@ public class DiamondParty
               paramItemDrop.remove();
             }
           }, 36L);
-          f.playFirework(p.getWorld(), p.getLocation().add(0.0D, 2.8D, 0.0D), 
+          playFirework(p.getLocation().add(0.0D, 2.8D, 0.0D), 
             FireworkEffect.builder()
             .withColor(Color.BLUE)
             .withColor(Color.AQUA)
