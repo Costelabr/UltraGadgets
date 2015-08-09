@@ -67,7 +67,7 @@ public class UtilItemStack
     ItemStack go = new ItemStack(Material.ARROW, 1);
     ItemMeta goMeta = go.getItemMeta();
     goMeta.setDisplayName("§aPróxima página");
-    goMeta.setLore(Arrays.asList(new String[] { "§7Clique para ir a pr§xima p§gina!" }));
+    goMeta.setLore(Arrays.asList(new String[] { "§7Clique para ir a proxima página!" }));
     go.setItemMeta(goMeta);
     return go;
   }

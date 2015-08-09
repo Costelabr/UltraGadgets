@@ -166,6 +166,12 @@ public class InventoryMoveManager
         e.setCancelled(true);
         e.setResult(Result.DENY);
       }
+      if(i.hasItemMeta() && i.getItemMeta().hasDisplayName()) {
+      if (i.getItemMeta().getDisplayName().startsWith("§6§lMob Gun §f§l- §b§l")) {
+          e.setCancelled(true);
+          e.setResult(Result.DENY);
+        }
+      }
     }
   }
 }

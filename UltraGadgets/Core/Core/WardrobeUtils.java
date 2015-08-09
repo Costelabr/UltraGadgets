@@ -318,7 +318,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.LEATHER_HELMET);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setHelmet(item);
@@ -338,7 +338,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.LEATHER_CHESTPLATE);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setChestplate(item);
@@ -349,7 +349,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.LEATHER_LEGGINGS);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setLeggings(item);
@@ -360,7 +360,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.LEATHER_BOOTS);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setBoots(item);
@@ -371,7 +371,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.CHAINMAIL_HELMET);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setHelmet(item);
@@ -382,7 +382,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setChestplate(item);
@@ -393,7 +393,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.CHAINMAIL_LEGGINGS);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setLeggings(item);
@@ -404,7 +404,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.CHAINMAIL_BOOTS);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setBoots(item);
@@ -415,7 +415,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.IRON_HELMET);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setHelmet(item);
@@ -426,7 +426,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.IRON_CHESTPLATE);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setChestplate(item);
@@ -437,7 +437,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.IRON_LEGGINGS);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setLeggings(item);
@@ -448,7 +448,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.IRON_BOOTS);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setBoots(item);
@@ -459,7 +459,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.GOLD_HELMET);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setHelmet(item);
@@ -470,7 +470,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.GOLD_CHESTPLATE);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setChestplate(item);
@@ -481,7 +481,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.GOLD_LEGGINGS);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setLeggings(item);
@@ -492,7 +492,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.GOLD_BOOTS);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setBoots(item);
@@ -503,7 +503,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.DIAMOND_HELMET);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setHelmet(item);
@@ -514,7 +514,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.DIAMOND_CHESTPLATE);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setChestplate(item);
@@ -525,7 +525,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.DIAMOND_LEGGINGS);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setLeggings(item);
@@ -536,7 +536,7 @@ public class WardrobeUtils implements Listener {
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.DIAMOND_BOOTS);
-      if (player.hasPermission("oblivion.wardrobe.encantado")) {
+      if (player.hasPermission("ug.wardrobe.encantado")) {
         item.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
       }
       player.getInventory().setBoots(item);

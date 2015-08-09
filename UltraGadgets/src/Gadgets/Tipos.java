@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -111,7 +112,7 @@ public enum Tipos
         }
       break;
     case DJ: 
-        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
+    	p.sendMessage(plugin.getMessagesFile().prefix + ChatColor.RED + " Este gadget está temporariamente desabilitado!");
         p.closeInventory();
       break;
     case DISCOB: 
@@ -214,6 +215,7 @@ public enum Tipos
     	     }else{
     	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
     	    }
+    	break;
     case MOBGUN:
     	if(plugin.getConfigFile().mobGunEnable) {
     		getPlayerGadget.put(p, "MobGun");    	
@@ -225,6 +227,7 @@ public enum Tipos
     	     }else{
     	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
     	    }
+    	break;
     	}
     }
 }

@@ -137,7 +137,6 @@ public class PetMenu
       }
       if (slotClicked == 41)
       {
-        p.closeInventory();
         p.sendMessage("§7§oEm breve!");
       }
       if (slotClicked == 39)
