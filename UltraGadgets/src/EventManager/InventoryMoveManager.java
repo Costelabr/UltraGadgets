@@ -159,7 +159,7 @@ public class InventoryMoveManager
       if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().VampireGadgetName))
       {
         e.setCancelled(true);
-        e.setResult(Result.DENY);
+        e.setResult(Result.DENY); 
       }
       if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().CowboyGadgetName))
       {
