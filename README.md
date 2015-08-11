@@ -3,4 +3,4 @@
 
 Mudanças: https://github.com/Floodeer/UltraGadgets/wiki/Changelog
 
-Download: http://www.mediafire.com/download/p2aghmu8ugzx2l7/UltraGadgets.jar
+Download: http://www.mediafire.com/download/pc6zb40tfn2drho/UltraGadgets.jar (Algumas mínimas correções)
