@@ -89,7 +89,7 @@ public class MountMenu implements Listener {
 	    	 p.sendMessage(this.ativado + ChatColor.AQUA + " Frozen"); 
 	     }
 	     if(slotClicked == 13) {
-	      	 if(!p.hasPermission("ug.mount.frozen") && !p.hasPermission("ug.mount.usar.todos") && p.hasPermission("ug.usar.todos")) {
+	      	 if(!p.hasPermission("ug.usar.infernal") && !p.hasPermission("ug.mount.usar.todos") && p.hasPermission("ug.usar.todos")) {
 				p.sendMessage(plugin.getMessagesFile().petspermission);
 				return;
 			}
