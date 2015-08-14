@@ -3,6 +3,7 @@ package Commands;
 import Core.UtilJsonBuilder;
 import Core.UtilJsonBuilder.ClickAction;
 import Core.UtilJsonBuilder.HoverAction;
+import Core.Ward;
 import EventManager.PluginListener;
 
 import com.floodeer.gadgets.UltraGadgets;
@@ -29,8 +30,10 @@ public class UltraGadgetsCMD
 	  UtilJsonBuilder sparticulas = new UtilJsonBuilder("§6/ug sparticulas §7- Menu de Super Partículas").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug sparticulas").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
 	  UtilJsonBuilder fantasias = new UtilJsonBuilder("§6/ug fantasias §7- Menu de Fantasias").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug fantasias").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
 	  UtilJsonBuilder mount = new UtilJsonBuilder("§6/ug mounts §7- Menu de Montarias").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug mount").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
+	  UtilJsonBuilder wardrobe = new UtilJsonBuilder("§6/ug wardrobe §7- Menu Guarda-Roupa").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug wardrobe").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
 	  UtilJsonBuilder recarregar = new UtilJsonBuilder("§6/ug recarregar §7- Recarregar o plugin (Não muda configurações)").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug recarregar").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
 	  UtilJsonBuilder lag = new UtilJsonBuilder("§6/ug lag §7- Manager de lag do plugin (Não interfere outras tarefas)").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug lag").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
+	  UtilJsonBuilder credits = new UtilJsonBuilder("§6/ug creditos §7- Créditos do Plugin").withClickEvent(ClickAction.SUGGEST_COMMAND, "/ug creditos").withHoverEvent(HoverAction.SHOW_TEXT, "§6§lClique para preparar o comando!");
 	  CraftPlayer player = ((CraftPlayer)paramToPlayer);
 	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(gadgets.toString())));
 	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(pets.toString())));
@@ -40,6 +43,8 @@ public class UltraGadgetsCMD
 	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(mount.toString())));
 	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(recarregar.toString())));
 	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(lag.toString())));
+	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(wardrobe.toString())));
+	  player.getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(credits.toString())));
   }
   
   public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
@@ -61,7 +66,6 @@ public class UltraGadgetsCMD
       }
       switch (args[0]) {
       
-    
 	case "gadgets":
 		plugin.getMenuManager().showMenu(p);
 		break;
@@ -89,7 +93,16 @@ public class UltraGadgetsCMD
 	case "mount":
 		plugin.getMountsMenu().showMountMenu(p);
 	 break;
-		
+	 
+	case "wardrobe":
+		new Ward(p, plugin);
+	break;
+	
+	case "creditos":
+		p.sendMessage("§7[§9UltraGadgets§7] > §6Todos os direitos reservados Copyright ©");
+		p.sendMessage("§7[§9UltraGadgets§7] > §6Desenvolvedor: §7Floodeer");
+		p.sendMessage("§7[§9UltraGadgets§7] > §6RL: EULA & Termos de uso v1.0.3");
+	break;
 	case "recarregar":
 		if(!p.hasPermission("ug.recarregar")) {
     		p.sendMessage(prefix + "§cVocê não tem permissão para usar esse comando.");

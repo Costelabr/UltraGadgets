@@ -191,13 +191,6 @@ public class SuperMenu
     		 plugin.getUtilPartciles().circleOfParticles(p, ParticleEffect.DRIP_WATER);
     	 }
      }
-     if(slot == 32) {
-    	 if(!this.plugin.getUtilPartciles().hasEffect(p)) {
-    		 p.closeInventory();
-    		 p.sendMessage(this.plugin.getMessagesFile().newParticle + "§7Colina");
-    		 p.playSound(p.getLocation(), Sound.WATER, 1.0F, 12.0F);
-    	 }
-     }
       if (slot == 40) {
         this.plugin.getUtilPartciles().stopAll(p);
       }

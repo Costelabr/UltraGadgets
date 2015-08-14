@@ -59,6 +59,9 @@ public class MountHandler implements Listener {
 			  if(h.hasMetadata("FrozenHorse")) {
 				  e.setCancelled(true);
 			  }
+			  if(h.hasMetadata("InfernalHorse")) {
+				  e.setCancelled(true);
+			  }
 		  }
 	  }
 }

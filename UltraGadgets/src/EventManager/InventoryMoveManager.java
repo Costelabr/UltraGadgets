@@ -70,6 +70,10 @@ public class InventoryMoveManager
     if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().CowboyGadgetName)) {
         e.setCancelled(true);
       }
+    if(!i.hasItemMeta() && !i.getItemMeta().hasDisplayName()) return;
+    if (i.getItemMeta().getDisplayName().startsWith("§6§lMob Gun §f§l- §b§l")) {
+        e.setCancelled(true);
+    }
   }
   
   @EventHandler

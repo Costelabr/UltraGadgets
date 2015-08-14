@@ -13,6 +13,7 @@ public class RegisterMounts {
 		
 		p.registerEvents(new MountHandler(), plugin);
 		p.registerEvents(new Frozen(), plugin);
+		p.registerEvents(new Infernal(), plugin);
 		p.registerEvents(new MountMenu(), plugin);
 	}
 

@@ -32,7 +32,11 @@ public class MountMenu implements Listener {
   		this.mountMenu.setItem(12, this.plugin.getItemStack().noPermissionItem("§7Frozen"));
 	}
 	
-	this.mountMenu.setItem(13, this.plugin.getItemStack().setSoonTM());
+	if(p.hasPermission("ug.mount.infernal") || p.hasPermission("ug.mount.usar.todos") || p.hasPermission("ug.usar.todos")) {
+	this.mountMenu.setItem(13, plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§bInfernal", Arrays.asList(new String[] { "§7Um rastro infernal por onde passar." }), 1, (byte)61));
+	}else{
+  		this.mountMenu.setItem(16, this.plugin.getItemStack().noPermissionItem("§7Infernal"));
+	}
 		   
     this.mountMenu.setItem(14, this.plugin.getItemStack().setSoonTM());
 	 
@@ -77,8 +81,20 @@ public class MountMenu implements Listener {
 	    	 }
 	     }
 	     if(slotClicked == 12) {
+	      	 if(!p.hasPermission("ug.mount.frozen") && !p.hasPermission("ug.mount.usar.todos") && p.hasPermission("ug.usar.todos")) {
+		     p.sendMessage(plugin.getMessagesFile().petspermission);
+		    return;
+		    }
 	    	 Mounts.summonMount(p, Mounts.FROZEN);
 	    	 p.sendMessage(this.ativado + ChatColor.AQUA + " Frozen"); 
+	     }
+	     if(slotClicked == 13) {
+	      	 if(!p.hasPermission("ug.mount.frozen") && !p.hasPermission("ug.mount.usar.todos") && p.hasPermission("ug.usar.todos")) {
+				p.sendMessage(plugin.getMessagesFile().petspermission);
+				return;
+			}
+	    	 Mounts.summonMount(p, Mounts.INFERNO);
+	    	 p.sendMessage(this.ativado + ChatColor.AQUA + " Infernal"); 
 	     }
 	  }
   }
