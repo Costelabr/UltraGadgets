@@ -15,7 +15,7 @@ public class QuitEvent implements Listener {
 	public void onPlayerLeft(PlayerQuitEvent e) {
 		Player p = (Player)e.getPlayer();
 		if(plugin.getUtilPartciles().hasEffect(p)) {
-			plugin.getUtilPartciles().stopAll(p);
+			plugin.getUtilPartciles().stopAll(p); 
 		}
 	}
 

@@ -11,6 +11,7 @@ import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -127,6 +128,22 @@ public class FunGun
     {
       paramTp.setCancelled(true);
       this.paramTeleporter.remove(paramTp.getPlayer());
+    }
+  }
+  
+  @EventHandler
+  public void damage(EntityDamageByEntityEvent e)  {
+  if(e.getDamager() instanceof Snowball) {
+	  Snowball s = (Snowball) e.getDamager();
+	  if(paramSnowball.contains(s)) {
+		  e.setCancelled(true);
+	  }
+    }
+  if(e.getDamager() instanceof EnderPearl) {
+	  EnderPearl end = (EnderPearl)e.getDamager();
+	  if(paramEnderPearl.contains(end)) {
+		  e.setCancelled(true);
+	  }
     }
   }
 }

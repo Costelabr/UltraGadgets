@@ -43,7 +43,7 @@ public class CookieKookie
     final BukkitTask tasker = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
     {
       public void run()
-      {
+      { 
         final Item drop = p.getWorld().dropItemNaturally(p.getLocation().add(0.0D, 1.8D, 0.0D), new ItemStack(Material.COOKIE));
         final Item drop2 = p.getWorld().dropItemNaturally(p.getLocation().add(0.0D, 1.8D, 0.0D), new ItemStack(Material.COOKIE));
         final Item drop3 = p.getWorld().dropItemNaturally(p.getLocation().add(0.0D, 1.8D, 0.0D), new ItemStack(Material.COOKIE));
