@@ -6,7 +6,7 @@ Essa mudança e um complemento da 2.0.0, adiciona alguns itens que já estavam p
 
 Mudanças: https://github.com/Floodeer/UltraGadgets/wiki/Changelog 
 
-Download: http://www.mediafire.com/download/02hgh8hc88x334k/UltraGadgets.jar
+Download: http://www.mediafire.com/download/7yx0ggx5bbmrdzl/UltraGadgets.jar
 
 **Versão 2.9.0 será a última em BETA**
 
