@@ -71,7 +71,7 @@ public class Ward {
     
     ItemStack white = new ItemStack(Material.INK_SACK, 1, (short)15);
     ItemMeta whitemeta = white.getItemMeta();
-    whitemeta.setDisplayName("§aBranco");
+    whitemeta.setDisplayName("§fBranco");
     white.setItemMeta(whitemeta);
     
     ItemStack orange = new ItemStack(Material.INK_SACK, 1, (short)14);
@@ -111,7 +111,7 @@ public class Ward {
     
     ItemStack silver = new ItemStack(Material.INK_SACK, 1, (short)7);
     ItemMeta silvermeta = silver.getItemMeta();
-    silvermeta.setDisplayName("§aBranco");
+    silvermeta.setDisplayName("§8Prata");
     silver.setItemMeta(silvermeta);
     
     ItemStack cyan = new ItemStack(Material.INK_SACK, 1, (short)6);

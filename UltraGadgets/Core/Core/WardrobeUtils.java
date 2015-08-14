@@ -27,6 +27,7 @@ public class WardrobeUtils implements Listener {
     Player player = (Player)event.getWhoClicked();
     ItemStack clicked = event.getCurrentItem();
     Inventory inventory = event.getInventory();
+    if(inventory.getName() == null) return;
     if ((!inventory.getName().contains("Guarda-Roupa")) &&
       (!inventory.getName().contains("Cor do Capacete")) &&
       (!inventory.getName().contains("Cor do Chestplate")) && 
@@ -34,6 +35,8 @@ public class WardrobeUtils implements Listener {
       (!inventory.getName().contains("Cor das Botas"))) {
       return;
     }
+    if(event.isCancelled()) return;
+    event.setCancelled(true);
     Ward w = new Ward(player, plugin);
     player.closeInventory();
     ItemStack lh = new ItemStack(Material.LEATHER_HELMET, 1);
@@ -66,7 +69,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta orangecpmeta = (LeatherArmorMeta)orangecp.getItemMeta();
     orangecpmeta.setColor(Color.ORANGE);
     orangecp.setItemMeta(orangecpmeta);
-    ItemStack orangel = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack orangel = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta orangelmeta = (LeatherArmorMeta)orangel.getItemMeta();
     orangelmeta.setColor(Color.ORANGE);
     orangel.setItemMeta(orangelmeta);
@@ -83,7 +86,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta magentacpmeta = (LeatherArmorMeta)magentacp.getItemMeta();
     magentacpmeta.setColor(Color.fromBGR(216, 76, 178));
     magentacp.setItemMeta(magentacpmeta);
-    ItemStack magental = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack magental = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta magentalmeta = (LeatherArmorMeta)magental.getItemMeta();
     magentalmeta.setColor(Color.fromBGR(216, 76, 178));
     magental.setItemMeta(magentalmeta);
@@ -100,7 +103,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta lightbluecpmeta = (LeatherArmorMeta)lightbluecp.getItemMeta();
     lightbluecpmeta.setColor(Color.fromBGR(216, 153, 102));
     lightbluecp.setItemMeta(lightbluecpmeta);
-    ItemStack lightbluel = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack lightbluel = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta lightbluelmeta = (LeatherArmorMeta)lightbluel.getItemMeta();
     lightbluelmeta.setColor(Color.fromBGR(216, 153, 102));
     lightbluel.setItemMeta(lightbluelmeta);
@@ -117,7 +120,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta yellowcpmeta = (LeatherArmorMeta)yellowcp.getItemMeta();
     yellowcpmeta.setColor(Color.YELLOW);
     yellowcp.setItemMeta(yellowcpmeta);
-    ItemStack yellowl = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack yellowl = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta yellowlmeta = (LeatherArmorMeta)yellowl.getItemMeta();
     yellowlmeta.setColor(Color.YELLOW);
     yellowl.setItemMeta(yellowlmeta);
@@ -134,7 +137,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta limecpmeta = (LeatherArmorMeta)limecp.getItemMeta();
     limecpmeta.setColor(Color.LIME);
     limecp.setItemMeta(limecpmeta);
-    ItemStack limel = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack limel = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta limelmeta = (LeatherArmorMeta)limel.getItemMeta();
     limelmeta.setColor(Color.LIME);
     limel.setItemMeta(limelmeta);
@@ -151,7 +154,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta pinkcpmeta = (LeatherArmorMeta)pinkcp.getItemMeta();
     pinkcpmeta.setColor(Color.fromBGR(165, 127, 242));
     pinkcp.setItemMeta(pinkcpmeta);
-    ItemStack pinkl = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack pinkl = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta pinklmeta = (LeatherArmorMeta)pinkl.getItemMeta();
     pinklmeta.setColor(Color.fromBGR(165, 127, 242));
     pinkl.setItemMeta(pinklmeta);
@@ -168,7 +171,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta graycpmeta = (LeatherArmorMeta)graycp.getItemMeta();
     graycpmeta.setColor(Color.GRAY);
     graycp.setItemMeta(graycpmeta);
-    ItemStack grayl = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack grayl = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta graylmeta = (LeatherArmorMeta)grayl.getItemMeta();
     graylmeta.setColor(Color.GRAY);
     grayl.setItemMeta(graylmeta);
@@ -185,7 +188,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta silvercpmeta = (LeatherArmorMeta)silvercp.getItemMeta();
     silvercpmeta.setColor(Color.SILVER);
     silvercp.setItemMeta(silvercpmeta);
-    ItemStack silverl = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack silverl = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta silverlmeta = (LeatherArmorMeta)silverl.getItemMeta();
     silverlmeta.setColor(Color.SILVER);
     silverl.setItemMeta(silverlmeta);
@@ -202,7 +205,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta cyancpmeta = (LeatherArmorMeta)cyancp.getItemMeta();
     cyancpmeta.setColor(Color.fromBGR(153, 127, 76));
     cyancp.setItemMeta(cyancpmeta);
-    ItemStack cyanl = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack cyanl = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta cyanlmeta = (LeatherArmorMeta)cyanl.getItemMeta();
     cyanlmeta.setColor(Color.fromBGR(153, 127, 76));
     cyanl.setItemMeta(cyanlmeta);
@@ -219,7 +222,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta purplecpmeta = (LeatherArmorMeta)purplecp.getItemMeta();
     purplecpmeta.setColor(Color.PURPLE);
     purplecp.setItemMeta(purplecpmeta);
-    ItemStack purplel = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack purplel = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta purplelmeta = (LeatherArmorMeta)purplel.getItemMeta();
     purplelmeta.setColor(Color.PURPLE);
     purplel.setItemMeta(purplelmeta);
@@ -236,7 +239,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta bluecpmeta = (LeatherArmorMeta)bluecp.getItemMeta();
     bluecpmeta.setColor(Color.fromBGR(178, 76, 51));
     bluecp.setItemMeta(bluecpmeta);
-    ItemStack bluel = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack bluel = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta bluelmeta = (LeatherArmorMeta)bluel.getItemMeta();
     bluelmeta.setColor(Color.fromBGR(178, 76, 51));
     bluel.setItemMeta(bluelmeta);
@@ -253,7 +256,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta browncpmeta = (LeatherArmorMeta)browncp.getItemMeta();
     browncpmeta.setColor(Color.fromBGR(51, 76, 102));
     browncp.setItemMeta(browncpmeta);
-    ItemStack brownl = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack brownl = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta brownlmeta = (LeatherArmorMeta)brownl.getItemMeta();
     brownlmeta.setColor(Color.fromBGR(51, 76, 102));
     brownl.setItemMeta(brownlmeta);
@@ -270,7 +273,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta greencpmeta = (LeatherArmorMeta)greencp.getItemMeta();
     greencpmeta.setColor(Color.GREEN);
     greencp.setItemMeta(greencpmeta);
-    ItemStack greenl = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack greenl = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta greenlmeta = (LeatherArmorMeta)greenl.getItemMeta();
     greenlmeta.setColor(Color.GREEN);
     greenl.setItemMeta(greenlmeta);
@@ -287,7 +290,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta redcpmeta = (LeatherArmorMeta)redcp.getItemMeta();
     redcpmeta.setColor(Color.RED);
     redcp.setItemMeta(redcpmeta);
-    ItemStack redl = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack redl = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta redlmeta = (LeatherArmorMeta)redl.getItemMeta();
     redlmeta.setColor(Color.RED);
     redl.setItemMeta(redlmeta);
@@ -304,7 +307,7 @@ public class WardrobeUtils implements Listener {
     LeatherArmorMeta blackcpmeta = (LeatherArmorMeta)blackcp.getItemMeta();
     blackcpmeta.setColor(Color.BLACK);
     blackcp.setItemMeta(blackcpmeta);
-    ItemStack blackl = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+    ItemStack blackl = new ItemStack(Material.LEATHER_LEGGINGS, 1);
     LeatherArmorMeta blacklmeta = (LeatherArmorMeta)blackl.getItemMeta();
     blacklmeta.setColor(Color.BLACK);
     blackl.setItemMeta(blacklmeta);
@@ -313,8 +316,7 @@ public class WardrobeUtils implements Listener {
     blackbmeta.setColor(Color.BLACK);
     blackb.setItemMeta(blackbmeta);
     if ((inventory.getName().contains("Guarda-Roupa")) && 
-      (clicked.getType() == Material.LEATHER_HELMET))
-    {
+      (clicked.getType() == Material.LEATHER_HELMET)){
       event.setCancelled(true);
       player.closeInventory();
       ItemStack item = new ItemStack(Material.LEATHER_HELMET);
@@ -660,32 +662,32 @@ public class WardrobeUtils implements Listener {
       player.getInventory().setBoots(lb);
     }
     else if ((inventory.getName().contains("Cor do Capacete")) && 
-      (clicked.getItemMeta().getDisplayName().contains("Branco")))
+      (clicked.getItemMeta().getDisplayName().contains("Prata")))
     {
       event.setCancelled(true);
       player.closeInventory();
-      player.getInventory().setHelmet(whiteh);
+      player.getInventory().setHelmet(silverh);
     }
     else if ((inventory.getName().contains("Cor do Chestplate")) && 
-      (clicked.getItemMeta().getDisplayName().contains("Branco")))
+      (clicked.getItemMeta().getDisplayName().contains("Prata")))
     {
       event.setCancelled(true);
       player.closeInventory();
-      player.getInventory().setChestplate(whitecp);
+      player.getInventory().setChestplate(silvercp);
     }
     else if ((inventory.getName().contains("Cor da Calça")) && 
-      (clicked.getItemMeta().getDisplayName().contains("Branco")))
+      (clicked.getItemMeta().getDisplayName().contains("Prata")))
     {
       event.setCancelled(true);
       player.closeInventory();
-      player.getInventory().setLeggings(whitel);
+      player.getInventory().setLeggings(silverl);
     }
     else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Branco")))
     {
       event.setCancelled(true);
       player.closeInventory();
-      player.getInventory().setBoots(whiteb);
+      player.getInventory().setBoots(silverb);
     }
     else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Laranja")))
@@ -888,14 +890,14 @@ public class WardrobeUtils implements Listener {
     {
       event.setCancelled(true);
       player.closeInventory();
-      player.getInventory().setHelmet(silverh);
+      player.getInventory().setHelmet(whiteh);
     }
     else if ((inventory.getName().contains("Cor do Chestplate")) && 
       (clicked.getItemMeta().getDisplayName().contains("Branco")))
     {
       event.setCancelled(true);
       player.closeInventory();
-      player.getInventory().setChestplate(silvercp);
+      player.getInventory().setChestplate(whitecp);
     }
     
     else if ((inventory.getName().contains("Cor da Calça")) && 
@@ -903,14 +905,14 @@ public class WardrobeUtils implements Listener {
     {
       event.setCancelled(true);
       player.closeInventory();
-      player.getInventory().setLeggings(silverl);
+      player.getInventory().setLeggings(whitel);
     }
     else if ((inventory.getName().contains("Cor das Botas")) && 
       (clicked.getItemMeta().getDisplayName().contains("Branco")))
     {
       event.setCancelled(true);
       player.closeInventory();
-      player.getInventory().setBoots(silverb);
+      player.getInventory().setBoots(whiteb);
     }
     else if ((inventory.getName().contains("Cor do Capacete")) && 
       (clicked.getItemMeta().getDisplayName().contains("Ciano")))

@@ -22,8 +22,7 @@ public class PlayerIsInMoviment
     Player player = e.getPlayer();
     Location Current = player.getLocation();
     Location Last = (Location)this.lastLocation.get(player.getUniqueId());
-    if (this.lastLocation.get(player.getUniqueId()) == null)
-    {
+    if (this.lastLocation.get(player.getUniqueId()) == null) {
       this.lastLocation.put(player.getUniqueId(), Current);
       Last = (Location)this.lastLocation.get(player.getUniqueId());
     }
