@@ -60,9 +60,9 @@ public class UltraGadgetsCMD
     	}
     	
       if(args.length == 0) {
-    	  p.sendMessage(prefix + "§cComando inválido.");
-    	  sendHelp(p);
-    	  return true;
+    	 p.sendMessage(prefix + "§cComando inválido.");
+    	 sendHelp(p);
+    	 return true;
       }
       switch (args[0]) {
       
