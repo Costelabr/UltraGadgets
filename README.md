@@ -1,4 +1,4 @@
-#Atualização! (20/07/15)
+#Atualização! (20/08/15)
 **Versão 2.0.2 está disponível!**
 
 Mudanças: https://github.com/Floodeer/UltraGadgets/wiki/Changelog 
