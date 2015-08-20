@@ -8,6 +8,7 @@ import org.bukkit.util.Vector;
 
 import com.floodeer.gadgets.UltraGadgets;
 
+import Core.UtilMath;
 import Core.UtilParticle;
 import Core.UtilParticle.ParticleType;
 import Core.UtilVelocity;
@@ -61,4 +62,22 @@ public class ParticleUpdateManager implements Listener{
 	        }
 	    }
 	  }
-	}
+   
+   @EventHandler
+   public void nuvemUpdater(UpdateEvent paramUpdateEvent) {
+     if (paramUpdateEvent.getType() == UpdateType.TICK) {
+  	   for(Player p : plugin.getUtilPartciles().otherType.keySet()) {
+  		    if(plugin.getUtilPartciles().otherType.get(p) == "Nuvem") {
+             Location localLocation = p.getLocation();
+             
+             localLocation.setY(p.getLocation().getY() + 3.700000047683716D);
+             new UtilParticle(UtilParticle.ParticleType.SNOW_SHOVEL, 0.0D, 1, 0.0D).sendToLocation(localLocation.add(UtilMath.randomRange(-0.4F, 0.4F), 0.0D, UtilMath.randomRange(-0.5F, 0.5F)));
+             new UtilParticle(UtilParticle.ParticleType.CLOUD, 0.0D, 3, 0.0D).sendToLocation(localLocation.add(UtilMath.randomRange(-0.5F, 0.5F), 0.0D, UtilMath.randomRange(-0.5F, 0.5F)));
+             new UtilParticle(UtilParticle.ParticleType.CLOUD, 0.0D, 3, 0.0D).sendToLocation(localLocation.add(UtilMath.randomRange(-0.5F, 0.5F), 0.0D, UtilMath.randomRange(-0.5F, 0.5F)));
+             
+             localLocation.subtract(localLocation);
+           }
+         }
+     }
+   }
+ }

@@ -13,7 +13,7 @@ import com.floodeer.gadgets.UltraGadgets;
 
 public enum Tipos
 {
-  NENHUM,  BOMBA,  COOKIEK,  FIREWORKP,  FUNGUN,  MOVIRE,  PBGUN,  STICKTP,  DJ,  DISCOB,  RAILGUN,  SMOKEBOMB,  DIAMONDP,  PARAQUEDAS,  WITHERSHOOT,  TRAMPOLIM, VAMPIRE, VECTORTNT, COWBOY, MOBGUN;
+  NENHUM,  BOMBA,  COOKIEK,  FIREWORKP,  FUNGUN,  MOVIRE,  PBGUN,  STICKTP,  DJ,  DISCOB,  RAILGUN,  SMOKEBOMB,  DIAMONDP,  PARAQUEDAS,  WITHERSHOOT,  TRAMPOLIM, VAMPIRE, VECTORTNT, COWBOY, MOBGUN, EXSHEEP;
   
   private static UltraGadgets plugin = UltraGadgets.getMain();
   protected static String invname = plugin.getMessagesFile().GadgetsMenuName;
@@ -228,6 +228,17 @@ public enum Tipos
     	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
     	    }
     	break;
-    	}
+    	
+    case EXSHEEP:
+    	if(plugin.getConfigFile().explosiveSheepEnable) {
+    		getPlayerGadget.put(p, "ExplosiveSheep");    	
+    	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
+    	     p.getInventory().setItem(i, plugin.getItemStack().newItemStack(Material.SHEARS, plugin.getMessagesFile().ExplosiveSheepName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
+    	     p.closeInventory();
+    	     }else{
+    	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
+    	    }
+    	break;
+       }
     }
 }

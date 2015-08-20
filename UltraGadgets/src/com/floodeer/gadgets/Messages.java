@@ -49,6 +49,7 @@ public class Messages
   public String VampireGadgetName;
   public String VectorGadgetName;
   public String CowboyGadgetName;
+  public String ExplosiveSheepName;
   
   public String GadgetItemLore;
   public String BombaGadgetLore;
@@ -72,6 +73,7 @@ public class Messages
   public String VampireGadgetLore;
   public String VectorGadgetLore;
   public String CowboyGadgetLore;
+  public String ExplosiveSheepLore;
   
   public String SuperMenuName;
   public String ParticlesMenuName;
@@ -115,6 +117,7 @@ public class Messages
     TrampolimName = mensagens.getString("Trampolim-Item-Nome").replaceAll("&", "§");
     VectorGadgetName = mensagens.getString("VectorTNTGadget-Item-Nome").replaceAll("&", "§");
     CowboyGadgetName = mensagens.getString("CowBoy-Item-Nome").replaceAll("&", "§");
+    ExplosiveSheepName = mensagens.getString("ExplosiveSheep-Item-Nome").replaceAll("&", "§");
     
     GadgetItemLore = mensagens.getString("Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.RESET + "\n");
     BombaGadgetLore = mensagens.getString("Bomba-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.RESET + "\n");
@@ -135,6 +138,7 @@ public class Messages
     TrampolimLore = mensagens.getString("Trampolim-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.RESET + "\n");
     VectorGadgetLore = mensagens.getString("VectorTNTGadget-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.RESET + "\n");
     CowboyGadgetLore = mensagens.getString("CowBoy-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.RESET + "\n");
+    ExplosiveSheepLore = mensagens.getString("ExplosiveSheep-Item-Lore").replaceAll("&", "§").replaceAll("<newLine>", ChatColor.RESET + "\n");
     
     disguisePermission = mensagens.getString("Disguise-Permissao").replaceAll("&", "§");
     gadgetPermission = mensagens.getString("Gadget-Permissao").replaceAll("&", "§");

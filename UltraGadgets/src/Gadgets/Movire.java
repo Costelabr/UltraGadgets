@@ -76,10 +76,16 @@ public class Movire
     if (this.paramIsFireN.contains(paramPlayer))
     {
       Block b = paramEvent.getTo().getBlock();
-      if((b.getType() == Material.WATER) || (b.getType() == Material.LAVA)) return;
+      if ((b.getType() != Material.WATER) && 
+ 		     (b.getType() != Material.STATIONARY_WATER) && 
+ 		      (b.getType() != Material.CHEST) && 
+ 		       (b.getType() != Material.SKULL) && 
+ 		         (b.getType() != Material.SNOW) && 
+ 		          (b.getType() != Material.CLAY_BRICK)) {
  	  plugin.getUtilBlock().setBlockToRestore(b, Material.FIRE.getId(), (byte)0, 4L, true, false, false);
       }
     }
+  }
   
   @EventHandler
   public void paramPlayerDamageByFire(EntityDamageEvent paramEventDamage)

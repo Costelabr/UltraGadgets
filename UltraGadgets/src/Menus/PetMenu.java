@@ -53,7 +53,11 @@ public class PetMenu
 		this.petMenu.setItem(22, this.plugin.getItemStack().noPermissionItem("§7Porco"));
 	 } 
 	 
-    this.petMenu.setItem(23, this.plugin.getItemStack().setSoonTM());
+	 if(p.hasPermission("ug.pets.slime") || (p.hasPermission("ug.pets.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+		this.petMenu.setItem(23, this.plugin.getItemStack().newItemStack(Material.MONSTER_EGG, "§aSlime", Arrays.asList(new String[] { "§7Pet Slime" }), 1, (byte)55));
+	}else{
+		this.petMenu.setItem(23, this.plugin.getItemStack().noPermissionItem("§7Slime"));
+	} 
     
     this.petMenu.setItem(30, this.plugin.getItemStack().setSoonTM());
     
@@ -86,6 +90,7 @@ public class PetMenu
     		 return;
     	 }
     	 if(PetsType.HasPet(p)) {
+    		 p.sendMessage("Você já tem um pet!");
     		 return;
     	 }
     	 
@@ -97,6 +102,7 @@ public class PetMenu
     		 return;
     	 }
     	 if(PetsType.HasPet(p)) {
+    		 p.sendMessage("Você já tem um pet!");
     		 return;
     	 }
        PetsType.setPet(p, PetsType.VACA);
@@ -107,6 +113,7 @@ public class PetMenu
     		 return;
     	 }
     	 if(PetsType.HasPet(p)) {
+    		 p.sendMessage("Você já tem um pet!");
     		 return;
     	 }
           PetsType.setPet(p, PetsType.COELHO);
@@ -117,6 +124,7 @@ public class PetMenu
     		 return;
     	 }
     	 if(PetsType.HasPet(p)) {
+    		 p.sendMessage("Você já tem um pet!");
     		 return;
     	 }
           PetsType.setPet(p, PetsType.WOLF);
@@ -127,17 +135,37 @@ public class PetMenu
      		 p.sendMessage(plugin.getMessagesFile().petspermission);
      		 return;
      	 }
-     	 if(PetsType.HasPet(p)) return;
+    	 if(PetsType.HasPet(p)) {
+    		 p.sendMessage("Você já tem um pet!");
+    		 return;
+    	 }
            PetsType.setPet(p, PetsType.PORCO);
           }
+      if (slotClicked == 23) {
+       	 if(!p.hasPermission("ug.pets.slime") && !p.hasPermission("ug.pets.usar.todos") && !p.hasPermission("ug.usar.todos")) {
+      		 p.sendMessage(plugin.getMessagesFile().petspermission);
+      		 return;
+      	 }
+      	 if(PetsType.HasPet(p)) {
+      		 p.sendMessage("Você já tem um pet!");
+      		 return;
+      	 }
+            PetsType.setPet(p, PetsType.SLIME);
+           }
       
       if (slotClicked == 40) {
+    	if(!PetsType.HasPet(p)) {
+    		p.sendMessage("§cVocê não tem nenhum pet para remover.");
+    		p.closeInventory();
+    		return;
+    	}
         PetsType.removePet(p);
         PetsType.setPet(p, PetsType.NENHUM);
       }
       if (slotClicked == 41)
       {
         p.sendMessage("§7§oEm breve!");
+        p.closeInventory();
       }
       if (slotClicked == 39)
       {

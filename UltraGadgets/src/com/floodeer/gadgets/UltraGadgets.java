@@ -12,11 +12,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import Commands.*;
 import Core.*;
 import Core.PastebinReporter.Paste;
+import EventManager.DisguisesEvent;
 import EventManager.InventoryMoveManager;
 import EventManager.JoinEvent;
 import EventManager.PlayerListener;
@@ -24,6 +26,7 @@ import EventManager.PluginListener;
 import EventManager.QuitEvent;
 import Gadgets.*;
 import Menus.*;
+import Mounts.MountHandler;
 import Mounts.RegisterMounts;
 import Particulas.ParticleUpdateManager;
 import Particulas.UtilParticleType;
@@ -225,7 +228,12 @@ public class UltraGadgets
     SystemDebugg("Carregando versao...");
     setupVersionSystemAndPlugin();
     SystemDebugg("Pesquisando por ProtocolLib...");
-    this.protocolManager = ProtocolLibrary.getProtocolManager();
+    if(!Bukkit.getPluginManager().isPluginEnabled("ProtocolLib")) {
+    	SystemDebugg("ProtocolLib não foi encontrado! Desabilitando plugin... Porfavor instale ProtocolLib!");
+        setEnabled(false);
+    	return;
+    }
+    protocolManager = ProtocolLibrary.getProtocolManager();
     SystemDebugg("Sucesso! Habilitando classes....");    
     getMensagensConfig().options().copyDefaults(true);
     saveDefaultMensagem();
@@ -244,6 +252,7 @@ public class UltraGadgets
     Bukkit.getServer().getPluginManager().registerEvents(new Gadgets(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
+    Bukkit.getServer().getPluginManager().registerEvents(new DisguisesEvent(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new Pets(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new PetMenu(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new PluginListener(), this);
@@ -263,7 +272,7 @@ public class UltraGadgets
     System.out.print("[UltraGadgets] Versão: Build v1.8-R_3");
     System.out.print("[UltraGadgets] Todos os direitos reservados.");
     System.out.print("[UltraGadgets] Dev Page: https://github.com/Floodeer/UltraGadgets");
-    System.out.print("[UltraGadgets] Core Utils: Core for 1.8R-3 version pre-1.0.0 ");
+    System.out.print("[UltraGadgets] Core Utils: Core for 1.8R-3 version 2.0.2 ");
     System.out.print("O plugin foi habilitado.");
     System.out.print("-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x");
     paste = new PastebinReporter("5855abe282936dd958dbbaa24a06fdd2");
@@ -276,17 +285,17 @@ public class UltraGadgets
   @Override
   public void onDisable() {
 	  
-	 for (Player p : Bukkit.getOnlinePlayers())
-	  {
-	   if (PetsType.HasPet(p)) {
-	    PetsType.removePet(p);
-	    }
-	     for(Player localParam : Bukkit.getOnlinePlayers()) {
-	         RestoreBlocks.saves.clear();
-	         RestoreBlocks.restore(localParam);
-	     }
+	  for(Player p : Bukkit.getOnlinePlayers()) {
+		  if(p == null) return;
+		  if(PetsType.HasPet(p)) {
+			  PetsType.removePet(p);
+		  }
+		  if(MountHandler.HasPet(p)) {
+			  MountHandler.removePlayerMount(p);
+		  }
 	  }
-	}
+	  HandlerList.unregisterAll(this);
+ }
 
   public void reloadMensagensConfig()
     throws UnsupportedEncodingException

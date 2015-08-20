@@ -60,5 +60,14 @@ public class Infernal implements Listener {
 		  }
 	   }
 	}
-
+	
+	@EventHandler
+	public void onEntityMove(PlayerMoveEvent e) {
+		Block b = e.getTo().getBlock();
+		if((b.getType() == Material.CLAY)) {
+			if(plugin.getUtilBlock().blockToRestore.contains(b)) {
+			new UtilParticle(ParticleType.FLAME, 0.10000000149011612D, 4, 0.30000001192092896D).sendToLocation(e.getPlayer().getLocation());
+			}
+		}
+	}
 }

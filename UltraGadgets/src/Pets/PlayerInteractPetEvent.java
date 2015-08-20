@@ -17,6 +17,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Pig;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Rabbit;
+import org.bukkit.entity.Slime;
 import org.bukkit.entity.Wolf;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
@@ -43,9 +44,11 @@ public class PlayerInteractPetEvent
   private HashMap<Player, String> mapOfString;
   HashMap<Player, Entity> playerPet;
   ArrayList<Player> hashOfPlayer;
+  ArrayList<Player> arraySlime;
   ArrayList<Player> arrayType;
   UtilMenu petMenu;
   List<String> typesArray;
+  List<String> sizeArray;
   
   public PlayerInteractPetEvent()
   {
@@ -55,10 +58,14 @@ public class PlayerInteractPetEvent
     this.hashOfPlayer = new ArrayList<>();
     this.arrayType = new ArrayList<>();
     this.petMenu = new UtilMenu(this.plugin, "§6§lPet Manager", 1);
+    this.arraySlime = new ArrayList<Player>();
+    this.sizeArray = new ArrayList<String>();
     
     this.petMenu.setItem(0, this.plugin.getItemStack().newItemStack(Material.NAME_TAG, "§eMudar nome do Pet", Arrays.asList(new String[] { "§7Clique para alterar o nome do pet" }), 1, (byte)0));
     
     this.petMenu.setItem(2, this.plugin.getItemStack().newItemStack(Material.ANVIL, "§eMudar tipo do pet", Arrays.asList(new String[] { "§7Clique para alterar o tipo de pet" }), 1, (byte)0));
+    
+    this.petMenu.setItem(4, this.plugin.getItemStack().newItemStack(Material.SLIME_BALL, "§eMudar tamanho do Pet", Arrays.asList(new String[] { "§7Clique para alterar o tamanho do Pet" }), 1, (byte)0));
     
     this.typesArray = new ArrayList<>();
   }
@@ -111,8 +118,16 @@ public class PlayerInteractPetEvent
         		this.petMenu.showMenu(e.getPlayer());
         		this.playerPet.put(e.getPlayer(), localPig);
         }
-    }
-  }
+       }
+            if((e.getRightClicked() instanceof Slime)) {
+            	Slime localSlime = (Slime)e.getRightClicked();
+            	if((localSlime.hasMetadata("petSlime")) && PetsType.HasPet(e.getPlayer()) && 
+            		e.getPlayer().isSneaking()) {
+            		this.petMenu.showMenu(e.getPlayer());
+            		this.playerPet.put(e.getPlayer(), localSlime);
+            }
+        }
+   }
   
   @EventHandler
   public void playerUseChat(AsyncPlayerChatEvent e)
@@ -141,7 +156,6 @@ public class PlayerInteractPetEvent
       this.typesArray.add("WHITE");
       e.setCancelled(true);
       this.mapOfString.put(p, e.getMessage());
-      e.setCancelled(true);
       this.arrayType.remove(p);
       if (Pets.PetsType.HasPet(p))
       {
@@ -166,7 +180,33 @@ public class PlayerInteractPetEvent
         }
       }
     }
-  }
+    if(this.arraySlime.contains(p)) {
+    	this.sizeArray.add("1");
+    	this.sizeArray.add("2");
+    	this.sizeArray.add("3");
+    	e.setCancelled(true);
+    	this.mapOfString.put(p, e.getMessage());
+    	this.arrayType.remove(p);
+    	if(Pets.PetsType.HasPet(p)) {
+    		if(!this.sizeArray.contains(this.mapOfString.get(p))) {
+    	       p.sendMessage("§cTamanho inválido!");
+    	       p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1.0F, 1.0F);
+    	       return;
+    		}try{
+              (Pets.PetsType.booleanSlime.get(p.getUniqueId())).setSize(Integer.valueOf(this.mapOfString.get(p)));
+              p.playSound(p.getLocation(), Sound.ANVIL_USE, 1.0F, 1.0F);
+              UtilJsonBuilder jn = new UtilJsonBuilder(new String[] { "§cVocê mudou o tamanho do seu pet" })
+                .withHoverEvent(UtilJsonBuilder.HoverAction.SHOW_TEXT, "§lTamanho §e§l" + (String)this.mapOfString.get(p));
+              ((CraftPlayer)p).getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(jn.toString())));
+            }
+            catch (Exception ex)
+            {
+              p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1.0F, 1.0F);
+              throw new PetTypeException("Impossível encontrar o tipo de pet " + (String)this.mapOfString.get(p));
+            }
+          }
+        }
+    }
   
   @EventHandler
   public void onClickInParticlesMenu(InventoryClickEvent e)
@@ -222,9 +262,22 @@ public class PlayerInteractPetEvent
         p.closeInventory();
         p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1.0F, 1.0F);
         p.sendMessage("§lDigite no chat o tipo de coelho para salvar!");
-        p.sendMessage("§lTipos dispon§veis: ");
+        p.sendMessage("§lTipos disponíveis: ");
         p.sendMessage("§eBLACK§a, §eBLACK_AND_WHITE§a, §eBROWN§a, §eGOLD,");
         p.sendMessage("§eSALT_AND_PEPPER§a, §eTHE_KILLER_BUNNY§a, §eWHITE§a");
+      }
+      if(slot == 4)
+      {
+    	  if(!PetsType.booleanSlime.containsKey(p.getUniqueId())) {
+    		p.sendMessage("§lO seu pet deve ser um Slime para completar essa ação.");
+      		return;
+    	  }
+    	  this.arraySlime.add(p);
+          p.closeInventory();
+          p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1.0F, 1.0F);
+          p.sendMessage("§lDigite no chat o tamanho do Pet para salvar!");
+          p.sendMessage("§lTamanhos disponíveis: ");
+          p.sendMessage("§e1§a, §e2§a, §e3§a");
       }
     }
   }

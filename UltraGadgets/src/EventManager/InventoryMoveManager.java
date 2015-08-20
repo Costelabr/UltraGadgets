@@ -3,6 +3,7 @@ package EventManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -70,19 +71,21 @@ public class InventoryMoveManager
     if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().CowboyGadgetName)) {
         e.setCancelled(true);
       }
-    if(!i.hasItemMeta() && !i.getItemMeta().hasDisplayName()) return;
-    if (i.getItemMeta().getDisplayName().startsWith("§6§lMob Gun §f§l- §b§l")) {
+    if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().ExplosiveSheepName)) {
+        e.setCancelled(true);
+      }
+    if (plugin.getItem().startsName(i, "§6§lMob Gun")) {
         e.setCancelled(true);
     }
   }
   
-  @EventHandler
+  @EventHandler(priority = EventPriority.HIGH)
   public void onClickInv(InventoryClickEvent e)
   {
-    if ((e.getWhoClicked() instanceof Player))
+    if ((e.getWhoClicked() instanceof Player)) 
     {
       ItemStack i = e.getCurrentItem();
-      if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().GadgetItem)) {
+      if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().GadgetItemName)) {
         e.setCancelled(true);
       }
       if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().BombaGadgetName))
@@ -170,12 +173,15 @@ public class InventoryMoveManager
         e.setCancelled(true);
         e.setResult(Result.DENY);
       }
-      if(i.hasItemMeta() && i.getItemMeta().hasDisplayName()) {
-      if (i.getItemMeta().getDisplayName().startsWith("§6§lMob Gun §f§l- §b§l")) {
+      if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().ExplosiveSheepName))
+      {
+        e.setCancelled(true);
+        e.setResult(Result.DENY);
+      }
+      if (plugin.getItem().startsName(i, "§6§lMob Gun")) {
           e.setCancelled(true);
           e.setResult(Result.DENY); 
         }
       }
     }
   }
-}

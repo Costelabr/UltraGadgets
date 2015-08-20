@@ -2,8 +2,11 @@ package Mounts;
 
 import java.util.UUID;
 
+import net.minecraft.server.v1_8_R3.GenericAttributes;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Horse.Color;
 import org.bukkit.entity.Horse.Style;
@@ -43,7 +46,7 @@ public enum Mounts {
 		 paramEntityFrozen.getInventory().setSaddle(new ItemStack(Material.DIAMOND_BARDING, 1));
 		 UtilPet.criarPet(paramEntityFrozen, uniqueID);
 		 MountHandler.pet.put(p.getUniqueId(), paramEntityFrozen);
-			break;
+		 break;
 			
 		case INFERNO: 
 			
@@ -55,6 +58,7 @@ public enum Mounts {
 	    paramEntityInferno.setCustomName(ChatColor.AQUA + p.getName() + "'s" + ChatColor.WHITE + " Infernal Horse");
 		paramEntityInferno.setOwner(p);
 		paramEntityInferno.getInventory().setSaddle(new ItemStack(Material.DIAMOND_BARDING, 1));
+		((CraftLivingEntity) paramEntityInferno).getHandle().getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.4);
 		UtilPet.criarPet(paramEntityInferno, uniqueID);
 		MountHandler.pet.put(p.getUniqueId(), paramEntityInferno);
 			

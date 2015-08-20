@@ -37,6 +37,12 @@ public class PlayerListener
     if(plugin.getItem().isGadgetItem(paramStackPlacer, plugin.getMessagesFile().VectorGadgetName)) {
     	paramBlockPlace.setCancelled(true);
     }
+    if(plugin.getItem().isGadgetItem(paramStackPlacer, plugin.getMessagesFile().TrampolimName)) {
+    	paramBlockPlace.setCancelled(true);
+    }
+    if(plugin.getItem().isGadgetItem(paramStackPlacer, plugin.getMessagesFile().CowboyGadgetName)) {
+    	paramBlockPlace.setCancelled(true);
+    }
   }
   
   @EventHandler
@@ -66,8 +72,7 @@ public class PlayerListener
 	  if(e.getMessage().equals("/reload")|| e.getMessage().equals("/rl")){
 	  if(e.getPlayer().isOp()) {
 		  e.getPlayer().sendMessage(plugin.getMessagesFile().prefix + ChatColor.RED + " Não use o comando '/reload' com o plugin instalado, isso pode causar problemas de Timers e Packets!");
-	  }
-		  
+	  }	  
 	}
   }
 }

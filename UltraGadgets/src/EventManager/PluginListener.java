@@ -2,16 +2,11 @@ package EventManager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.server.PluginDisableEvent;
-
-import com.floodeer.gadgets.UltraGadgets;
 
 import Core.UtilLag;
-import Gadgets.Dj;
-import Mounts.MountHandler;
-import Pets.Pets.PetsType;
+
+import com.floodeer.gadgets.UltraGadgets;
 
 public class PluginListener
   implements Listener
@@ -45,24 +40,6 @@ public class PluginListener
 		  
 	  }else{
 		  sender.sendMessage(plugin.getMessagesFile().prefix + " §cO servidor está atualmente á §6§l" + UtilLag.getTicksPerSecond() + " §c(TPS BOM)");
-	  }
-  }
-  
-  @EventHandler
-  public void onService(PluginDisableEvent e) {
-	  if(e.getPlugin().equals(plugin)) 
-	  {
-		  for(Player p : Bukkit.getOnlinePlayers()) {
-			  if(p == null) return;
-			  if(PetsType.HasPet(p)) {
-				  PetsType.removePet(p);
-			  }
-			  if(MountHandler.HasPet(p)) {
-				  MountHandler.removePlayerMount(p);
-			  }
-		  }
-		  Dj dj = new Dj();
-		  dj.destroy();
 	  }
   }
 }

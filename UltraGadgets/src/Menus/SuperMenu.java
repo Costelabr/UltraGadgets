@@ -74,7 +74,11 @@ public class SuperMenu
   	}
     
     
-    this.spMenu.setItem(32, this.plugin.getItemStack().setSoonTM());
+    if(p.hasPermission("ug.sparticula.nuvem") || (p.hasPermission("ug.sparticulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+    this.spMenu.setItem(32, this.plugin.getItemStack().newItemStack(Material.ICE, "§fNuvem", null, 1, (byte)0));
+  	}else{
+  		this.spMenu.setItem(32, this.plugin.getItemStack().noPermissionItem("§7Nuvem"));
+  	}
     
     this.spMenu.setItem(39, this.plugin.getItemStack().setBackArrow());
     
@@ -191,8 +195,27 @@ public class SuperMenu
     		 plugin.getUtilPartciles().circleOfParticles(p, ParticleEffect.DRIP_WATER);
     	 }
      }
+     if(slot == 32) {
+    	 if(!p.hasPermission("ug.sparticula.nuvem") & !p.hasPermission("ug.sparticulas.usar.todos") & !p.hasPermission("ug.usar.todos")) {
+             p.sendMessage(plugin.getMessagesFile().superparticlepermission);
+             return;
+         }
+    	 if(!this.plugin.getUtilPartciles().hasEffect(p)) {
+    		 p.closeInventory();
+    		 p.sendMessage(this.plugin.getMessagesFile().newParticle + "§7Nuvem");
+    		 p.playSound(p.getLocation(), Sound.STEP_SNOW, 1.0F, 12.0F);
+    		 plugin.getUtilPartciles().otherType.put(p, "Nuvem");
+    	 }
+     }
+     
       if (slot == 40) {
+    	if(!plugin.getUtilPartciles().hasEffect(p)) {
+    		p.sendMessage("§cVocê não tem partículas para desativar.");
+    		p.closeInventory();
+    		return;
+    	}
         this.plugin.getUtilPartciles().stopAll(p);
+        p.closeInventory();
       }
       if (slot == 41)
       {

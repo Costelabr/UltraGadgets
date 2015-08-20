@@ -25,6 +25,7 @@ UltraGadgets plugin = UltraGadgets.getMain();
   public long TrampolimCooldown;
   public long VampireCooldown;
   public long vectorTNTCooldown;
+  public long explosiveSheepCooldown;
   
   public boolean BombaEnable;
   public boolean CookieEnable;
@@ -45,6 +46,7 @@ UltraGadgets plugin = UltraGadgets.getMain();
   public boolean vectorTNTEnable;
   public boolean cowBoyEnable;
   public boolean mobGunEnable;
+  public boolean explosiveSheepEnable;
   
   public boolean useTitles;
   
@@ -69,6 +71,7 @@ UltraGadgets plugin = UltraGadgets.getMain();
      this.TrampolimCooldown = config.getLong("Trampolim-Gadget-Cooldown");
      this.VampireCooldown = config.getLong("Vampire-Gadget-Cooldown");
      this.vectorTNTCooldown = config.getLong("VectorTNT-Gadget-Cooldown");
+     this.explosiveSheepCooldown = config.getLong("ExplosiveSheep-Gadget-Cooldown");
      
      this.BombaEnable = config.getBoolean("Bomba-Gadget-Habilitar");
      this.CookieEnable = config.getBoolean("Cookie-Gadget-Habilitar");
@@ -89,6 +92,7 @@ UltraGadgets plugin = UltraGadgets.getMain();
      this.vectorTNTEnable = config.getBoolean("VectorTNT-Gadget-Habilitar");
      this.cowBoyEnable = config.getBoolean("CowBoy-Gadget-Habilitar");
      this.mobGunEnable = config.getBoolean("MobGun-Gadget-Habilitar");
+     this.explosiveSheepEnable = config.getBoolean("ExplosiveSheep-Gadget-Habilitar");
      
      this.useTitles = config.getBoolean("Usar-Titulos");
   }

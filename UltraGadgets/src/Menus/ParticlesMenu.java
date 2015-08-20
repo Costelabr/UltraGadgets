@@ -40,7 +40,7 @@ public class ParticlesMenu
 	}else{
   		this.particleMenu.setItem(13, this.plugin.getItemStack().noPermissionItem("§7Corações"));
   	}        
-    
+     
     if(p.hasPermission("ug.particulas.notas") || (p.hasPermission("ug.particulas.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
     this.particleMenu.setItem(14, this.plugin.getItemStack().newItemStack(Material.JUKEBOX, "§aNotas", 
       Arrays.asList(new String[] {"§7Notas em volta de sua cabeça!" }), 1, (byte)0));

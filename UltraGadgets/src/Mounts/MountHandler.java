@@ -3,12 +3,17 @@ package Mounts;
 import java.util.HashMap;
 import java.util.UUID;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+
+import Core.UtilParticle;
+import Core.UtilParticle.ParticleType;
 
 import com.floodeer.gadgets.UltraGadgets;
 
@@ -29,11 +34,8 @@ public class MountHandler implements Listener {
 	  {
 	    if (pet.containsKey(paramPlayer.getUniqueId()))
 	    {
-	      ((Horse)pet.get(paramPlayer.getUniqueId())).remove();
+	      (pet.get(paramPlayer.getUniqueId())).remove();
 	      pet.remove(paramPlayer.getUniqueId());
-	      pet.remove(paramPlayer.getUniqueId());
-	    }else{
-	      return;
 	    }
 	  }
 	  
@@ -63,5 +65,19 @@ public class MountHandler implements Listener {
 				  e.setCancelled(true);
 			  }
 		  }
+	  }
+	  
+	  @EventHandler
+	  public void onEntityMove(PlayerMoveEvent e) {
+		  if (e.getTo().getBlockX() == e.getFrom().getBlockX() && e.getTo().getBlockY() == e.getFrom().getBlockY() && e.getTo().getBlockZ() == e.getFrom().getBlockZ()) {
+			  return;
+		  }
+		  
+		 Player p = (Player)e.getPlayer();
+		 if(p.getLocation().getBlock().getType() == Material.SNOW || p.getLocation().getBlock().getType() == Material.SNOW_BLOCK) {
+			new UtilParticle(ParticleType.SNOW_SHOVEL, 0.1F, 3, 0.4F).sendToLocation(p.getLocation());
+			new UtilParticle(ParticleType.SNOWBALL, 0.1F, 3, 0.4F).sendToLocation(p.getLocation()); 
+			new UtilParticle(ParticleType.CLOUD, 0.1F, 3, 0.4F).sendToLocation(p.getLocation()); 
+		 }
 	  }
 }

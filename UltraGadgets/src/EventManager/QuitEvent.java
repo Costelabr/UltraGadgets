@@ -17,6 +17,9 @@ public class QuitEvent implements Listener {
 		if(plugin.getUtilPartciles().hasEffect(p)) {
 			plugin.getUtilPartciles().stopAll(p); 
 		}
+		if(plugin.getDisguiseMenu().hasDisguise(p)) {
+			plugin.getDisguiseMenu().removeAllDisguises(p);
+		}
 	}
 
 }

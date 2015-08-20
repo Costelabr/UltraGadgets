@@ -49,6 +49,7 @@ WitherShoot-Gadget-Cooldown: 35000
 Trampolim-Gadget-Cooldown: 52000
 Vampire-Gadget-Cooldown: 48000
 VectorTNT-Gadget-Cooldown: 34000
+ExplosiveSheep-Gadget-Cooldown: 12000
 
 #Configuração dos gadgets:
 
@@ -78,3 +79,4 @@ Vampire-Gadget-Habilitar: true
 VectorTNT-Gadget-Habilitar: true
 CowBoy-Gadget-Habilitar: true
 MobGun-Gadget-Habilitar: true
+ExplosiveSheep-Gadget-Habilitar: true

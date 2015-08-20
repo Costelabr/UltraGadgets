@@ -32,6 +32,25 @@ public class UtilItem
     return false;
   }
   
+  public boolean startsName(ItemStack is, String prefix)
+  {
+    try
+    {
+      if (!is.hasItemMeta()) {
+        return false;
+      }
+      if (!is.getItemMeta().hasDisplayName()) {
+        return false;
+      }
+      if (is.getItemMeta().getDisplayName().startsWith(prefix)) {
+        return true;
+      }
+      return false;
+    }
+    catch (Exception localException) {}
+    return false;
+  }
+  
   public static boolean isAxe(ItemStack paramItemStack)
   {
     if (paramItemStack == null) {

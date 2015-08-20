@@ -1,6 +1,11 @@
 package Menus;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -12,6 +17,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import Core.UtilDisguise.DisguiseType;
 import Core.*;
+
 import com.floodeer.gadgets.UltraGadgets;
 
 public class DisguiseMenu
@@ -21,6 +27,8 @@ public class DisguiseMenu
   String invname =  this.plugin.getMessagesFile().DisguiseMenuName;;
   String trans = this.plugin.getMessagesFile().newDisguise;
   public UtilMenu disguiseMenu = new UtilMenu(this.plugin, this.invname, 6);
+  public static Map<UUID, String> disguiseType = new HashMap<UUID, String>();
+  public List<Player> blazes = new ArrayList<Player>();
   
   public void showDisguiseMenu(Player p) {
     
@@ -86,6 +94,13 @@ public class DisguiseMenu
     this.disguiseMenu.showMenu(p);
   }
   
+  public boolean hasDisguise(Player p) {
+	  if(disguiseType.get(p.getUniqueId()) != null && disguiseType.get(p.getUniqueId()) != "Nenhum") {
+		  return true;
+	  }
+	  return false;
+  }
+  
   public void disguisePlayer(Player p, DisguiseType type) {
 	  
       UtilDisguise zamb = new UtilDisguise(DisguiseType.ZOMBIE, p.getUniqueId());
@@ -96,41 +111,56 @@ public class DisguiseMenu
       UtilDisguise enderman = new UtilDisguise(DisguiseType.ENDERMAN, p.getUniqueId());
       UtilDisguise blaze = new UtilDisguise(DisguiseType.BLAZE, p.getUniqueId());
       UtilDisguise creeper = new UtilDisguise(DisguiseType.CREEPER, p.getUniqueId());
+      UtilDisguise wskelly = new UtilDisguise(DisguiseType.WITHER_SKELETON, p.getUniqueId());
       
       switch (type) {
 	case ZOMBIE:
 		zamb.disguiseToAll();
+		disguiseType.put(p.getUniqueId(), "Zombie");
 		
 		break;
 
 	case SKELETON:
 		skelly.disguiseToAll();
+		disguiseType.put(p.getUniqueId(), "Skeleton");
 		break;
 		
 	case SPIDER:
 		spider.disguiseToAll();
+		disguiseType.put(p.getUniqueId(), "Spider");
 		break;
 		
 	case WITCH:
 		w.disguiseToAll();
+		disguiseType.put(p.getUniqueId(), "Witch");
 		break;
 		
 		
 	case ZOMBIEPIG:
 		zpig.disguiseToAll();
+		disguiseType.put(p.getUniqueId(), "ZombiePig");
 		break;
 		
 		
 	case ENDERMAN:
 		enderman.disguiseToAll();
+		disguiseType.put(p.getUniqueId(), "Enderman");
 		break;
 		
 	case BLAZE:
 	    blaze.disguiseToAll();
+	    blazes.add(p);
+		disguiseType.put(p.getUniqueId(), "Blaze");
 		break;
 		
 	case CREEPER:
 		creeper.disguiseToAll();
+		disguiseType.put(p.getUniqueId(), "Creeper");
+		break;
+	case WITHER_SKELETON:
+		wskelly.disguiseToAll();
+		disguiseType.put(p.getUniqueId(), "WitherSkeleton");
+    break;
 	default:
 		break;
 	}
@@ -154,6 +184,10 @@ public class DisguiseMenu
       enderman.removeDisguise();
       blaze.removeDisguise();
       creeper.removeDisguise();
+      disguiseType.put(p.getUniqueId(), "Nenhum");
+      if(blazes.contains(p)) {
+    	  blazes.remove(p);
+      }
   }
   
   @EventHandler
@@ -226,6 +260,7 @@ public class DisguiseMenu
         p.playSound(p.getLocation(), Sound.ZOMBIE_INFECT, 5.0F, -12.0F);
         disguisePlayer(p, DisguiseType.ENDERMAN);
         p.sendMessage(this.trans + "§c§lEnderman");
+        p.sendMessage("§cHabilidade: §7Clique com botão esquerdo para usar suas habilidades de Teleport!");
       }
       
       if (slotClicked == 30)
@@ -237,6 +272,7 @@ public class DisguiseMenu
         p.playSound(p.getLocation(), Sound.ZOMBIE_INFECT, 5.0F, -12.0F);
         disguisePlayer(p, DisguiseType.BLAZE);
         p.sendMessage(this.trans + "§c§lBlaze");
+        p.sendMessage("§cHabilidade: §7Segure Shift para voar!");
       }
       
       if (slotClicked == 31)
@@ -248,6 +284,7 @@ public class DisguiseMenu
         p.playSound(p.getLocation(), Sound.ZOMBIE_INFECT, 5.0F, -12.0F);
         disguisePlayer(p, DisguiseType.CREEPER);
         p.sendMessage(this.trans + "§c§lCreeper");
+        p.sendMessage("§cHabilidade: §7Aperte Shift para Explodir!");
       }
       if (slotClicked == 32)
       {
@@ -257,21 +294,22 @@ public class DisguiseMenu
     	}
         p.playSound(p.getLocation(), Sound.ZOMBIE_INFECT, 5.0F, -12.0F);
         disguisePlayer(p, DisguiseType.WITHER_SKELETON);
-        p.sendMessage(this.trans + "§c§lWither Skeleton");
+        p.sendMessage(trans + "§c§lWither Skeleton");
+        p.sendMessage("§cHabilidade: §7Clique com botão esquerdo para lançar cabeças de Wither!");
       }
       if (slotClicked == 39)
       {
         p.closeInventory();
         this.plugin.getMenuManager().gadgetMenu.showMenu(p);
       }
-      if (slotClicked == 40)
-      {
-      	if(!p.hasPermission("ug.disguise.remover") & !p.hasPermission("ug.disguise.usar.todos") & !p.hasPermission("ug.usar.todos")) {
-    		p.sendMessage(plugin.getMessagesFile().disguisePermission);
-    		return;
-    	}
+      if(slotClicked == 41) {
+    	  p.sendMessage("§7§oEm breve!");
+      }
+      if (slotClicked == 40)  {
+    	p.sendMessage("§cSua fantasia foi removida.");
         removeAllDisguises(p);	
         p.playSound(p.getLocation(), Sound.ZOMBIE_UNFECT, 5.0F, -12.0F);
+        p.closeInventory();
       }
     }
   }

@@ -70,21 +70,29 @@ public class MountMenu implements Listener {
 	     e.setResult(Result.DENY);
 	     p.closeInventory();
 	     if(slotClicked == 39) {
-	    	 p.sendMessage("§7§oEm breve!");
-	     }
-	     if(slotClicked == 41) {
+	    	 p.closeInventory();
 	    	 plugin.getMenuManager().showMenu(p);
+	     }
+	     if(slotClicked == 41) {	    	 
+	    	 p.sendMessage("§7§oEm breve!");
 	     }
 	     if(slotClicked == 40) {
 	    	 if(MountHandler.HasPet(p)) {
 	    	 MountHandler.removePlayerMount(p);
+	    	 p.sendMessage("§cVocê removeu sua Montaria.");
+	    	 }else{
+	    		 p.sendMessage("§cVocê não tem nenhum Mount para remover!");
 	    	 }
 	     }
 	     if(slotClicked == 12) {
+	    	 
 	      	 if(!p.hasPermission("ug.mount.frozen") && !p.hasPermission("ug.mount.usar.todos") && p.hasPermission("ug.usar.todos")) {
 		     p.sendMessage(plugin.getMessagesFile().petspermission);
 		    return;
 		    }
+	    	 if(MountHandler.HasPet(p)) {
+	    	 MountHandler.removePlayerMount(p);
+	    	 }
 	    	 Mounts.summonMount(p, Mounts.FROZEN);
 	    	 p.sendMessage(this.ativado + ChatColor.AQUA + " Frozen"); 
 	     }
@@ -93,6 +101,9 @@ public class MountMenu implements Listener {
 				p.sendMessage(plugin.getMessagesFile().petspermission);
 				return;
 			}
+	    	 if(MountHandler.HasPet(p)) {
+	    	 MountHandler.removePlayerMount(p);
+	    	 }
 	    	 Mounts.summonMount(p, Mounts.INFERNO);
 	    	 p.sendMessage(this.ativado + ChatColor.AQUA + " Infernal"); 
 	     }

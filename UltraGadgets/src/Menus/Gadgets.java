@@ -8,6 +8,7 @@ import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import Core.UtilMenu;
 import Gadgets.Tipos;
@@ -181,7 +182,11 @@ public class Gadgets
 		  	this.gadgets2page.setItem(12, this.plugin.getItemStack().noPermissionItem("§7Cowboy"));
 	 }
 	  
-	  gadgets3page.setItem(13, plugin.getItemStack().setSoonTM());
+	  if(p.hasPermission("ug.gadgets.explosivesheep") || (p.hasPermission("ug.gadgets2page.usar.todos") || (p.hasPermission("ug.usar.todos")))) {
+	  gadgets3page.setItem(13, plugin.getItemStack().newItemStack(Material.SHEARS, plugin.getMessagesFile().ExplosiveSheepName, Arrays.asList(plugin.getMessagesFile().ExplosiveSheepLore), 1, (byte)0));
+		 }else{
+		  	this.gadgets2page.setItem(13, this.plugin.getItemStack().noPermissionItem("§7Cowboy"));
+	 }
 	  
 	  gadgets3page.setItem(14, plugin.getItemStack().setSoonTM());
 	  
@@ -216,7 +221,7 @@ public class Gadgets
   {
     if ((e.getInventory().getName().equalsIgnoreCase(invname)) && ((e.getWhoClicked() instanceof Player)))
     {
-      Player p = (Player)e.getWhoClicked();
+      final Player p = (Player)e.getWhoClicked();
       e.setCancelled(true);
       e.setResult(Result.DENY);
       int slot = e.getSlot();
@@ -285,27 +290,46 @@ public class Gadgets
       }
       if (slot == 39) {
         p.closeInventory();
-        plugin.getMenuManager().showMenu(p);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                plugin.getMenuManager().showMenu(p);
+            }
+        }.runTaskLater(plugin, 1);
       }
       if (slot == 40) {
+      	if(!Tipos.playerHasGadget(p)) {
+    		p.sendMessage("§cVocê não tem nenhum gadget selecionado!");
+    		p.closeInventory();
+    		return;
+    	}
         Tipos.setGadget(p, Tipos.NENHUM);
       }
       if (slot == 41)
       {
         p.closeInventory();
-        showGadgetPage2(p);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                showGadgetPage2(p);
+            }
+        }.runTaskLater(plugin, 1);
       }
     }
     if ((e.getInventory().getName().equalsIgnoreCase(invname2)) & ((e.getWhoClicked() instanceof Player)))
     {
-      Player p = (Player)e.getWhoClicked();
+      final Player p = (Player)e.getWhoClicked();
       e.setCancelled(true);
-      e.setResult(Result.DENY);
       int slot = e.getSlot();
       if (slot == 39)
       {
-        p.closeInventory();
-        showGadgetsPage1(p);
+    	  p.closeInventory();
+          new BukkitRunnable() {
+              @Override
+              public void run() {
+                  showGadgetsPage1(p);
+              }
+          }.runTaskLater(plugin, 1);
       }
       if (slot == 12) {
       	if(!p.hasPermission("ug.gadgets.railgun") & !p.hasPermission("ug.gadgets.usar.todos") & !p.hasPermission("ug.usar.todos")) {
@@ -371,26 +395,49 @@ public class Gadgets
           Tipos.setGadget(p, Tipos.COWBOY);
         }
       if (slot == 40) {  
-        Tipos.setGadget(p, Tipos.NENHUM);
-      }
+        	if(!Tipos.playerHasGadget(p)) {
+        		p.sendMessage("§cVocê não tem nenhum gadget selecionado!");
+        		p.closeInventory();
+        		return;
+        	}
+            Tipos.setGadget(p, Tipos.NENHUM);
+          }
       if (slot == 41)
       {
-        p.closeInventory();
-        showGadgetsPage3(p);
+    	 p.closeInventory();
+          new BukkitRunnable() {
+              @Override
+              public void run() {
+                  showGadgetsPage3(p);
+              }
+          }.runTaskLater(plugin, 1);
       }
     }
     if ((e.getInventory().getName().equalsIgnoreCase(invname3)) && ((e.getWhoClicked() instanceof Player))) {
-    	Player p = (Player)e.getWhoClicked();
+    	final Player p = (Player)e.getWhoClicked();
     	int slot = e.getSlot();
     	if(slot == 12) {
     		Tipos.setGadget(p, Tipos.MOBGUN);    		
     	}
-        if (slot == 40) {  
+    	if(slot == 13) {
+    		Tipos.setGadget(p, Tipos.EXSHEEP);
+    	}
+        if (slot == 40) {
+        	if(!Tipos.playerHasGadget(p)) {
+        		p.sendMessage("§cVocê não tem nenhum gadget selecionado!");
+        		p.closeInventory();
+        		return;
+        	}
             Tipos.setGadget(p, Tipos.NENHUM);
           }
         if(slot == 39) {
         	p.closeInventory();
-            showGadgetPage2(p);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    showGadgetPage2(p);
+                }
+            }.runTaskLater(plugin, 1);
         }
           if (slot == 41)
           {

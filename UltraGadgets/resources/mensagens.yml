@@ -1,5 +1,5 @@
 #Códigos de cores '&' suporte!
-#Mensagens - Use <GADGET> para o nome do Gadget | Use <COOLDOWN> para o Cooldown | Use <PLAYER> para o nome do Player | Use <newLine> para nova linha no Lore!
+#Mensagens - Use <GADGET> para o nome do Gadget | Use <COOLDOWN> para o Cooldown | Use <PLAYER> para o nome do Player |
 #Versão: 2.0.0
 
 #Config
@@ -7,7 +7,7 @@ Prefix: "&7[&eUltraGadgets&7]"
 Mensagem-Cooldown: "&eVocê deve esperar &c<COOLDOWN> &esegundos para usar &c<GADGET> novamente."
 Novo-Gadget: "&eVocê recebeu o gadget &c&l<GADGET>"
 Nova-Particula: "&eVocê ativou a partícula &c&l"
-Nova-Fantasia: "&eVocê se transoformou em um &c&l"
+Nova-Fantasia: "&eVocê se transformou em um &c&l"
 Novo-Mount: "&eVocê selecionou a montaria &e&l"
 Pets-Formato: "&b<PLAYER>'s &f<PET>"
 Principal-Menu: "&lUltra Gadgets"
@@ -52,8 +52,9 @@ Trampolim-Item-Nome: "&a&lTrampolim"
 Vampire-Item-Nome: "&cVampire"
 VectorTNTGadget-Item-Nome: "&CVectorTNT"
 CowBoy-Item-Nome: "&c&lCowBoy"
+ExplosiveSheep-Item-Nome: "&c&lExplosiveSheep"
 
-Gadget-Item-Lore: "&e&lGadgets! <newLine>&7Pets, partículas, gadgets e mais!"
+Gadget-Item-Lore: "&e&lClique para abrir o menu!"
 Bomba-Gadget-Item-Lore: "&7BOOOM!"
 Cookie-Gadget-Item-Lore: "&7Cookies, Cookies!"
 FunGun-Gadget-Item-Lore: "&7Meow...."
@@ -72,6 +73,7 @@ Trampolim-Item-Lore: "&7Trampolim!"
 Vampire-Item-Lore: "&7Vampiro!?"
 VectorTNTGadget-Item-Lore: "&cBOOM Velocity!"
 CowBoy-Item-Lore: "&7Montar em players!"
+ExplosiveSheep-Item-Lore: "&cBoom"
 
 #Gadgets
 Em-Trampolim: "&cVocê já tem um trampolim!"

@@ -10,10 +10,12 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Pig;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Rabbit;
+import org.bukkit.entity.Slime;
 import org.bukkit.entity.Wolf;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import Core.ParticleEffect;
@@ -26,7 +28,7 @@ public class Pets
 {
   public static enum PetsType
   {
-    COELHO,  GALINHA,  VACA, WOLF, PORCO, NENHUM;
+    COELHO,  GALINHA,  VACA, WOLF, PORCO, NENHUM, SLIME;
     
     protected static final UltraGadgets plugin = UltraGadgets.getMain();
     public static HashMap<UUID, Entity> pet = new HashMap<>();
@@ -34,6 +36,7 @@ public class Pets
     public static final Map<UUID, Rabbit> booleanRabbit = new HashMap<>();
     public static final Map<UUID, Entity> booleanSheep = new HashMap<>();
     public static final Map<UUID, Entity> booleanWolf = new HashMap<>();
+    public static final Map<UUID, Slime > booleanSlime = new HashMap<>();
     
     public static void setPet(Player uniquePlayer, PetsType pettype)
     {
@@ -99,6 +102,20 @@ public class Pets
     	  UtilPet.criarPet(paramUniquePig, uniqueID);
     	  paramUniquePig.setCustomName(plugin.getMessagesFile().petNome.replaceAll("&", "§").replaceAll("<PLAYER>", uniquePlayer.getName()).replaceAll("<PET>", ((Entity)pet.get(uniqueID)).getName()));
           ParticleEffect.HEART.display(1.0F, 0.0F, 0.0F, 3.0F, 20, paramUniquePig.getLocation(), 12.0D);
+    	  
+        break;
+        
+      case SLIME:
+    	  Slime paramUniqueSlime = (Slime)uniquePlayer.getWorld().spawn(uniquePlayer.getLocation(), Slime.class);
+    	  paramUniqueSlime.setCustomNameVisible(true);
+    	  paramUniqueSlime.setMetadata("petSlime", new FixedMetadataValue(plugin, "petFixed6"));
+    	  pet.put(uniqueID, paramUniqueSlime);
+    	  booleanPet.put(uniqueID, SLIME);
+    	  paramUniqueSlime.setSize(2);
+    	  booleanSlime.put(uniqueID, paramUniqueSlime);
+    	  UtilPet.criarPet(paramUniqueSlime, uniqueID);
+    	  paramUniqueSlime.setCustomName(plugin.getMessagesFile().petNome.replaceAll("&", "§").replaceAll("<PLAYER>", uniquePlayer.getName()).replaceAll("<PET>", ((Entity)pet.get(uniqueID)).getName()));
+          ParticleEffect.HEART.display(1.0F, 0.0F, 0.0F, 3.0F, 20, paramUniqueSlime.getLocation(), 12.0D);
     	  
         break;
       case NENHUM:
@@ -169,6 +186,22 @@ public class Pets
     	if(localWolf.hasMetadata("petPorco")) {
     		e.setCancelled(true);
     	}
+  	  if((e.getEntity() instanceof Slime)) {
+		  Slime localSlime = (Slime)e.getEntity();
+		  if(localSlime.hasMetadata("petSlime")) {
+			  e.setCancelled(true);
+		  }
       }
+    }
    }
+  
+  @EventHandler
+  public void onDamage(EntityTargetLivingEntityEvent e) {
+	  if((e.getEntity() instanceof Slime)) {
+		  Slime localSlime = (Slime)e.getEntity();
+		  if(localSlime.hasMetadata("petSlime")) {
+			  e.setCancelled(true);
+		  }
+	  }
+  }
 }
