@@ -1,12 +1,17 @@
-#Atualização! (13/08/15)
+#Atualização! (20/08/15)
 **Versão 2.0.1 está disponível!**
-
-Essa mudança e um complemento da 2.0.0, adiciona alguns itens que já estavam prontos porém não foram adicionados, e trás várias correções de bugs de versoes anteriores e da própria 2.0.0. 
-**Você não tem permissões para qualquer cópia do projeto! Porém sinta-se livre para usar o que precisar do arquivo Core.**
 
 Mudanças: https://github.com/Floodeer/UltraGadgets/wiki/Changelog 
 
-Download: http://www.mediafire.com/download/7yx0ggx5bbmrdzl/UltraGadgets.jar
+Download: http://www.mediafire.com/download/xvwhiz9719t3voo/UltraGadgets.jar
+
+Use Spigot R3:
+http://www.mediafire.com/download/ztfkv9zkht4fvtk/SpigotR3.jar
+
+Ou
+
+CraftBukkit 1.8.8 R1, API R3:
+http://www.mediafire.com/download/x4x8ozs6oeja4u4/spigot-1.8.8-R0.1-SNAPSHOT.jar
 
 **Versão 2.9.0 será a última em BETA**
 
