@@ -26,7 +26,7 @@ import Core.ParticleEffect;
 import Core.Util18;
 import Core.UtilCooldown;
 import Core.UtilMath;
-import EventManager.UpdateEvent;
+import Update.UpdateEvent;
 
 import com.floodeer.gadgets.UltraGadgets;
 

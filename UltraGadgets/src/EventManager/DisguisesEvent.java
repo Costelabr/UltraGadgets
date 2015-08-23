@@ -27,6 +27,8 @@ import Core.UtilParticle;
 import Core.UtilParticle.ParticleType;
 import Core.UtilVelocity;
 import Menus.DisguiseMenu;
+import Update.UpdateEvent;
+import Update.UpdateType;
 
 import com.floodeer.gadgets.UltraGadgets;
 

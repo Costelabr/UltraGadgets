@@ -54,7 +54,7 @@ public class Bomba
         paramItemDrop.setPickupDelay(Integer.MAX_VALUE);
         final BukkitTask repeatingID = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
         {
-          public void run()
+          public void run() 
           {
             paramItemDrop.getWorld().playSound(paramItemDrop.getLocation(), Sound.BURP, 2.5F, 12.0F);
           }

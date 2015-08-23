@@ -6,14 +6,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.util.Vector;
 
+import Update.UpdateEvent;
+import Update.UpdateType;
+
 import com.floodeer.gadgets.UltraGadgets;
 
 import Core.UtilMath;
 import Core.UtilParticle;
 import Core.UtilParticle.ParticleType;
 import Core.UtilVelocity;
-import EventManager.UpdateEvent;
-import EventManager.UpdateType;
 
 public class ParticleUpdateManager implements Listener{
 	

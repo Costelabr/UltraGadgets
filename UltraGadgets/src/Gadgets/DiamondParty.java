@@ -26,8 +26,8 @@ public class DiamondParty extends FireworkNMSHandler
 {
   UltraGadgets plugin = UltraGadgets.getMain();
   
-  private void startParty(final Player p)
-  {
+  private void startParty(final Player p) {
+	  
     final Vector direction = Vector.getRandom();
     direction.setX(direction.getX() - 0.5D);
     direction.setY(0.6F);

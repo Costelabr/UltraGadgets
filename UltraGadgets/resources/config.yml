@@ -59,6 +59,9 @@ Area-Maxima-TpStick: 50
 #Gadget vampiro pode voar?
 Vampiro-Pode-Voar: true
 
+#Quando player trocar de mundo, o plugin irá desabilitar gadgets, partículas pets mounts e outros. (true = Habilitar isso)
+Remover-Itens-Ao-Trocar-De-Mundo: true
+
 #Você pode habiltiar ou desabilitar gadgets, pois alguns deles podem causar problemas.
 Bomba-Gadget-Habilitar: true
 Cookie-Gadget-Habilitar: true

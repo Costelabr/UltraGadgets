@@ -49,7 +49,7 @@ public class CookieKookie
         final Item drop3 = p.getWorld().dropItemNaturally(p.getLocation().add(0.0D, 1.8D, 0.0D), new ItemStack(Material.COOKIE));
         
         drop.setMetadata("KookiesForU", new FixedMetadataValue(CookieKookie.this.plugin, "Coolkies"));
-        drop.setVelocity(direction);
+        drop.setVelocity(direction); 
         drop.setPickupDelay(1000);
         
         drop2.setMetadata("KookiesForU2", new FixedMetadataValue(CookieKookie.this.plugin, "Coolkies"));

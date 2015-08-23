@@ -26,11 +26,13 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 
+
+
 import Core.ParticleEffect;
 import Core.Util18;
 import Core.UtilCooldown;
-import EventManager.UpdateEvent;
-import EventManager.UpdateType;
+import Update.UpdateEvent;
+import Update.UpdateType;
 
 import com.floodeer.gadgets.UltraGadgets;
 

@@ -24,6 +24,7 @@ import EventManager.JoinEvent;
 import EventManager.PlayerListener;
 import EventManager.PluginListener;
 import EventManager.QuitEvent;
+import EventManager.WorldChange;
 import Gadgets.*;
 import Menus.*;
 import Mounts.MountHandler;
@@ -32,6 +33,7 @@ import Particulas.ParticleUpdateManager;
 import Particulas.UtilParticleType;
 import Pets.*;
 import Pets.Pets.PetsType;
+import Update.Updater;
 
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
@@ -222,6 +224,7 @@ public class UltraGadgets
     }
   }
   
+  @Override
   public void onEnable()
   {
     SystemDebugg("-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x");
@@ -257,6 +260,7 @@ public class UltraGadgets
     Bukkit.getServer().getPluginManager().registerEvents(new PetMenu(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new PluginListener(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new UtilPet(), this);
+    Bukkit.getServer().getPluginManager().registerEvents(new WorldChange(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new ParticleUpdateManager(), this);
     Bukkit.getServer().getPluginManager().registerEvents(new QuitEvent(), this);
     RegisterMounts.registerMouts(this);

@@ -2,6 +2,8 @@ package EventManager;
 
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -23,6 +25,7 @@ public class JoinEvent
   implements Listener
 {
   UltraGadgets plugin = UltraGadgets.getMain();
+  public static Map<Player, Integer> run = new HashMap<Player, Integer>();
  
   
   @EventHandler
@@ -32,13 +35,14 @@ public class JoinEvent
     Tipos.setGadget(p, Tipos.NENHUM);
     p.getInventory().setItem(this.plugin.getConfig().getInt("Slot-Gadget-Join-Item"), this.plugin.getItemStack().newItemStack(Material.PISTON_BASE, this.plugin.getMessagesFile().GadgetItemName, 
     	      Arrays.asList(plugin.getMessagesFile().GadgetItemLore), 1, (byte)0));
-    Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
+    int t = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
     {
       public void run()
       {
           ActionBar.sendActionBar(p, "§6§lGadget §e§: " + Tipos.getPlayerGadget.get(p));
       }
-    }, 1L, 1L);
+    }, 1L, 1L).getTaskId();
+    run.put(p, t);
   }
   
   @EventHandler
