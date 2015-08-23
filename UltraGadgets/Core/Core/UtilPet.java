@@ -18,8 +18,8 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import EventManager.UpdateEvent;
-import EventManager.UpdateType;
+import Update.UpdateEvent;
+import Update.UpdateType;
 
 public class UtilPet implements Listener {
 	  private static Field gsa;

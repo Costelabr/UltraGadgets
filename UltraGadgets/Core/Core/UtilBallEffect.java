@@ -5,8 +5,6 @@ import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
-import Gadgets.Dj;
-
 import com.floodeer.gadgets.UltraGadgets;
 
 public class UtilBallEffect
@@ -61,18 +59,14 @@ public class UtilBallEffect
           for (int i = 0; i < UtilBallEffect.this.lineParticles; i++)
           {
             loc.add(v);
-            if (((Boolean)Dj.discoBall.get("DiscoBall")).booleanValue()) {
               ParticleEffect.REDSTONE.display(0.0F, 0.0F, 0.0F, 3.0F, 1, loc, 25.0D);
-            }
           }
         }
         for (int i = 0; i < UtilBallEffect.this.sphereParticles; i++)
         {
           Vector vector = UtilMath.getRandomVector().multiply(UtilBallEffect.this.sphereRadius);
           location.add(vector);
-          if (((Boolean)Dj.discoBall.get("DiscoBall")).booleanValue()) {
-            ParticleEffect.DRIP_LAVA.display(0.0F, 0.0F, 0.0F, 3.0F, 1, location, 25.0D);
-          }
+           ParticleEffect.DRIP_LAVA.display(0.0F, 0.0F, 0.0F, 3.0F, 1, location, 25.0D);
           location.subtract(vector);
         }
       }
