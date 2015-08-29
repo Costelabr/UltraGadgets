@@ -20,17 +20,16 @@ import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
-import Core.FireworkNMSHandler;
-import Core.ParticleEffect;
-import Core.UtilCooldown;
-import Core.UtilParticle;
-import Core.UtilParticle.ParticleType;
-import Core.UtilVelocity;
 import Menus.DisguiseMenu;
-import Update.UpdateEvent;
-import Update.UpdateType;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Update.SchedulerEvent;
+import Update.SchedulerType;
+import Utils.FireworkNMSHandler;
+import Utils.ParticleEffect;
+import Utils.UtilCooldown;
+import Utils.UtilParticle;
+import Utils.UtilVelocity;
+import Utils.UtilParticle.ParticleType;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class DisguisesEvent extends FireworkNMSHandler implements Listener{
 	 
@@ -88,8 +87,8 @@ public class DisguisesEvent extends FireworkNMSHandler implements Listener{
 }
 	
 	@EventHandler
-	public void update(UpdateEvent e) {
-	  if(e.getType() == UpdateType.TICK) {
+	public void update(SchedulerEvent e) {
+	  if(e.getType() == SchedulerType.TICK) {
 		for(Player player : Bukkit.getOnlinePlayers()) {
 			if(DisguiseMenu.disguiseType.get(player.getUniqueId()) == "Blaze") {
 			  if (player.isSneaking()) {
@@ -110,7 +109,11 @@ public class DisguisesEvent extends FireworkNMSHandler implements Listener{
 		if(e.getEntity() instanceof WitherSkull) {
 			if(e.getEntity().hasMetadata("SkullLaunch")) {
 				e.setCancelled(true);
-				 playFirework(e.getEntity().getLocation(), FireworkEffect.builder().withColor(Color.BLACK).withColor(Color.WHITE).build());
+				 try {
+					playFirework(e.getEntity().getLocation(), FireworkEffect.builder().withColor(Color.BLACK).withColor(Color.WHITE).build());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 	}

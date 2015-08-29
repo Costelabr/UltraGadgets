@@ -16,5 +16,4 @@ public class RegisterMounts {
 		p.registerEvents(new Infernal(), plugin);
 		p.registerEvents(new MountMenu(), plugin);
 	}
-
 }

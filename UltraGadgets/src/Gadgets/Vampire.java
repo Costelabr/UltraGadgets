@@ -14,10 +14,9 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import Core.Util18;
-import Core.UtilCooldown;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.UtilCooldown;
+import Utils.UtilTitles;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class Vampire implements Listener {
 	
@@ -69,7 +68,7 @@ public class Vampire implements Listener {
 	      return;
 	    }
 	    if (this.plugin.getItem().isGadgetItem(paramItem, this.plugin.getMessagesFile().VampireGadgetName)) {
-	      if (UtilCooldown.tryCooldown(paramPlayer, "Vampire", this.plugin.getConfigFile().CookieCooldown))
+	      if (UtilCooldown.tryCooldown(paramPlayer, "Vampire", this.plugin.getConfigFile().VampireCooldown))
 	      {
 	        setVampire(paramPlayer, 25);
 	      }
@@ -78,7 +77,7 @@ public class Vampire implements Listener {
 	        long cooldown = UtilCooldown.getCooldown(paramPlayer, "Vampire") / 1000L;
 	        plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "Vampire", "Vampire", cooldown);
 	        paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
-	        Util18.sendTitle(paramPlayer, 
+	        UtilTitles.sendCooldownTitle(paramPlayer, 
 	        plugin.getMessagesFile().titleMessage,
 	        plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
 	        plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));      

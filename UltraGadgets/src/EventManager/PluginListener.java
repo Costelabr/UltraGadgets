@@ -4,9 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import Core.UtilLag;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.UtilLag;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class PluginListener
   implements Listener

@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import com.floodeer.gadgets.UltraGadgets;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class QuitEvent implements Listener {
 	

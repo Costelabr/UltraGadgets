@@ -10,7 +10,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.floodeer.gadgets.UltraGadgets;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class PlayerListener
   implements Listener
@@ -28,7 +28,7 @@ public class PlayerListener
     if (this.plugin.getItem().isGadgetItem(paramStackPlacer, this.plugin.getMessagesFile().DiscoBallGadgetName)) {
       paramBlockPlace.setCancelled(true);
     }
-    if (this.plugin.getItem().isGadgetItem(paramStackPlacer, this.plugin.getMessagesFile().DjGadgetName)) {
+    if (this.plugin.getItem().isGadgetItem(paramStackPlacer, this.plugin.getMessagesFile().socoGadgetName)) {
       paramBlockPlace.setCancelled(true);
     }
     if(plugin.getItem().isGadgetItem(paramStackPlacer, plugin.getMessagesFile().WitherShooterName)) {
@@ -56,7 +56,7 @@ public class PlayerListener
     if (this.plugin.getItem().isGadgetItem(paramStackPlayer, this.plugin.getMessagesFile().DiscoBallGadgetName)) {
       paramBreakBlock.setCancelled(true);
     }
-    if (this.plugin.getItem().isGadgetItem(paramStackPlayer, this.plugin.getMessagesFile().DjGadgetName)) {
+    if (this.plugin.getItem().isGadgetItem(paramStackPlayer, this.plugin.getMessagesFile().socoGadgetName)) {
       paramBreakBlock.setCancelled(true);
     }
     if (paramBreakBlock.getBlock().hasMetadata("MetaBlocked")) {

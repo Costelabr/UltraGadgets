@@ -15,11 +15,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import Core.FireworkNMSHandler;
-import Core.Util18;
-import Core.UtilCooldown;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.FireworkNMSHandler;
+import Utils.UtilCooldown;
+import Utils.UtilTitles;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class DiamondParty extends FireworkNMSHandler
   implements Listener
@@ -32,7 +31,7 @@ public class DiamondParty extends FireworkNMSHandler
     direction.setX(direction.getX() - 0.5D);
     direction.setY(0.6F);
     direction.setZ(direction.getZ() - 0.5D);
-    final BukkitTask ftask = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
+    final BukkitTask ftask = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable()
     {
       public void run()
       {
@@ -42,7 +41,7 @@ public class DiamondParty extends FireworkNMSHandler
           final Item paramItemDrop = p.getWorld().dropItem(p.getEyeLocation().add(0.0D, 0.0D, 0.0D), paramDiamond);
           paramItemDrop.setVelocity(direction);
           paramItemDrop.setPickupDelay(Integer.MAX_VALUE);
-          Bukkit.getScheduler().scheduleSyncDelayedTask(DiamondParty.this.plugin, new Runnable()
+          Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
           {
             public void run()
             {
@@ -64,7 +63,7 @@ public class DiamondParty extends FireworkNMSHandler
         }
       }
     }, 1L, 5L);
-    Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable()
+    Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
     {
       public void run()
       {
@@ -82,11 +81,11 @@ public class DiamondParty extends FireworkNMSHandler
       return;
     }
     ItemStack paramItem = paramPlayer.getItemInHand();
-    if (this.plugin.getUtilBlock().usable(paramPlayerUseDiamondPartyEvent.getClickedBlock())) {
+    if (plugin.getUtilBlock().usable(paramPlayerUseDiamondPartyEvent.getClickedBlock())) {
       return;
     }
-    if (this.plugin.getItem().isGadgetItem(paramItem, this.plugin.getMessagesFile().DiamondPartyGadgetName)) {
-      if (UtilCooldown.tryCooldown(paramPlayer, "DiamondParty", this.plugin.getConfigFile().DiamondPartyCooldown))
+    if (plugin.getItem().isGadgetItem(paramItem, plugin.getMessagesFile().DiamondPartyGadgetName)) {
+      if (UtilCooldown.tryCooldown(paramPlayer, "DiamondParty", plugin.getConfigFile().DiamondPartyCooldown))
       {
         startParty(paramPlayer);
       }
@@ -95,7 +94,7 @@ public class DiamondParty extends FireworkNMSHandler
         long cooldown = UtilCooldown.getCooldown(paramPlayer, "DiamondParty") / 1000L;
         plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "Diamond Party", "DiamondParty", cooldown);
         paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
-        Util18.sendTitle(paramPlayer, 
+        UtilTitles.sendCooldownTitle(paramPlayer, 
         plugin.getMessagesFile().titleMessage,
         plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
         plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));

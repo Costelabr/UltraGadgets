@@ -5,7 +5,6 @@
 #Configuração:
 
 #Debugg irá enviar informações a todo tempo sobre o plugin. (Recomendado = true)
-
 System-Debugg: true
 
 #Slot que o gadget será colocado quando player se juntar ao servidor. (0 = Slot 1, 8 = Slot 9)
@@ -15,14 +14,21 @@ Slot-Gadget-Join-Item: 0
 Gadgets-Slot: 4
 
 #Deixe 'true' para mostrar o gadget selecionado e outras informações na ActionBar (Textos cima do inventário)
-
 Usar-ActionBar: true
 
 #Títulos quando player recebe o gadget, ou o gadget ainda está em Cooldown
 Usar-Titulos: true
 
-#Som que será tocado quando o gadget ainda estiver em cooldown:
+#Som que será tocado quando o gadget ainda estiver em cooldown
+#Sons disponíveis: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
 Som-Cooldown: NOTE_PLING
+
+#Montarias podem mudar blocos?
+Mounts-Podem-Mudar-Blocos: true
+
+#Usar sons customizados? (Para usa-los, baixe os sons como .nbs renomeie de acordo com seu nome na pasta sons, e coloque lá!) 
+#Para saber mais Acesse http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-tools/1260747-minecraft-note-block-studio-300-000-downloads
+Usar-Sons-Customizados: true
 
 #Tempo em tickets dos titulos em:
 FadeIn-Title-Time: 20
@@ -39,7 +45,7 @@ FunGun-Gadget-Cooldown: 2500
 FireworkParty-Gadget-Cooldown: 28000
 Movire-Gadget-Cooldown: 45000
 StickTp-Gadget-Cooldown: 3000
-Dj-Gadget-Cooldown: 72000
+Foguete-Gadget-Cooldown: 72000
 Disco-Gadget-Cooldown: 48000
 RailGun-Gadget-Cooldown: 16000
 SmokeBomb-Gadget-Cooldown: 26000
@@ -50,26 +56,29 @@ Trampolim-Gadget-Cooldown: 52000
 Vampire-Gadget-Cooldown: 48000
 VectorTNT-Gadget-Cooldown: 34000
 ExplosiveSheep-Gadget-Cooldown: 12000
+DiscoArmor-Gadget-Cooldown: 52000
+Soco-Gadget-Cooldown: 12000
+Gravidade-Gadget-Cooldown: 38000
 
 #Configuração dos gadgets:
 
 #Máximo de blocos que o gadget "StickOfTeleport" poderá teleportar.
 Area-Maxima-TpStick: 50
 
-#Gadget vampiro pode voar?
+#Gadget vampiro pode voar? (true = sim)
 Vampiro-Pode-Voar: true
 
-#Quando player trocar de mundo, o plugin irá desabilitar gadgets, partículas pets mounts e outros. (true = Habilitar isso)
+#Quando player trocar de mundo, o plugin irá desabilitar gadgets, partículas pets mounts e outros. (true = Habilitar)
 Remover-Itens-Ao-Trocar-De-Mundo: true
 
-#Você pode habiltiar ou desabilitar gadgets, pois alguns deles podem causar problemas.
+#Você pode habilitar ou desabilitar gadgets! (false = desabilitado)
 Bomba-Gadget-Habilitar: true
 Cookie-Gadget-Habilitar: true
 FunGun-Gadget-Habilitar: true
 FireworkParty-Gadget-Habilitar: true
 Movire-Gadget-Habilitar: true
 StickTp-Gadget-Habilitar: true
-Dj-Gadget-Habilitar: true
+Foguete-Gadget-Habilitar: true
 Disco-Gadget-Habilitar: true
 RailGun-Gadget-Habilitar: true
 SmokeBomb-Gadget-Habilitar: true
@@ -83,3 +92,6 @@ VectorTNT-Gadget-Habilitar: true
 CowBoy-Gadget-Habilitar: true
 MobGun-Gadget-Habilitar: true
 ExplosiveSheep-Gadget-Habilitar: true
+DiscoArmor-Gadget-Habilitar: true
+Soco-Gadget-Habilitar: true
+Gravidade-Gadget-Habilitar: true

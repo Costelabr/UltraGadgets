@@ -22,13 +22,12 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
-import Core.ParticleEffect;
-import Core.Util18;
-import Core.UtilCooldown;
-import Core.UtilMath;
-import Update.UpdateEvent;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Update.SchedulerEvent;
+import Utils.ParticleEffect;
+import Utils.UtilCooldown;
+import Utils.UtilMath;
+import Utils.UtilTitles;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class Paraquedas
   implements Listener
@@ -214,7 +213,7 @@ public class Paraquedas
       long cooldown = UtilCooldown.getCooldown(paramPlayer, "Galinha") / 1000L;
       plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "Paraquedas", "Galinha", cooldown);
       paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
-      Util18.sendTitle(paramPlayer, 
+      UtilTitles.sendCooldownTitle(paramPlayer, 
       plugin.getMessagesFile().titleMessage,
       plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
       plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));
@@ -262,7 +261,7 @@ public class Paraquedas
   }
   
   @EventHandler
-  public void onUpdate(UpdateEvent paramUpdateEvent)
+  public void onUpdate(SchedulerEvent paramUpdateEvent)
   {
     for(Player paramPlayer : Bukkit.getOnlinePlayers()) {
     {

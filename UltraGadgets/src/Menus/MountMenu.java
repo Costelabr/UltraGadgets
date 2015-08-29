@@ -10,11 +10,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-import Core.UtilMenu;
 import Mounts.MountHandler;
 import Mounts.Mounts;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.UtilMenu;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class MountMenu implements Listener {
 	

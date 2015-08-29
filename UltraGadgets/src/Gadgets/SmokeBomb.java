@@ -12,13 +12,12 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 
-import Core.ParticleEffect;
-import Core.Util18;
-import Core.UtilCooldown;
-import Core.UtilLag;
-import Core.UtilMath;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.ParticleEffect;
+import Utils.UtilCooldown;
+import Utils.UtilLag;
+import Utils.UtilMath;
+import Utils.UtilTitles;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class SmokeBomb
   implements Listener
@@ -77,7 +76,7 @@ public class SmokeBomb
         long cooldown = UtilCooldown.getCooldown(paramPlayer, "SmokeBomb") / 1000L;
         plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "Smoke Bomb", "SmokeBomb", cooldown);
         paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
-        Util18.sendTitle(paramPlayer, 
+        UtilTitles.sendCooldownTitle(paramPlayer, 
         plugin.getMessagesFile().titleMessage,
         plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
         plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));

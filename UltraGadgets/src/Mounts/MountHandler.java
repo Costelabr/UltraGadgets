@@ -12,10 +12,9 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import Core.UtilParticle;
-import Core.UtilParticle.ParticleType;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.UtilParticle;
+import Utils.UtilParticle.ParticleType;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class MountHandler implements Listener {
 	

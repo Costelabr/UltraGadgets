@@ -9,17 +9,40 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.floodeer.gadgets.UltraGadgets;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public enum Tipos
 {
-  NENHUM,  BOMBA,  COOKIEK,  FIREWORKP,  FUNGUN,  MOVIRE,  PBGUN,  STICKTP,  DJ,  DISCOB,  RAILGUN,  SMOKEBOMB,  DIAMONDP,  PARAQUEDAS,  WITHERSHOOT,  TRAMPOLIM, VAMPIRE, VECTORTNT, COWBOY, MOBGUN, EXSHEEP;
+  NENHUM,  
+  BOMBA,  
+  COOKIEK,  
+  FIREWORKP,  
+  FUNGUN,  
+  MOVIRE,  
+  PBGUN,  
+  STICKTP,  
+  FOGUETE,  
+  DISCOB,  
+  RAILGUN,  
+  SMOKEBOMB,  
+  DIAMONDP,  
+  PARAQUEDAS,  
+  WITHERSHOOT,  
+  TRAMPOLIM, 
+  VAMPIRE, 
+  VECTORTNT, 
+  COWBOY, 
+  MOBGUN, 
+  EXSHEEP,
+  DISCOARMOR, 
+  SOCO,
+  GRAVIDADE;
   
   private static UltraGadgets plugin = UltraGadgets.getMain();
   protected static String invname = plugin.getMessagesFile().GadgetsMenuName;
   protected static int slotAdd = plugin.getConfig().getInt("Gadget-Gadgets-Slot");
   public static final Map<Player, String> getPlayerGadget = new HashMap<>();
-  private static int i = plugin.getConfigFile().gadgetSlot;
+  private static int i = plugin.getConfigFile().GadgetSlot;
   public static boolean playerHasGadget(Player p)
   {
     if (getPlayerGadget.get(p) != "Nenhum") {
@@ -111,7 +134,7 @@ public enum Tipos
         	p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
         }
       break;
-    case DJ: 
+    case FOGUETE: 
     	p.sendMessage(plugin.getMessagesFile().prefix + ChatColor.RED + " Este gadget está temporariamente desabilitado!");
         p.closeInventory();
       break;
@@ -234,6 +257,37 @@ public enum Tipos
     		getPlayerGadget.put(p, "ExplosiveSheep");    	
     	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
     	     p.getInventory().setItem(i, plugin.getItemStack().newItemStack(Material.SHEARS, plugin.getMessagesFile().ExplosiveSheepName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
+    	     p.closeInventory();
+    	     }else{
+    	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
+    	    }
+    	break;
+    	
+    case DISCOARMOR:
+    	if(plugin.getConfigFile().discoArmorEnable) {
+    		getPlayerGadget.put(p, "DiscoArmor");    	
+    	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
+    	     p.getInventory().setItem(i, plugin.getItemStack().newItemStack(Material.INK_SACK, plugin.getMessagesFile().discoArmorName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)13));
+    	     p.closeInventory();
+    	     }else{
+    	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
+    	    }
+    	break;
+    case SOCO:
+    	if(plugin.getConfigFile().supersocoEnable) {
+    		getPlayerGadget.put(p, "Soco");    	
+    	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
+    	     p.getInventory().setItem(i, plugin.getItemStack().newItemStack(Material.DIAMOND_SWORD, plugin.getMessagesFile().socoGadgetName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
+    	     p.closeInventory();
+    	     }else{
+    	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
+    	    }
+    	break;
+    case GRAVIDADE:
+    	if(plugin.getConfigFile().gravidadeEnable) {
+    		getPlayerGadget.put(p, "Gravidade");    	
+    	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
+    	     p.getInventory().setItem(i, plugin.getItemStack().newItemStack(Material.IRON_FENCE, plugin.getMessagesFile().gravidadeGadgetName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
     	     p.closeInventory();
     	     }else{
     	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);

@@ -19,13 +19,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import Core.ParticleEffect;
-import Core.Util18;
-import Core.UtilCooldown;
-import Core.UtilLocations;
-import Core.UtilMath;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.ParticleEffect;
+import Utils.UtilCooldown;
+import Utils.UtilLocations;
+import Utils.UtilMath;
+import Utils.UtilTitles;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class Bomba
   implements Listener
@@ -42,17 +41,17 @@ public class Bomba
       return;
     }
     ItemStack paramItem = paramPlayer.getItemInHand();
-    if (this.plugin.getUtilBlock().usable(paramPlayerUseBomb.getClickedBlock())) {
+    if (plugin.getUtilBlock().usable(paramPlayerUseBomb.getClickedBlock())) {
       return;
     }
-    if (this.plugin.getItem().isGadgetItem(paramItem, this.plugin.getMessagesFile().BombaGadgetName)) {
-      if (UtilCooldown.tryCooldown(paramPlayer, "Bomba", this.plugin.getConfigFile().BombaCooldown))
+    if (plugin.getItem().isGadgetItem(paramItem, plugin.getMessagesFile().BombaGadgetName)) {
+      if (UtilCooldown.tryCooldown(paramPlayer, "Bomba", plugin.getConfigFile().BombaCooldown))
       {
         ItemStack paramBomba = new ItemStack(Material.CLAY_BALL);
         final Item paramItemDrop = paramPlayer.getWorld().dropItem(paramPlayer.getEyeLocation().add(0.0D, 0.0D, 0.0D), paramBomba);
         paramItemDrop.setVelocity(paramPlayer.getEyeLocation().getDirection().multiply(0.8D).normalize());
         paramItemDrop.setPickupDelay(Integer.MAX_VALUE);
-        final BukkitTask repeatingID = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
+        final BukkitTask repeatingID = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable()
         {
           public void run() 
           {
@@ -60,11 +59,11 @@ public class Bomba
           }
         }, 1L, 8L);
         
-        Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable()
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
         {
           public void run()
           {
-            Bomba.this.saveParam.add(paramItemDrop.getLocation());
+            saveParam.add(paramItemDrop.getLocation());
             repeatingID.cancel();
             ParticleEffect.EXPLOSION_HUGE.display(1.0F, 1.0F, 1.0F, 3.0F, 18, paramItemDrop.getLocation(), 35.0D);
             paramItemDrop.getWorld().playSound(paramItemDrop.getLocation(), Sound.EXPLODE, 5.0F, 1.0F);
@@ -114,7 +113,7 @@ public class Bomba
         plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "Bomba", "Bomba", cooldown);
         paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
         
-        Util18.sendTitle(paramPlayer, 
+        UtilTitles.sendCooldownTitle(paramPlayer, 
         plugin.getMessagesFile().titleMessage,
         plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
         plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));

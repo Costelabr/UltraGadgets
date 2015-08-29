@@ -7,13 +7,12 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-import Core.ParticleEffect;
-import Core.PlayerIsInMoviment;
-import Core.UtilParticle;
-import Core.UtilVelocity;
-import Core.UtilParticle.ParticleType;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.LocalUpdate;
+import Utils.ParticleEffect;
+import Utils.UtilParticle;
+import Utils.UtilParticle.ParticleType;
+import Utils.UtilVelocity;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class UtilParticleType
 {
@@ -29,9 +28,9 @@ public class UtilParticleType
   
   public void spiraleEffect(final Player p, final ParticleEffect type)
   {
-    if (!this.intID.containsKey(p))
+    if (!intID.containsKey(p))
     {
-      int sp = Bukkit.getServer().getScheduler().runTaskTimer(this.plugin, new Runnable()
+      int sp = Bukkit.getServer().getScheduler().runTaskTimer(plugin, new Runnable()
       {
         float i = 0.0F;
         
@@ -40,28 +39,28 @@ public class UtilParticleType
           for (int k = 0; k < 1; k++)
           {
             Location l = p.getLocation();
-            double x = Math.sin(this.i * 3.7F);
-            double y = Math.cos(this.i * 3.7F);
-            double z = this.i * 0.4F;
+            double x = Math.sin(i * 3.7F);
+            double y = Math.cos(i * 3.7F);
+            double z = i * 0.4F;
             Vector v = new Vector(x, z, y);
             l.add(v);
             type.display(0.0F, 0.0F, 0.0F, 3.0F, 1, l, 25.0D);
           }
-          this.i += 0.1F;
-          if (this.i > 5.0F) {
-            this.i = 0.0F;
+          i += 0.1F;
+          if (i > 5.0F) {
+            i = 0.0F;
           }
         }
       }, 1L, 1L).getTaskId();
-      this.intID.put(p, Integer.valueOf(sp));
+      intID.put(p, Integer.valueOf(sp));
     }
   }
   
   public void rorationEffect(final Player p, final ParticleEffect type)
   {
-    if (!this.intIDspheric.containsKey(p))
+    if (!intIDspheric.containsKey(p))
     {
-      int rt = Bukkit.getServer().getScheduler().runTaskTimer(this.plugin, new Runnable()
+      int rt = Bukkit.getServer().getScheduler().runTaskTimer(plugin, new Runnable()
       {
         float j = 0.0F;
         
@@ -71,25 +70,25 @@ public class UtilParticleType
           loc.setY(loc.getY() + 1.9D + 0.03D);
           for (int k = 0; k < 1.0F; k++)
           {
-            loc.add(Math.cos(this.j) * 0.6000000238418579D, this.j * 0.01F, Math.sin(this.j) * 
+            loc.add(Math.cos(j) * 0.6000000238418579D, j * 0.01F, Math.sin(j) * 
               0.6000000238418579D);
             type.display(0.0F, 0.0F, 0.0F, 3.0F, 1, loc, 25.0D);
           }
-          this.j += 0.2F;
-          if (this.j > 50.0F) {
-            this.j = 0.0F;
+          j += 0.2F;
+          if (j > 50.0F) {
+            j = 0.0F;
           }
         }
       }, 1L, 1L).getTaskId();
-      this.intIDspheric.put(p, Integer.valueOf(rt));
+      intIDspheric.put(p, Integer.valueOf(rt));
     }
   }
   
   public void radarEffect(final Player p, final ParticleEffect type)
   {
-    if (!this.radar.containsKey(p))
+    if (!radar.containsKey(p))
     {
-      int superS = Bukkit.getServer().getScheduler().runTaskTimer(this.plugin, new Runnable()
+      int superS = Bukkit.getServer().getScheduler().runTaskTimer(plugin, new Runnable()
       {
         float j = 0.0F;
         
@@ -100,32 +99,32 @@ public class UtilParticleType
           for (int k = 0; k < 5.0F; k++)
           {
             loc.setX(loc.getX() + 
-              Math.sin(this.j * 0.17453292519943295D) * 
+              Math.sin(j * 0.17453292519943295D) * 
               0.20000000298023224D);
             loc.setY(loc.getY());
             
             loc.setZ(loc.getZ() + 
-              Math.cos(this.j * 0.17453292519943295D) * 
+              Math.cos(j * 0.17453292519943295D) * 
               0.20000000298023224D);
             
             type.display(0.0F, 0.0F, 0.0F, 3.0F, 1, loc, 25.0D);
             
-            this.j += 0.3F;
+            j += 0.3F;
           }
-          if (this.j >= 360.0F) {
-            this.j = 0.0F;
+          if (j >= 360.0F) {
+            j = 0.0F;
           }
         }
       }, 1L, 1L).getTaskId();
-      this.radar.put(p, Integer.valueOf(superS));
+      radar.put(p, Integer.valueOf(superS));
     }
   }
   
   public void SpiralEffect(final Player p, final ParticleEffect particle)
   {
-    if (!this.Helix.containsKey(p))
+    if (!Helix.containsKey(p))
     {
-      int helix = Bukkit.getServer().getScheduler().runTaskTimer(this.plugin, new Runnable()
+      int helix = Bukkit.getServer().getScheduler().runTaskTimer(plugin, new Runnable()
       {
         double xRotation;
         double yRotation;
@@ -145,37 +144,37 @@ public class UtilParticleType
         {
           Location location = p.getLocation();
           location.add(0.0D, 1.0D, 0.0D);
-          location.subtract(this.xSubtract, this.ySubtract, this.zSubtract);
-          double inc = 6.283185307179586D / this.particles;
-          double angle = this.step * inc;
+          location.subtract(xSubtract, ySubtract, zSubtract);
+          double inc = 6.283185307179586D / particles;
+          double angle = step * inc;
           Vector v = new Vector();
-          v.setX(Math.cos(angle) * this.radius);
-          v.setZ(Math.sin(angle) * this.radius);
-          UtilVelocity.rotateVector(v, this.xRotation, this.yRotation, 
-            this.zRotation);
-          if (this.enableRotation) {
-            UtilVelocity.rotateVector(v, this.angularVelocityX * 
-              this.step, this.angularVelocityY * this.step, 
-              this.angularVelocityZ * this.step);
+          v.setX(Math.cos(angle) * radius);
+          v.setZ(Math.sin(angle) * radius);
+          UtilVelocity.rotateVector(v, xRotation, yRotation, 
+            zRotation);
+          if (enableRotation) {
+            UtilVelocity.rotateVector(v, angularVelocityX * 
+              step, angularVelocityY * step, 
+              angularVelocityZ * step);
           }
           particle.display(0.0F, 0.0F, 0.0F, 3.0F, 1, location.add(v), 50.0D);
-          this.step += 1.0F;
+          step += 1.0F;
         }
       }, 1L, 1L).getTaskId();
-      this.Helix.put(p, Integer.valueOf(helix));
+      Helix.put(p, Integer.valueOf(helix));
     }
   }
   
   public void startHelix(final Player p, final ParticleType type)
   {
-    if (!this.animatedHelixID.containsKey(p)) {	
-      int continue1 = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable() {
+    if (!animatedHelixID.containsKey(p)) {	
+      int continue1 = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
           double phi = 0;
           public void run(){
            phi = phi + Math.PI/8;                                 
           double x, y, z;                
           
-      	if(!PlayerIsInMoviment.isNotMoving(p)) {
+      	if(!LocalUpdate.isNotMoving(p)) {
        	new UtilParticle(type, 0.10000000149011612D, 4, 0.30000001192092896D).sendToLocation(p.getLocation().add(0.0D, 1.0D, 0.0D));
        	
        	}else{      
@@ -194,15 +193,15 @@ public class UtilParticleType
        }
       }, 0L, 5L).getTaskId();
       
-      this.animatedHelixID.put(p, Integer.valueOf(continue1));
+      animatedHelixID.put(p, Integer.valueOf(continue1));
  	
     }
    }
   
   public void rorationOtherType(final Player p, final ParticleType ptype)
   {
-    if (!this.intIDspheric.containsKey(p))  {
-      int rt = Bukkit.getServer().getScheduler().runTaskTimer(this.plugin, new Runnable()
+    if (!intIDspheric.containsKey(p))  {
+      int rt = Bukkit.getServer().getScheduler().runTaskTimer(plugin, new Runnable()
       {
         float j = 0.0F;
     	
@@ -213,31 +212,31 @@ public class UtilParticleType
             loc.setY(loc.getY() + 1.9D + 0.03D);
             for (int k = 0; k < 1.0F; k++)
             {
-              loc.add(Math.cos(this.j) * 0.6000000238418579D, this.j * 0.01F, Math.sin(this.j) * 
+              loc.add(Math.cos(j) * 0.6000000238418579D, j * 0.01F, Math.sin(j) * 
                 0.6000000238418579D);
             
               
               new UtilParticle(ptype, 0.0D, 1, 1.0E-4D).sendToLocation(loc);
             }
         
-          this.j += 0.2F;
-          if (this.j > 50.0F) {
-            this.j = 0.0F;
+          j += 0.2F;
+          if (j > 50.0F) {
+            j = 0.0F;
           }
         }
       }, 1L, 1L).getTaskId();
-      this.otherroration.put(p, Integer.valueOf(rt));
+      otherroration.put(p, Integer.valueOf(rt));
     }
   }
   
   public void circleOfParticles(final Player p, final ParticleEffect pe) {
 	  if(!circleofparticle.containsKey(p)) {
-	 int c = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable() {
+	 int c = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
 			
 		  double cosI = 0;
 			@Override
 			public void run() {
-		      	if(!PlayerIsInMoviment.isNotMoving(p)) {
+		      	if(!LocalUpdate.isNotMoving(p)) {
 		      	 	new UtilParticle(ParticleType.DRIP_WATER, 0.10000000149011612D, 21, 0.30000001192092896D).sendToLocation(p.getLocation().add(0.0D, 1.0D, 0.0D));
 		      		new UtilParticle(ParticleType.WATER_SPLASH, 0.10000000149011612D, 21, 0.30000001192092896D).sendToLocation(p.getLocation().add(0.0D, 1.0D, 0.0D));
 		           	}else{  
@@ -254,23 +253,23 @@ public class UtilParticleType
 			}
 		  }
 		}, 0L, 6L).getTaskId();
-      this.circleofparticle.put(p, c);
+      circleofparticle.put(p, c);
 	 }
   }
   
   public boolean hasEffect(Player p)
   {
-    if (this.intID.containsKey(p))
+    if (intID.containsKey(p))
     {
       p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
       return true;
     }
-    if (this.intIDspheric.containsKey(p))
+    if (intIDspheric.containsKey(p))
     {
      p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
       return true;
     }
-    if (this.radar.containsKey(p))
+    if (radar.containsKey(p))
     {
       p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
       return true;
@@ -300,49 +299,49 @@ public class UtilParticleType
   
   public void stopAll(Player p)
   {
-    if (this.intID.containsKey(p))
+    if (intID.containsKey(p))
     {
-      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.intID.get(p)).intValue());
+      Bukkit.getServer().getScheduler().cancelTask(((Integer)intID.get(p)).intValue());
       p.sendMessage(plugin.getMensagensConfig().getString("Particula-Ja-Ativada").replaceAll("&", "§"));
-      this.intID.remove(p);
+      intID.remove(p);
     }
-    if (this.intIDspheric.containsKey(p))
+    if (intIDspheric.containsKey(p))
     {
-      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.intIDspheric.get(p)).intValue());
+      Bukkit.getServer().getScheduler().cancelTask(((Integer)intIDspheric.get(p)).intValue());
       p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
-      this.intIDspheric.remove(p);
+      intIDspheric.remove(p);
     }
-    if (this.radar.containsKey(p))
+    if (radar.containsKey(p))
     {
-      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.radar.get(p)).intValue());
+      Bukkit.getServer().getScheduler().cancelTask(((Integer)radar.get(p)).intValue());
       p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
-      this.radar.remove(p);
+      radar.remove(p);
     }
-    if (this.Helix.containsKey(p))
+    if (Helix.containsKey(p))
     {
-      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.Helix.get(p)).intValue());
+      Bukkit.getServer().getScheduler().cancelTask(((Integer)Helix.get(p)).intValue());
       p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
-      this.Helix.remove(p);
+      Helix.remove(p);
     }
-    if (this.animatedHelixID.containsKey(p))
+    if (animatedHelixID.containsKey(p))
     {
-      Bukkit.getServer().getScheduler().cancelTask(((Integer)this.animatedHelixID.get(p)).intValue());
+      Bukkit.getServer().getScheduler().cancelTask(((Integer)animatedHelixID.get(p)).intValue());
       p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
-      this.animatedHelixID.remove(p);
+      animatedHelixID.remove(p);
     }
-    if(this.otherroration.containsKey(p)) {
-        Bukkit.getServer().getScheduler().cancelTask(((Integer)this.otherroration.get(p)).intValue());
+    if(otherroration.containsKey(p)) {
+        Bukkit.getServer().getScheduler().cancelTask(((Integer)otherroration.get(p)).intValue());
         p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
-        this.otherroration.remove(p);
+        otherroration.remove(p);
     }
-    if(this.otherType.containsKey(p)) {
+    if(otherType.containsKey(p)) {
     	 p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
-         this.otherType.remove(p);
+         otherType.remove(p);
     }
-    if(this.circleofparticle.containsKey(p)) {
+    if(circleofparticle.containsKey(p)) {
    	 p.sendMessage(plugin.getMensagensConfig().getString("Particula-Desativadas").replaceAll("&", "§"));
      Bukkit.getServer().getScheduler().cancelTask(((Integer)circleofparticle.get(p)).intValue());
-        this.circleofparticle.remove(p);
+        circleofparticle.remove(p);
    }
   }
 }

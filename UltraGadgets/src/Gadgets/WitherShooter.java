@@ -15,12 +15,11 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
-import Core.FireworkNMSHandler;
-import Core.Util18;
-import Core.UtilCooldown;
-import Core.UtilMath;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.FireworkNMSHandler;
+import Utils.UtilCooldown;
+import Utils.UtilMath;
+import Utils.UtilTitles;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class WitherShooter extends FireworkNMSHandler
   implements Listener
@@ -99,7 +98,7 @@ public class WitherShooter extends FireworkNMSHandler
       long cooldown = UtilCooldown.getCooldown(localPlayer1, "Wither") / 1000L;
       plugin.getMessagesFile().sendCooldownMessage(localPlayer1, "Wither Shoot", "Wither", cooldown);
       localPlayer1.playSound(localPlayer1.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
-      Util18.sendTitle(localPlayer1, 
+      UtilTitles.sendCooldownTitle(localPlayer1, 
       plugin.getMessagesFile().titleMessage,
       plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(localPlayer1)), 
       plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));

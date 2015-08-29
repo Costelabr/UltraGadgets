@@ -22,11 +22,12 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import Core.Util18;
-import Core.UtilCooldown;
-import Core.UtilMath;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.UtilCooldown;
+import Utils.UtilMath;
+import Utils.UtilParticle;
+import Utils.UtilParticle.ParticleType;
+import Utils.UtilTitles;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class VectorTNT implements Listener {
 	
@@ -37,7 +38,7 @@ public class VectorTNT implements Listener {
 		
 		TNTPrimed localTNT = (TNTPrimed) localPlayer.getWorld().spawn(localPlayer.getLocation(), TNTPrimed.class);
 		localTNT.setMetadata("localData", new FixedMetadataValue(plugin, null));
-		localTNT.setVelocity(localPlayer.getLocation().getDirection().multiply(1));
+		localTNT.setVelocity(localPlayer.getLocation().getDirection().multiply(1.6).normalize());
 		localTNT.setIsIncendiary(false);
 		localTNT.setFuseTicks(80);
 	}
@@ -51,6 +52,7 @@ public class VectorTNT implements Listener {
 			if(localTNT.hasMetadata("LocalData2")) {
 				e.setCancelled(true);
 				e.setYield(0);
+				new UtilParticle(ParticleType.SMOKE_NORMAL, 12.70000000149011612D, 8, 12.80000001192092896D).sendToLocation(localTNT.getLocation());
 			}
 			if(localTNT.hasMetadata("localData")){
 				e.setYield(0);
@@ -59,12 +61,13 @@ public class VectorTNT implements Listener {
 				for(final Entity entity : ent) {
 					if(entity.hasMetadata("NPC")) return;
 					if(entity.hasMetadata("PET")) return;
+					new UtilParticle(ParticleType.SMOKE_NORMAL, 12.80000000149011612D, 4, 12.80000001192092896D).sendToLocation(localTNT.getLocation());
 					final BukkitTask t = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
 						
 						@Override
 						public void run() {						
 						    TNTPrimed newTNT = e.getEntity().getWorld().spawn(localTNT.getLocation(), TNTPrimed.class);
-						    newTNT.setVelocity(new Vector(UtilMath.randomRange(-0.5D, 0.5D), UtilMath.randomRange(0.50000000298023224D, 1.2D), UtilMath.randomRange(-0.5D, 0.5D)));
+						    newTNT.setVelocity(new Vector(UtilMath.randomRange(-0.8D, 0.8D), UtilMath.randomRange(0.50000000298023224D, 1.2D), UtilMath.randomRange(-0.8D, 0.8D)));
 						    newTNT.setMetadata("LocalData2", new FixedMetadataValue(plugin, null));
 							
 						}
@@ -78,7 +81,7 @@ public class VectorTNT implements Listener {
 						}
 					}, 4*20L);
 				    
-					 Vector v = new Vector(UtilMath.random.nextInt(5),  UtilMath.random.nextInt(2), UtilMath.random.nextInt(5));
+					 Vector v = new Vector(UtilMath.random.nextInt(8),  UtilMath.random.nextInt(2), UtilMath.random.nextInt(8));
 					 entity.setVelocity(v);
 				}
 			}
@@ -106,7 +109,7 @@ public class VectorTNT implements Listener {
 	          long cooldown = UtilCooldown.getCooldown(paramPlayer, "VectorTNT") / 1000L;
 	          plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "VectorTNT", "VectorTNT", cooldown);
 	          paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
-	          Util18.sendTitle(paramPlayer, 
+	          UtilTitles.sendCooldownTitle(paramPlayer, 
 	          plugin.getMessagesFile().titleMessage,
 	          plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
 	          plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));

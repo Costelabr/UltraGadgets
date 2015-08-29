@@ -28,13 +28,17 @@ import org.bukkit.potion.PotionEffectType;
 
 
 
-import Core.ParticleEffect;
-import Core.Util18;
-import Core.UtilCooldown;
-import Update.UpdateEvent;
-import Update.UpdateType;
 
-import com.floodeer.gadgets.UltraGadgets;
+
+
+
+
+import Update.SchedulerEvent;
+import Update.SchedulerType;
+import Utils.ParticleEffect;
+import Utils.UtilCooldown;
+import Utils.UtilTitles;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class ExplosiveSheep implements Listener {
 	
@@ -48,8 +52,8 @@ public class ExplosiveSheep implements Listener {
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler
-	public void onUpdate(UpdateEvent e) {
-		if(e.getType() == UpdateType.TICKS_2) {
+	public void onUpdate(SchedulerEvent e) {
+		if(e.getType() == SchedulerType.TICKS_2) {
 			int color = random(new Integer[] {1,3,7,9,5,4,6});
 			for(Sheep s : sheep) {
 				s.setColor(DyeColor.getByData((byte)color));
@@ -86,17 +90,17 @@ public class ExplosiveSheep implements Listener {
 	      return;
 	    }
 	    ItemStack paramItem = paramPlayer.getItemInHand();
-	    if (this.plugin.getUtilBlock().usable(paramPlayerUseExplosiveSHeepEvent.getClickedBlock())) {
+	    if (plugin.getUtilBlock().usable(paramPlayerUseExplosiveSHeepEvent.getClickedBlock())) {
 	      return;
 	    }
-	    if (this.plugin.getItem().isGadgetItem(paramItem, plugin.getMessagesFile().ExplosiveSheepName)) {
+	    if (plugin.getItem().isGadgetItem(paramItem, plugin.getMessagesFile().ExplosiveSheepName)) {
 	      if(UtilCooldown.tryCooldown(paramPlayer, "ExplosiveSheep", plugin.getConfigFile().explosiveSheepCooldown)) {
 	        createSheep(paramPlayer.getLocation());
 	      }else{
 	    	  long cooldown = UtilCooldown.getCooldown(paramPlayer, "ExplosiveSheep") / 1000L;
 	          plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "Explosive Sheep", "ExplosiveSheep", cooldown);
 	          paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
-	          Util18.sendTitle(paramPlayer, 
+	          UtilTitles.sendCooldownTitle(paramPlayer, 
 	          plugin.getMessagesFile().titleMessage,
 	          plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
 	          plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));

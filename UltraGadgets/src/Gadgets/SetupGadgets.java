@@ -29,7 +29,10 @@ public class SetupGadgets {
 		    pm.registerEvents(new MobGun(), register);
 		    pm.registerEvents(new VectorTNT(), register);
 		    pm.registerEvents(new Cowboy(), register);
-		    pm.registerEvents(new ExplosiveSheep(), register);
+		    pm.registerEvents(new ExplosiveSheep(), register); 
+		    pm.registerEvents(new DiscoArmor(), register); 
+		    pm.registerEvents(new Soco(), register); 
+		    pm.registerEvents(new Gravidade(), register); 
 		}catch(RuntimeException gx) {
 			throw new GadgetException("Não foi possível carregar os Gadgets.");
 		}

@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.HorseInventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.floodeer.gadgets.UltraGadgets;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class Frozen implements Listener {
 	
@@ -30,6 +30,9 @@ public class Frozen implements Listener {
 		    if(paramEntity.hasMetadata("FrozenHorse")) {
 		    int i = 78;
 		    int j = 0;
+		    if(!plugin.getConfigFile().useMountBlockEffect) {
+		    	return;
+		    }
 		    for (Block localBlock1 : plugin.getUtilBlock().getInRadius(MountHandler.pet.get(paramPlayer.getUniqueId()).getLocation(), 3.5D, true).keySet()) {
 		    if ((paramPlayer.getLocation().getBlock().getType() != Material.WATER) && 
 		     (paramPlayer.getLocation().getBlock().getType() != Material.STATIONARY_WATER) && 

@@ -10,11 +10,10 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import Core.ParticleEffect;
-import Core.Util18;
-import Core.UtilCooldown;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.ParticleEffect;
+import Utils.UtilCooldown;
+import Utils.UtilTitles;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class StickOfTeleport
   implements Listener
@@ -55,7 +54,7 @@ public class StickOfTeleport
         long cooldown = UtilCooldown.getCooldown(paramPlayer, "Teleport") / 1000L;
         plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "Stick of Teleport", "Teleport", cooldown);
         paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
-        Util18.sendTitle(paramPlayer, 
+        UtilTitles.sendCooldownTitle(paramPlayer, 
         plugin.getMessagesFile().titleMessage,
         plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
         plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));

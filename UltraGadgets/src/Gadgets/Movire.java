@@ -18,10 +18,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import Core.Util18;
-import Core.UtilCooldown;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.UtilCooldown;
+import Utils.UtilTitles;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class Movire
   implements Listener
@@ -60,7 +59,7 @@ public class Movire
         long cooldown = UtilCooldown.getCooldown(paramPlayer, "FIRE") / 1000L;
         plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "Movire", "FIRE", cooldown);
         paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
-        Util18.sendTitle(paramPlayer, 
+        UtilTitles.sendCooldownTitle(paramPlayer, 
         plugin.getMessagesFile().titleMessage,
         plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
         plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));

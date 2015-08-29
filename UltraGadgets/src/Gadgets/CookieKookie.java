@@ -16,19 +16,17 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import Core.Util18;
-import Core.UtilCooldown;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.UtilCooldown;
+import Utils.UtilTitles;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class CookieKookie
   implements Listener
 {
   Map<String, Item> Kookies = new HashMap<>();
-  Map<Player, BukkitTask> cooking = new HashMap<>();
+  Map<Player, Integer> cooking = new HashMap<>();
   UltraGadgets plugin = UltraGadgets.getMain();
   
   public double randomRange(double paramDouble1, double paramDouble2)
@@ -40,7 +38,7 @@ public class CookieKookie
   {
     final Vector direction = new Vector(randomRange(-0.10000000149011612D, 0.10000000149011612D), 0.5D, randomRange(-0.10000000149011612D, 0.10000000149011612D));
     
-    final BukkitTask tasker = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
+    final int tasker = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable()
     {
       public void run()
       { 
@@ -48,21 +46,21 @@ public class CookieKookie
         final Item drop2 = p.getWorld().dropItemNaturally(p.getLocation().add(0.0D, 1.8D, 0.0D), new ItemStack(Material.COOKIE));
         final Item drop3 = p.getWorld().dropItemNaturally(p.getLocation().add(0.0D, 1.8D, 0.0D), new ItemStack(Material.COOKIE));
         
-        drop.setMetadata("KookiesForU", new FixedMetadataValue(CookieKookie.this.plugin, "Coolkies"));
+        drop.setMetadata("KookiesForU", new FixedMetadataValue(plugin, "Coolkies"));
         drop.setVelocity(direction); 
         drop.setPickupDelay(1000);
         
-        drop2.setMetadata("KookiesForU2", new FixedMetadataValue(CookieKookie.this.plugin, "Coolkies"));
+        drop2.setMetadata("KookiesForU2", new FixedMetadataValue(plugin, "Coolkies"));
         drop2.setVelocity(direction);
         drop2.setPickupDelay(1000);
         
-        drop3.setMetadata("KookiesForU3", new FixedMetadataValue(CookieKookie.this.plugin, "Coolkies"));
+        drop3.setMetadata("KookiesForU3", new FixedMetadataValue(plugin, "Coolkies"));
         drop3.setVelocity(direction);
         drop3.setPickupDelay(1000);
         
         p.getWorld().playSound(drop.getLocation(), Sound.ITEM_PICKUP, 2.0F, 15.0F);
         
-        Bukkit.getScheduler().scheduleSyncDelayedTask(CookieKookie.this.plugin, new Runnable()
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
         {
           public void run()
           {
@@ -71,9 +69,9 @@ public class CookieKookie
             drop3.remove();
           }
         }, 20L);
-        CookieKookie.this.Kookies.put("Kookie1", drop);
-        CookieKookie.this.Kookies.put("Kookie2", drop2);
-        CookieKookie.this.Kookies.put("Kookie3", drop3);
+        Kookies.put("Kookie1", drop);
+        Kookies.put("Kookie2", drop2);
+        Kookies.put("Kookie3", drop3);
         if (drop.isOnGround()) {
           drop.remove();
         }
@@ -84,14 +82,14 @@ public class CookieKookie
           drop.remove();
         }
       }
-    }, 0L, 2L);
-    this.cooking.put(p, tasker);
+    }, 0L, 2L).getTaskId();
+    cooking.put(p, tasker);
     
-    Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable()
+    Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
     {
       public void run()
       {
-        tasker.cancel();
+        Bukkit.getScheduler().cancelTask(cooking.get(p));
       }
     }, 320L);
   }
@@ -105,12 +103,12 @@ public class CookieKookie
       return;
     }
     ItemStack paramItem = paramPlayer.getItemInHand();
-    if (this.plugin.getUtilBlock().usable(paramPlayerUseKookies.getClickedBlock())) {
+    if (plugin.getUtilBlock().usable(paramPlayerUseKookies.getClickedBlock())) {
       return;
     }
     
-    if (this.plugin.getItem().isGadgetItem(paramItem, this.plugin.getMessagesFile().CookieGadgetName)) {
-      if (UtilCooldown.tryCooldown(paramPlayer, "Cookies", this.plugin.getConfigFile().CookieCooldown))
+    if (plugin.getItem().isGadgetItem(paramItem, plugin.getMessagesFile().CookieGadgetName)) {
+      if (UtilCooldown.tryCooldown(paramPlayer, "Cookies", plugin.getConfigFile().CookieCooldown))
       {
         paramSummonKookies(paramPlayer);
       }
@@ -119,7 +117,7 @@ public class CookieKookie
         long cooldown = UtilCooldown.getCooldown(paramPlayer, "Cookies") / 1000L;
         plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "Cookies Party", "Cookies", cooldown);
         paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
-        Util18.sendTitle(paramPlayer, 
+        UtilTitles.sendCooldownTitle(paramPlayer, 
         plugin.getMessagesFile().titleMessage,
         plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
         plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));
@@ -132,7 +130,7 @@ public class CookieKookie
   {
     Player paramPlayer = e.getPlayer();
     ItemStack paramItem = paramPlayer.getItemInHand();
-    if (this.plugin.getItem().isGadgetItem(paramItem, this.plugin.getMessagesFile().CookieGadgetName))
+    if (plugin.getItem().isGadgetItem(paramItem, plugin.getMessagesFile().CookieGadgetName))
     {
       e.setCancelled(true);
     }
@@ -142,14 +140,14 @@ public class CookieKookie
   public void playerLeftWithCookies(PlayerQuitEvent e)
   {
     Player p = e.getPlayer();
-    if (this.cooking.containsKey(p))
+    if (cooking.containsKey(p))
     {
-      ((BukkitTask)this.cooking.get(p)).cancel();
-      ((Item)this.Kookies.get("Kookie1")).remove();
-      ((Item)this.Kookies.get("Kookie2")).remove();
-      ((Item)this.Kookies.get("Kookie3")).remove();
-      this.Kookies.clear();
-      this.cooking.remove(p);
+      Bukkit.getScheduler().cancelTask(cooking.get(p));;
+      ((Item)Kookies.get("Kookie1")).remove();
+      ((Item)Kookies.get("Kookie2")).remove();
+      ((Item)Kookies.get("Kookie3")).remove();
+      Kookies.clear();
+      cooking.remove(p);
     }
   }
 }

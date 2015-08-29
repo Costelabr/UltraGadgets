@@ -1,0 +1,77 @@
+####################################
+Obrigado por baixar UltraGadgets :)
+###################################
+
+Informações:
+
+Versão: 2.2.0
+Minecraft: 1.8
+Spigot: Build vR3
+
+Leia.txt:
+
+- Esta versão não contém todas as adições que estavam planejadas, mas contém 95% delas.
+
+- Não se esqueça de extrair o arquivo "sons.zip" para alguns Gadgets funcionarem!
+
+- Aproite a configuração organizada porque ela não ficará assim xP
+
+Changelog: https://github.com/Floodeer/UltraGadgets/wiki/Changelog
+
+Novas Permissões: https://github.com/Floodeer/UltraGadgets/wiki/Informa%C3%A7%C3%A3o
+
+Pets:
+Novo Sistema: Tem compatibilidade com WorldGuard e provavelmente a maior parte de outros plugins de proteção de área. Para Spawnar um pet, clique no menu de pets,
+depois no pet que você quer spawnar. Para gerencia-lo (mudar cor, tamanho, nome, teleportar e outros), clique no ovo do pet com botão DIREITO ou clique 
+no Papel que irá aprecer acima do ovo do Pet Vaca.
+Mais pets estarão chegando, com mais opções de customizações e diferentes tipos!
+
+Partículas:
+Novas Super Partículas estão chegando em um futuro bem próximo! Não se esqueça de sempre ficar atento ao GitHub.
+
+Gadgets:
+Vários novos Gadgets estão por vir!
+Os gadgets adicionados, a maior parte, já estava no código a algum tempo, porém não receberam commit ou foram lançados devido a bugs.
+Ficarei feliz em ler sua ideia de gadget: https://docs.google.com/forms/d/1f31_MbfWspPtcGn4V0aPL79tRlRM8W97ORladpI7Ek0/viewform?c=0&w=1
+
+FAQ:
+
+Como tirar os textos acima do Inventário?:
+R: Basta ir na configuração e deixar 'Usar-ActionBar: false' (Padrão = true)
+
+O plugin está dando erros após um Reload que dei no servidor:
+R: NUNCA use '/reload' com UltraGadgets instalado, ele é realmente pesado, requer RAM para carregar, caso use '/reload', todos os plugins irão ser descarregados
+e carregados automaticamente por um Listener do Bukkit, o servidor não desliga e inicia novamente, apenas desabilita tudo e habilita novamente, então, algumas classes
+do plugin podem não ser carregadas, pode quebrar Timers, deixa-los longo de mais ou crashar o servidor devido a falta de Ram.
+
+O Plugin irá grifar algo em meu servidor?:
+R: Fora o trampolim (Os blocos deles não são fakes ainda), todos os outros blocos são apenas visuais, se você reentrar no servidor ou clicar neles eles irão receber
+uma atualização e sumir. Mesmo que o servidor recarregue, a mudança de blocos é enviada para os players, então o servidor não consegue reconhecer esses blocos.
+
+Porque preciso do ProtocolLib instalado:
+R: ProtocolLib não está realmente sendo usado para muitas coisas agora, mas novos itens irão precisar dele, ao menos 30% dos plugins requerem ProtocolLib para funcionar,
+além de ser uma API, é útil para Manager de Packets & detectar erros por comandos próprios do Protocolo, então, sempre use ProtocolLib mais atualizado.
+
+Porque o plugin não pode ter uma versão paga no Spigot?:
+R: Eu realmente não acho necessidade de fazer isso, além de ser parecido com outros plugins já presentes do próprio Spigot, diferente de algumas atualizações semanais
+de um plugin free, as pessoas irão pagar e cobrar o que compraram, então, já está bom assim.
+
+O plugin irá dar lag?:
+R: Contém um sistema de AntiLag, então não se preocupe.
+
+Como o plugin funciona?:
+R: Mágica.
+
+##########################################################################################################################################################################
+UltraGadgets: 2.2.0
+Desenvolvedor: Floodeer.
+
+Créditos finais:
+Dmulloy: ProtocolLibary & PacketWrapper.
+Slikey: Math
+DarkBladee12: ParticleEffect & Reflection Utils
+
+Vídeo: https://www.youtube.com/watch?v=yGfC0dFwdQoc
+
+Blog Post: http://www.comoinstalarmodsminecraft.com.br/2015/08/ultragadgets-plugin.html
+##########################################################################################################################################################################

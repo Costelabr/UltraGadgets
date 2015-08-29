@@ -23,10 +23,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
-import Core.Util18;
-import Core.UtilCooldown;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.UtilCooldown;
+import Utils.UtilTitles;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class Trampolim
   implements Listener
@@ -51,21 +50,21 @@ public class Trampolim
       return;
     }
     ItemStack paramItem = localPlayer.getItemInHand();
-    if (this.plugin.getItem().isGadgetItem(paramItem, this.plugin.getMessagesFile().TrampolimName))
+    if (plugin.getItem().isGadgetItem(paramItem, plugin.getMessagesFile().TrampolimName))
     {
-      if (this.plugin.getUtilBlock().usable(paramPlayerInteractEvent.getClickedBlock())) {
+      if (plugin.getUtilBlock().usable(paramPlayerInteractEvent.getClickedBlock())) {
         return;
       }
       if (_tBlocks.containsKey(localPlayer))
       {
-        localPlayer.sendMessage(this.plugin.getMensagensConfig().getString("Em-Trampolim").replaceAll("&", "§"));
+        localPlayer.sendMessage(plugin.getMensagensConfig().getString("Em-Trampolim").replaceAll("&", "§"));
         return;
       }
       paramPlayerInteractEvent.setCancelled(true);
-      if (UtilCooldown.tryCooldown(localPlayer, "Trampolim", this.plugin.getConfigFile().TrampolimCooldown))
+      if (UtilCooldown.tryCooldown(localPlayer, "Trampolim", plugin.getConfigFile().TrampolimCooldown))
       {
-        this.arrayPlayer.add(localPlayer);
-        this.paramPlayerArray.add(localPlayer);
+        arrayPlayer.add(localPlayer);
+        paramPlayerArray.add(localPlayer);
         Block localBlock1 = gb(localPlayer.getLocation());
         Block localBlock2 = gb(localPlayer.getLocation().add(1.0D, 0.0D, 0.0D));
         Block localBlock3 = gb(localPlayer.getLocation().add(2.0D, 0.0D, 0.0D));
@@ -173,13 +172,13 @@ public class Trampolim
           (localBlock51.getType() != Material.AIR) && 
           (localBlock52.getType() != Material.AIR))
         {
-          localPlayer.sendMessage(this.plugin.getMensagensConfig().getString("Area-Pequena").replaceAll("&", "§"));
+          localPlayer.sendMessage(plugin.getMensagensConfig().getString("Area-Pequena").replaceAll("&", "§"));
           UtilCooldown.setCooldown(paramPlayerInteractEvent.getPlayer(), "Trampolim", 0L);
           return;
         }
         if (!localPlayer.isOnGround())
         {
-          localPlayer.sendMessage(this.plugin.getMensagensConfig().getString("On-Ground-Trampolim").replaceAll("&", "§"));
+          localPlayer.sendMessage(plugin.getMensagensConfig().getString("On-Ground-Trampolim").replaceAll("&", "§"));
           UtilCooldown.setCooldown(paramPlayerInteractEvent.getPlayer(), "Trampolim", 0L);
           return;
         }
@@ -236,58 +235,58 @@ public class Trampolim
         localArrayList.add(localBlock51);
         localArrayList.add(localBlock52);
         
-        localBlock1.setMetadata("Fix1", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock2.setMetadata("Fix2", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock3.setMetadata("Fix3", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock4.setMetadata("Fix4", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock5.setMetadata("Fix5", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock6.setMetadata("Fix6", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock7.setMetadata("Fix7", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock8.setMetadata("Fix8", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock9.setMetadata("Fix9", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock10.setMetadata("Fix10", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock11.setMetadata("Fix11", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock12.setMetadata("Fix12", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock13.setMetadata("Fix13", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock14.setMetadata("Fix14", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock15.setMetadata("Fix15", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock16.setMetadata("Fix16", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock17.setMetadata("Fix17", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock18.setMetadata("Fix18", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock19.setMetadata("Fix19", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock20.setMetadata("Fix20", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock21.setMetadata("Fix21", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock22.setMetadata("Fix22", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock23.setMetadata("Fix23", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock24.setMetadata("Fix24", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock25.setMetadata("Fix25", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock26.setMetadata("Fix26", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock27.setMetadata("Fix27", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock28.setMetadata("Fix28", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock29.setMetadata("Fix29", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock30.setMetadata("Fix30", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock31.setMetadata("Fix31", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock32.setMetadata("Fix32", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock33.setMetadata("Fix33", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock34.setMetadata("Fix34", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock35.setMetadata("Fix35", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock36.setMetadata("Fix36", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock37.setMetadata("Fix37", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock38.setMetadata("Fix38", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock39.setMetadata("Fix39", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock40.setMetadata("Fix40", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock41.setMetadata("Fix41", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock42.setMetadata("Fix42", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock43.setMetadata("Fix43", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock44.setMetadata("Fix44", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock45.setMetadata("Fix45", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock46.setMetadata("Fix46", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock47.setMetadata("Fix47", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock48.setMetadata("Fix48", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock49.setMetadata("Fix49", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock50.setMetadata("Fix50", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock51.setMetadata("Fix51", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
-        localBlock52.setMetadata("Fix52", new FixedMetadataValue(this.plugin, "paramUltraGadgetsMetas"));
+        localBlock1.setMetadata("Fix1", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock2.setMetadata("Fix2", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock3.setMetadata("Fix3", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock4.setMetadata("Fix4", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock5.setMetadata("Fix5", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock6.setMetadata("Fix6", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock7.setMetadata("Fix7", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock8.setMetadata("Fix8", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock9.setMetadata("Fix9", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock10.setMetadata("Fix10", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock11.setMetadata("Fix11", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock12.setMetadata("Fix12", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock13.setMetadata("Fix13", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock14.setMetadata("Fix14", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock15.setMetadata("Fix15", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock16.setMetadata("Fix16", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock17.setMetadata("Fix17", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock18.setMetadata("Fix18", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock19.setMetadata("Fix19", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock20.setMetadata("Fix20", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock21.setMetadata("Fix21", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock22.setMetadata("Fix22", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock23.setMetadata("Fix23", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock24.setMetadata("Fix24", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock25.setMetadata("Fix25", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock26.setMetadata("Fix26", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock27.setMetadata("Fix27", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock28.setMetadata("Fix28", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock29.setMetadata("Fix29", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock30.setMetadata("Fix30", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock31.setMetadata("Fix31", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock32.setMetadata("Fix32", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock33.setMetadata("Fix33", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock34.setMetadata("Fix34", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock35.setMetadata("Fix35", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock36.setMetadata("Fix36", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock37.setMetadata("Fix37", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock38.setMetadata("Fix38", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock39.setMetadata("Fix39", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock40.setMetadata("Fix40", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock41.setMetadata("Fix41", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock42.setMetadata("Fix42", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock43.setMetadata("Fix43", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock44.setMetadata("Fix44", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock45.setMetadata("Fix45", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock46.setMetadata("Fix46", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock47.setMetadata("Fix47", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock48.setMetadata("Fix48", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock49.setMetadata("Fix49", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock50.setMetadata("Fix50", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock51.setMetadata("Fix51", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
+        localBlock52.setMetadata("Fix52", new FixedMetadataValue(plugin, "paramUltraGadgetsMetas"));
         
         localBlock3.setType(Material.WOOL);
         localBlock3.setData((byte)11);
@@ -361,7 +360,7 @@ public class Trampolim
         }
         _tBlocks.put(localPlayer, localArrayList);
         
-        Bukkit.getScheduler().runTaskLater(this.plugin, new Runnable()
+        Bukkit.getScheduler().runTaskLater(plugin, new Runnable()
         {
           public void run()
           {
@@ -375,15 +374,15 @@ public class Trampolim
               }
             }
             Trampolim.localArrayList.clear();
-            Trampolim.this.arrayPlayer.remove(localPlayer);
+            arrayPlayer.remove(localPlayer);
             Trampolim._tBlocks.clear();
           }
         }, 500L);
-        Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable()
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
         {
           public void run()
           {
-            Trampolim.this.paramPlayerArray.clear();
+           paramPlayerArray.clear();
           }
         }, 600L);
       }
@@ -392,7 +391,7 @@ public class Trampolim
         long cooldown = UtilCooldown.getCooldown(localPlayer, "Trampolim") / 1000L;
         plugin.getMessagesFile().sendCooldownMessage(localPlayer, "Trampolim", "Trampolim", cooldown);
         localPlayer.playSound(localPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
-        Util18.sendTitle(localPlayer, 
+        UtilTitles.sendCooldownTitle(localPlayer, 
         plugin.getMessagesFile().titleMessage,
         plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(localPlayer)), 
         plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));
@@ -411,10 +410,10 @@ public class Trampolim
     if (((ArrayList)_tBlocks.get(localPlayer)).contains(paramBlockPlaceEvent.getBlock()))
     {
       paramBlockPlaceEvent.setCancelled(true);
-      localPlayer.sendMessage(this.plugin.getMensagensConfig().getString("Quebrar-Trampolim-MetaData").replaceAll("&", "§"));
+      localPlayer.sendMessage(plugin.getMensagensConfig().getString("Quebrar-Trampolim-MetaData").replaceAll("&", "§"));
     }
     ItemStack toBlock = paramBlockPlaceEvent.getItemInHand();
-    if (this.plugin.getItem().isGadgetItem(toBlock, this.plugin.getMessagesFile().TrampolimName))
+    if (plugin.getItem().isGadgetItem(toBlock, plugin.getMessagesFile().TrampolimName))
     {
       paramBlockPlaceEvent.setBuild(false);
       paramBlockPlaceEvent.setCancelled(true);
@@ -432,7 +431,7 @@ public class Trampolim
         if (localArrayList.contains(localBlock))
         {
           localPlayer.setVelocity(new Vector(0.0D, 3.0D, 0.0D));
-          this.paramPlayerArray.add(localPlayer);
+          paramPlayerArray.add(localPlayer);
         }
       }
     }
@@ -449,7 +448,7 @@ public class Trampolim
     if (((ArrayList)_tBlocks.get(localPlayer)).contains(paramBlockBreakEvent.getBlock()))
     {
       paramBlockBreakEvent.setCancelled(true);
-      localPlayer.sendMessage(this.plugin.getMensagensConfig().getString("Quebrar-Trampolim-MetaData").replaceAll("&", "§"));
+      localPlayer.sendMessage(plugin.getMensagensConfig().getString("Quebrar-Trampolim-MetaData").replaceAll("&", "§"));
     }
   }
   
@@ -459,7 +458,7 @@ public class Trampolim
     if (((e.getEntity() instanceof Player)) && (e.getCause() == EntityDamageEvent.DamageCause.FALL))
     {
       Player p = (Player)e.getEntity();
-      if (this.paramPlayerArray.contains(p)) {
+      if (paramPlayerArray.contains(p)) {
         e.setCancelled(true);
       }
     }

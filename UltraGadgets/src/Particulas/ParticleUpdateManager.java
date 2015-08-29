@@ -6,15 +6,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.util.Vector;
 
-import Update.UpdateEvent;
-import Update.UpdateType;
-
-import com.floodeer.gadgets.UltraGadgets;
-
-import Core.UtilMath;
-import Core.UtilParticle;
-import Core.UtilParticle.ParticleType;
-import Core.UtilVelocity;
+import Update.SchedulerEvent;
+import Update.SchedulerType;
+import Utils.UtilMath;
+import Utils.UtilParticle;
+import Utils.UtilVelocity;
+import Utils.UtilParticle.ParticleType;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class ParticleUpdateManager implements Listener{
 	
@@ -27,8 +25,8 @@ public class ParticleUpdateManager implements Listener{
 	UltraGadgets plugin = UltraGadgets.getMain();
 	
    @EventHandler
-	public void paramUpdateEvent(UpdateEvent paramUpdateEvent) {
-	  if (paramUpdateEvent.getType() == UpdateType.TICK) {
+	public void paramUpdateEvent(SchedulerEvent paramUpdateEvent) {
+	  if (paramUpdateEvent.getType() == SchedulerType.TICK) {
 	   for(Player p : plugin.getUtilPartciles().otherType.keySet()) {
 	    if(plugin.getUtilPartciles().otherType.get(p) == "Frozen") {
 	       double d1 = this.step * this.angularVelocityX;
@@ -48,7 +46,7 @@ public class ParticleUpdateManager implements Listener{
 	              if (this.step % 2 == 0) {
 	                this.height += 0.1F;
 	                if (this.height > 1.9D) {
-	                  new UtilParticle(ParticleType.SNOW_SHOVEL, 0.20000000298023224D, 30, 0.10000000149011612D).sendToLocation(localLocation1.add(0.0D, 2.5D, 0.0D));
+	                  new UtilParticle(ParticleType.SNOW_SHOVEL, 0.20000000298023224D, 50, 0.20000000149011612D).sendToLocation(localLocation1.add(0.0D, 2.5D, 0.0D));
 	                  this.height = 0.0F;
 	                }
 	                this.radius -= 0.1F;
@@ -58,23 +56,23 @@ public class ParticleUpdateManager implements Listener{
 	              }
 	              this.step += 1;
 	            }else{
-	              new UtilParticle(ParticleType.SNOW_SHOVEL, 0.10000000149011612D, 5, 0.20000000298023224D).sendToLocation(p.getLocation().add(0.0D, 1.0D, 0.0D));
+	              new UtilParticle(ParticleType.SNOW_SHOVEL, 0.10000000149011612D, 5, 0.20000000298023224D).sendToLocation(p.getLocation().subtract(0.0D, 0.2D, 0.0D));
 	            }
 	        }
 	    }
 	  }
    
    @EventHandler
-   public void nuvemUpdater(UpdateEvent paramUpdateEvent) {
-     if (paramUpdateEvent.getType() == UpdateType.TICK) {
+   public void nuvemUpdater(SchedulerEvent paramUpdateEvent) {
+     if (paramUpdateEvent.getType() == SchedulerType.TICK) {
   	   for(Player p : plugin.getUtilPartciles().otherType.keySet()) {
   		    if(plugin.getUtilPartciles().otherType.get(p) == "Nuvem") {
              Location localLocation = p.getLocation();
              
              localLocation.setY(p.getLocation().getY() + 3.700000047683716D);
-             new UtilParticle(UtilParticle.ParticleType.SNOW_SHOVEL, 0.0D, 1, 0.0D).sendToLocation(localLocation.add(UtilMath.randomRange(-0.4F, 0.4F), 0.0D, UtilMath.randomRange(-0.5F, 0.5F)));
-             new UtilParticle(UtilParticle.ParticleType.CLOUD, 0.0D, 3, 0.0D).sendToLocation(localLocation.add(UtilMath.randomRange(-0.5F, 0.5F), 0.0D, UtilMath.randomRange(-0.5F, 0.5F)));
-             new UtilParticle(UtilParticle.ParticleType.CLOUD, 0.0D, 3, 0.0D).sendToLocation(localLocation.add(UtilMath.randomRange(-0.5F, 0.5F), 0.0D, UtilMath.randomRange(-0.5F, 0.5F)));
+             new UtilParticle(UtilParticle.ParticleType.SNOW_SHOVEL, 0.0D, 2, 0.0D).sendToLocation(localLocation.add(UtilMath.randomRange(-0.6F, 0.6F), 0.0D, UtilMath.randomRange(-0.6F, 0.6F)));
+             new UtilParticle(UtilParticle.ParticleType.CLOUD, 0.0D, 4, 0.0D).sendToLocation(localLocation.add(UtilMath.randomRange(-0.7F, 0.7F), 0.0D, UtilMath.randomRange(-0.7F, 0.7F)));
+             new UtilParticle(UtilParticle.ParticleType.CLOUD, 0.0D, 4, 0.0D).sendToLocation(localLocation.add(UtilMath.randomRange(-0.7F, 0.7F), 0.0D, UtilMath.randomRange(-0.7F, 0.7F)));
              
              localLocation.subtract(localLocation);
            }

@@ -9,7 +9,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.floodeer.gadgets.UltraGadgets;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class InventoryMoveManager
   implements Listener
@@ -38,7 +38,7 @@ public class InventoryMoveManager
     if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().PaintballGunGadgetName)) {
       e.setCancelled(true);
     }
-    if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().DjGadgetName)) {
+    if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().fogueteGadgetName)) {
       e.setCancelled(true);
     }
     if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().DiscoBallGadgetName)) {
@@ -72,6 +72,12 @@ public class InventoryMoveManager
         e.setCancelled(true);
       }
     if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().ExplosiveSheepName)) {
+        e.setCancelled(true);
+      }
+    if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().discoArmorName)) {
+        e.setCancelled(true);
+      }
+    if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().socoGadgetName)) {
         e.setCancelled(true);
       }
     if (plugin.getItem().startsName(i, "§6§lMob Gun")) {
@@ -118,7 +124,7 @@ public class InventoryMoveManager
         e.setCancelled(true);
         e.setResult(Result.DENY);
       }
-      if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().DjGadgetName))
+      if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().fogueteGadgetName))
       {
         e.setCancelled(true);
         e.setResult(Result.DENY);
@@ -174,6 +180,16 @@ public class InventoryMoveManager
         e.setResult(Result.DENY);
       }
       if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().ExplosiveSheepName))
+      {
+        e.setCancelled(true);
+        e.setResult(Result.DENY);
+      }
+      if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().discoArmorName))
+      {
+        e.setCancelled(true);
+        e.setResult(Result.DENY);
+      }
+      if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().socoGadgetName))
       {
         e.setCancelled(true);
         e.setResult(Result.DENY);

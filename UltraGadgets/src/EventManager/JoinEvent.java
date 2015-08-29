@@ -15,11 +15,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import com.floodeer.gadgets.UltraGadgets;
-
-import Core.ActionBar;
-import Gadgets.Tipos;
+import br.com.floodeer.ultragadgets.UltraGadgets;
 import Pets.Pets.PetsType;
+import Gadgets.Tipos;
+import Utils.ActionBar;
 
 public class JoinEvent
   implements Listener
@@ -33,8 +32,8 @@ public class JoinEvent
   {
     final Player p = e.getPlayer();
     Tipos.setGadget(p, Tipos.NENHUM);
-    p.getInventory().setItem(this.plugin.getConfig().getInt("Slot-Gadget-Join-Item"), this.plugin.getItemStack().newItemStack(Material.PISTON_BASE, this.plugin.getMessagesFile().GadgetItemName, 
-    	      Arrays.asList(plugin.getMessagesFile().GadgetItemLore), 1, (byte)0));
+    p.getInventory().setItem(this.plugin.getConfig().getInt("Slot-Gadget-Join-Item"), this.plugin.getItemStack().newItemStack(Material.PISTON_BASE, this.plugin.getMessagesFile().GadgetItemName, Arrays.asList(plugin.getMessagesFile().GadgetItemLore), 1, (byte)0));
+    if(plugin.getConfig().getBoolean("Usar-ActionBar")) {
     int t = Bukkit.getScheduler().runTaskTimer(this.plugin, new Runnable()
     {
       public void run()
@@ -44,6 +43,7 @@ public class JoinEvent
     }, 1L, 1L).getTaskId();
     run.put(p, t);
   }
+ }
   
   @EventHandler
   public void onPlayerClick(PlayerInteractEvent e)

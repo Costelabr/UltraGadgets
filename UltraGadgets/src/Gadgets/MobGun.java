@@ -11,13 +11,13 @@ import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.entity.CaveSpider;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Endermite;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Guardian;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.MagmaCube;
@@ -38,6 +38,7 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -48,14 +49,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import Core.FireworkNMSHandler;
-import Core.ParticleEffect;
-import Core.Util18;
-import Core.UtilCooldown;
-import Core.UtilEnt;
-import Core.UtilMath;
-
-import com.floodeer.gadgets.UltraGadgets;
+import Utils.FireworkNMSHandler;
+import Utils.ParticleEffect;
+import Utils.UtilCooldown;
+import Utils.UtilTitles;
+import br.com.floodeer.ultragadgets.UltraGadgets;
  
 public class MobGun extends FireworkNMSHandler
   implements Listener
@@ -67,12 +65,12 @@ public class MobGun extends FireworkNMSHandler
   
   @SuppressWarnings("deprecation")
 @EventHandler
-  public void paramPlayerUseMobGun(PlayerInteractEvent paramPlayerUseMovGunEvent)
-  {
+  public void paramPlayerUseMobGun(PlayerInteractEvent paramPlayerUseMovGunEvent) {
     final Player p = paramPlayerUseMovGunEvent.getPlayer();
     final Vector dir = p.getLocation().getDirection();
     ItemStack item = paramPlayerUseMovGunEvent.getItem();
     Action action = paramPlayerUseMovGunEvent.getAction();
+    final CraftWorld world = ((CraftWorld)p.getWorld());
     if (item == null) {
       return;
     }
@@ -107,7 +105,7 @@ public class MobGun extends FireworkNMSHandler
       ((BukkitRunnable)this._cdRunnable.get(p)).runTaskTimer(this.plugin, 2L, 2L);
       if (mobName.equals("Porco"))
       {
-        final Pig pig = (Pig)p.getWorld().spawnEntity(p.getLocation(), EntityType.PIG);
+        final Pig pig = (Pig)world.spawn(p.getLocation(), Pig.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(pig);
         pig.getLocation().setDirection(dir);
         
@@ -135,7 +133,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Villager"))
       {
-        final Villager villager = (Villager)p.getWorld().spawnEntity(p.getLocation(), EntityType.VILLAGER);
+        final Villager villager = (Villager)world.spawn(p.getLocation(), Villager.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(villager);
         villager.getLocation().setDirection(dir);
         
@@ -163,7 +161,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Ocelot"))
       {
-        final Ocelot ocelot = (Ocelot)p.getWorld().spawnEntity(p.getLocation(), EntityType.OCELOT);
+        final Ocelot ocelot = (Ocelot)world.spawn(p.getLocation(), Ocelot.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(ocelot);
         ocelot.getLocation().setDirection(dir);
         
@@ -191,7 +189,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Vaca"))
       {
-        final Cow cow = (Cow)p.getWorld().spawnEntity(p.getLocation(), EntityType.COW);
+        final Cow cow = (Cow)world.spawn(p.getLocation(), Cow.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(cow);
         cow.getLocation().setDirection(dir);
         
@@ -219,7 +217,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Creeper"))
       {
-        final Creeper creeper = (Creeper)p.getWorld().spawnEntity(p.getLocation(), EntityType.CREEPER);
+        final Creeper creeper = (Creeper)world.spawn(p.getLocation(), Creeper.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(creeper);
         creeper.getLocation().setDirection(dir);
         
@@ -247,7 +245,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Aranha"))
       {
-        final Spider spider = (Spider)p.getWorld().spawnEntity(p.getLocation(), EntityType.SPIDER);
+        final Spider spider = (Spider)world.spawn(p.getLocation(), Spider.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(spider);
         spider.getLocation().setDirection(dir);
         
@@ -275,7 +273,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Lula"))
       {
-        final Squid squid = (Squid)p.getWorld().spawnEntity(p.getLocation(), EntityType.SQUID);
+        final Squid squid = (Squid)world.spawn(p.getLocation(), Squid.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(squid);
         squid.getLocation().setDirection(dir);
         
@@ -303,7 +301,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Galinha"))
       {
-        final Chicken chicken = (Chicken)p.getWorld().spawnEntity(p.getLocation(), EntityType.CHICKEN);
+        final Chicken chicken = (Chicken)world.spawn(p.getLocation(), Chicken.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(chicken);
         chicken.getLocation().setDirection(dir);
         
@@ -331,7 +329,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Ovelha"))
       {
-        final Sheep sheep = (Sheep)p.getWorld().spawnEntity(p.getLocation(), EntityType.SHEEP);
+        final Sheep sheep = (Sheep)world.spawn(p.getLocation(), Sheep.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(sheep);
         sheep.getLocation().setDirection(dir);
         
@@ -359,7 +357,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Lobo"))
       {
-        final Wolf wolf = (Wolf)p.getWorld().spawnEntity(p.getLocation(), EntityType.WOLF);
+        final Wolf wolf = (Wolf)world.spawn(p.getLocation(), Wolf.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(wolf);
         wolf.getLocation().setDirection(dir);
         
@@ -387,7 +385,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Slime"))
       {
-        final Slime slime = (Slime)p.getWorld().spawnEntity(p.getLocation(), EntityType.SLIME);
+        final Slime slime = (Slime)world.spawn(p.getLocation(), Slime.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(slime);
         slime.getLocation().setDirection(dir);
         slime.setSize(3);
@@ -416,7 +414,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Magma Cube"))
       {
-        final MagmaCube magmaCube = (MagmaCube)p.getWorld().spawnEntity(p.getLocation(), EntityType.MAGMA_CUBE);
+        final MagmaCube magmaCube = (MagmaCube)world.spawn(p.getLocation(), MagmaCube.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(magmaCube);
         magmaCube.getLocation().setDirection(dir);
         magmaCube.setSize(2);
@@ -445,7 +443,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Cavalo"))
       {
-        final Horse horse = (Horse)p.getWorld().spawnEntity(p.getLocation(), EntityType.HORSE);
+        final Horse horse = (Horse)world.spawn(p.getLocation(), Horse.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(horse);
         horse.getLocation().setDirection(dir);
         
@@ -473,7 +471,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Zumbi"))
       {
-        final Zombie zombie = (Zombie)p.getWorld().spawnEntity(p.getLocation(), EntityType.ZOMBIE);
+        final Zombie zombie = (Zombie)world.spawn(p.getLocation(), Zombie.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(zombie);
         zombie.getLocation().setDirection(dir);
         
@@ -501,7 +499,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Esqueleto"))
       {
-        final Skeleton skeleton = (Skeleton)p.getWorld().spawnEntity(p.getLocation(), EntityType.SKELETON);
+        final Skeleton skeleton = (Skeleton)world.spawn(p.getLocation(), Skeleton.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(skeleton);
         skeleton.getLocation().setDirection(dir);
         
@@ -529,7 +527,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Vaca Cogumelo"))
       {
-        final MushroomCow mushroomCow = (MushroomCow)p.getWorld().spawnEntity(p.getLocation(), EntityType.MUSHROOM_COW);
+        final MushroomCow mushroomCow = (MushroomCow)world.spawn(p.getLocation(), MushroomCow.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(mushroomCow);
         mushroomCow.getLocation().setDirection(dir);
         
@@ -557,7 +555,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Aranha Venenosa"))
       {
-        final CaveSpider caveSpider = (CaveSpider)p.getWorld().spawnEntity(p.getLocation(), EntityType.CAVE_SPIDER);
+        final CaveSpider caveSpider = (CaveSpider)world.spawn(p.getLocation(), CaveSpider.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(caveSpider);
         caveSpider.getLocation().setDirection(dir);
         
@@ -585,7 +583,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Endermite"))
       {
-        final Endermite endermite = (Endermite)p.getWorld().spawnEntity(p.getLocation(), EntityType.ENDERMITE);
+        final Endermite endermite = (Endermite)world.spawn(p.getLocation(), Endermite.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(endermite);
         endermite.getLocation().setDirection(dir);
         
@@ -613,7 +611,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Coelho"))
       {
-        final Rabbit rabbit = (Rabbit)p.getWorld().spawnEntity(p.getLocation(), EntityType.RABBIT);
+        final Rabbit rabbit = (Rabbit)world.spawn(p.getLocation(), Rabbit.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(rabbit);
         rabbit.getLocation().setDirection(dir);
         
@@ -641,7 +639,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Guardian"))
       {
-        final Guardian guardian = (Guardian)p.getWorld().spawnEntity(p.getLocation(), EntityType.GUARDIAN);
+        final Guardian guardian = (Guardian)world.spawn(p.getLocation(), Guardian.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(guardian);
         guardian.getLocation().setDirection(dir);
         
@@ -669,7 +667,7 @@ public class MobGun extends FireworkNMSHandler
       }
       else if (mobName.equals("Porco Zumbi"))
       {
-        final PigZombie pigZombie = (PigZombie)p.getWorld().spawnEntity(p.getLocation(), EntityType.PIG_ZOMBIE);
+        final PigZombie pigZombie = (PigZombie)world.spawn(p.getLocation(), PigZombie.class, CreatureSpawnEvent.SpawnReason.CUSTOM);
         _entity.add(pigZombie);
         pigZombie.getLocation().setDirection(dir);
         
@@ -699,7 +697,7 @@ public class MobGun extends FireworkNMSHandler
          long cooldown = UtilCooldown.getCooldown(p, "MobGun") / 1000L;
     	 plugin.getMessagesFile().sendCooldownMessage(p, "Mob Gun", "MobGun", 3000);
          p.playSound(p.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
-         Util18.sendTitle(p, 
+         UtilTitles.sendCooldownTitle(p, 
          plugin.getMessagesFile().titleMessage,
          plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", "MobGun"), 
          plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));
@@ -819,13 +817,21 @@ public class MobGun extends FireworkNMSHandler
   
   public void LaunchRandomFirework(Location location)
   {
-
 	  try {
-	     ParticleEffect.EXPLOSION_NORMAL.display(0, 0, 0, 1, 250, location, 50);
-	     Vector v = new Vector(UtilMath.randomRange(-0.5D, 0.5D), UtilMath.randomRange(0.50000000298023224D, 1.2D), UtilMath.randomRange(-0.5D, 0.5D));
-	     UtilEnt.itemToRemove(location, Material.BONE, (byte)0, 2, true, v);
+		  Vector v = Vector.getRandom();
+		  v.setX(v.getX() - 0.5f);
+		  v.setZ(v.getZ() - 0.5f);
+	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));
+	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));
+	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));
+	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));
+	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));
+	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));
+	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));
+	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));
+	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));
 	     location.getWorld().playSound(location, Sound.EXPLODE, 5, 1);
-		  playFirework(location, FireworkEffect.builder().withColor(Color.RED).with(Type.BALL_LARGE).withColor(Color.WHITE).withColor(Color.BLACK).withFade(Color.WHITE).build());
+		 playFirework(location, FireworkEffect.builder().withColor(Color.RED).with(Type.BALL).withColor(Color.WHITE).withColor(Color.BLACK).withFade(Color.WHITE).build());
 	} catch (Exception e) {		
 		e.printStackTrace();
 	}
