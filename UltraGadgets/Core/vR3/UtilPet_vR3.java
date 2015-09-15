@@ -1,8 +1,6 @@
 package vR3;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import net.minecraft.server.v1_8_R3.EntityInsentient;
@@ -18,14 +16,15 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import Pets.Pets.PetsType;
 import Update.SchedulerEvent;
 import Update.SchedulerType;
 
 public class UtilPet_vR3 implements Listener {
+	
 	  private static Field gsa;
 	  private static Field goalSelector;
 	  private static Field targetSelector;
-	  public static Map<UUID, Entity> pet = new HashMap<>();
 	  
 	  static
 	  {
@@ -50,20 +49,20 @@ public class UtilPet_vR3 implements Listener {
 	  public void petsUpdate(SchedulerEvent paramUpdateEvent)
 	  {
 	    if (paramUpdateEvent.getType() == SchedulerType.TICK) {
-	      for (UUID localUUID : pet.keySet()) {
-	        if (((Entity)pet.get(localUUID)).isValid()) {
-	          UtilEnt_vR3.CreatureMove((Entity)pet.get(localUUID), Bukkit.getPlayer(localUUID).getLocation().add(2.0D, 0.0D, 1.0D), 1.2F);
+	      for (UUID localUUID : PetsType.pet.keySet()) {
+	        if (((Entity) PetsType.pet.get(localUUID)).isValid()) {
+	          UtilEnt_vR3.CreatureMove((Entity)PetsType.pet.get(localUUID), Bukkit.getPlayer(localUUID).getLocation().add(2.0D, 0.0D, 1.0D), 1.2F);
 	        } else {
-	          pet.remove(localUUID);
+	       PetsType.pet.remove(localUUID);
 	        }
 	      }
 	    }
 	  }
 	  
-	  @SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	public static void criarPet(LivingEntity paramLivingEntity, UUID paramUUID)
 	  {
-	    pet.put(paramUUID, paramLivingEntity);
+		PetsType.pet.put(paramUUID, paramLivingEntity);
 	    try
 	    {
 	      EntityLiving localEntityLiving = ((CraftLivingEntity)paramLivingEntity).getHandle();
@@ -79,7 +78,7 @@ public class UtilPet_vR3 implements Listener {
 	      }
 	      else
 	      {
-	        throw new IllegalArgumentException(paramLivingEntity.getType().getName() + " is not an instance of an EntityInsentient.");
+	        throw new IllegalArgumentException(paramLivingEntity.getType().getName() + " não parece fazer parte de EntityInsentient.");
 	      }
 	    }
 	    catch (Exception localException)

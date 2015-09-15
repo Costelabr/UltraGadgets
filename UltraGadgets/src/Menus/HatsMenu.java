@@ -1,6 +1,9 @@
 package Menus;
 
+import java.util.Arrays;
+
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,7 +21,6 @@ public class HatsMenu implements Listener {
 	UtilMenu hats = new UtilMenu(plugin, plugin.getMensagensConfig().getString("Hats-Menu").replaceAll("&", "§"), 6);
 	UtilMenu hats2page = new UtilMenu(plugin, plugin.getMensagensConfig().getString("Hats-Menu").replaceAll("&", "§") + "(2/3)", 6);
 	UtilMenu hats3page = new UtilMenu(plugin, plugin.getMensagensConfig().getString("Hats-Menu").replaceAll("&", "§") + "(3/3)", 6);
-	//12, 13, 14, 21, 22, 23, 30, 31, 32, 39, 40, 41
 	
 	private ItemStack setHat(Material material, String nome) {
 		ItemStack i = new ItemStack(material, 1, (byte)0);
@@ -30,71 +32,87 @@ public class HatsMenu implements Listener {
 
 	public void showHatsMenu1Page(Player p) {
 		if(p.hasPermission("ug.chapeus.obsidian") || p.hasPermission("ug.chapeus.usar.todos") || p.hasPermission("ug.usar.todos")) {
-		hats.setItem(12, setHat(Material.OBSIDIAN, "§aObsidian"));
+		hats.setItem(10, setHat(Material.OBSIDIAN, "§aObsidian"));
 		}else{
-			hats.setItem(12, plugin.getItemStack().noPermissionItem("§7Obsidian"));
+			hats.setItem(10, plugin.getItemStack().noPermissionItem("§7Obsidian"));
 		}
 		
 		if(p.hasPermission("ug.chapeus.wool") || p.hasPermission("ug.chapeus.usar.todos") || p.hasPermission("ug.usar.todos")) {
-		hats.setItem(13, setHat(Material.WOOL, "§aLã"));
+		hats.setItem(11, setHat(Material.WOOL, "§aLã"));
 		}else{
-			hats.setItem(13, plugin.getItemStack().noPermissionItem("§7Lã"));
+			hats.setItem(11, plugin.getItemStack().noPermissionItem("§7Lã"));
 		}
 		
 		if(p.hasPermission("ug.chapeus.redstone") || p.hasPermission("ug.chapeus.usar.todos") || p.hasPermission("ug.usar.todos")) {
-		hats.setItem(14, setHat(Material.REDSTONE_BLOCK, "§aBloco de Redstone"));
+		hats.setItem(12, setHat(Material.REDSTONE_BLOCK, "§aBloco de Redstone"));
 		}else{
-			hats.setItem(14, plugin.getItemStack().noPermissionItem("§7Bloco de Redstone"));
+			hats.setItem(12, plugin.getItemStack().noPermissionItem("§7Bloco de Redstone"));
 		}
 		
 		if(p.hasPermission("ug.chapeus.lapis") || p.hasPermission("ug.chapeus.usar.todos") || p.hasPermission("ug.usar.todos")) {
-		hats.setItem(21, setHat(Material.LAPIS_BLOCK, "§aBloco de Lapis"));
+		hats.setItem(13, setHat(Material.LAPIS_BLOCK, "§aBloco de Lapis"));
 		}else{
-			hats.setItem(21, plugin.getItemStack().noPermissionItem("§7Bloco de Lapis"));
+			hats.setItem(13, plugin.getItemStack().noPermissionItem("§7Bloco de Lapis"));
 		}
 		
 		if(p.hasPermission("ug.chapeus.diamond") || p.hasPermission("ug.chapeus.usar.todos") || p.hasPermission("ug.usar.todos")) {
-		hats.setItem(22, setHat(Material.DIAMOND_BLOCK, "§aBloco de Diamante"));
+		hats.setItem(14, setHat(Material.DIAMOND_BLOCK, "§aBloco de Diamante"));
 		}else{
-			hats.setItem(22, plugin.getItemStack().noPermissionItem("§7Bloco de Diamante"));
+			hats.setItem(14, plugin.getItemStack().noPermissionItem("§7Bloco de Diamante"));
 		}
 		
 		if(p.hasPermission("ug.chapeus.iron") || p.hasPermission("ug.chapeus.usar.todos") || p.hasPermission("ug.usar.todos")) {
-		hats.setItem(23, setHat(Material.IRON_BLOCK, "§aBloco de Ferro"));
+		hats.setItem(15, setHat(Material.IRON_BLOCK, "§aBloco de Ferro"));
 		}else{
-			hats.setItem(23, plugin.getItemStack().noPermissionItem("§7Bloco de Ferro"));
+			hats.setItem(15, plugin.getItemStack().noPermissionItem("§7Bloco de Ferro"));
 		}
 		
 		if(p.hasPermission("ug.chapeus.gold") || p.hasPermission("ug.chapeus.usar.todos") || p.hasPermission("ug.usar.todos")) {
-		hats.setItem(30, setHat(Material.GOLD_BLOCK, "§aBloco de Ouro"));
+		hats.setItem(16, setHat(Material.GOLD_BLOCK, "§aBloco de Ouro"));
 		}else{
-			hats.setItem(30, plugin.getItemStack().noPermissionItem("§7Bloco de Ouro"));
+			hats.setItem(16, plugin.getItemStack().noPermissionItem("§7Bloco de Ouro"));
 		}
 		
 		if(p.hasPermission("ug.chapeus.log") || p.hasPermission("ug.chapeus.usar.todos") || p.hasPermission("ug.usar.todos")) {
-		hats.setItem(30, setHat(Material.LOG, "§aBloco de Madeira"));
+		hats.setItem(19, setHat(Material.LOG, "§aBloco de Madeira"));
 		}else{
-			hats.setItem(30, plugin.getItemStack().noPermissionItem("§7Bloco de Madeira"));
+			hats.setItem(19, plugin.getItemStack().noPermissionItem("§7Bloco de Madeira"));
 		}
 		
 		if(p.hasPermission("ug.chapeus.nether") || p.hasPermission("ug.chapeus.usar.todos") || p.hasPermission("ug.usar.todos")) {
-		hats.setItem(31, setHat(Material.NETHER_BRICK, "§aPedra do Nether"));
+		hats.setItem(20, setHat(Material.NETHER_BRICK, "§aPedra do Nether"));
 		}else{
-			hats.setItem(31, plugin.getItemStack().noPermissionItem("§7Pedra do Nether"));
+			hats.setItem(20, plugin.getItemStack().noPermissionItem("§7Pedra do Nether"));
 		}
 		
 		if(p.hasPermission("ug.chapeus.beacon") || p.hasPermission("ug.chapeus.usar.todos") || p.hasPermission("ug.usar.todos")) {
-		hats.setItem(32, setHat(Material.BEACON, "§aSinalizador"));
+		hats.setItem(21, setHat(Material.BEACON, "§aSinalizador"));
 		}else{
-			hats.setItem(32, plugin.getItemStack().noPermissionItem("§7Sinalizador"));
+			hats.setItem(21, plugin.getItemStack().noPermissionItem("§7Sinalizador"));
 		}
-	    
-	    hats.setItem(39, this.plugin.getItemStack().setBackArrow());
-	    
-	    hats.setItem(40, this.plugin.getItemStack().newItemStack(Material.BARRIER, "§aRemover Chapéus", 
-	      null, 1, (byte)14));
-	    
-	    hats.setItem(41, this.plugin.getItemStack().setGoArrow());
+		if(p.hasPermission("ug.chapeus.cactus") || p.hasPermission("ug.chapeus.usar.todos") || p.hasPermission("ug.usar.todos")) {
+		hats.setItem(22, setHat(Material.CACTUS, "§aCacto"));
+		}else{
+			hats.setItem(22, plugin.getItemStack().noPermissionItem("§7Cacto"));
+		}
+		if(p.hasPermission("ug.chapeus.cactus") || p.hasPermission("ug.chapeus.usar.todos") || p.hasPermission("ug.usar.todos")) {
+		hats.setItem(23, setHat(Material.CACTUS, "§aCacto"));
+		}else{
+			hats.setItem(23, plugin.getItemStack().noPermissionItem("§7Cacto"));
+		}
+		if(p.hasPermission("ug.chapeus.coal") || p.hasPermission("ug.chapeus.usar.todos") || p.hasPermission("ug.usar.todos")) {
+		hats.setItem(23, setHat(Material.COAL_BLOCK, "§aCarvão"));
+		}else{
+			hats.setItem(23, plugin.getItemStack().noPermissionItem("§7Carvão"));
+		}
+		
+		
+	    hats.setItem(49, plugin.getItemStack().newItemStack(Material.BARRIER, "§aRemover Hat", 
+		Arrays.asList(new String[] {"§7Clique para remover seu chapeu" }), 1, (byte)0));
+				    	    
+		hats.setItem(50, plugin.getItemStack().setGoArrow());
+				    
+		hats.setItem(48, plugin.getItemStack().setBackArrow());
 	    
 	    hats.showMenu(p);
 	  }
@@ -108,94 +126,113 @@ public class HatsMenu implements Listener {
 		   ItemStack item = e.getCurrentItem();
 		   Deprecated.updateInventory(p);
 		   p.closeInventory();
-		 if (s == 12) {
+		 if (s == 10) {
 		     if(!p.hasPermission("ug.chapeus.obsidian") & !p.hasPermission("ug.chapeus.usar.todos") & !p.hasPermission("ug.usar.todos")) {
 		      p.sendMessage(plugin.getMessagesFile().hatPermission);
+	          p.closeInventory();
+	          p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1, -5);
 		      return;
 		     }
 		     p.getInventory().setHelmet(item);
 		     p.sendMessage(plugin.getMessagesFile().newHat + " Obsidian");
 		   }
 		 
-		 if (s == 13) {
+		 if (s == 11) {
 		     if(!p.hasPermission("ug.chapeus.wool") & !p.hasPermission("ug.chapeus.usar.todos") & !p.hasPermission("ug.usar.todos")) {
 		      p.sendMessage(plugin.getMessagesFile().hatPermission);
+	          p.closeInventory();
+	          p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1, -5);
 		      return;
 		     }
 		     p.getInventory().setHelmet(item);
 		     p.sendMessage(plugin.getMessagesFile().newHat + " Lã");
 		   }
 		 
-		 if (s == 14) {
+		 if (s == 12) {
 		     if(!p.hasPermission("ug.chapeus.redstone") & !p.hasPermission("ug.chapeus.usar.todos") & !p.hasPermission("ug.usar.todos")) {
 		      p.sendMessage(plugin.getMessagesFile().hatPermission);
+	          p.closeInventory();
+	          p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1, -5);
 		      return;
 		     }
 		     p.getInventory().setHelmet(item);
 		     p.sendMessage(plugin.getMessagesFile().newHat + " Bloco de Redstone");
 		   }
 		 
-		 if (s == 21) {
+		 if (s == 13) {
 		     if(!p.hasPermission("ug.chapeus.lapis") & !p.hasPermission("ug.chapeus.usar.todos") & !p.hasPermission("ug.usar.todos")) {
 		      p.sendMessage(plugin.getMessagesFile().hatPermission);
+	          p.closeInventory();
+	          p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1, -5);
 		      return;
 		     }
 		     p.getInventory().setHelmet(item);
 		     p.sendMessage(plugin.getMessagesFile().newHat + " Bloco de Lapis");
 		   }
 		 
-		 if (s == 22) {
+		 if (s == 14) {
 		     if(!p.hasPermission("ug.chapeus.diamond") & !p.hasPermission("ug.chapeus.usar.todos") & !p.hasPermission("ug.usar.todos")) {
 		      p.sendMessage(plugin.getMessagesFile().hatPermission);
+	          p.closeInventory();
+	          p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1, -5);
 		      return;
 		     }
 		     p.getInventory().setHelmet(item);
 		     p.sendMessage(plugin.getMessagesFile().newHat + " Bloco de Diamante");
 		   }
 		 
-		 if (s == 23) {
+		 if (s == 15) {
 		     if(!p.hasPermission("ug.chapeus.iron") & !p.hasPermission("ug.chapeus.usar.todos") & !p.hasPermission("ug.usar.todos")) {
 		      p.sendMessage(plugin.getMessagesFile().hatPermission);
+	          p.closeInventory();
+	          p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1, -5);
 		      return;
 		     }
 		     p.getInventory().setHelmet(item);
 		     p.sendMessage(plugin.getMessagesFile().newHat + " Bloco de Ferro");
 		   }
 		 
-		 if (s == 30) {
+		 if (s == 16) {
 		     if(!p.hasPermission("ug.chapeus.log") & !p.hasPermission("ug.chapeus.usar.todos") & !p.hasPermission("ug.usar.todos")) {
 		      p.sendMessage(plugin.getMessagesFile().hatPermission);
+	          p.closeInventory();
+	          p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1, -5);
 		      return;
 		     }
 		     p.getInventory().setHelmet(item);
 		     p.sendMessage(plugin.getMessagesFile().newHat + " Madeira");
 		   }
 		 
-		 if (s == 31) {
+		 if (s == 19) {
 		     if(!p.hasPermission("ug.chapeus.nether") & !p.hasPermission("ug.chapeus.usar.todos") & !p.hasPermission("ug.usar.todos")) {
 		      p.sendMessage(plugin.getMessagesFile().hatPermission);
+	          p.closeInventory();
+	          p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1, -5);
 		      return;
 		     }
 		     p.getInventory().setHelmet(item);
 		     p.sendMessage(plugin.getMessagesFile().newHat + " Pedra do Nether");
 		   }
 		 
-		 if (s == 32) {
+		 if (s == 20) {
 		     if(!p.hasPermission("ug.chapeus.beacon") & !p.hasPermission("ug.chapeus.usar.todos") & !p.hasPermission("ug.usar.todos")) {
 		      p.sendMessage(plugin.getMessagesFile().hatPermission);
+	          p.closeInventory();
+	          p.playSound(p.getLocation(), Sound.VILLAGER_NO, 1, -5);
 		      return;
 		     }
 		     p.getInventory().setHelmet(item);
 		     p.sendMessage(plugin.getMessagesFile().newHat + " Sinalizador");
 		   }
-		   if(s == 39) {
+		   if(s == 48) {
+			   p.closeInventory();
 			   plugin.getMenuManager().showMenu(p);
 		   }
-		   if(s == 41) {
+		   if(s == 50) {
 			   p.closeInventory();
 			   p.sendMessage("§7§oEm breve!");
 		   }
-		   if(s == 40) {
+		   if(s == 49) {
 			   p.getInventory().setHelmet(null);
 			   if(p.getInventory().getHelmet() == null) {
 				   p.sendMessage("§cVocê não parece ter Hats para remover!");

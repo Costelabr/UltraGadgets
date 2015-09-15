@@ -59,14 +59,14 @@ public class UtilBallEffect
           for (int i = 0; i < UtilBallEffect.this.lineParticles; i++)
           {
             loc.add(v);
-              ParticleEffect.REDSTONE.display(0.0F, 0.0F, 0.0F, 3.0F, 1, loc, 25.0D);
+              ParticleEffect.REDSTONE.display(0F, 0F, 0F, 0F, 1, loc, 25.0D);
           }
         }
         for (int i = 0; i < UtilBallEffect.this.sphereParticles; i++)
         {
           Vector vector = UtilMath.getRandomVector().multiply(UtilBallEffect.this.sphereRadius);
-          location.add(vector);
-           ParticleEffect.DRIP_LAVA.display(0.0F, 0.0F, 0.0F, 3.0F, 1, location, 25.0D);
+          location.add(vector); 
+          //ParticleEffect.DRIP_LAVA.display(0.0F, 0.0F, 0.0F, 3.0F, 1, location, 25.0D);
           location.subtract(vector);
         }
       }

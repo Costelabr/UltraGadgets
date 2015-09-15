@@ -19,8 +19,7 @@ public class UtilItemStack
 {
   UltraGadgets plugin = UltraGadgets.getMain();
   
-  public ItemStack newItemStack(Material tipo, String nome, List<String> lore, int quantidade, byte data)
-  {
+  public ItemStack newItemStack(Material tipo, String nome, List<String> lore, int quantidade, byte data) {
     ItemStack i = new ItemStack(tipo, quantidade, data);
     ItemMeta im = i.getItemMeta();
     im.setDisplayName(nome);
@@ -28,6 +27,16 @@ public class UtilItemStack
     i.setItemMeta(im);
     return i;
   }
+  
+  public ItemStack newGlowedItemStack(Material tipo, String nome, List<String> lore, int quantidade, byte data) {
+	ItemStack i = new ItemStack(tipo, quantidade, data);
+	Glow.addGlow(i);
+	ItemMeta im = i.getItemMeta();
+	im.setDisplayName(nome);
+	im.setLore(lore);
+	i.setItemMeta(im);
+	return i;
+ }
   
   public ItemStack buildArmor(Material tipo, Enchantment enchant, int level) {
 	  ItemStack i = new ItemStack(tipo);
@@ -97,4 +106,12 @@ public class UtilItemStack
 	    np.setItemMeta(npm);
 	    return np;
    }
+
+public ItemStack create(Material material, byte data) {
+	 ItemStack i = new ItemStack(material,1,data);
+	 ItemMeta im = i.getItemMeta();
+	 i.setItemMeta(im);
+	 return i;
+   }
+
 }

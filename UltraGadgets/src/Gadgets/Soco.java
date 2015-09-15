@@ -44,7 +44,7 @@ public class Soco implements Listener {
 	    }
 	    if (plugin.getItem().isGadgetItem(paramItem, plugin.getMessagesFile().socoGadgetName)) {
 	    if (UtilCooldown.tryCooldown(paramPlayer, "Soco", plugin.getConfigFile().supersocoCooldown)){
-			 IFallingBlocks.spawnFalling(paramPlayer, random(4,10), 1, random(2, 5), UtilMath.randomRange(0.5, 1.5));
+			 IFallingBlocks.spawnFalling(paramPlayer, random(4,10), 1, UtilMath.randomRange(0.5, 1.5), UtilMath.randomRange(0.5, 1.5));
 	      }else{
 	        long cooldown = UtilCooldown.getCooldown(paramPlayer, "Soco") / 1000L;
 	        plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "Soco", "Soco", cooldown);

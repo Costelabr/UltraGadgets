@@ -80,6 +80,12 @@ public class InventoryMoveManager
     if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().socoGadgetName)) {
         e.setCancelled(true);
       }
+    if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().gravidadeGadgetName)) {
+        e.setCancelled(true);
+      }
+    if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().partyPopperGadgetName)) {
+        e.setCancelled(true);
+      }
     if (plugin.getItem().startsName(i, "§6§lMob Gun")) {
         e.setCancelled(true);
     }
@@ -95,6 +101,11 @@ public class InventoryMoveManager
         e.setCancelled(true);
       }
       if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().BombaGadgetName))
+      {
+        e.setCancelled(true);
+        e.setResult(Result.DENY);
+      }
+      if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().partyPopperGadgetName))
       {
         e.setCancelled(true);
         e.setResult(Result.DENY);
@@ -190,6 +201,11 @@ public class InventoryMoveManager
         e.setResult(Result.DENY);
       }
       if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().socoGadgetName))
+      {
+        e.setCancelled(true);
+        e.setResult(Result.DENY);
+      }
+      if (plugin.getItem().isGadgetItem(i, plugin.getMessagesFile().gravidadeGadgetName))
       {
         e.setCancelled(true);
         e.setResult(Result.DENY);

@@ -37,19 +37,19 @@ public class Movire
       return;
     }
     ItemStack paramItem = paramPlayer.getItemInHand();
-    if (this.plugin.getUtilBlock().usable(paramPlayerActiveFireMove.getClickedBlock())) {
+    if (plugin.getUtilBlock().usable(paramPlayerActiveFireMove.getClickedBlock())) {
       return;
     }
-    if (this.plugin.getItem().isGadgetItem(paramItem, this.plugin.getMessagesFile().MovireGadgetName)) {
-      if (UtilCooldown.tryCooldown(paramPlayer, "FIRE", this.plugin.getConfigFile().MovireCooldown))
+    if (plugin.getItem().isGadgetItem(paramItem, plugin.getMessagesFile().MovireGadgetName)) {
+      if (UtilCooldown.tryCooldown(paramPlayer, "FIRE", plugin.getConfigFile().MovireCooldown))
       {
-        this.paramIsFireN.add(paramPlayer);
-        paramPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 240, 1));
-        Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable()
+        paramIsFireN.add(paramPlayer);
+        paramPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 240, 5));
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
         {
           public void run()
           {
-            Movire.this.paramIsFireN.remove(paramPlayer);
+            paramIsFireN.remove(paramPlayer);
             paramPlayer.setFireTicks(0);
           }
         }, 240L);
@@ -72,19 +72,12 @@ public class Movire
   public void paramPlayerMove(PlayerMoveEvent paramEvent)
   {
     Player paramPlayer = paramEvent.getPlayer();
-    if (this.paramIsFireN.contains(paramPlayer))
+    if (paramIsFireN.contains(paramPlayer))
     {
-      Block b = paramEvent.getTo().getBlock();
-      if ((b.getType() != Material.WATER) && 
- 		     (b.getType() != Material.STATIONARY_WATER) && 
- 		      (b.getType() != Material.CHEST) && 
- 		       (b.getType() != Material.SKULL) && 
- 		         (b.getType() != Material.SNOW) && 
- 		          (b.getType() != Material.CLAY_BRICK)) {
+      Block b = paramEvent.getFrom().getBlock();
  	  plugin.getUtilBlock().setBlockToRestore(b, Material.FIRE.getId(), (byte)0, 4L, true, false, false);
       }
     }
-  }
   
   @EventHandler
   public void paramPlayerDamageByFire(EntityDamageEvent paramEventDamage)
@@ -93,7 +86,7 @@ public class Movire
       if (((paramEventDamage.getCause() == EntityDamageEvent.DamageCause.FIRE ? 1 : 0) | (paramEventDamage.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK ? 1 : 0)) != 0)
       {
         Player paramPlayer = (Player)paramEventDamage.getEntity();
-        if (this.paramIsFireN.contains(paramPlayer)) {
+        if (paramIsFireN.contains(paramPlayer)) {
           paramEventDamage.setCancelled(true);
         }
       }

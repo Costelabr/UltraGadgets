@@ -27,6 +27,7 @@ import org.bukkit.scheduler.BukkitTask;
 import ISong.NBSDecoder;
 import ISong.RadioSongPlayer;
 import ISong.Song;
+import Utils.UtilBallEffect;
 import Utils.UtilCooldown;
 import Utils.UtilParticle;
 import Utils.UtilTitles;
@@ -65,12 +66,13 @@ protected void startDiscoBall(final Player p) {
 	System.out.print("*************************** SEVERE **************************");
 	return;
  }
-    final Location l = p.getLocation().add(0.0D, 3.0D, 0.0D);
+    final Location l = p.getLocation().add(0.0D, 6.0D, 0.0D);
     blocks.put(l, l.getBlock().getType());
     data.put(l, Byte.valueOf(l.getBlock().getData()));
     final Random random = new Random();
     plugin.getUtilBlock().setFakeBlock(Material.STAINED_GLASS.getId(), (byte)random.nextInt(15), l.getBlock().getLocation());
 	Song s = NBSDecoder.parse(new File(plugin.getDataFolder() + "/sons", "DiscoBall.nbs"));
+	new UtilBallEffect().startDisco(l.add(0.5, 0, 0.5), 35);
     final RadioSongPlayer sp = new RadioSongPlayer(s);
     if(plugin.getConfigFile().useCustomSounds) {
         if (sp.isPlaying()) {
@@ -111,7 +113,7 @@ protected void startDiscoBall(final Player p) {
         sp.setPlaying(false);
         sp.destroy(); 
       }
-    }, 500L);
+    }, 35*20L);
   }
   
   @EventHandler

@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -36,7 +35,10 @@ public enum Tipos
   EXSHEEP,
   DISCOARMOR, 
   SOCO,
-  GRAVIDADE;
+  GRAVIDADE,
+  PARTYPOPPER,
+  EPOOP,
+  RAINBOW;
   
   private static UltraGadgets plugin = UltraGadgets.getMain();
   protected static String invname = plugin.getMessagesFile().GadgetsMenuName;
@@ -51,7 +53,15 @@ public enum Tipos
     return false;
   }
   
-  public static void setGadget(Player p, Tipos gadgetTipo)
+  public static boolean playerHasSelectedGadget(Player p, String gadget) {
+	  if(getPlayerGadget.get(p).equalsIgnoreCase(gadget)) {
+		  return true;
+	  }
+	  return false;
+  }
+  
+  @SuppressWarnings("deprecation")
+public static void setGadget(Player p, Tipos gadgetTipo)
   {
     switch (gadgetTipo)
     {
@@ -126,7 +136,7 @@ public enum Tipos
       break;
     case STICKTP: 
         if(plugin.getConfigFile().StickOfTpEnable) {
-      getPlayerGadget.put(p, "Stick of Teleport");
+      getPlayerGadget.put(p, "Teleport Stick");
       p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
       p.getInventory().setItem(i, plugin.getItemStack().newItemStack(Material.STICK, plugin.getMessagesFile().StickOfTpGadgetName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
       p.closeInventory();
@@ -135,8 +145,14 @@ public enum Tipos
         }
       break;
     case FOGUETE: 
-    	p.sendMessage(plugin.getMessagesFile().prefix + ChatColor.RED + " Este gadget está temporariamente desabilitado!");
-        p.closeInventory();
+        if(plugin.getConfigFile().fogueteEnable) {
+      getPlayerGadget.put(p, "Foguete");
+      p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
+      p.getInventory().setItem(i, plugin.getItemStack().newItemStack(Material.IRON_BLOCK, plugin.getMessagesFile().fogueteGadgetName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
+      p.closeInventory();
+        }else{
+        	p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
+        }
       break;
     case DISCOB: 
         if(plugin.getConfigFile().DiscoBallEnable) {
@@ -288,6 +304,38 @@ public enum Tipos
     		getPlayerGadget.put(p, "Gravidade");    	
     	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
     	     p.getInventory().setItem(i, plugin.getItemStack().newItemStack(Material.IRON_FENCE, plugin.getMessagesFile().gravidadeGadgetName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
+    	     p.closeInventory();
+    	     }else{
+    	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
+    	    }
+    	break;
+    case PARTYPOPPER:
+    	if(plugin.getConfigFile().partyPopperEnable) {
+    		getPlayerGadget.put(p, "PartyPopper");    	
+    	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
+    	     p.getInventory().setItem(i, plugin.getItemStack().newItemStack(Material.ENDER_CHEST, plugin.getMessagesFile().partyPopperGadgetName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)0));
+    	     p.closeInventory();
+    	     }else{
+    	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
+    	    }
+    	break;
+    	
+    case EPOOP:
+    	if(plugin.getConfigFile().poopEnable) {
+    		getPlayerGadget.put(p, "Poop");    	
+    	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
+    	     p.getInventory().setItem(i, plugin.getItemStack().newItemStack(Material.INK_SACK, plugin.getMessagesFile().poopGadgetName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)3));
+    	     p.closeInventory();
+    	     }else{
+    	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);
+    	    }
+    	break;
+    	
+    case RAINBOW:
+    	if(plugin.getConfigFile().rainbowEnable) {
+    		getPlayerGadget.put(p, "Rainbow");    	
+    	     p.sendMessage(plugin.getMensagensConfig().getString("Novo-Gadget").replaceAll("<GADGET>", (String)getPlayerGadget.get(p)).replaceAll("&", "§"));
+    	     p.getInventory().setItem(i, plugin.getItemStack().newItemStack(Material.getMaterial(349), plugin.getMessagesFile().rainbowGadgetName, Arrays.asList(new String[] { "§7Clique-Direito!" }), 1, (byte)2));
     	     p.closeInventory();
     	     }else{
     	        p.sendMessage(plugin.getMessagesFile().gadgetDesabilitado);

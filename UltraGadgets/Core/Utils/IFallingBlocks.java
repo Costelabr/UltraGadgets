@@ -82,10 +82,8 @@ public class IFallingBlocks implements Listener {
 						arrayBlock.add(fb);
 					    player.setVelocity(new Vector(0, 1.2, 0));
 						for (Entity ent : fb.getNearbyEntities(effectArea, 1.0D, effectArea)) {
-							if ((ent != player && (ent.getType() != EntityType.FALLING_BLOCK))) {
-								if(ent.hasMetadata("NPC") && ent.hasMetadata("ugPets")) {
+							if ((ent != player && (ent.getType() != EntityType.FALLING_BLOCK)) && (ent.hasMetadata("NPC"))) {
 								ent.setVelocity(new Vector(0.0D, vectorMultiplyY, 0.0D));
-								}
 							}
 						}
 					}

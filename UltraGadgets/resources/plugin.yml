@@ -1,7 +1,6 @@
 name: UltraGadgets
-version: 2.2.0
+version: 2.2.1
 main: br.com.floodeer.ultragadgets.UltraGadgets
-description: UltraGadgets plugin
 author: Floodeer
 depend: [ProtocolLib]
 prefix: UltraGadgets

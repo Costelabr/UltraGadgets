@@ -7,8 +7,11 @@ import org.apache.commons.lang.SystemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import vR3.UtilPet_vR3;
 import Commands.UltraGadgetsCMD;
 import EventManager.*;
 import Exception.*;
@@ -45,9 +48,19 @@ public class UltraGadgets extends JavaPlugin {
     private MountMenu mountn;
     private HatsMenu hm;
     public PastebinReporter paste;
+    private Trampolim trampGadget; 
+    private PartyPopper popper;
     
     private File msgsFile = null;
     private FileConfiguration mensagens = null;
+    
+    public PartyPopper getPopperGadget() {
+    	return popper;
+    }
+    
+    public Trampolim trampGadget() {
+    	return trampGadget;
+    }
     
     public static UltraGadgets getMain()
     {
@@ -180,6 +193,7 @@ public class UltraGadgets extends JavaPlugin {
 	ActionBar.nmsver = Bukkit.getServer().getClass().getPackage().getName();
 	ActionBar.nmsver = ActionBar.nmsver.substring(ActionBar.nmsver.lastIndexOf(".") + 1);
 	plugin = this;
+	Glow.register();
 	ms = new Messages();
 	getMessagesFile().loadMessagesConfiguration();
 	cfile = new ConfigFile();
@@ -197,6 +211,8 @@ public class UltraGadgets extends JavaPlugin {
 	petsm = new PetMenu();
 	mountn = new MountMenu();
 	hm = new HatsMenu();
+	trampGadget = new Trampolim();
+	popper = new PartyPopper();
  }
 	
 	@Override
@@ -247,12 +263,13 @@ public class UltraGadgets extends JavaPlugin {
 		 Bukkit.getServer().getPluginManager().registerEvents(new PetMenu(), this);
 		 Bukkit.getServer().getPluginManager().registerEvents(new PluginListener(), this);
 		 Bukkit.getServer().getPluginManager().registerEvents(new WorldChange(), this);
-		 Bukkit.getServer().getPluginManager().registerEvents(new ParticleUpdateManager(), this);
+		 ParticleSetup.setupParticles(this);
 		 Bukkit.getServer().getPluginManager().registerEvents(new QuitEvent(), this);
 		 Bukkit.getServer().getPluginManager().registerEvents(new HatsMenu(), this);
 		 Bukkit.getServer().getPluginManager().registerEvents(new IFallingBlocks(), this);
 		 Bukkit.getServer().getPluginManager().registerEvents(new EntitySpawnPriority(), this);
 		 Bukkit.getServer().getPluginManager().registerEvents(new UtilGravity(), this);
+		 Bukkit.getServer().getPluginManager().registerEvents(new UtilPet_vR3(), this);
 		 RegisterMounts.registerMouts(this);
 		 WardrobeUtils w = new WardrobeUtils();
 		 Bukkit.getPluginManager().registerEvents(w, this);
@@ -271,6 +288,28 @@ public class UltraGadgets extends JavaPlugin {
 		 System.out.print("[UltraGadgets] Core Utils: Core for 1.8X version 2.2.0");
 		 System.out.print("O plugin foi habilitado.");
 		 System.out.print("-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x");
+	}
+	
+	@Override
+	public void onDisable() {
+		for(Player p : Bukkit.getOnlinePlayers()) {
+			if(plugin.getUtilPartciles().hasEffect(p)) {
+				plugin.getUtilPartciles().stopAll(p);
+			}
+			if(Pets.PetsType.HasPet(p)) {
+				Pets.PetsType.removePet(p);
+			}
+			if(MountHandler.HasPet(p)) {
+				MountHandler.removePlayerMount(p);
+			}
+			if(Tipos.playerHasGadget(p)) {
+				Tipos.setGadget(p, Tipos.NENHUM);
+			}
+			if(plugin.getDisguiseMenu().hasDisguise(p)) {
+				plugin.getDisguiseMenu().removeAllDisguises(p);
+			}
+		}
+		HandlerList.unregisterAll(this);
 	}
 	
 	public void reloadMensagensConfig() throws UnsupportedEncodingException {

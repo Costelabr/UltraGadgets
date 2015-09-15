@@ -60,18 +60,18 @@ public class VectorTNT implements Listener {
 				final Entity[] ent = plugin.getUtilLocation().getNearbyEntities(e.getLocation(), 12);
 				for(final Entity entity : ent) {
 					if(entity.hasMetadata("NPC")) return;
-					if(entity.hasMetadata("PET")) return;
+					if(entity.hasMetadata("ugPets")) return;
 					new UtilParticle(ParticleType.SMOKE_NORMAL, 12.80000000149011612D, 4, 12.80000001192092896D).sendToLocation(localTNT.getLocation());
 					final BukkitTask t = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
 						
 						@Override
 						public void run() {						
 						    TNTPrimed newTNT = e.getEntity().getWorld().spawn(localTNT.getLocation(), TNTPrimed.class);
-						    newTNT.setVelocity(new Vector(UtilMath.randomRange(-0.8D, 0.8D), UtilMath.randomRange(0.50000000298023224D, 1.2D), UtilMath.randomRange(-0.8D, 0.8D)));
+						    newTNT.setVelocity(new Vector(0.0D, UtilMath.randomRange(0.8, 1.6), 0.0D).add(UtilMath.getRandomCircleVector().multiply(0.5D)));
 						    newTNT.setMetadata("LocalData2", new FixedMetadataValue(plugin, null));
 							
 						}
-					}, 0, 4L);
+					}, 0, 6L);
 					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 						
 						@Override
@@ -81,7 +81,7 @@ public class VectorTNT implements Listener {
 						}
 					}, 4*20L);
 				    
-					 Vector v = new Vector(UtilMath.random.nextInt(8),  UtilMath.random.nextInt(2), UtilMath.random.nextInt(8));
+					 Vector v = new Vector(0, UtilMath.randomRange(1.3, 2.8), 0);
 					 entity.setVelocity(v);
 				}
 			}

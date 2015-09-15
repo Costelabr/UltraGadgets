@@ -31,7 +31,6 @@ public class Bomba
 {
   UltraGadgets plugin = UltraGadgets.getMain();
   List<Location> saveParam = new ArrayList<Location>();
-  
   @EventHandler
   public void paramPlayerUseBomb(PlayerInteractEvent paramPlayerUseBomb)
   {
@@ -51,13 +50,16 @@ public class Bomba
         final Item paramItemDrop = paramPlayer.getWorld().dropItem(paramPlayer.getEyeLocation().add(0.0D, 0.0D, 0.0D), paramBomba);
         paramItemDrop.setVelocity(paramPlayer.getEyeLocation().getDirection().multiply(0.8D).normalize());
         paramItemDrop.setPickupDelay(Integer.MAX_VALUE);
+        long run = 12;
         final BukkitTask repeatingID = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable()
+        
         {
           public void run() 
           {
-            paramItemDrop.getWorld().playSound(paramItemDrop.getLocation(), Sound.BURP, 2.5F, 12.0F);
+        	
+            paramItemDrop.getWorld().playSound(paramItemDrop.getLocation(), Sound.BURP, 2.5F, 12);
           }
-        }, 1L, 8L);
+        }, 0L, --run);
         
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
         {
@@ -105,7 +107,7 @@ public class Bomba
        
             paramItemDrop.remove();
           }
-        }, 100L);
+        }, 8*20L);
       }
       else
       {

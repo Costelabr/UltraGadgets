@@ -59,6 +59,9 @@ ExplosiveSheep-Gadget-Cooldown: 12000
 DiscoArmor-Gadget-Cooldown: 52000
 Soco-Gadget-Cooldown: 12000
 Gravidade-Gadget-Cooldown: 38000
+PartyPopper-Gadget-Cooldown: 42000
+Poop-Gadget-Cooldown: 26000
+Rainbow-Gadget-Cooldown: 182000
 
 #Configuração dos gadgets:
 
@@ -95,3 +98,6 @@ ExplosiveSheep-Gadget-Habilitar: true
 DiscoArmor-Gadget-Habilitar: true
 Soco-Gadget-Habilitar: true
 Gravidade-Gadget-Habilitar: true
+PartyPopper-Gadget-Habilitar: true
+Poop-Gadget-Habilitar: true
+Rainbow-Gadget-Habilitar: true

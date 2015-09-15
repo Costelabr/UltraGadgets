@@ -818,6 +818,8 @@ public class MobGun extends FireworkNMSHandler
   public void LaunchRandomFirework(Location location)
   {
 	  try {
+		  location.getWorld().playSound(location, Sound.EXPLODE, 5, 1);
+			 playFirework(location, FireworkEffect.builder().withColor(Color.RED).with(Type.BALL).withColor(Color.WHITE).withColor(Color.BLACK).withFade(Color.WHITE).build());
 		  Vector v = Vector.getRandom();
 		  v.setX(v.getX() - 0.5f);
 		  v.setZ(v.getZ() - 0.5f);
@@ -829,9 +831,7 @@ public class MobGun extends FireworkNMSHandler
 	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));
 	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));
 	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));
-	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));
-	     location.getWorld().playSound(location, Sound.EXPLODE, 5, 1);
-		 playFirework(location, FireworkEffect.builder().withColor(Color.RED).with(Type.BALL).withColor(Color.WHITE).withColor(Color.BLACK).withFade(Color.WHITE).build());
+	     plugin.getItemStack().dropToRemove(new ItemStack(Material.BONE), 5, location.add(v));   
 	} catch (Exception e) {		
 		e.printStackTrace();
 	}

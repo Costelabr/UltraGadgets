@@ -56,13 +56,20 @@ public class DiscoArmor implements Listener {
 		
 		@Override
 		public void run() {
-			discoPlayer.remove(paramPlayer);
-			paramPlayer.getInventory().setArmorContents(null);
-			Bukkit.getScheduler().cancelTask(armorValue.get(paramPlayer));
+			cancelDisco(paramPlayer);
 			
 		}
 	}, 25*20L);
   }
+	  
+	  public void cancelDisco(Player paramPlayer) {
+	    discoPlayer.remove(paramPlayer);
+		paramPlayer.getInventory().setArmorContents(null);
+		if(armorValue.containsKey(paramPlayer)) {
+		Bukkit.getScheduler().cancelTask(armorValue.get(paramPlayer));
+		armorValue.remove(paramPlayer);
+		}
+	  }
 	  
 	  
 	  @EventHandler

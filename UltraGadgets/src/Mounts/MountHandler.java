@@ -3,6 +3,7 @@ package Mounts;
 import java.util.HashMap;
 import java.util.UUID;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
@@ -11,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.vehicle.VehicleEnterEvent;
 
 import Utils.UtilParticle;
 import Utils.UtilParticle.ParticleType;
@@ -78,5 +80,26 @@ public class MountHandler implements Listener {
 			new UtilParticle(ParticleType.SNOWBALL, 0.1F, 3, 0.4F).sendToLocation(p.getLocation()); 
 			new UtilParticle(ParticleType.CLOUD, 0.1F, 3, 0.4F).sendToLocation(p.getLocation()); 
 		 }
+	  }
+	  
+	  @EventHandler
+	  public void mount(VehicleEnterEvent e) {
+		  if(e.getEntered() instanceof Player) {
+			  Player entered = (Player)e.getEntered();
+			  if(e.getVehicle() instanceof Horse) {
+				  if(e.getVehicle().hasMetadata("InfernalHorse")) {
+					  if(!isMountOwner(entered, (Horse)e.getVehicle())) {
+						  entered.sendMessage(ChatColor.RED + "Você não é dono deste cavalo!");
+						  e.setCancelled(true);
+					  }
+				  }
+				  if(e.getVehicle().hasMetadata("FrozenHorse")) {
+					  if(!isMountOwner(entered, (Horse)e.getVehicle())) {
+						  entered.sendMessage(ChatColor.RED + "Você não é dono deste cavalo!");
+						  e.setCancelled(true);
+					  }
+				  }
+			  }
+		  }
 	  }
 }

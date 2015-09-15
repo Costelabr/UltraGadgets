@@ -43,6 +43,16 @@ public class PlayerListener
     if(plugin.getItem().isGadgetItem(paramStackPlacer, plugin.getMessagesFile().CowboyGadgetName)) {
     	paramBlockPlace.setCancelled(true);
     }
+    if(plugin.getItem().isGadgetItem(paramStackPlacer, plugin.getMessagesFile().gravidadeGadgetName)) {
+    	paramBlockPlace.setCancelled(true);
+    }
+    if(plugin.getItem().isGadgetItem(paramStackPlacer, plugin.getMessagesFile().fogueteGadgetName)) {
+    	paramBlockPlace.setCancelled(true);
+    }
+    if(plugin.getItem().isGadgetItem(paramStackPlacer, plugin.getMessagesFile().partyPopperGadgetName)) {
+    	paramBlockPlace.setCancelled(true);
+    }
+   
   }
   
   @EventHandler
@@ -63,6 +73,15 @@ public class PlayerListener
       paramBreakBlock.setCancelled(true);
     }
     if(plugin.getItem().isGadgetItem(paramStackPlayer, plugin.getMessagesFile().WitherShooterName)) {
+    	paramBreakBlock.setCancelled(true);
+    }
+    if(plugin.getItem().isGadgetItem(paramStackPlayer, plugin.getMessagesFile().gravidadeGadgetName)) {
+    	paramBreakBlock.setCancelled(true);
+    }
+    if(plugin.getItem().isGadgetItem(paramStackPlayer, plugin.getMessagesFile().fogueteGadgetName)) {
+    	paramBreakBlock.setCancelled(true);
+    }
+    if(paramBreakBlock.getBlock().hasMetadata("b1")) {
     	paramBreakBlock.setCancelled(true);
     }
   }

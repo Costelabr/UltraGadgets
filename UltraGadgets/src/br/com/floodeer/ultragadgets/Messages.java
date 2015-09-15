@@ -56,6 +56,9 @@ public class Messages {
   public String discoArmorName;
   public String socoGadgetName;
   public String gravidadeGadgetName;
+  public String partyPopperGadgetName;
+  public String poopGadgetName;
+  public String rainbowGadgetName;
   
   public String GadgetItemLore;
   public String BombaGadgetLore;
@@ -83,6 +86,9 @@ public class Messages {
   public String discoArmorLore;
   public String socoGadgetLore;
   public String gravidadeGadgetLore;
+  public String partyPopperGadgetLore;
+  public String poopGadgetLore;
+  public String rainbowGadgetLore;
   
   public String SuperMenuName;
   public String ParticlesMenuName;
@@ -135,6 +141,9 @@ public class Messages {
     discoArmorName = ChatColor.translateAlternateColorCodes('&',mensagens.getString("DiscoArmor-Item-Nome"));
     socoGadgetName = ChatColor.translateAlternateColorCodes('&',mensagens.getString("Soco-Item-Nome"));
     gravidadeGadgetName = ChatColor.translateAlternateColorCodes('&',mensagens.getString("Gravidade-Item-Nome"));
+    partyPopperGadgetName = ChatColor.translateAlternateColorCodes('&',mensagens.getString("PartyPopper-Item-Nome"));
+    poopGadgetName = ChatColor.translateAlternateColorCodes('&',mensagens.getString("Poop-Item-Nome"));
+    rainbowGadgetName = ChatColor.translateAlternateColorCodes('&',mensagens.getString("Rainbow-Item-Nome"));
     
     GadgetItemLore = mensagens.getString("Gadget-Item-Lore").replaceAll("&", "§").replaceAll("null", null);
     BombaGadgetLore = mensagens.getString("Bomba-Gadget-Item-Lore").replaceAll("&", "§").replaceAll("null", null);
@@ -159,6 +168,9 @@ public class Messages {
     discoArmorLore = mensagens.getString("DiscoArmor-Item-Lore").replaceAll("&", "§").replaceAll("null", null);
     socoGadgetLore = mensagens.getString("Soco-Item-Lore").replaceAll("&", "§").replaceAll("null", null);
     gravidadeGadgetLore = mensagens.getString("Gravidade-Item-Lore").replaceAll("&", "§").replaceAll("null", null);
+    partyPopperGadgetLore = mensagens.getString("PartyPopper-Item-Lore").replaceAll("&", "§").replaceAll("null", null);
+    poopGadgetLore = mensagens.getString("Poop-Item-Lore").replaceAll("&", "§").replaceAll("null", null);
+    rainbowGadgetLore = mensagens.getString("Rainbow-Item-Lore").replaceAll("&", "§").replaceAll("null", null);
     
     disguisePermission = ChatColor.translateAlternateColorCodes('&',mensagens.getString("Disguise-Permissao"));
     gadgetPermission = ChatColor.translateAlternateColorCodes('&',mensagens.getString("Gadget-Permissao"));

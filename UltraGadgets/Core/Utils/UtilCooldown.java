@@ -2,8 +2,6 @@ package Utils;
 
 import org.bukkit.entity.Player;
 
-import Gadgets.Tipos;
-
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
@@ -17,8 +15,7 @@ public class UtilCooldown {
 
 	
 	public static long setCooldown(Player player, String key, long delay) {
-		return calculateRemainder(cooldowns.put(player.getName(), key,
-				System.currentTimeMillis() + delay));
+		return calculateRemainder(cooldowns.put(player.getName(), key, System.currentTimeMillis() + delay));
 	}
 	
 	
@@ -35,25 +32,10 @@ public class UtilCooldown {
 				: Long.MIN_VALUE;
 	}
 	
-	public static boolean hasCooldown(Player player, Tipos ignoreType) {
-		
-		if(!(getCooldown(player, "Bomba") <= 0) &
-		getCooldown(player, "Cookies") <= 0  &
-		getCooldown(player, "DiamondParty") <= 0  &
-		getCooldown(player, "DiscoBall") <= 0  &
-		getCooldown(player, "Dj") <= 0  &
-		getCooldown(player, "FDF") <= 0  &
-		getCooldown(player, "FG") <= 0  &
-		getCooldown(player, "Galinha") <= 0  &
-		getCooldown(player, "FIRE") <= 0 &
-		getCooldown(player, "SmokeBomb") <= 0 &
-		getCooldown(player, "Teleport") <= 0 &
-		getCooldown(player, "Vampire") <= 0 &
-		getCooldown(player, "Wither") <= 0 &
-		getCooldown(player, "Trampolim") <= 0 &
-		(getCooldown(player, "RailShoots") <= 0)) {
-		  return true;
+	public static boolean hasCooldown(Player player, String key) {
+		if(getCooldown(player, key) >= 0) {
+			return true;
 		}
 		return false;
-  }
+	}
 }

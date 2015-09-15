@@ -4,17 +4,18 @@ Obrigado por baixar UltraGadgets :)
 
 Informações:
 
-Versão: 2.2.0
+Versão: 2.2.1
 Minecraft: 1.8
 Spigot: Build vR3
 
 Leia.txt:
 
-- Esta versão não contém todas as adições que estavam planejadas, mas contém 95% delas.
-
 - Não se esqueça de extrair o arquivo "sons.zip" para alguns Gadgets funcionarem!
 
-- Aproite a configuração organizada porque ela não ficará assim xP
+- Eu adicionei um sistema de som ao selecionar gadget & Glow nos itens selecionados, porém apenas no menu dos Gadgets, isso é apenas um teste,
+pode dar incompatibilidade com algumas coisas, e preciso saber para ter certeza que está tudo funcionando.
+
+- Novos gadgets + Bugfix patch
 
 Changelog: https://github.com/Floodeer/UltraGadgets/wiki/Changelog
 

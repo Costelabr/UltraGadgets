@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -20,10 +21,13 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import Utils.UtilCooldown;
+import Utils.UtilTitles;
 import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class Foguete implements Listener {
@@ -128,7 +132,6 @@ public class Foguete implements Listener {
             {
               localArrow.remove();
               arrowToRemove.remove(localArrow);
-              
               playFirework(paramPlayer);
             }
           }
@@ -160,7 +163,7 @@ public class Foguete implements Listener {
   }
   
   @SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
-  public  void playFirework(Player paramPlayer) {
+  public  void playFirework(final Player paramPlayer) {
       fallingblocktoremove.put(paramPlayer, new ArrayList());
       
       Location localLocation1 = (Location)stationnaire.get(paramPlayer);
@@ -294,27 +297,44 @@ public class Foguete implements Listener {
           f12.remove();
           f13.remove();
           f14.remove();
+          if ((stationnaire.containsKey(paramPlayer)) || 
+        		  (effect.containsKey(paramPlayer)) ||
+        		  (arrowToRemove.containsKey(paramPlayer)) || 
+        		  (fallingblocktoremove.containsKey(paramPlayer))) {
+              stationnaire.remove(paramPlayer);
+              effect.remove(paramPlayer);
+              arrowToRemove.remove(paramPlayer);
+              fallingblocktoremove.remove(paramPlayer);
+          }
         }
       }, 160L);
     }
   
   @EventHandler
-  public void Activate(PlayerInteractEvent paramPlayerInteractEvent)
+  public void paramPlayerActiveFirework(PlayerInteractEvent paramPlayerActiveFogueteEvent)
   {
-    Player localPlayer = paramPlayerInteractEvent.getPlayer();
-    if ((paramPlayerInteractEvent.getAction() != Action.RIGHT_CLICK_AIR) && (paramPlayerInteractEvent.getAction() != Action.RIGHT_CLICK_BLOCK)) {
+    final Player paramPlayer = paramPlayerActiveFogueteEvent.getPlayer();
+    Action paramAction = paramPlayerActiveFogueteEvent.getAction();
+    if ((paramAction != Action.RIGHT_CLICK_AIR) && (paramAction != Action.RIGHT_CLICK_BLOCK)) {
       return;
     }
-    if (plugin.getUtilBlock().usable(paramPlayerInteractEvent.getClickedBlock())) {
+    ItemStack paramItem = paramPlayer.getItemInHand();
+    if (this.plugin.getUtilBlock().usable(paramPlayerActiveFogueteEvent.getClickedBlock())) {
       return;
     }
-    if(plugin.getItem().isGadgetItem(paramPlayerInteractEvent.getItem(), "teste")) {
-       constructFirework(localPlayer, localPlayer.getLocation());
-     } 
+    if (this.plugin.getItem().isGadgetItem(paramItem, plugin.getMessagesFile().fogueteGadgetName)) {
+      if (UtilCooldown.tryCooldown(paramPlayer, "Foguete", plugin.getConfigFile().fogueteCooldown))
+      {
+        constructFirework(paramPlayer, paramPlayer.getLocation());
+      }else{
+        long cooldown = UtilCooldown.getCooldown(paramPlayer, "Foguete") / 1000L;
+        plugin.getMessagesFile().sendCooldownMessage(paramPlayer, "Foguete", "Foguete", cooldown);
+        paramPlayer.playSound(paramPlayer.getLocation(), Sound.valueOf(plugin.getConfig().getString("Som-Cooldown")), 1, 1);
+        UtilTitles.sendCooldownTitle(paramPlayer, 
+        plugin.getMessagesFile().titleMessage,
+        plugin.getMessagesFile().subTitleMessage.replaceAll("<COOLDOWN>", String.valueOf(cooldown)).replaceAll("<GADGET>", Tipos.getPlayerGadget.get(paramPlayer)), 
+        plugin.getConfig().getInt("FadeIn-Title-Time"), plugin.getConfig().getInt("FadeStay-Title-Time"), plugin.getConfig().getInt("FadeOut-Title-Time"));
+      }
     }
-  
-  public  double arrondi(double paramDouble, int paramInt)
-  {
-    return (int)(paramDouble * Math.pow(10.0D, paramInt) + 0.5D) / Math.pow(10.0D, paramInt);
   }
 }

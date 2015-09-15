@@ -29,6 +29,9 @@ UltraGadgets plugin = UltraGadgets.getMain();
   public long discoArmorCooldown;
   public long supersocoCooldown;
   public long gravidadeCooldown;
+  public long partyPopperCooldown;
+  public long poopCooldown;
+  public long rainbowCooldown;
   
   public boolean BombaEnable;
   public boolean CookieEnable;
@@ -53,6 +56,9 @@ UltraGadgets plugin = UltraGadgets.getMain();
   public boolean discoArmorEnable;
   public boolean supersocoEnable;
   public boolean gravidadeEnable;
+  public boolean partyPopperEnable;
+  public boolean poopEnable;
+  public boolean rainbowEnable;
   
   public boolean useMountBlockEffect;
   public boolean useTitles;
@@ -83,6 +89,9 @@ UltraGadgets plugin = UltraGadgets.getMain();
      discoArmorCooldown = config.getLong("DiscoArmor-Gadget-Cooldown");
      supersocoCooldown = config.getLong("Soco-Gadget-Cooldown");
      gravidadeCooldown = config.getLong("Gravidade-Gadget-Cooldown");
+     partyPopperCooldown = config.getLong("PartyPopper-Gadget-Cooldown");
+     poopCooldown = config.getLong("Poop-Gadget-Cooldown");
+     rainbowCooldown = config.getLong("Rainbow-Gadget-Cooldown");
      
      BombaEnable = config.getBoolean("Bomba-Gadget-Habilitar");
      CookieEnable = config.getBoolean("Cookie-Gadget-Habilitar");
@@ -107,6 +116,9 @@ UltraGadgets plugin = UltraGadgets.getMain();
      discoArmorEnable = config.getBoolean("DiscoArmor-Gadget-Habilitar");
      supersocoEnable = config.getBoolean("Soco-Gadget-Habilitar");
      gravidadeEnable = config.getBoolean("Gravidade-Gadget-Habilitar");
+     partyPopperEnable = config.getBoolean("PartyPopper-Gadget-Habilitar");
+     poopEnable = config.getBoolean("Poop-Gadget-Habilitar");
+     rainbowEnable = config.getBoolean("Rainbow-Gadget-Habilitar");
      
      useMountBlockEffect = config.getBoolean("Mounts-Podem-Mudar-Blocos");
      useTitles = config.getBoolean("Usar-Titulos");

@@ -3,10 +3,14 @@ package Utils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.ItemFrame;
+import org.bukkit.entity.Painting;
 import org.bukkit.entity.Player;
 import org.bukkit.util.BlockIterator;
 import org.bukkit.util.Vector;
@@ -130,5 +134,48 @@ public class UtilLocations
       }
     }
     return blocks;
+  }
+  
+  public List<Block> getNearbyBlocks(Location location, int radius) {
+      List<Block> blocks = new ArrayList<Block>();
+      for(int x = location.getBlockX() - radius; x <= location.getBlockX() + radius; x++) {
+          for(int y = location.getBlockY() - radius; y <= location.getBlockY() + radius; y++) {
+              for(int z = location.getBlockZ() - radius; z <= location.getBlockZ() + radius; z++) {
+                 blocks.add(location.getWorld().getBlockAt(x, y, z));
+              }
+          }
+      }
+      return blocks;
+  }
+  
+  
+  public boolean checkEmptyArea(Location corner1, Location corner2)
+  {
+    if (corner1.getWorld() != corner2.getWorld()) {
+      return false;
+    }
+    World world = corner1.getWorld();
+    for (int x = corner1.getBlockX(); x <= corner2.getBlockX(); x++) {
+      for (int y = corner1.getBlockY(); y <= corner2.getBlockY(); y++) {
+        for (int z = corner1.getBlockZ(); z <= corner2.getBlockZ(); z++)
+        {
+          Location location = new Location(world, x, y, z);
+          Block block = location.getBlock();
+          if (block.getType() != Material.AIR) {
+            return false;
+          }
+          Entity[] arrayOfEntity;
+          int j = (arrayOfEntity = this.getNearbyEntities(location, 2)).length;
+          for (int i = 0; i < j; i++)
+          {
+            Entity entity = arrayOfEntity[i];
+            if (((entity instanceof ItemFrame)) || ((entity instanceof Painting))) {
+              return false;
+            }
+          }
+        }
+      }
+    }
+    return true;
   }
 }

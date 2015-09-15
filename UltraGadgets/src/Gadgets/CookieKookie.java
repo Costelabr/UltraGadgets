@@ -15,17 +15,16 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
 import Utils.UtilCooldown;
+import Utils.UtilMath;
 import Utils.UtilTitles;
 import br.com.floodeer.ultragadgets.UltraGadgets;
 
 public class CookieKookie
   implements Listener
 {
-  Map<String, Item> Kookies = new HashMap<>();
   Map<Player, Integer> cooking = new HashMap<>();
   UltraGadgets plugin = UltraGadgets.getMain();
   
@@ -34,64 +33,39 @@ public class CookieKookie
     return Math.random() < 0.5D ? (1.0D - Math.random()) * (paramDouble2 - paramDouble1) + paramDouble1 : Math.random() * (paramDouble2 - paramDouble1) + paramDouble1;
   }
   
-  public void paramSummonKookies(final Player p)
-  {
-    final Vector direction = new Vector(randomRange(-0.10000000149011612D, 0.10000000149011612D), 0.5D, randomRange(-0.10000000149011612D, 0.10000000149011612D));
-    
-    final int tasker = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable()
-    {
-      public void run()
-      { 
-        final Item drop = p.getWorld().dropItemNaturally(p.getLocation().add(0.0D, 1.8D, 0.0D), new ItemStack(Material.COOKIE));
-        final Item drop2 = p.getWorld().dropItemNaturally(p.getLocation().add(0.0D, 1.8D, 0.0D), new ItemStack(Material.COOKIE));
-        final Item drop3 = p.getWorld().dropItemNaturally(p.getLocation().add(0.0D, 1.8D, 0.0D), new ItemStack(Material.COOKIE));
-        
-        drop.setMetadata("KookiesForU", new FixedMetadataValue(plugin, "Coolkies"));
-        drop.setVelocity(direction); 
-        drop.setPickupDelay(1000);
-        
-        drop2.setMetadata("KookiesForU2", new FixedMetadataValue(plugin, "Coolkies"));
-        drop2.setVelocity(direction);
-        drop2.setPickupDelay(1000);
-        
-        drop3.setMetadata("KookiesForU3", new FixedMetadataValue(plugin, "Coolkies"));
-        drop3.setVelocity(direction);
-        drop3.setPickupDelay(1000);
-        
-        p.getWorld().playSound(drop.getLocation(), Sound.ITEM_PICKUP, 2.0F, 15.0F);
-        
-        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
-        {
-          public void run()
-          {
-            drop.remove();
-            drop2.remove();
-            drop3.remove();
-          }
-        }, 20L);
-        Kookies.put("Kookie1", drop);
-        Kookies.put("Kookie2", drop2);
-        Kookies.put("Kookie3", drop3);
-        if (drop.isOnGround()) {
-          drop.remove();
-        }
-        if (drop2.isOnGround()) {
-          drop.remove();
-        }
-        if (drop3.isOnGround()) {
-          drop.remove();
-        }
-      }
-    }, 0L, 2L).getTaskId();
-    cooking.put(p, tasker);
-    
-    Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
-    {
-      public void run()
-      {
-        Bukkit.getScheduler().cancelTask(cooking.get(p));
-      }
-    }, 320L);
+	public void startCookies(final Player p) {
+		
+		  p.playSound(p.getLocation(), Sound.CAT_MEOW, 2F, 10F);
+		  int cookings = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
+			
+		 @Override
+		   public void run() {
+		   final Item i = p.getWorld().dropItem(p.getLocation().add(0.0D, 1.59700000596046448D, 0.0D), plugin.getItemStack().create(Material.COOKIE, (byte)0));
+		   i.setPickupDelay(Integer.MAX_VALUE);
+		   i.setVelocity(new Vector(0.0D, 0.5D, 0.0D).add(UtilMath.getRandomCircleVector().multiply(0.1D)));
+		   Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+			@Override
+			public void run() {
+				i.remove();
+			}
+		  }, 1*20L);
+		 }
+		}, 0, 2L).getTaskId();
+		 cooking.put(p, cookings);
+		 Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+			
+			@Override
+			public void run() {
+				stopCooking(p);
+			}
+		}, 25*20L);
+	  }
+	
+  public void stopCooking(final Player p) {
+	 if (cooking.containsKey(p)) {
+	  Bukkit.getScheduler().cancelTask(cooking.get(p));
+	  cooking.remove(p);
+	 }
   }
   
   @EventHandler
@@ -110,7 +84,7 @@ public class CookieKookie
     if (plugin.getItem().isGadgetItem(paramItem, plugin.getMessagesFile().CookieGadgetName)) {
       if (UtilCooldown.tryCooldown(paramPlayer, "Cookies", plugin.getConfigFile().CookieCooldown))
       {
-        paramSummonKookies(paramPlayer);
+        startCookies(paramPlayer);
       }
       else
       {
@@ -140,13 +114,8 @@ public class CookieKookie
   public void playerLeftWithCookies(PlayerQuitEvent e)
   {
     Player p = e.getPlayer();
-    if (cooking.containsKey(p))
-    {
-      Bukkit.getScheduler().cancelTask(cooking.get(p));;
-      ((Item)Kookies.get("Kookie1")).remove();
-      ((Item)Kookies.get("Kookie2")).remove();
-      ((Item)Kookies.get("Kookie3")).remove();
-      Kookies.clear();
+    if (cooking.containsKey(p)) {
+      stopCooking(p);
       cooking.remove(p);
     }
   }

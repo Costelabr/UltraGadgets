@@ -33,6 +33,10 @@ public class SetupGadgets {
 		    pm.registerEvents(new DiscoArmor(), register); 
 		    pm.registerEvents(new Soco(), register); 
 		    pm.registerEvents(new Gravidade(), register); 
+		    pm.registerEvents(new PartyPopper(), register);
+		    pm.registerEvents(new Foguete(), register);
+		    pm.registerEvents(new Rainbow(), register); 
+		    pm.registerEvents(new Poop(), register);  
 		}catch(RuntimeException gx) {
 			throw new GadgetException("Não foi possível carregar os Gadgets.");
 		}

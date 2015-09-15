@@ -20,6 +20,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import br.com.floodeer.ultragadgets.UltraGadgets;
 import Update.SchedulerEvent;
@@ -41,6 +42,9 @@ public class Gravidade implements Listener {
 			b.setType(Material.SLIME_BLOCK);
 			b.getRelative(BlockFace.UP).setType(Material.IRON_FENCE);
 			b.getRelative(BlockFace.DOWN).setType(Material.IRON_FENCE);
+			b.setMetadata("b1", new FixedMetadataValue(plugin, "ugBlocks"));
+			b.getRelative(BlockFace.UP).setMetadata("b1", new FixedMetadataValue(plugin, "ugBlocks"));
+			b.getRelative(BlockFace.DOWN).setMetadata("b1", new FixedMetadataValue(plugin, "ugBlocks"));
 			block.add(b);
 			Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 				
